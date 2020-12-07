@@ -169,8 +169,10 @@ MyString MyString::operator!() {
         if (temp.mystring[i] >= 'a' && temp.mystring[i] <= 'z') {
             temp.mystring[i] -= 'a' - 'A';
         }
-        if (temp.mystring[i] >= 'A' && temp.mystring[i] <= 'Z') {
-            temp.mystring[i] += 'a' - 'A';
+        else {
+            if (temp.mystring[i] >= 'A' && temp.mystring[i] <= 'Z') {
+                temp.mystring[i] += 'a' - 'A';
+            }
         }
     }
     return temp;
