@@ -13,7 +13,7 @@ class MyString {
 
  public:
      explicit MyString(const char* ptr = nullptr);
-     MyString(std::string s);
+     explicit MyString(std::string s);
      MyString(const MyString& s);
      MyString(MyString&& s);
      ~MyString();

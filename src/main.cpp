@@ -10,7 +10,7 @@ int main() {
     std::cout << b.get() << "\n";   // and show that to the world one more time
     a = b * 3;                  // I SAID LONGER
     std::cout << a.get() << "\n";   // AND DISPLAY THAT
-    std::cout << a.length() << "\n"; // what's the length of string? Hmm...
+    std::cout << a.length() << "\n";  // what's the length of string? Hmm...
     MyString c("hELLO");        // I think i need more variables
     c = !c;                     // oops, I misclicked
     std::cout << c << "\n";     // Eee! Default "Hello"
