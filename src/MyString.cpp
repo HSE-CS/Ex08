@@ -91,7 +91,7 @@ MyString MyString::operator-(const MyString& str) {
 MyString MyString::operator*(int n) {
     char* s = reinterpret_cast<char*>(calloc(this->len * n + 1, sizeof(char)));
     for (size_t i = 0; i < n; ++i) {
-        strcpy(s + this->len * i, this->mystring);
+        sprintf(s + this->len * i, "%s", this->mystring);
     }
     MyString new1_str = MyString(s);
     return new1_str;
