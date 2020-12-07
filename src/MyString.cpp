@@ -45,7 +45,7 @@ size_t MyString::length() const { return len; }
 char *MyString::get() const { return str; }
 
 MyString MyString::operator+(const MyString &second_string) {
-  size_t new_len = len + second_string.len;
+  size_t new_len = len + second_string.length();
   char *new_str = new char[new_len + 1];
   snprintf(new_str, len, "%s", str);
   snprintf(new_str + len, second_string.length() + 1, "%s",
@@ -110,15 +110,18 @@ bool MyString::operator<=(const MyString &string) {
 }
 
 MyString MyString::operator!() {
+  char *new_str = new char[len + 1];
+  snprintf(new_str, len + 1, "&s", str);
   for (size_t i = 0; i < len; i++) {
-    if ((int)str[i] <= 90 && (int)str[i] >= 65) {
-      str[i] = char((int)str[i] + 32);
+    if ((int)str[i] <= 'Z' && (int)str[i] >= 'A') {
+      new_str += 32;
     } else {
-      if ((int)str[i] <= 122 && (int)str[i] >= 97) {
-        str[i] = char((int)str[i] - 32);
+      if ((int)str[i] <= 'z' && (int)str[i] >= 'a') {
+        new_str[i] -= 32;
       }
     }
   }
+  return MyString(new_str);
 }
 
 char &MyString::operator[](const size_t index) const { return str[index]; }
