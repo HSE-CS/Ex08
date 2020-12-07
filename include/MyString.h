@@ -34,7 +34,7 @@ class MyString{
     bool operator<=(const MyString &s);
     MyString operator!();
     char & operator[](const size_t ind) const;
-    int operator()(const MyString &s);
+    int operator()(const char* s);
     friend std::ostream& operator<<(std::ostream &os, MyString &s);
     friend std::istream& operator>>(std::istream &is, MyString &s);
 };

@@ -117,8 +117,8 @@ char & MyString::operator[](const size_t ind) const {
   return buf[ind];
 }
 
-int MyString::operator()(const MyString &s) {
-  char* p_find = strstr(buf, s.get());
+int MyString::operator()(const char* s) {
+  char* p_find = strstr(buf, s);
   if (nullptr == p_find)
     return -1;
   else
