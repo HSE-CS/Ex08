@@ -3,22 +3,19 @@
 MyString::MyString(const char* s) {
   len = strlen(s);
   buf = new char[len + 1];
-  sprintf(buf, "%s", s);
-  buf[len] = 0;
+  snprintf(buf, len + 1, "%s", s);
 }
 
 MyString::MyString(std::string s) {
   len = s.size();
   buf = new char[len + 1];
-  sprintf(buf, "%s", s.c_str());
-  buf[len] = 0;
+  snprintf(buf, len + 1, "%s", s.c_str());
 }
 
 MyString::MyString(const MyString &s) {
   len = s.len;
   buf = new char[len + 1];
-  sprintf(buf, "%s", s.buf);
-  buf[len] = 0;
+  snprintf(buf, len + 1, "%s", s.buf);
 }
 
 MyString::MyString(MyString &&s) {
@@ -43,8 +40,8 @@ char* MyString::get() const {
 MyString MyString::operator+(const MyString &s) {
   size_t new_len = len + s.length();
   char * ans = new char[new_len + 1];
-  sprintf(ans, "%s", buf);
-  sprintf(ans + len, "%s", s.get());
+  snprintf(ans, len + 1, "%s", buf);
+  snprintf(ans + len, s.length() + 1, "%s", s.get());
   ans[new_len] = 0;
   return MyString(ans);
 }
@@ -68,8 +65,7 @@ MyString MyString::operator*(const size_t cnt) {
 MyString& MyString::operator=(const MyString &s) {
   len = s.len;
   buf = new char[len + 1];
-  sprintf(buf, "%s", s.buf);
-  buf[len] = 0;
+  snprintf(buf, len + 1, "%s", s.buf);
   return *this;
 }
 
@@ -107,8 +103,7 @@ bool MyString::operator<=(const MyString &s) {
 
 MyString MyString::operator!() {
   char * ans = new char[len + 1];
-  sprintf(ans, "%s", buf);
-  ans[len] = 0;
+  snprintf(ans, len + 1, "%s", buf);
   for (size_t i = 0; i < len; i++) {
     if (ans[i] >= 'a' && ans[i] <= 'z')
       ans[i] += 'A' - 'a';
