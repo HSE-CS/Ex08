@@ -1,6 +1,6 @@
 //  Copyright 2020 Nikita Naumov
-#ifndef INCLUDE_MY_STRING_H
-#define INCLUDE_MY_STRING_H
+#ifndef INCLUDE_MYSTRING_H
+#define INCLUDE_MYSTRING_H
 
 #include <iostream>
 #include <string>
@@ -13,6 +13,7 @@ class MyString {
  private:
     char* ptr;
     unsigned len;
+
  public:
     //  constructors and destructors
     explicit MyString(const char* str = nullptr);
@@ -45,7 +46,6 @@ class MyString {
         delete[] this->ptr;
         this->ptr = new char [this->len + 1];
         snprintf(this->ptr, this->len + 1, "%s", a.ptr);
-        
         a.len = 0;
         delete[] a.ptr;
         a.ptr = nullptr;
@@ -66,7 +66,6 @@ class MyString {
         }
         tmp.ptr[tmp.len] = '\0';
         return tmp;
-
     }
     
     MyString operator- (const MyString& a) {
@@ -75,9 +74,8 @@ class MyString {
         buf_str.erase(std::remove(buf_str.begin(), buf_str.end(), a.ptr[i]),
                   buf_str.end());
         return MyString(buf_str);
-        
-    } //  вычитание (из первой строки удаляются все символы, присутствующие
-    //во второй строке).
+    }  //  вычитание (из первой строки удаляются все символы, присутствующие
+    //  во второй строке).
     
     MyString operator* (int a) {
         if (a < 0) {
@@ -89,8 +87,7 @@ class MyString {
             for (size_t j = 0; j < this->len; ++j) {
                 tmp[cnt] = this->ptr[j];
                 cnt++;
-            }
-            
+            } 
         }
         tmp[cnt] = '\0';
         return MyString(tmp);
@@ -145,7 +142,7 @@ class MyString {
 
     friend bool operator!= (const MyString& a, const MyString& b);
 
-    friend bool operator== (MyString &a, MyString &b);
+    friend bool operator== (const MyString &a, const MyString &b);
 
     friend std::ostream& operator<<(std::ostream& os, const MyString& str);
 
@@ -154,4 +151,4 @@ class MyString {
 
 
 
-#endif  //  INCLUDE_MY_STRING_H
+#endif  //  INCLUDE_MYSTRING_H

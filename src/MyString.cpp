@@ -30,9 +30,8 @@
         this->len = x.len;
         this->ptr = x.ptr;
         x.len = 0;
-		x.ptr = nullptr;
-
-	}
+        x.ptr = nullptr;
+    }
 
     int MyString::length() {
         return this->len;
@@ -42,8 +41,8 @@
         return this->ptr;
     }
 
-    bool operator== (MyString &a, MyString &b) {
-        if (a.len != b.len){
+    bool operator== (const MyString &a, const MyString &b) {
+        if (a.len != b.len) {
             return false;
         }
         for (size_t i = 0; i < a.len; ++i) {
@@ -54,8 +53,8 @@
         return true;
     }
 
-    bool operator!= (const MyString& a, const MyString& b){
-        if (a.len != b.len){
+    bool operator!= (const MyString& a, const MyString& b) {
+        if (a.len != b.len) {
             return true;
         }
         for (size_t i = 0; i < a.len; ++i) {

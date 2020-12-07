@@ -15,7 +15,7 @@ int main() {
     MyString test5 = test3 * 3;  //  triple bbba
     std::cout << test5.get() << std::endl;
     std::cout << "=========================================================\n";
-    std::cout << "Let's seek for 'bb' substring in previous string" << std::endl;
+    std::cout << "Let's seek for 'bb' substring in previous string\n";
     std::cout << "First position of 'bb' is "<< test5("bb") << std::endl;
     
     std::cout << "=========================================================\n";
