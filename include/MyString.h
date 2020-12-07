@@ -26,6 +26,7 @@ class MyString {
   int operator>(const MyString&);
   int operator<(const MyString&);
   MyString& operator=(const MyString&);
+  MyString& operator=(MyString&&);
   MyString& operator!();
   char operator[](int n);
   int operator()(const char*);

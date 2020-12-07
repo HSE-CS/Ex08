@@ -29,4 +29,10 @@ int main() {
   MyString a("454545");
   std::cout << "0 - " << a("45") << std::endl;
   std::cout << "-1 - " << a("33") << std::endl;
+  MyString str8("123");
+  int numb = 3;
+  MyString str9;
+  str9 = str8 * numb;
+  std::cout << "123123123 - " << str9.get() << std::endl;
+  std::cout << (strcmp("123123123", str9.get())) << std::endl;
 }

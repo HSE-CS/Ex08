@@ -28,7 +28,9 @@ MyString::MyString(const MyString &originalStr) {
   str = originalStr.str;
 }
 
-MyString::MyString(MyString &&) {
+MyString::MyString(MyString &&otherStr) {
+  this->str = otherStr.str;
+  otherStr.str = nullptr;
 }
 
 char *MyString::get() {
@@ -82,6 +84,7 @@ MyString MyString::operator*(int n) {
       index = 0;
     }
   }
+  newStr[this->length() * n] = '\0';
   MyString newMyStr(newStr);
   return newMyStr;
 }
@@ -93,7 +96,7 @@ int MyString::operator==(const MyString &otherStr) {
 
 int MyString::operator!=(const MyString &otherStr) {
   int isEq = strcmp(this->str, otherStr.str);
-  return !isEq;
+  return isEq;
 }
 
 int MyString::operator>=(const MyString &otherStr) {
@@ -132,4 +135,10 @@ int MyString::operator()(const char *podStr) {
   } else {
     return -1;
   }
+}
+
+MyString &MyString::operator=(MyString && otherStr) {
+  this->str = otherStr.str;
+  otherStr.str = nullptr;
+  return *this;
 }
