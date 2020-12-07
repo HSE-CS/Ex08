@@ -8,8 +8,7 @@ MyString::MyString(const char* str) {
   if (str == nullptr) {
     symb = nullptr;
     len = 0;
-  }
-  else {
+  } else {
     len = strlen(str);
     symb = new char[len + 1];
     snprintf(symb, len + 1, "%s", str);
