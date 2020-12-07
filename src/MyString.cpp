@@ -1,5 +1,6 @@
 // Copyright 2020 Longa Bonga
 #include <string>
+#include <cstring>
 #include <iostream>
 #include "MyString.h"
 
