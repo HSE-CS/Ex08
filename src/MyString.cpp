@@ -48,7 +48,7 @@ MyString MyString::operator+(const MyString &second_string) {
   size_t new_len = len + second_string.len;
   char *new_str = new char[new_len + 1];
   snprintf(new_str, len, "%s", str);
-  snprintf(new_str + len, second_string.len + 1, "s", second_string.str);
+  snprintf(new_str + len, second_string.len + 1, "%s", second_string.str);
   return MyString(new_str);
 }
 
