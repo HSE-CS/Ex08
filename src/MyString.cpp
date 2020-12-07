@@ -6,8 +6,15 @@
 #include <string>
 
 MyString::MyString(const char* raw_str) {
-  this->len = strlen(raw_str);
-  this->inner = strdup(raw_str);
+  if (!raw_str) {
+    this->len = 0;
+    char* raw_str = reinterpret_cast<char*>(calloc(1, sizeof(char)));
+    if (!raw_str) exit(1);
+    this->inner = raw_str;
+  } else {
+    this->len = strlen(raw_str);
+    this->inner = strdup(raw_str);
+  }
 }
 
 MyString::MyString(const std::string std_str) {
@@ -32,9 +39,13 @@ size_t MyString::length() { return this->len; }
 char* MyString::get() { return this->inner; }
 
 MyString MyString::operator+(const MyString& other) {
-  char* concat = strcat(this->inner, other.inner);
-  MyString new_str = MyString(concat);
-  free(concat);
+  char* raw_str =
+      reinterpret_cast<char*>(calloc(this->len + other.len + 1, sizeof(char)));
+  if (!raw_str) exit(1);
+  strcat(raw_str, this->inner);
+  strcat(raw_str + this->len, other.inner);
+  MyString new_str = MyString(raw_str);
+  free(raw_str);
   return new_str;
 }
 
@@ -73,10 +84,19 @@ MyString MyString::operator*(size_t times) {
   return new_str;
 }
 
-MyString MyString::operator=(const MyString& other) { return MyString(other); }
-MyString MyString::operator=(MyString&& other) { return MyString(other); }
+MyString& MyString::operator=(const MyString& other) {
+  this->len = other.len;
+  this->inner = strdup(other.inner);
+  return *this;
+}
+MyString& MyString::operator=(MyString&& other) {
+  this->len = other.len;
+  this->inner = strdup(other.inner);
+  return *this;
+}
 bool MyString::operator==(const MyString& other) {
-  return strcmp(this->inner, other.inner);
+  int x = strcmp(this->inner, other.inner);
+  return x == 0;
 }
 bool MyString::operator!=(const MyString& other) { return !(*this == other); }
 bool MyString::operator>(const MyString& other) {

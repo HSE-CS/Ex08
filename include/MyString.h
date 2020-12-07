@@ -21,8 +21,8 @@ class MyString {
   MyString operator+(const MyString&);
   MyString operator-(const MyString&);
   MyString operator*(size_t);
-  MyString operator=(const MyString&);
-  MyString operator=(MyString&&);
+  MyString& operator=(const MyString&);
+  MyString& operator=(MyString&&);
   bool operator==(const MyString&);
   bool operator!=(const MyString&);
   bool operator>(const MyString&);
