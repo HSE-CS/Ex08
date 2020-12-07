@@ -38,7 +38,7 @@ TEST(MyStringTest, test5) {
 
 TEST(MyStringTest, test6) {
   MyString a(std::string("Hello"));
-  EXPECT_STREQ("Hello", c.get());
+  EXPECT_STREQ("Hello", a.get());
 }
 
 TEST(MyStringTest, test7) {
