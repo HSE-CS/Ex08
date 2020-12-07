@@ -7,7 +7,6 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
-#include <stdio.h>
 
 class MyString{
  private:
