@@ -20,4 +20,13 @@ int main() {
   std::cout << "123123123 - " << (c * 3).get() << std::endl;
   std::cout << (MyString("123") == MyString("123")) << std::endl;
   std::cout << (MyString("1") == MyString("123")) << std::endl;
+  std::cout << (MyString("123") > MyString("123")) << std::endl;
+  std::cout << "1 - " << (MyString("1234") >= MyString("123")) << std::endl;
+  std::cout << (MyString("123") < MyString("123")) << std::endl;
+  std::cout << "1 - " << (MyString("123") <= MyString("45")) << std::endl;
+  std::cout << "ABC - " << (!MyString("abc")).get() << std::endl;
+  std::cout << "a - " << (MyString("abc"))[0] << std::endl;
+  MyString a("454545");
+  std::cout << "0 - " << a("45") << std::endl;
+  std::cout << "-1 - " << a("33") << std::endl;
 }

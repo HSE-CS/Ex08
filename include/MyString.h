@@ -21,7 +21,14 @@ class MyString {
   MyString operator*(int n);
   int operator==(const MyString&);
   int operator!=(const MyString&);
+  int operator>=(const MyString&);
+  int operator<=(const MyString&);
+  int operator>(const MyString&);
+  int operator<(const MyString&);
   MyString& operator=(const MyString&);
+  MyString& operator!();
+  char operator[](int n);
+  long operator()(const char*);
 };
 
 #endif  // INCLUDE_MYSTRING_H_

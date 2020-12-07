@@ -95,3 +95,41 @@ int MyString::operator!=(const MyString &otherStr) {
   int isEq = strcmp(this->str, otherStr.str);
   return !isEq;
 }
+
+int MyString::operator>=(const MyString &otherStr) {
+  return (strcmp(str, otherStr.str) > -1);
+}
+
+int MyString::operator<=(const MyString &otherStr) {
+  return (strcmp(str, otherStr.str) < 1);
+}
+
+int MyString::operator>(const MyString &otherStr) {
+  return (strcmp(str, otherStr.str) == 1);
+}
+
+int MyString::operator<(const MyString &otherStr) {
+  return (strcmp(str, otherStr.str) == -1);
+}
+
+MyString &MyString::operator!() {
+  for (int i = 0; i < this->length(); ++i) {
+    if (str[i] >= 'a' && str[i] <= 'z') {
+      str[i] -= 32;
+    }
+  }
+  return *this;
+}
+
+char MyString::operator[](int n) {
+  return str[n];
+}
+
+long MyString::operator()(const char *podStr) {
+  char *where = strstr(str, podStr);
+  if (where != nullptr) {
+    return where - str;
+  } else {
+    return -1;
+  }
+}
