@@ -9,7 +9,7 @@ MyString::MyString(const char* str) {
         char* str = reinterpret_cast<char*>(calloc(1, sizeof(char)));
         this->mystring = str;
     }
-    if(str) {
+    if (str) {
         this->len = strlen(str);
         this->mystring = strdup(str);
     }
