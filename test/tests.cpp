@@ -57,7 +57,7 @@ TEST(MyStringTest, test8) {
   EXPECT_STREQ("123123123", c.get());
 }
 
-TEST(MyStringTest, test9) {
+/*TEST(MyStringTest, test9) {
   MyString a("123");
   MyString b("123");
   EXPECT_EQ(1, a == b);
@@ -115,4 +115,4 @@ TEST(MyStringTest, test17) {
 TEST(MyStringTest, test18) {
   MyString a("454545");
   EXPECT_EQ(-1, a("33"));
-}
+}*/
