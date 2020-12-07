@@ -1,11 +1,12 @@
 #include "MyString.h"
 
 
-MyString::MyString()
+/*MyString::MyString()
 {
 	this->len = 0;
 	this->str = 0;
 }
+*/
 
 MyString::MyString(size_t len)
 {
@@ -17,9 +18,15 @@ MyString::MyString(size_t len)
 
 MyString::MyString(const char* str) //:MyString(strlen(str) + 1)
 {
-	this->len = strlen(str);
-	this->str = new char[this->len];
-	strcpy(this->str, str);
+	if (str) {
+		this->len = strlen(str);
+		this->str = new char[this->len];
+		strcpy(this->str, str);
+	}
+	else {
+		this->len = 0;
+		this->str = str;
+	}
 }
 
 MyString::MyString(std::string str) //:MyString(str.length())

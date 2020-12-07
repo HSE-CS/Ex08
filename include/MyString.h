@@ -11,7 +11,7 @@ private:
 	char* str;
 	size_t len;
 public:
-	MyString();
+	//MyString();
 	MyString(size_t);
 	MyString(const char* = nullptr);
 	MyString(std::string);
