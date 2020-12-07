@@ -168,12 +168,9 @@ MyString MyString::operator!() {
     for (size_t i = 0; i < temp.len; ++i) {
         if (temp.mystring[i] >= 'a' && temp.mystring[i] <= 'z') {
             temp.mystring[i] -= 'a' - 'A';
-        }
-        else {
-            if (temp.mystring[i] >= 'A' && temp.mystring[i] <= 'Z') {
+        }else if (temp.mystring[i] >= 'A' && temp.mystring[i] <= 'Z') {
                 temp.mystring[i] += 'a' - 'A';
             }
-        }
     }
     return temp;
 }
