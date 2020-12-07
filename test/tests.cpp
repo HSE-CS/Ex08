@@ -57,13 +57,13 @@ TEST(MyStringTest, test8) {
   EXPECT_STREQ("123123123", c.get());
 }
 
-TEST(MyStringTest, test9) {
+/*TEST(MyStringTest, test9) {
   MyString a("123");
   MyString b("123");
   EXPECT_EQ(true, a == b);
 }
 
-/*TEST(MyStringTest, test10) {
+TEST(MyStringTest, test10) {
   MyString a("123");
   MyString b("1234");
   EXPECT_EQ(false, a == b);
