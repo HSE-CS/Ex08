@@ -64,12 +64,13 @@ MyString MyString::operator-(const MyString& a) {
     for (int j = 0; j < a.len; j++) {
       if (field[i] == a.field[j])
         letter_found = true;
-      } if (!letter_found)
+      }
+      if (!letter_found)
       {
          result[k] = field[i];
          k++;
       }
-     }
+    }
   MyString ans = MyString(result);
   free(result);
   return ans;
