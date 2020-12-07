@@ -63,7 +63,7 @@ MyString MyString::operator+(const MyString &second_string) {
 MyString MyString::operator-(const MyString &string) {
   std::string new_str(str, len * 2);
   for (size_t i = 0; i < string.len; i++) {
-    new_str.erase(std::remove(new_str.begin(), new_str.end(), string.str[i]),
+    new_str.erase(std::remove(new_str.begin(), new_str.end(), str[i]),
                   new_str.end());
   }
   return MyString(new_str);
@@ -83,7 +83,7 @@ MyString MyString::operator=(const MyString &string) {
   str = new char[len + 1];
   strcpy(str, string.str);
   str[len] = '\0';
-};
+}
 
 MyString MyString::operator=(MyString &&string) {
   len = string.len;
