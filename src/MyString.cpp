@@ -83,7 +83,7 @@ MyString MyString::operator-(const MyString&str){
 MyString MyString::operator*(int n) {
     MyString result;
     result.size = n * (size-1);
-    result.string = result.string = (char*)calloc(result.size-1,sizeof(char));
+    result.string = result.string = (char*)calloc(result.size-n*n,sizeof(char));
     int j = 0;
     for(int i = 0; i < result.size; i++) {
         if(i % (size-1) == 0)
