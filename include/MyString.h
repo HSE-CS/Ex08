@@ -12,7 +12,7 @@ private:
 	size_t len;
 public:
 	//MyString();
-	MyString(size_t);
+	//MyString(size_t = 0);
 	MyString(const char* = nullptr);
 	MyString(std::string);
 	MyString(const MyString&);

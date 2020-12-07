@@ -8,19 +8,19 @@
 }
 */
 
-MyString::MyString(size_t len)
+/*MyString::MyString(size_t len)
 {
 	this->len = len;
 	this->str = new char[(this->len)];
 	*(this->str) = 0;
-}
+}*/
 
 
 MyString::MyString(const char* str) //:MyString(strlen(str) + 1)
 {
 	if (str) {
 		this->len = strlen(str);
-		this->str = new char[this->len];
+		this->str = new char[this->len +1];
 		strcpy(this->str, str);
 	}
 	else {
@@ -32,24 +32,23 @@ MyString::MyString(const char* str) //:MyString(strlen(str) + 1)
 MyString::MyString(std::string str) //:MyString(str.length())
 {
 	this->len = str.length();
-	this->str = new char[this->len];
+	this->str = new char[this->len + 1];
 	strcpy(this->str, str.c_str());
 }
 
 MyString::MyString(const MyString& str) //:MyString(str.len)
 {
 	this->len = str.len;
-	this->str = new char[this->len];
+	this->str = new char[this->len + 1];
 	strcpy(this->str, str.str);
 }
 
 MyString::MyString(MyString&& str)
 {
 	this->len = str.len;
-	this->str = new char[this->len];
-	strcpy(this->str, str.str);
-	str.str = nullptr;
+	this->str = str.str;
 	str.len = 0;
+	str.str = nullptr;
 }
 
 MyString::~MyString()
@@ -70,7 +69,9 @@ char* MyString::get()
 
 MyString MyString::operator+(MyString b)
 {
-	MyString a(this->len + b.len);
+	MyString a;
+	a.len = this->len + b.len;
+	a.str = new char[a.len + 1];
 	for (size_t i = 0; i < this->len; i++)
 	{
 		(a.str)[i] = (this->str)[i];
@@ -103,7 +104,7 @@ MyString MyString::operator-(MyString b)
 
 MyString MyString::operator*(size_t size)
 {
-	MyString result(this->len * size);
+	MyString result;
 	for (size_t i = 0; i < size; i++)
 	{
 		for (size_t j = 0; j < this->len; j++)
@@ -121,10 +122,12 @@ MyString& MyString::operator=(const MyString& b)
 	return *this;
 }
 
-MyString& MyString::operator=(MyString&& b)
+MyString& MyString::operator=(MyString&& b) 
 {
 	this->len = b.len;
-	strcpy(this->str, b.str);
+	this->str = b.str;
+	b.len = 0;
+	b.str = nullptr;
 	return *this;
 }
 
