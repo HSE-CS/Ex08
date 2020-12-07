@@ -71,7 +71,9 @@ MyString MyString::operator*(const size_t count) {
 
 MyString MyString::operator=(const MyString &string) {
   len = string.len;
-  delete[] str;
+  if (str != nullptr) {
+    delete[] str;
+  }
   str = new char[len + 1];
   snprintf(str, len + 1, "%s", string.str);
 }
