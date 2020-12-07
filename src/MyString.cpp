@@ -56,7 +56,7 @@ MyString MyString::operator+(const MyString& a) {
 
 MyString MyString::operator-(const MyString& a) {
   int k = 0;
-  char* result = reinterpret_cast<char*>calloc(len + 1, sizeof(char));
+  char* result = reinterpret_cast<char*>(calloc(len + 1, sizeof(char)));
   bool letter_found = false;
   for (int i = 0; i < len; i++) {
     letter_found = false;
@@ -76,7 +76,7 @@ MyString MyString::operator-(const MyString& a) {
 }
 
 MyString MyString::operator*(int repeats) {
-  char* result = reinterpret_cast<char*>calloc(len * repeats + 1, sizeof(char));
+  char* result = reinterpret_cast<char*>(calloc(len * repeats + 1, sizeof(char)));
   for (int i = 0; i < repeats; i++)
   strcpy(result + i * repeats, field);
   MyString ans = MyString(result);
