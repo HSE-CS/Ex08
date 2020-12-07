@@ -45,10 +45,9 @@ MyString MyString::operator+(const MyString& my_str) {
 }
 
 MyString MyString::operator-(const MyString& my_str) {
-  std::string other(my_str.get());
   std::string res(this->get());
   for (size_t pos = 0; pos < my_str.length(); pos++)
-    res.erase(std::remove(res.begin(), res.end(), other[pos]), res.end());
+    res.erase(std::remove(res.begin(), res.end(), my_str[pos]), res.end());
   return MyString(res);
 }
 
