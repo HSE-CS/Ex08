@@ -1,4 +1,3 @@
-// Copyright 2020 _
 #pragma once
 #include <iostream>
 #include <string>
@@ -10,8 +9,8 @@ class MyString {
 
  public:
   // Constructors
-  MyString(const char* = nullptr);
-  MyString(std::string);
+  explicit MyString(const char* = nullptr);
+  explicit MyString(const std::string);
   MyString(const MyString&);
   MyString(MyString&&);
   ~MyString();
@@ -19,10 +18,10 @@ class MyString {
   size_t length();
   char* get();
   // Operators
-  MyString operator+(MyString&);
-  MyString operator-(MyString&);
+  MyString operator+(const MyString&);
+  MyString operator-(const MyString&);
   MyString operator*(size_t);
-  MyString operator=(MyString&);
+  MyString operator=(const MyString&);
   MyString operator=(MyString&&);
   bool operator==(const MyString&);
   bool operator!=(const MyString&);

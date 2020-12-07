@@ -1,4 +1,3 @@
-// Copyright 2020 _
 #include "MyString.h"
 
 #include <string.h>
@@ -11,7 +10,7 @@ MyString::MyString(const char* raw_str) {
   this->inner = strdup(raw_str);
 }
 
-MyString::MyString(std::string std_str) {
+MyString::MyString(const std::string std_str) {
   this->len = std_str.length();
   this->inner = strdup(std_str.c_str());
 }
@@ -32,15 +31,15 @@ size_t MyString::length() { return this->len; }
 
 char* MyString::get() { return this->inner; }
 
-MyString MyString::operator+(MyString& other) {
+MyString MyString::operator+(const MyString& other) {
   char* concat = strcat(this->inner, other.inner);
   MyString new_str = MyString(concat);
   free(concat);
   return new_str;
 }
 
-MyString MyString::operator-(MyString& other) {
-  char* raw_str = (char*)calloc(this->len + 1, sizeof(char));
+MyString MyString::operator-(const MyString& other) {
+  char* raw_str = reinterpret_cast<char*>(calloc(this->len + 1, sizeof(char)));
   if (!raw_str) exit(1);
   size_t k = 0;
   bool found = false;
@@ -63,7 +62,8 @@ MyString MyString::operator-(MyString& other) {
 }
 
 MyString MyString::operator*(size_t times) {
-  char* raw_str = (char*)calloc(this->len * times + 1, sizeof(char));
+  char* raw_str =
+      reinterpret_cast<char*>(calloc(this->len * times + 1, sizeof(char)));
   if (!raw_str) exit(1);
   for (size_t i = 0; i < times; ++i) {
     strcpy(raw_str + this->len * i, this->inner);
@@ -73,7 +73,7 @@ MyString MyString::operator*(size_t times) {
   return new_str;
 }
 
-MyString MyString::operator=(MyString& other) { return MyString(other); }
+MyString MyString::operator=(const MyString& other) { return MyString(other); }
 MyString MyString::operator=(MyString&& other) { return MyString(other); }
 bool MyString::operator==(const MyString& other) {
   return strcmp(this->inner, other.inner);
