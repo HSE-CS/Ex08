@@ -10,7 +10,7 @@ MyString::MyString(const char* a) {
     if (!a)
       exit(1);
     field = a;
-  }else {
+  } else {
     len = strlen(a);
     field = strdup(a);
   }
@@ -63,8 +63,7 @@ MyString MyString::operator-(const MyString& a) {
     for (int j = 0; j < a.len; j++) {
       if (field[i] == a.field[j])
         letter_found = true;
-      }
-      if (!letter_found)
+      } if (!letter_found)
       {
          result[k] = field[i];
          k++;
@@ -76,7 +75,8 @@ MyString MyString::operator-(const MyString& a) {
 }
 
 MyString MyString::operator*(int repeats) {
-  char* result = reinterpret_cast<char*>(calloc(len * repeats + 1, sizeof(char)));
+  char* result = \
+  reinterpret_cast<char*>(calloc(len * repeats + 1, sizeof(char)));
   for (int i = 0; i < repeats; i++)
   strcpy(result + i * repeats, field);
   MyString ans = MyString(result);
@@ -125,7 +125,7 @@ MyString MyString::operator!() {
   for (size_t i = 0; i < copy.len; ++i) {
     if (copy.field[i] >= 'a' && copy.field[i] <= 'z') {
       copy.field[i] -= 'a' - 'A';
-    }else if (copy.field[i] >= 'A' && copy.field[i] <= 'Z') {
+    } else if (copy.field[i] >= 'A' && copy.field[i] <= 'Z') {
       copy.field[i] += 'a' - 'A';
     }
   }
