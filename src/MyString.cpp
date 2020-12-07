@@ -6,10 +6,10 @@
 MyString::MyString(const char* str) {
     if (!str) {
         this->len = 0;
-        char* str = (char*)calloc(1, sizeof(char));;
+        char* str = reinterpret_cast<char*>(calloc(1, sizeof(char)));
         this->mystring = str;
     }
-    else {
+    if(str) {
         this->len = strlen(str);
         this->mystring = strdup(str);
     }
@@ -17,7 +17,7 @@ MyString::MyString(const char* str) {
 MyString::MyString(std::string str) {
     this->mystring = nullptr;
     this->len = 0;
-    if (str.length()!=0) {
+    if (str.length() != 0) {
         this->len = str.length();
         this->mystring = new char[str.length() + 1];
         size_t i = 0;
@@ -84,11 +84,12 @@ MyString MyString::operator-(const MyString& str) {
         }
     i++;
     }
-    return temp;
+    MyString new_str(temp);
+    return new_str;
 }
 MyString MyString::operator*(const int n) {
     int len = this->len;
-    char* temp=new char[len*n+1];
+    char* temp = new char[len*n+1];
     int j = 0;
     while (j < n) {
         int i = 0;
@@ -119,23 +120,23 @@ bool MyString::operator!=(const MyString& str) {
     return (strcmp(this->mystring, str.mystring));
 }
 bool MyString::operator>(const MyString& str) {
-    return (strcmp(this->mystring, str.mystring)>0);
+    return (strcmp(this->mystring, str.mystring) > 0);
 }
 bool MyString::operator<(const MyString& str) {
-    return (strcmp(this->mystring, str.mystring)<0);
+    return (strcmp(this->mystring, str.mystring) < 0);
 }
 bool MyString::operator>=(const MyString& str) {
-    return (strcmp(this->mystring, str.mystring)>=0);
+    return (strcmp(this->mystring, str.mystring) >= 0);
 }
 bool MyString::operator<=(const MyString& str) {
-    return (strcmp(this->mystring, str.mystring)<=0);
+    return (strcmp(this->mystring, str.mystring) <= 0);
 }
 MyString MyString::operator!() {
     for (size_t i = 0; i < this->len; ++i) {
         if (this->mystring[i] >= 'a' && this->mystring[i] <= 'z') {
             this->mystring[i] -= 'a' - 'A';
         }
-        else if (this->mystring[i] >= 'A' && this->mystring[i] <= 'Z') {
+        if (this->mystring[i] >= 'A' && this->mystring[i] <= 'Z') {
             this->mystring[i] += 'a' - 'A';
         }
     }
@@ -149,7 +150,7 @@ int MyString::operator()(const char* str) {
     if (ptr == NULL) {
         return -1;
     }
-    else if (ptr != NULL) {
+    if (ptr != NULL) {
         return ptr-this->mystring;
     }
 }

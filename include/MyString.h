@@ -11,8 +11,8 @@ class MyString {
     int len;
 
  public:
-    MyString(const char* = nullptr);
-    MyString(std::string);
+    explicit MyString(const char* = nullptr);
+    explicit MyString(std::string);
     MyString(const MyString&);
     MyString(const MyString&&);
     ~MyString();
