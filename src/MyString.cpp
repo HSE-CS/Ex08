@@ -69,20 +69,19 @@ MyString MyString::operator*(const size_t count) {
   return MyString(new_str);
 }
 
-MyString MyString::operator=(const MyString &string) {
+MyString &MyString::operator=(const MyString &string) {
   len = string.len;
-  if (str != nullptr) {
-    delete[] str;
-  }
   str = new char[len + 1];
   snprintf(str, len + 1, "%s", string.str);
+  return *this;
 }
 
-MyString MyString::operator=(MyString &&string) {
+MyString &MyString::operator=(MyString &&string) {
   len = string.len;
   str = string.str;
   string.str = nullptr;
   string.len = 0;
+  return *this;
 }
 
 bool MyString::operator==(const MyString &string) {
