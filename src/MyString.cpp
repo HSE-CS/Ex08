@@ -4,10 +4,11 @@
 #include <cstring>
 #include <cstdlib>
 #include "MyString.h"
+#include <algorithm>
 
 
 int MyString :: length() {
-    return size;
+    return size-1;
 }
 
 MyString::MyString() {
@@ -58,7 +59,7 @@ MyString MyString::operator+(const MyString& str){
         result.string[i] = string[i];
     }
     for(int i = 0; i < str.size; i++) {
-        result.string[i+size] = str.string[i];
+        result.string[i+size-1] = str.string[i];
     }
     return result;
 }
@@ -79,11 +80,11 @@ MyString MyString::operator-(const MyString&str){
 
 MyString MyString::operator*(int n) {
     MyString result;
-    result.size = n * size;
+    result.size = n * (size-1);
     result.string = result.string = (char*)calloc(result.size,sizeof(char));
     int j = 0;
     for(int i = 0; i < result.size; i++) {
-        if(i % size == 0)
+        if(i % (size-1) == 0)
             j = 0;
         result.string[i] = string[j];
         j++;
@@ -112,7 +113,7 @@ bool MyString::operator!=(const MyString& str) {
 }
 
 bool MyString::operator<(const MyString& str) {
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < std::min(size-1,str.size-1); i++) {
         if (string[i] >= str.string[i] )
             return false;
     }
@@ -120,15 +121,15 @@ bool MyString::operator<(const MyString& str) {
 }
 
 bool MyString::operator<=(const MyString& str) {
-    for (int i = 0; i < size; i++) {
-        if (string[i] > str.string[i] )
+    for (int i = 0; i < std::min(size-1,str.size-1); i++) {
+        if ((int)string[i] > (int)str.string[i] )
             return false;
     }
     return true;
 }
 
 bool MyString::operator>(const MyString& str) {
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < std::min(size-1,str.size-1); i++) {
         if (string[i] <= str.string[i] )
             return false;
     }
@@ -136,7 +137,7 @@ bool MyString::operator>(const MyString& str) {
 }
 
 bool MyString::operator>=(const MyString& str) {
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < std::min(size-1,str.size-1); i++) {
         if (string[i] < str.string[i] )
             return false;
     }
@@ -145,14 +146,18 @@ bool MyString::operator>=(const MyString& str) {
 
 MyString MyString::operator!() {
     MyString result;
-    result.size = size;
+    result.size = size-1;
     result.string =  (char*)calloc(result.size,sizeof(char));
     for (int i = 0; i < size; i++) {
         if ((int)string[i] > 96)
             result.string[i] = (int)string[i] - 32;
-        else
+        else if((int)string[i] > 64 && (int)string[i] < 91)
         {
                 result.string[i] = (int)string[i] + 32;
+        }
+        else
+        {
+        	result.string[i] = string[i];
         }
         
     }
