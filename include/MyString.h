@@ -10,6 +10,7 @@ private:
 
 public:
 	MyString();
+	MyString(int len);
 	MyString(const char*);
 	MyString(std::string);
 	MyString(const MyString&);
@@ -18,17 +19,17 @@ public:
 	int length();
 	char* get();
 
-	MyString operator+(const MyString&);
-	MyString operator-(const MyString&);
-	MyString operator*(const MyString&);
-	MyString operator=(const MyString&);
-	MyString operator=(const MyString&);
-	MyString operator==(const MyString&);
-	MyString operator!=(const MyString&);
-	MyString operator>(const MyString&);
-	MyString operator<(const MyString&);
-	MyString operator>=(const MyString&);
-	MyString operator<= (const MyString&);
+	MyString operator+(MyString& a);
+	MyString operator-(MyString& a);
+	MyString operator*(int a);
+	MyString operator=(const MyString&); //TODO
+	MyString operator=(const MyString&); //TODO
+	bool operator==(MyString& a);
+	bool operator!=(MyString& a);
+	bool operator>(MyString& a);
+	bool operator<(MyString& a);
+	bool operator>=(MyString& a);
+	bool operator<= (MyString& a);
 	MyString operator!(const MyString&);
 	MyString operator[](const MyString&);
 	MyString operator()(const MyString&);

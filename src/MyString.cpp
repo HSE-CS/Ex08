@@ -55,12 +55,59 @@ MyString MyString::operator-(MyString& a) {
 	}
 }
 
-MyString MyString::operator*(const MyString&);
-MyString MyString::operator=(const MyString&);
-MyString MyString::operator=(const MyString&);
-MyString MyString::operator==(const MyString&);
-MyString MyString::operator!=(const MyString&);
-MyString MyString::operator>(const MyString&);
+MyString MyString::operator*(int a) {
+	MyString new_str((len * a) + 1);
+	for (int i = 0; i < a - 1; a++) {
+		strcat(new_str.str, str);
+	}
+	return new_str;
+}
+
+MyString MyString::operator=(const MyString&) {}
+
+MyString MyString::operator=(const MyString&) {}
+
+bool MyString::operator==(MyString& a) {
+	if (len != a.len) {
+		return false;
+	}
+	int i = 0;
+	for (; i < len; i++) {
+		if (a.str[i] != str[i]) {
+			return false;
+			break;
+		}
+	}
+	if (len == (i - 1)) {
+		return true;
+	}
+}
+
+bool MyString::operator!=(MyString& a) {
+	if (len != a.len) {
+		return true;
+	}
+	int i = 0;
+	for (; i < len; i++) {
+		if (a.str[i] != str[i]) {
+			return true;
+			break;
+		}
+	}
+	if (len == (i - 1)) {
+		return false;
+	}
+}
+
+bool MyString::operator>(MyString& a) {
+	for (int i = 0; i < len; i++) {
+		if (a.str[i] != str[i]) {
+			return true;
+			break;
+		}
+	}
+}
+
 MyString MyString::operator<(const MyString&);
 MyString MyString::operator>=(const MyString&);
 MyString MyString::operator<= (const MyString&);
