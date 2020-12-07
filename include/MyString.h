@@ -4,14 +4,15 @@
 
 #include <iostream>
 #include <string>
-
+#include <cstring>
 
 class MyString {
  private:
      char* str;
      size_t len;
+
  public:
-     MyString(const char* ptr = nullptr);
+     explicit MyString(const char* ptr = nullptr);
      MyString(std::string s);
      MyString(const MyString& s);
      MyString(MyString&& s);
@@ -36,4 +37,4 @@ class MyString {
      friend std::istream& operator>>(std::istream &is, MyString& s);
 };
 
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_

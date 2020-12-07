@@ -1,5 +1,5 @@
 // Copyright 2020 test
-#include "../include/MyString.h"
+#include "MyString.h"
 
 MyString::MyString(const char* ptr) {
     if (ptr == nullptr) {
@@ -75,7 +75,7 @@ MyString MyString::operator-(const MyString& s) {
     for (size_t i = 0; i < this->len; ++i) {
         bool check = true;
         for (size_t j = 0; j < s.len; ++j) {
-            if (this->str[i] == s.str[j]){
+            if (this->str[i] == s.str[j]) {
                 check = false;
             }
         }
@@ -236,5 +236,5 @@ std::ostream& operator<<(std::ostream& os, MyString& s) {
 }
 
 std::istream& operator>>(std::istream& is, MyString& s) {
-    return is >> s; // еще не доделал 
+    return is >> s;  // I do not know how to do this
 }
