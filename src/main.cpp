@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "MyString.h"
+#include "cstring"
 
 int main() {
   MyString nullStr;
