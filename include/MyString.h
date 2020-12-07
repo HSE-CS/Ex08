@@ -2,6 +2,8 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 
+#include <algorithm>
+#include <cstdio>
 #include <cstring>
 #include <iostream>
 #include <string>
