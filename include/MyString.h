@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 
+
 class MyString {
 private:
     char* string;
@@ -17,14 +18,12 @@ public:
     MyString(MyString&&);
     ~MyString();
     unsigned int length();
-    //    get() - возвращение указателя на данные(тип char*).
-    //    Реализовать в классе MyString перегрузку операций :
-
-    //operator+ -сложение(конкатенация двух строк).
-    //    operator- -вычитание(из первой строки удаляются все символы, присутствующие во второй строке).
-    //    operator* -умножение на целое число(строка повторяется заданное число раз).
-    //    operator= -копирующее присваивание.
-    //    operator= -перемещающее присваивание.
+    char* get();
+    MyString operator+(const MyString&);
+    MyString operator-(const MyString&);
+    MyString operator*(const int a);
+    MyString& operator=(const MyString&);
+    MyString& operator=(MyString&&);
     //    operator== -сравнение на равенство.
     //    operator!= -сравнение на неравенство.
     //    operator> -лексографическое сравнение .
@@ -38,4 +37,3 @@ public:
     //    operator>> -запись в поток.
 };
 #endif  // INCLUDE_MYSTRING_H_
-
