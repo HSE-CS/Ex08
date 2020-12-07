@@ -65,8 +65,7 @@ MyString MyString::operator-(const MyString& a) {
       if (field[i] == a.field[j])
         letter_found = true;
       }
-      if (!letter_found)
-      {
+      if (!letter_found) {
          result[k] = field[i];
          k++;
       }
