@@ -1,7 +1,13 @@
 #include "MyString.h"
 
 
-MyString::MyString(size_t len) 
+MyString::MyString()
+{
+	this->len = 0;
+	this->str = 0;
+}
+
+MyString::MyString(size_t len)
 {
 	this->len = len;
 	this->str = new char[(this->len)];
