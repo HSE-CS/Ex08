@@ -63,7 +63,7 @@
             }
         }
         return false;
-    }   
+    }
 
     bool operator> (const MyString& a, const MyString& b) {
         if (a.len > b.len) {
@@ -109,7 +109,7 @@
             return true;
         }
     }
-    
+
     bool operator<= (const MyString& a, const MyString& b) {
         if (strcmp(a.ptr, b.ptr) != 1) {
             return 1;
