@@ -6,7 +6,7 @@ class MyString {
  private:
   char* field;
   int len;
-  
+
  public:
   explicit MyString(const char* = nullptr);
   explicit MyString(const std::string);
