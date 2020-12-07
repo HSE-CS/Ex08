@@ -180,7 +180,6 @@ std::istream& operator>>(std::istream& is, MyString& str) {
 
 MyString MyString::operator=(const MyString& str) {
     size = str.size;
-    free(string);
     string =  (char*)calloc(size,sizeof(char));
     strcpy(string,str.string);
     return *this;
@@ -188,7 +187,6 @@ MyString MyString::operator=(const MyString& str) {
 
 MyString MyString::operator=(MyString&& str) {
     size = str.size;
-    free(string);
     string =  (char*)calloc(size,sizeof(char));
     strcpy(string,str.string);
     str.size = 0;
