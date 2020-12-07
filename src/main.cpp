@@ -2,8 +2,7 @@
 #include<iostream>
 #include "MyString.h"
 
-int main()
-{
+int main() {
     std::cout << "######################## \n";
     MyString s1("Hello,");
     std::cout << s1;
