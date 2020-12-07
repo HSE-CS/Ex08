@@ -36,7 +36,7 @@
     int MyString::length() {
         return this->len;
     }
-    
+
     char* MyString::get() {
         return this->ptr;
     }
@@ -64,7 +64,7 @@
         }
         return false;
     }   
-    
+
     bool operator> (const MyString& a, const MyString& b) {
         if (a.len > b.len) {
             return true;
@@ -94,6 +94,7 @@
             return false;
         }
     }
+
     bool operator>= (const MyString& a, const MyString& b) {
         if (a.len < b.len) {
             return false;
@@ -108,18 +109,12 @@
             return true;
         }
     }
+    
     bool operator<= (const MyString& a, const MyString& b) {
-        if (a.len > b.len) {
-            return false;
-        } else if (a.len < b.len) {
-            return true;
+        if (strcmp(a.ptr, b.ptr) != 1) {
+            return 1;
         } else {
-            for (size_t i = 0; i < a.len; ++i) {
-                if (a.ptr[i] > b.ptr[i]) {
-                    return false;
-                }
-            }
-            return true;
+            return 0;
         }
     }
 
@@ -132,4 +127,3 @@
         os << a.ptr;
         return os;
     }
-    

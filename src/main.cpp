@@ -17,7 +17,7 @@ int main() {
     std::cout << "=========================================================\n";
     std::cout << "Let's seek for 'bb' substring in previous string\n";
     std::cout << "First position of 'bb' is "<< test5("bb") << std::endl;
-    
+
     std::cout << "=========================================================\n";
     MyString test6("Hello! Nice to see you! 123");
     std::cout << "Let's delete all 'e' letters from " << test6.get() << '\n';

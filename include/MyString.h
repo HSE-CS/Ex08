@@ -1,6 +1,6 @@
 //  Copyright 2020 Nikita Naumov
-#ifndef INCLUDE_MYSTRING_H
-#define INCLUDE_MYSTRING_H
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 
 #include <iostream>
 #include <string>
@@ -20,7 +20,7 @@ class MyString {
     explicit MyString(std::string);
     MyString(const MyString&);
     MyString(MyString&&);
-    ~MyString() { 
+    ~MyString() {
         delete[] this->ptr;
     }
     //  methods
@@ -37,14 +37,14 @@ class MyString {
         this->ptr = new char[this->len + 1];
         snprintf(this->ptr, this->len + 1, "%s", a.ptr);
         return *this;
-    } 
+    }
     MyString& operator= (MyString&& a) {
         if (&a == this) {
             return *this;
         }
         this->len = a.len;
         delete[] this->ptr;
-        this->ptr = new char [this->len + 1];
+        this->ptr = new char[this->len + 1];
         snprintf(this->ptr, this->len + 1, "%s", a.ptr);
         a.len = 0;
         delete[] a.ptr;
@@ -67,7 +67,7 @@ class MyString {
         tmp.ptr[tmp.len] = '\0';
         return tmp;
     }
-    
+
     MyString operator- (const MyString& a) {
         std::string buf_str = std::string(this->ptr, this->ptr + len);
         for (size_t i = 0; i < a.len; i++)
@@ -76,7 +76,7 @@ class MyString {
         return MyString(buf_str);
     }  //  вычитание (из первой строки удаляются все символы, присутствующие
     //  во второй строке).
-    
+
     MyString operator* (int a) {
         if (a < 0) {
             throw -1;
@@ -87,7 +87,7 @@ class MyString {
             for (size_t j = 0; j < this->len; ++j) {
                 tmp[cnt] = this->ptr[j];
                 cnt++;
-            } 
+            }
         }
         tmp[cnt] = '\0';
         return MyString(tmp);
@@ -151,4 +151,4 @@ class MyString {
 
 
 
-#endif  //  INCLUDE_MYSTRING_H
+#endif  //  INCLUDE_MYSTRING_H_
