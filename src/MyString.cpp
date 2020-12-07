@@ -25,7 +25,7 @@ MyString::MyString(const char* str) //:MyString(strlen(str) + 1)
 	}
 	else {
 		this->len = 0;
-		this->str = str;
+		this->str = nullptr;
 	}
 }
 
