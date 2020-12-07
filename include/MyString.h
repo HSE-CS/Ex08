@@ -28,7 +28,7 @@ class MyString {
   MyString& operator=(const MyString&);
   MyString& operator!();
   char operator[](int n);
-  long operator()(const char*);
+  int operator()(const char*);
 };
 
 #endif  // INCLUDE_MYSTRING_H_

@@ -125,7 +125,7 @@ char MyString::operator[](int n) {
   return str[n];
 }
 
-long MyString::operator()(const char *podStr) {
+int MyString::operator()(const char *podStr) {
   char *where = strstr(str, podStr);
   if (where != nullptr) {
     return where - str;
