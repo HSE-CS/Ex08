@@ -12,7 +12,7 @@ MyString::MyString(const char* str) {
     }
     if (str) {
         this->len = strlen(str);
-        this->mystring = _strdup(str);
+        this->mystring = strdup(str);
     }
 }
 MyString::MyString(std::string str) {
@@ -89,21 +89,21 @@ MyString MyString::operator-(const MyString& str) {
     return new_str;
 }
 MyString MyString::operator*(int n) {
-    char* new_str = reinterpret_cast<char*>(calloc(this->len * n + 1, sizeof(char)));
+    char* s = reinterpret_cast<char*>(calloc(this->len * n + 1, sizeof(char)));
     for (size_t i = 0; i < n; ++i) {
-        strcpy(new_str + this->len * i, this->mystring);
+        snprintf(s + this->len * i, this->mystring);
     }
-    MyString new1_str = MyString(new_str);
+    MyString new1_str = MyString(s);
     return new1_str;
 }
 MyString& MyString::operator=(const MyString& str) {
     this->len = str.len;
-    this->mystring = _strdup(str.mystring);
+    this->mystring = strdup(str.mystring);
     return *this;
 }
 MyString& MyString::operator=(MyString&& str) {
     this->len = str.len;
-    this->mystring = _strdup(str.mystring);
+    this->mystring = strdup(str.mystring);
     return *this;
 }
 bool MyString::operator==(const MyString& str) {
