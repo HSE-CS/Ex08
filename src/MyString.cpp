@@ -47,16 +47,8 @@ char *MyString::get() const { return str; }
 MyString MyString::operator+(const MyString &second_string) {
   size_t new_len = len + second_string.len;
   char *new_str = new char[new_len + 1];
-  for (size_t i = 0; i < len; i++) {
-    *new_str = str[i];
-    ++new_str;
-  }
-  for (size_t i = 0; i < second_string.len; i++) {
-    *new_str = second_string.str[i];
-    ++new_str;
-  }
-  *new_str = '\0';
-  new_str -= new_len;
+  snprintf(new_str, len, "%s", str);
+  snprintf(new_str + len, second_string.len + 1, "s", second_string.str);
   return MyString(new_str);
 }
 
