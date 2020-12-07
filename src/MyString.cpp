@@ -12,7 +12,7 @@ MyString::MyString(const char* str) {
     }
     if (str) {
         this->len = strlen(str);
-        this->mystring = strdup(str);
+        this->mystring = _strdup(str);
     }
 }
 MyString::MyString(std::string str) {
@@ -101,12 +101,12 @@ MyString MyString::operator*(int n) {
 }
 MyString& MyString::operator=(const MyString& str) {
     this->len = str.len;
-    this->mystring = strdup(str.mystring);
+    this->mystring = _strdup(str.mystring);
     return *this;
 }
 MyString& MyString::operator=(MyString&& str) {
     this->len = str.len;
-    this->mystring = strdup(str.mystring);
+    this->mystring = _strdup(str.mystring);
     return *this;
 }
 bool MyString::operator==(const MyString& str) {
@@ -164,16 +164,16 @@ bool MyString::operator<=(const MyString& str) {
     }
 }
 MyString MyString::operator!() {
-    for (size_t i = 0; i < this->len; ++i) {
-        if (this->mystring[i] >= 'a' && this->mystring[i] <= 'z') {
-            this->mystring[i] -= 'a' - 'A';
+    MyString temp(*this);
+    for (size_t i = 0; i < temp.len; ++i) {
+        if (temp.mystring[i] >= 'a' && temp.mystring[i] <= 'z') {
+            temp.mystring[i] -= 'a' - 'A';
         }
-        if (this->mystring[i] >= 'A' && this->mystring[i] <= 'Z') {
-            this->mystring[i] += 'a' - 'A';
+        else if (temp.mystring[i] >= 'A' && temp.mystring[i] <= 'Z') {
+            temp.mystring[i] += 'a' - 'A';
         }
     }
-    MyString tmp(mystring);
-    return tmp;
+    return temp;
 }
 char MyString::operator[](int n) {
     return this->mystring[n];
