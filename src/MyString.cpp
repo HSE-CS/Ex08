@@ -95,7 +95,7 @@ int MyString::operator==(const MyString &otherStr) {
 }
 
 int MyString::operator!=(const MyString &otherStr) {
-  int isEq = strcmp(this->str, otherStr.str);
+  bool isEq = strcmp(this->str, otherStr.str);
   return isEq;
 }
 

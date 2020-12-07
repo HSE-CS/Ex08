@@ -36,4 +36,5 @@ int main() {
   str9 = str8 * numb;
   std::cout << "123123123 - " << str9.get() << std::endl;
   std::cout << (strcmp("123123123", str9.get())) << std::endl;
+  std::cout << (MyString("1234") != MyString("123")) << std::endl;
 }
