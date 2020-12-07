@@ -6,7 +6,7 @@ MyString::MyString(const char *string_to_copy) {
   if (string_to_copy != nullptr) {
     len = strlen(string_to_copy);
     str = new char[len + 1];
-    strcpy(str, string_to_copy);
+    snprintf(str, len + 1, "s", string_to_copy);
   } else {
     str = nullptr;
     len = 0;
@@ -25,7 +25,7 @@ MyString::MyString(std::string string_to_copy) {
 MyString::MyString(const MyString &class_to_copy) {
   len = class_to_copy.len;
   str = new char[len + 1];
-  strcpy(str, class_to_copy.str);
+  snprintf(str, len + 1, "s", class_to_copy.str);
 }
 
 MyString::MyString(MyString &&class_to_replace) {
@@ -61,9 +61,9 @@ MyString MyString::operator+(const MyString &second_string) {
 }
 
 MyString MyString::operator-(const MyString &string) {
-  std::string new_str(str, len * 2);
+  std::string new_str(str, str + len);
   for (size_t i = 0; i < string.len; i++) {
-    new_str.erase(std::remove(new_str.begin(), new_str.end(), str[i]),
+    new_str.erase(std::remove(new_str.begin(), new_str.end(), string.str[i]),
                   new_str.end());
   }
   return MyString(new_str);
@@ -81,8 +81,7 @@ MyString MyString::operator=(const MyString &string) {
   len = string.len;
   delete[] str;
   str = new char[len + 1];
-  strcpy(str, string.str);
-  str[len] = '\0';
+  snprintf(str, len + 1, "s", string);
 }
 
 MyString MyString::operator=(MyString &&string) {
