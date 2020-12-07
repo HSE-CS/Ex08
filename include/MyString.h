@@ -7,14 +7,16 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <stdio.h>
 
 class MyString{
  private:
     char* buf;
     size_t len = 0;
+
  public:
-    MyString(const char* s = nullptr);
-    MyString(std::string);
+    explicit MyString(const char* s = nullptr);
+    explicit MyString(std::string);
     MyString(const MyString &);
     MyString(MyString &&);
     ~MyString();

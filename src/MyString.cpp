@@ -3,21 +3,21 @@
 MyString::MyString(const char* s) {
   len = strlen(s);
   buf = new char[len + 1];
-  strcpy(buf, s);
+  sprintf(buf, "%s", s);
   buf[len] = 0;
 }
 
 MyString::MyString(std::string s) {
   len = s.size();
   buf = new char[len + 1];
-  strcpy(buf, s.c_str());
+  sprintf(buf, "%s", s.c_str());
   buf[len] = 0;
 }
 
 MyString::MyString(const MyString &s) {
   len = s.len;
   buf = new char[len + 1];
-  strcpy(buf, s.buf);
+  sprintf(buf, "%s", s.buf);
   buf[len] = 0;
 }
 
@@ -29,7 +29,7 @@ MyString::MyString(MyString &&s) {
 }
 
 MyString::~MyString() {
-   delete []buf;
+  delete []buf;
 }
 
 size_t MyString::length() const {
@@ -43,8 +43,8 @@ char* MyString::get() const {
 MyString MyString::operator+(const MyString &s) {
   size_t new_len = len + s.length();
   char * ans = new char[new_len + 1];
-  strcpy(ans, buf);
-  strcpy(ans + len, s.get());
+  sprintf(ans, "%s", buf);
+  sprintf(ans + len, "%s", s.get());
   ans[new_len] = 0;
   return MyString(ans);
 }
@@ -52,7 +52,8 @@ MyString MyString::operator+(const MyString &s) {
 MyString MyString::operator-(const MyString &s) {
   std::string buf_str = std::string(buf, buf + len);
   for (size_t i = 0; i < s.length(); i++)
-    buf_str.erase(std::remove(buf_str.begin(), buf_str.end(), s[i]), buf_str.end());
+    buf_str.erase(std::remove(buf_str.begin(), buf_str.end(), s[i]),
+                  buf_str.end());
   return MyString(buf_str);
 }
 
@@ -67,7 +68,7 @@ MyString MyString::operator*(const size_t cnt) {
 MyString& MyString::operator=(const MyString &s) {
   len = s.len;
   buf = new char[len + 1];
-  strcpy(buf, s.buf);
+  sprintf(buf, "%s", s.buf);
   buf[len] = 0;
   return *this;
 }
@@ -105,8 +106,8 @@ bool MyString::operator<=(const MyString &s) {
 }
 
 MyString MyString::operator!() {
-  char * ans = new char [len + 1];
-  strcpy(ans, buf);
+  char * ans = new char[len + 1];
+  sprintf(ans, "%s", buf);
   ans[len] = 0;
   for (size_t i = 0; i < len; i++) {
     if (ans[i] >= 'a' && ans[i] <= 'z')
