@@ -1,7 +1,7 @@
 // Copyright 2020 VadMack
 
-#ifndef EX08_INCLUDE_MYSTRING_H_
-#define EX08_INCLUDE_MYSTRING_H_
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 
 #include <string>
 
@@ -24,4 +24,4 @@ class MyString {
   MyString& operator=(const MyString&);
 };
 
-#endif //EX08_INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_

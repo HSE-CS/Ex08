@@ -1,6 +1,7 @@
 // Copyright 2020 VadMack
 
 #include <MyString.h>
+#include <cstring>
 
 MyString::MyString(const char *str) {
   if (str != nullptr) {
@@ -28,7 +29,6 @@ MyString::MyString(const MyString &originalStr) {
 }
 
 MyString::MyString(MyString &&) {
-
 }
 
 char *MyString::get() {
@@ -41,8 +41,9 @@ int MyString::length() {
 
 MyString MyString::operator+(MyString addStr) {
   char *newStr = new char[this->length() + addStr.length()];
-  strcat(newStr, this->str);
-  strcat(newStr, addStr.str);
+  snprintf(newStr, this->length() + 1, "%s", this->str);
+  snprintf(newStr + this->length(), this->length() + 1, "%s", addStr.str);
+
   MyString newMyStr(newStr);
   return newMyStr;
 }
@@ -53,11 +54,11 @@ MyString MyString::operator-(MyString minStr) {
   for (int i = 0; i < this->length(); ++i) {
     bool found = false;
     for (int j = 0; j < minStr.length(); ++j) {
-      if (minStr.str[j] == this->str[i]){
+      if (minStr.str[j] == this->str[i]) {
         found = true;
       }
     }
-    if (!found){
+    if (!found) {
       newStr[index] = this->str[i];
       index++;
     }
@@ -73,8 +74,13 @@ MyString &MyString::operator=(const MyString &otherStr) {
 
 MyString MyString::operator*(int n) {
   char *newStr = new char[this->length() * n];
-  for (int i = 0; i < n; ++i) {
-    strcat(newStr, this->str);
+  int index = 0;
+  for (int i = 0; i < this->length() * n; ++i) {
+    newStr[i] = this->str[index];
+    index++;
+    if (index == this->length()) {
+      index = 0;
+    }
   }
   MyString newMyStr(newStr);
   return newMyStr;

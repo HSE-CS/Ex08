@@ -16,8 +16,8 @@ int main() {
   std::cout << str.get() << std::endl;
   std::cout << (MyString("1234567") - MyString("246")).get() << std::endl;
   MyString c = (MyString("12") + MyString("3"));
-  std::cout << c.get() << std::endl;
-  std::cout << (c * 3).get() << std::endl;
+  std::cout << "123 - " << c.get() << std::endl;
+  std::cout << "123123123 - " << (c * 3).get() << std::endl;
   std::cout << (MyString("123") == MyString("123")) << std::endl;
   std::cout << (MyString("1") == MyString("123")) << std::endl;
 }
