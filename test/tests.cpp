@@ -60,31 +60,31 @@ TEST(MyStringTest, test8) {
 TEST(MyStringTest, test9) {
   MyString a("123");
   MyString b("123");
-  EXPECT_EQ(true, a == b);
+  EXPECT_EQ(1, a == b);
 }
 
 TEST(MyStringTest, test10) {
   MyString a("123");
   MyString b("1234");
-  EXPECT_EQ(false, a == b);
+  EXPECT_EQ(0, a == b);
 }
 
 TEST(MyStringTest, test11) {
   MyString a("123");
   MyString b("1234");
-  EXPECT_EQ(true, a != b);
+  EXPECT_EQ(1, a != b);
 }
 
 TEST(MyStringTest, test12) {
   MyString a("123");
   MyString b("1234");
-  EXPECT_EQ(true, b >= a);
+  EXPECT_EQ(1, b >= a);
 }
 
 TEST(MyStringTest, test13) {
   MyString a("45");
   MyString b("1234");
-  EXPECT_EQ(true, b <= a);
+  EXPECT_EQ(1, b <= a);
 }
 
 TEST(MyStringTest, test14) {
