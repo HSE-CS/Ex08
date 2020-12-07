@@ -10,9 +10,9 @@ class MyString {
   int len;
   public:
   explicit MyString(const char* = nullptr);
-  explicit MyString(std::string);
-  explicit MyString(const MyString&);
-  explicit MyString(MyString&&);
+  MyString(std::string);
+  MyString(const MyString&);
+  MyString(MyString&&);
   ~MyString();
   int length() const;
   char* get() const;
