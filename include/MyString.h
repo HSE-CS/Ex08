@@ -9,10 +9,10 @@ class MyString {
    char* symb;
    int len;
  public:
-   MyString(const char* = nullptr);
-   MyString(std::string);
-   MyString(const MyString&);
-   MyString(MyString&&);
+   explicit MyString(const char* = nullptr);
+   explicit MyString(std::string);
+   explicit MyString(const MyString&);
+   explicit MyString(MyString&&);
    ~MyString();
    int length() const;
    char* get() const;
