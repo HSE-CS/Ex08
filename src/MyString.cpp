@@ -83,7 +83,7 @@ MyString MyString::operator-(const MyString&str){
 MyString MyString::operator*(int n) {
     MyString result;
     result.size = n * (size-1);
-    result.string  = (char*)calloc(result.size+1,sizeof(char));
+    result.string  = (char*)calloc(result.size,sizeof(char));
     int j = 0;
     for(int i = 0; i < result.size; i++) {
         if(i % (size-1) == 0)
@@ -184,14 +184,14 @@ std::istream& operator>>(std::istream& is, MyString& str) {
     return is >> str.string;
 }
 
-MyString MyString::operator=(const MyString& str) {
+MyString& MyString::operator=(const MyString& str) {
     size = str.size;
     string =  (char*)calloc(size,sizeof(char));
     strcpy(string,str.string);
     return *this;
 }
 
-MyString MyString::operator=(MyString&& str) {
+MyString& MyString::operator=(MyString&& str) {
     size = str.size;
     string =  (char*)calloc(size,sizeof(char));
     strcpy(string,str.string);

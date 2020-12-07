@@ -32,8 +32,8 @@ class MyString
         int operator()(const MyString& str);
         friend std::ostream& operator<<(std::ostream& os, MyString& str);
         friend std::istream& operator>>(std::istream& is, MyString& str);
-        MyString operator=(const MyString& str);
-        MyString operator=(MyString&& str);
+        MyString& operator=(const MyString& str);
+        MyString& operator=(MyString&& str);
 
 };
 #endif  // INCLUDE_MYSTRING_H_
