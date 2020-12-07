@@ -9,32 +9,32 @@ MyString::MyString(size_t len)
 }
 
 
-MyString::MyString(const char* str) //:MyString(std::strlen(str) + 1)
+MyString::MyString(const char* str) //:MyString(strlen(str) + 1)
 {
-	this->len = std::strlen(str);
+	this->len = strlen(str);
 	this->str = new char[this->len];
-	std::strcpy(this->str, str);
+	strcpy(this->str, str);
 }
 
 MyString::MyString(std::string str) //:MyString(str.length())
 {
 	this->len = str.length();
 	this->str = new char[this->len];
-	std::strcpy(this->str, str.c_str());
+	strcpy(this->str, str.c_str());
 }
 
 MyString::MyString(const MyString& str) //:MyString(str.len)
 {
 	this->len = str.len;
 	this->str = new char[this->len];
-	std::strcpy(this->str, str.str);
+	strcpy(this->str, str.str);
 }
 
 MyString::MyString(MyString&& str)
 {
 	this->len = str.len;
 	this->str = new char[this->len];
-	std::strcpy(this->str, str.str);
+	strcpy(this->str, str.str);
 	str.str = nullptr;
 	str.len = 0;
 }
@@ -104,14 +104,14 @@ MyString MyString::operator*(size_t size)
 MyString& MyString::operator=(const MyString& b)
 {
 	this->len = b.len;
-	std::strcpy(this->str, b.str);
+	strcpy(this->str, b.str);
 	return *this;
 }
 
 MyString& MyString::operator=(MyString&& b)
 {
 	this->len = b.len;
-	std::strcpy(this->str, b.str);
+	strcpy(this->str, b.str);
 	return *this;
 }
 
@@ -210,7 +210,7 @@ std::istream& operator>>(std::istream& is, MyString& a)
 
 char* sdvig(char* str, size_t from)
 {
-	for (size_t i = from; i < std::strlen(str); i++)
+	for (size_t i = from; i < strlen(str); i++)
 	{
 		str[i - 1] = str[i];
 	}
@@ -219,18 +219,18 @@ char* sdvig(char* str, size_t from)
 
 int podstroka(char* _where, const char* what)
 {
-	if (std::strlen(_where) < std::strlen(what))
+	if (strlen(_where) < strlen(what))
 		return false;
 	bool result = 0;
 	int answer = -1;
-	for (size_t i = 0; i < std::strlen(_where) - std::strlen(what); i++)
+	for (size_t i = 0; i < strlen(_where) - strlen(what); i++)
 	{
 		if (result) {
 			answer = i - 1;
 			break;
 		}
 		result = true;
-		for (size_t j = i; j < i + std::strlen(what); j++)
+		for (size_t j = i; j < i + strlen(what); j++)
 		{
 			if (_where[j] != what[j - i]) {
 				result = false;

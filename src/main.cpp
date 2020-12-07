@@ -1,3 +1,4 @@
+// Copyright 2020 a
 #include "MyString.h"
 
 int main()
