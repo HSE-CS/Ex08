@@ -1,5 +1,5 @@
 // Copyright 2020 test
-#include "MyString.h"
+#include "../include/MyString.h"
 
 int main() {
     MyString a;                 // I did an empty class

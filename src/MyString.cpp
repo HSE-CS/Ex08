@@ -1,5 +1,5 @@
 // Copyright 2020 test
-#include "MyString.h"
+#include "../include/MyString.h"
 
 MyString::MyString(const char* ptr) {
     if (ptr == nullptr) {
@@ -236,5 +236,8 @@ std::ostream& operator<<(std::ostream& os, MyString& s) {
 }
 
 std::istream& operator>>(std::istream& is, MyString& s) {
-    return is >> s;  // I do not know how to do this
+    std::string buff;
+    is >> buff;
+    s = MyString(buff);
+    return is;  // ok, now i know
 }
