@@ -1,5 +1,8 @@
 // Copyright 2020 GN
 #include "MyString.h"
+#include <string.h>
+#include <iostream>
+#include <string>
 MyString::MyString(const char* str) {
     if (!str) {
         this->len = 0;
