@@ -1,4 +1,5 @@
 // Copyright 2020 GN
+#define _CRT_SECURE_NO_WARNINGS
 #include "MyString.h"
 #include <string.h>
 #include <iostream>
@@ -11,7 +12,7 @@ MyString::MyString(const char* str) {
     }
     if (str) {
         this->len = strlen(str);
-        this->mystring = strdup(str);
+        this->mystring = _strdup(str);
     }
 }
 MyString::MyString(std::string str) {
@@ -87,29 +88,22 @@ MyString MyString::operator-(const MyString& str) {
     MyString new_str(temp);
     return new_str;
 }
-MyString MyString::operator*(const int n) {
-    int len = this->len;
-    char* temp = new char[len*n+1];
-    int j = 0;
-    while (j < n) {
-        int i = 0;
-        while (i < len) {
-            temp[j] = this->mystring[i];
-        }
-        j++;
+MyString MyString::operator*(int n) {
+    char* new_str = reinterpret_cast<char*>(calloc(this->len * n + 1, sizeof(char)));
+    for (size_t i = 0; i < n; ++i) {
+        strcpy(new_str + this->len * i, this->mystring);
     }
-    temp[j] = '\0';
-    MyString new_str(temp);
-    return new_str;
+    MyString new1_str = MyString(new_str);
+    return new1_str;
 }
 MyString& MyString::operator=(const MyString& str) {
     this->len = str.len;
-    this->mystring = strdup(str.mystring);
+    this->mystring = _strdup(str.mystring);
     return *this;
 }
 MyString& MyString::operator=(MyString&& str) {
     this->len = str.len;
-    this->mystring = strdup(str.mystring);
+    this->mystring = _strdup(str.mystring);
     return *this;
 }
 bool MyString::operator==(const MyString& str) {
