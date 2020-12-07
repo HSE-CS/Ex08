@@ -114,22 +114,57 @@ MyString& MyString::operator=(MyString&& str) {
 }
 bool MyString::operator==(const MyString& str) {
     int res = (strcmp(this->mystring, str.mystring));
-    return res == 0;
+    if (res == 0) {
+        return true;
+    }
+    if (res != 0) {
+        return false;
+    }
 }
 bool MyString::operator!=(const MyString& str) {
-    return (strcmp(this->mystring, str.mystring));
+    int x = (strcmp(this->mystring, str.mystring));
+    if (x == 0) {
+        return false;
+    }
+    if (x != 0) {
+        return true;
+    }
 }
 bool MyString::operator>(const MyString& str) {
-    return (strcmp(this->mystring, str.mystring) > 0);
+    int x = (strcmp(this->mystring, str.mystring));
+    if (x > 0) {
+        return true;
+    }
+    if (x <= 0) {
+        return false;
+    }
 }
 bool MyString::operator<(const MyString& str) {
-    return (strcmp(this->mystring, str.mystring) < 0);
+    int x = (strcmp(this->mystring, str.mystring));
+    if (x < 0) {
+        return true;
+    }
+    if (x >= 0) {
+        return false;
+    }
 }
 bool MyString::operator>=(const MyString& str) {
-    return (strcmp(this->mystring, str.mystring) >= 0);
+    int x = (strcmp(this->mystring, str.mystring));
+    if (x >= 0) {
+        return true;
+    }
+    if (x < 0) {
+        return false;
+    }
 }
 bool MyString::operator<=(const MyString& str) {
-    return (strcmp(this->mystring, str.mystring) <= 0);
+    int x = (strcmp(this->mystring, str.mystring));
+    if (x <= 0) {
+        return true;
+    }
+    if (x > 0) {
+        return false;
+    }
 }
 MyString& MyString::operator!() {
     for (size_t i = 0; i < this->len; ++i) {
