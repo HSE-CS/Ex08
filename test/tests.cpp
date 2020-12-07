@@ -1,8 +1,9 @@
 // Copyright 2020 GHA Test Team
-#include "MyString.h"
-
 #include <gtest/gtest.h>
+
 #include <string>
+
+#include "MyString.h"
 
 TEST(MyStringTest, test1) {
   MyString a;
@@ -54,7 +55,7 @@ TEST(MyStringTest, test8) {
   int b = 3;
   MyString c;
   c = a * b;
-  EXPECT_EQ("123123123", c.get());
+  EXPECT_STREQ("123123123", c.get());
 }
 
 TEST(MyStringTest, test9) {
