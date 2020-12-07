@@ -36,4 +36,9 @@ int main() {
     // std::cout << a0[1] << std::endl;
     MyString a10("454545");
     // std::cout << a10("32") << std::endl;
+    MyString a11("123");
+    int b11 = 3;
+    MyString c11;
+    c11 = a11 * b11;
+    // std::cout << c11.get() << std::endl;
 }

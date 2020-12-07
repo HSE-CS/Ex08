@@ -12,7 +12,7 @@ MyString::MyString(const char* str) {
     }
     if (str) {
         this->len = strlen(str);
-        this->mystring = strdup(str);
+        this->mystring = _strdup(str);
     }
 }
 MyString::MyString(std::string str) {
@@ -89,21 +89,24 @@ MyString MyString::operator-(const MyString& str) {
     return new_str;
 }
 MyString MyString::operator*(int n) {
-    char* s = reinterpret_cast<char*>(calloc(this->len * n + 1, sizeof(char)));
+    char* new_str = new char[len * n + 1];
     for (size_t i = 0; i < n; ++i) {
-        snprintf(s + this->len * i, this->len, this->mystring);
+        for (size_t j = i * len; j < (i + 1) * len; ++j) {
+            new_str[j] = mystring[j - i * len];
+        }
     }
-    MyString new1_str = MyString(s);
-    return new1_str;
+    new_str[len * n] = '\0';
+    MyString tmp(new_str);
+    return tmp;
 }
 MyString& MyString::operator=(const MyString& str) {
     this->len = str.len;
-    this->mystring = strdup(str.mystring);
+    this->mystring = _strdup(str.mystring);
     return *this;
 }
 MyString& MyString::operator=(MyString&& str) {
     this->len = str.len;
-    this->mystring = strdup(str.mystring);
+    this->mystring = _strdup(str.mystring);
     return *this;
 }
 bool MyString::operator==(const MyString& str) {
@@ -160,7 +163,7 @@ bool MyString::operator<=(const MyString& str) {
         return false;
     }
 }
-MyString& MyString::operator!() {
+MyString MyString::operator!() {
     for (size_t i = 0; i < this->len; ++i) {
         if (this->mystring[i] >= 'a' && this->mystring[i] <= 'z') {
             this->mystring[i] -= 'a' - 'A';
@@ -169,7 +172,8 @@ MyString& MyString::operator!() {
             this->mystring[i] += 'a' - 'A';
         }
     }
-    return *this;
+    MyString tmp(mystring);
+    return tmp;
 }
 char MyString::operator[](int n) {
     return this->mystring[n];
