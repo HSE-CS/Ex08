@@ -81,7 +81,7 @@ MyString MyString::operator=(const MyString &string) {
   len = string.len;
   delete[] str;
   str = new char[len + 1];
-  snprintf(str, len + 1, "%s", string);
+  snprintf(str, len + 1, "%s", string.str);
 }
 
 MyString MyString::operator=(MyString &&string) {
