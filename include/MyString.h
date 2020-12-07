@@ -11,7 +11,7 @@
 class MyString{
  private:
     char* buf;
-    size_t len = 0;
+    size_t len;
 
  public:
     explicit MyString(const char* s = nullptr);

@@ -1,9 +1,14 @@
 // Copyright 2020 Kuznetsov Mikhail
 #include "MyString.h"
 MyString::MyString(const char* s) {
-  len = strlen(s);
-  buf = new char[len + 1];
-  snprintf(buf, len + 1, "%s", s);
+  if (nullptr == s) {
+    buf = nullptr;
+    len = 0;
+  } else {
+    len = strlen(s);
+    buf = new char[len + 1];
+    snprintf(buf, len + 1, "%s", s);
+  }
 }
 
 MyString::MyString(std::string s) {
