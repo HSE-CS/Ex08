@@ -9,9 +9,9 @@ int main() {
     MyString b(a2);
     // std::cout << b.get() << std::endl;
     MyString a3("123");
-    MyString b2(a3);
+    MyString b2("12");
     MyString c;
-    c = a3 + b2;
+    c = a3 - b2;
     // std::cout << c.get() << std::endl;
     MyString a4("123");
     MyString b4;
