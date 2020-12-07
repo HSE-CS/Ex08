@@ -38,9 +38,19 @@ MyString::MyString(std::string str) //:MyString(str.length())
 
 MyString::MyString(const MyString& str) //:MyString(str.len)
 {
-	this->len = str.len;
-	this->str = new char[this->len + 1];
-	strcpy(this->str, str.str);
+	if (str.str) {
+		this->len = str.len;
+		this->str = new char[this->len + 1];
+		for (size_t i = 0; i <= len; ++i) {
+			(this->str)[i] = str.str[i];
+		}
+	}
+	else {
+		this->len = 0;
+		this->str = new char [1];
+		this->str[0] = '\0';
+	}
+	
 }
 
 MyString::MyString(MyString&& str)
@@ -78,8 +88,9 @@ MyString MyString::operator+(MyString b)
 	}
 	for (size_t i = this->len; i < this->len + b.len; i++)
 	{
-		(a.str)[i] = (b.str)[i];
+		(a.str)[i] = (b.str)[i - this->len];
 	}
+	a.str[a.len] = '\0';
 	return a;
 }
 
@@ -105,13 +116,16 @@ MyString MyString::operator-(MyString b)
 MyString MyString::operator*(size_t size)
 {
 	MyString result;
+	result.len = this->len * 3;
+	result.str = new char[result.len + 1];
 	for (size_t i = 0; i < size; i++)
 	{
 		for (size_t j = 0; j < this->len; j++)
 		{
-			(result.str)[(i * this->len) + j] = (this->str)[i];
+			(result.str)[(i * this->len) + j] = (this->str)[j];
 		}
 	}
+	result.str[result.len] = '\0';
 	return result;
 }
 
@@ -150,44 +164,31 @@ bool MyString::operator!=(MyString b)
 
 bool MyString::operator<(MyString b)
 {
-	if (this->len < b.len)
+	if (strcmp(this->str, b.str) == 1)
 		return true;
-	if (this->len > b.len)
-		return false;
-	for (size_t i = 0; i < this->len; i++)
-	{
-		if ((this->str)[i] >= (b.str)[i])
-		{
-			return false;
-		}
-	}
-	return true;
+	return false;
 }
 
 bool MyString::operator>(MyString b)
 {
-	if (this->len > b.len)
+	if (strcmp(this->str, b.str) == -1)
 		return true;
-	if (this->len < b.len)
-		return false;
-	for (size_t i = 0; i < this->len; i++)
-	{
-		if ((this->str)[i] <= (b.str)[i])
-		{
-			return false;
-		}
-	}
-	return true;
+	return false;
 }
 
 bool MyString::operator>=(MyString b)
 {
-	return !(*this < b);
+	if (strcmp(this->str, b.str) != -1) 
+		return true;
+	return false;
+		
 }
 
 bool MyString::operator<=(MyString b)
 {
-	return !(*this > b);
+	if (strcmp(this->str, b.str) != 1) 
+		return true;
+	return false;
 }
 
 MyString MyString::operator!()
@@ -195,10 +196,10 @@ MyString MyString::operator!()
 	MyString result(*this);
 	for (size_t i = 0; i < result.len; i++)
 	{
-		if ((result.str)[i] > 'A' && (result.str)[i] < 'Z')
+		if ((result.str)[i] >= 'A' && (result.str)[i] <= 'Z')
 			(result.str)[i] = (result.str)[i] - 'A' + 'a';
 		
-		if ((result.str)[i] > 'a' && (result.str)[i] < 'z')
+		if ((result.str)[i] >= 'a' && (result.str)[i] <= 'z')
 			(result.str)[i] = (result.str)[i] - 'a' + 'A';
 	}
 	return result;
