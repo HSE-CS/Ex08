@@ -49,7 +49,7 @@ TEST(MyStringTest, test7) {
   EXPECT_STREQ("13579", c.get());
 }
 
-TEST(MyStringTest, test8) {
+/*TEST(MyStringTest, test8) {
   MyString a("123");
   int b = 3;
   MyString c;
@@ -57,34 +57,34 @@ TEST(MyStringTest, test8) {
   EXPECT_STREQ("123123123", c.get());
 }
 
-/*TEST(MyStringTest, test9) {
+TEST(MyStringTest, test9) {
   MyString a("123");
   MyString b("123");
-  EXPECT_EQ(1, a == b);
+  EXPECT_EQ(true, a == b);
 }
 
 TEST(MyStringTest, test10) {
   MyString a("123");
   MyString b("1234");
-  EXPECT_EQ(0, a == b);
+  EXPECT_EQ(false, a == b);
 }
 
 TEST(MyStringTest, test11) {
   MyString a("123");
   MyString b("1234");
-  EXPECT_EQ(1, a != b);
+  EXPECT_EQ(true, a != b);
 }
 
 TEST(MyStringTest, test12) {
   MyString a("123");
   MyString b("1234");
-  EXPECT_EQ(1, b >= a);
+  EXPECT_EQ(true, b >= a);
 }
 
 TEST(MyStringTest, test13) {
   MyString a("45");
   MyString b("1234");
-  EXPECT_EQ(1, b <= a);
+  EXPECT_EQ(true, b <= a);
 }
 
 TEST(MyStringTest, test14) {
