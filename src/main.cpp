@@ -21,7 +21,7 @@ int main() {
   !str1;
   std::cout << str1 << std::endl;
   std::cout << str1("ll") << std::endl;
-  MyString str4 = str1 * 3;
+  str4 = str1 * 3;
   std::cout << str4 << std::endl;
   str1[0] = 'Y';
   std::cout << str1 << std::endl;
