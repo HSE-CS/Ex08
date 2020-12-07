@@ -47,7 +47,7 @@ MyString::~MyString() {
 //
 MyString MyString::operator+(const MyString& a) {
    char* buffer = reinterpret_cast<char*>(calloc(len + a.len + 1, sizeof(char)));
-   strcat(field, a.field);
+   strcat(buffer, field);
    strcat(buffer + len, a.field);
    MyString result = MyString(buffer);
    free(buffer);
