@@ -111,12 +111,12 @@ bool MyString::operator<=(const MyString &string) {
 
 MyString MyString::operator!() {
   char *new_str = new char[len + 1];
-  snprintf(new_str, len + 1, "&s", str);
+  snprintf(new_str, len + 1, "%s", str);
   for (size_t i = 0; i < len; i++) {
-    if ((int)str[i] <= 'Z' && (int)str[i] >= 'A') {
+    if (str[i] <= 'Z' && str[i] >= 'A') {
       new_str += 32;
     } else {
-      if ((int)str[i] <= 'z' && (int)str[i] >= 'a') {
+      if (str[i] <= 'z' && str[i] >= 'a') {
         new_str[i] -= 32;
       }
     }
