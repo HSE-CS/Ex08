@@ -15,24 +15,26 @@ int main() {
 
   std::cout << "Concatenation:" << std::endl;
   MyString tmp3(", world!");
-  std::cout << "\t\"" << tmp2 << "\""
-            << " + "
-            << "\"" << tmp3 << "\" --> \"" << tmp2 + tmp3 << "\"" << std::endl
-            << std::endl;
+  MyString tmp4 = tmp2 + tmp3;
+  std::cout << "\t" << tmp2 << " + "
+            << "\"" << tmp3 << "\" --> \"" << tmp4 << "\"" << std::endl;
 
   std::cout << "Iteration:" << std::endl;
-  MyString tmp4("AbCdEfG");
-  std::cout << "\tString: " << tmp4 << std::endl;
+  MyString tmp5("AbCdEfG");
+  std::cout << "\tString: " << tmp5 << std::endl;
   std::cout << "\t";
-  for (size_t i = 0; i < tmp4.length(); i++) std::cout << tmp4[i] << " _ ";
+  for (size_t i = 0; i < tmp5.length(); i++) std::cout << tmp5[i] << " _ ";
   std::cout << std::endl << std::endl;
 
   std::cout << "\'!\' unary operation:" << std::endl;
   MyString a("aabbcczz");
   MyString b("DDFFGGRR");
   MyString c("aaDDccRR");
-  std::cout << "\t" << a << " --> " << !a << std::endl;
-  std::cout << "\t" << b << " --> " << !b << std::endl;
-  std::cout << "\t" << c << " --> " << !c << std::endl;
+  MyString a1(!a);
+  MyString b1(!b);
+  MyString c1(!c);
+  std::cout << "\t" << a << " --> " << a1 << std::endl;
+  std::cout << "\t" << b << " --> " << b1 << std::endl;
+  std::cout << "\t" << c << " --> " << c1 << std::endl;
   return 0;
 }
