@@ -13,6 +13,7 @@ int main() {
   MyString a4("123");
   MyString b4(a4);
   MyString c4;
-  c4 = a4;
+  c4 = a4 + b4;
+  std::cout << c4.get() << std::endl;
   return 0;
 }

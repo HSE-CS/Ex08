@@ -76,11 +76,10 @@ MyString& MyString::operator=(const MyString& str) {
 MyString& MyString::operator=(MyString&& str) {
   if (this->arString != nullptr)
     delete (this->arString);
-  char* newString = new char[str.length() + 1];
-  snprintf(newString, str.length() + 1, "%s", str.get());
-  this->arString = newString;
+  this->arString = str.get();
   str.arString = nullptr;
   return *this;
+  
 }
 
 bool MyString::operator==(const MyString& str) const {
