@@ -7,8 +7,7 @@ MyString::MyString(const char* s) {
     if (s == nullptr) {
         len = 0;
         stroka = nullptr;
-    }
-    else {
+    } else {
         len = strlen(s);
         stroka = new char[len + 1];
         for (size_t i = 0; i <= len; i++) {
@@ -121,8 +120,7 @@ MyString& MyString::operator=(MyString&& s) {
 bool MyString::operator==(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) == 0) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -130,8 +128,7 @@ bool MyString::operator==(const MyString& s) {
 bool MyString::operator!=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) != 0) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -139,8 +136,7 @@ bool MyString::operator!=(const MyString& s) {
 bool MyString::operator>(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) > 0) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -148,8 +144,7 @@ bool MyString::operator>(const MyString& s) {
 bool MyString::operator<(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) < 0) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -157,8 +152,7 @@ bool MyString::operator<(const MyString& s) {
 bool MyString::operator>=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) >= 0) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -166,8 +160,7 @@ bool MyString::operator>=(const MyString& s) {
 bool MyString::operator<=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) <= 0) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -177,8 +170,7 @@ MyString MyString::operator!() {
     for (size_t i = 0; i < temp.len; ++i) {
         if (temp.stroka[i] >= 'a' && temp.stroka[i] <= 'z') {
             temp.stroka[i] -= 'a' - 'A';
-        }
-        else if (temp.stroka[i] >= 'A' && temp.stroka[i] <= 'Z') {
+        } else if (temp.stroka[i] >= 'A' && temp.stroka[i] <= 'Z') {
             temp.stroka[i] += 'a' - 'A';
         }
     }
@@ -192,8 +184,7 @@ char MyString::operator[](int n) {
 int MyString::operator()(const char* s) {
     if (strstr(this->stroka, s) == NULL) {
         return -1;
-    }
-    else {
+    } else {
         return strstr(this->stroka, s) - this->stroka;
     }
 }
