@@ -8,10 +8,10 @@
 #include <sstream>
 
 class MyString {
-private: 
+ private:
     char* string;
 
-public: 
+ public: 
     explicit MyString(const char* = nullptr);
     explicit MyString(std::string str);
     MyString(const MyString&);
