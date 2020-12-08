@@ -5,7 +5,7 @@
 MyString::MyString() {
 }
 
-MyString::MyString(char *str) {
+MyString::MyString(const char *str) {
   string = new char[strlen(str)];
   snprintf(string, strlen(str), "%s", str);
 }
