@@ -15,6 +15,8 @@ int main() {
   MyString str_3;
   str_3 = str_2 - str_1;
   std::cout << str_3 << std::endl;
+  str_3 = str_2 + str_1;
+  std::cout << str_3 << std::endl;
   std::cout << str_2(str_3.get()) << std::endl;
   return 0;
 }

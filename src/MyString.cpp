@@ -5,7 +5,7 @@ MyString::MyString(const char* new_str) {
   if (new_str != nullptr) {
   len = strlen(new_str);
   str = new char[len + 1];
-  strcpy_s(str, len + 1, new_str);
+  strcpy(str, new_str);
   } else {
   str = nullptr;
   len = 0;
@@ -15,13 +15,13 @@ MyString::MyString(const char* new_str) {
 MyString::MyString(std::string new_str) {
   len = new_str.size();
   str = new char[len + 1];
-  strcpy_s(str, len + 1, new_str.c_str());
+  strcpy(str, new_str.c_str());
 }
 
 MyString::MyString(const MyString& new_str) {
   len = new_str.len;
   str = new char[len + 1];
-  strcpy_s(str, len + 1, new_str.str);
+  strcpy(str, new_str.str);
 }
 
 MyString::MyString(MyString&& new_str) {
@@ -46,8 +46,8 @@ char* MyString::get() const {
 MyString MyString::operator+(const MyString& s_1) {
   size_t sum_len = len + s_1.length();
   char* sum_str = new char[sum_len + 1];
-  strcpy_s(sum_str, len + 1, str);
-  strcpy_s(sum_str + len, s_1.length() + 1, s_1.get());
+  strcpy(sum_str, str);
+  strcpy(sum_str + len, s_1.get());
   return MyString(sum_str);
 }
 
@@ -71,7 +71,7 @@ MyString MyString::operator*(const size_t mult) {
 MyString& MyString::operator=(const MyString& s_1) {
   len = s_1.length();
   str = new char[len + 1];
-  strcpy_s(str, len + 1, s_1.get());
+  strcpy(str, s_1.get());
   return *this;
 }
 
@@ -109,7 +109,7 @@ bool MyString::operator<=(const MyString& s) {
 
 MyString MyString::operator!() {
   char* new_str = new char[len + 1];
-  strcpy_s(new_str, len + 1, str);
+  strcpy(new_str, str);
   for (size_t i = 0; i < len; i++) {
   if (new_str[i] >= 'a' && new_str[i] <= 'z')
   new_str[i] += 'A' - 'a';

@@ -1,4 +1,5 @@
 // Copyright NikDemoShow 2020
+#define _CRT_SECURE_NO_WARNINGS
 #include <string.h>
 #include <string>
 #include <cstring>
