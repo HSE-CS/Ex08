@@ -47,7 +47,7 @@ MyString::~MyString() {
     delete[] string;
 }
 
-unsigned int MyString::length() const {
+unsigned int MyString::length() {
     if (string)
         return strlen(string);
     else
