@@ -59,7 +59,7 @@ String::String(String && s)
     MyString& operator=( const MyString& );
 
     // - перемещающее присваивание.
-    MyString& operator=( MyString&& )
+    MyString& operator=( MyString&& );
 /*
 Операция **присваивания** определена в любом классе по умолчанию как поэлементное копирование.
  Если класс содержит поля, память под которые выделяется динамически,
@@ -73,10 +73,10 @@ String::String(String && s)
 */
 
     //  - доступ к символу по индексу.
-    //operator[];
+    char& operator[]( size_t ) const;
 
     // - поиск подстроки.
-    //operator();
+    int operator()( const char* );
 
 
 
@@ -116,7 +116,8 @@ Complex c(0,0); cin>>c; // 23,45 cout<<c; // (23,45)
 //- лексографическое сравнение.
     bool operator<=( const MyString& ) const;
 //  - у латинских букв меняется регистр.
-    bool operator!( const MyString& ) const;
+    MyString operator!( const MyString& ) const;
+
 /*Поскольку в операции участвует только один операнд, то никаких внешних ссылок методу, реализующему операцию, передавать не нужно.
 
 ```cpp
