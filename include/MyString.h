@@ -3,12 +3,13 @@
 #define INCLUDE_MYSTRING_H_
 
 #include <string>
-#include <string.h>
+#include <cstring>
 #include <iostream>
 
 class MyString {
  private:
      char* string;
+
  public:
     explicit MyString(const char* = nullptr);
     explicit MyString(std::string);
