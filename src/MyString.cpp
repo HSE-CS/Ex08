@@ -77,11 +77,12 @@ MyString MyString::operator-(const MyString& other_mystring) {
 }
 
 MyString MyString::operator*(unsigned int num) {
-  unsigned int new_len = strlen(this->string_container) * num;
+  unsigned int old_len = strlen(this->string_container);
+  unsigned int new_len = old_len * num;
   char* buf = new char[new_len + 1];
   for (int i = 0; i < num; i++)
 //    strcat(buf, this->string_container);
-    snprintf(buf, new_len + 1, "%s%s", buf, this->string_container);
+    snprintf(buf + old_len * i, old_len + 1, "%s%s", buf, this->string_container);
   MyString new_mystring(buf);
   delete [] buf;
   return new_mystring;
