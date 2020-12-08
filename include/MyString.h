@@ -1,42 +1,47 @@
-// Copyright 2020 GHA Test Team
+// Copyright 2020 Urtyukov Ilya
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 
-#include <string>
 #include <cstring>
 #include <iostream>
+#include <sstream>
+#include <string>
 
-class MyString{
+class MyString {
  private:
-  char * str;
-  unsigned len;
+  size_t size;
+  char* array;
 
  public:
-  explicit MyString(const char* x = nullptr);
+  explicit MyString(const char* = nullptr);
   explicit MyString(std::string);
   MyString(const MyString&);
   MyString(MyString&&);
   ~MyString();
-  int length() const;
-  char* get();
+
+  size_t length() const;
+  char* get() const;
+
   MyString operator+(const MyString&);
   MyString operator-(const MyString&);
-  MyString operator*(int);
+  MyString operator*(size_t);
+
   MyString& operator=(const MyString&);
   MyString& operator=(MyString&&);
-  char& operator[] (const int);
-  char* operator()(const char*);
-  MyString operator! ();
+
   bool operator==(const MyString&);
-  friend bool operator!=(const MyString&);
-  friend bool operator>(const MyString&);
-  friend bool operator<(const MyString&);
+  bool operator!=(const MyString&);
+  bool operator>(const MyString&);
+  bool operator<(const MyString&);
   bool operator>=(const MyString&);
   bool operator<=(const MyString&);
+
+  MyString operator!();
+  char& operator[](size_t) const;
+  int operator()(const char* substring);
+
   friend std::ostream& operator<<(std::ostream&, MyString&);
   friend std::istream& operator>>(std::istream&, MyString&);
 };
 
 #endif  // INCLUDE_MYSTRING_H_
-
-
