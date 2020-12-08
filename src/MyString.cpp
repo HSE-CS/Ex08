@@ -19,7 +19,8 @@ MyString::MyString(const char *valueSringArray) {
         snprintf(newStringArray, len, "%s", valueSringArray);
         this->stringArray = newStringArray;
     } else {
-        this->stringArray = nullptr;
+        char *newStringArray = new char[1];
+        this->stringArray = newStringArray;
     }
 }
 
