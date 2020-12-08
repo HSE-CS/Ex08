@@ -1,4 +1,4 @@
-// Copyrignt 2020 BekusovMikhail
+// Copyright 2020 BekusovMikhail
 
 #include "MyString.h"
 
