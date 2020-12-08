@@ -2,9 +2,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "MyString.h"
-#include <string.h>
-#include <iostream>
-#include <string>
 
 MyString::MyString(const char* s) {
     if (s == nullptr) {
@@ -35,11 +32,15 @@ MyString::MyString(const MyString& s) {
     }
 }
 
-MyString::MyString(MyString&& s) {
+MyString::MyString(const MyString&& s) {
     this->len = s.len;
-    this->stroka = s.stroka;
-    s.len = 0;
-    s.stroka = nullptr;
+    this->stroka = new char[s.len + 1];
+    int i = 0;
+    while (i < this->len) {
+        this->stroka[i] = s.stroka[i];
+        i++;
+    }
+    this->stroka[i] = '\0';
 }
 
 MyString::~MyString() {

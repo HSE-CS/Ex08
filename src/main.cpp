@@ -25,5 +25,5 @@ int main() {
     int b = 3;
     MyString c;
     c = a * b;
-    std::cout << c.get() << std::endl;  //"123123123" What a problem?
+    std::cout << c.get() << std::endl;  //whar a problem?
 }
