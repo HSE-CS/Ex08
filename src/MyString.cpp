@@ -16,7 +16,7 @@ MyString::MyString(const char* p) {
 MyString::MyString(std::string p) {
     len = p.size();
     str = new char[len + 1];
-    for( size_t i = 0; i <= len; i++)
+    for (size_t i = 0; i <= len; i++)
         str[i] = p[i];
 }
 
