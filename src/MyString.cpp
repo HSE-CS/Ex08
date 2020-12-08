@@ -47,7 +47,8 @@ MyString::~MyString() {
 }
 
 MyString MyString::operator+(const MyString &valueSringArray) const {
-    std::string tempString = std::string(this->get()) + std::string(valueSringArray.get());
+    std::string sec=valueSringArray.get();
+    std::string tempString = (std::string(this->get()) +sec);
     return MyString(tempString);
 }
 
@@ -57,7 +58,8 @@ MyString MyString::operator-(const MyString &valueSringArray) const {
     unsigned int iter = 0;
     while (iter < valueSringArray.length()) {
         while (endString.find(valueSringArray.stringArray[iter]) != -1) {
-            endString.erase(endString.find(valueSringArray.stringArray[iter]), 1);
+            int p=endString.find(valueSringArray.stringArray[iter]);
+            endString.erase(p, 1);
         }
         iter++;
     }
@@ -123,7 +125,7 @@ char &MyString::operator[](unsigned int number) const {
     return this->stringArray[number];
 }
 
-long MyString::operator()(const char *valueStringArray) const {
+int MyString::operator()(const char *valueStringArray) const {
     char *pointerValueStringArray = strstr(this->get(), valueStringArray);
     if (pointerValueStringArray == nullptr) {
         return -1;
