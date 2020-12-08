@@ -8,8 +8,8 @@
 
 class MyString {
  private:
-     char* string;
-     
+    char* string;
+
  public:
     explicit MyString(const char* = nullptr);
     explicit MyString(std::string);
