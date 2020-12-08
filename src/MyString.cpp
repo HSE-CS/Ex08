@@ -15,11 +15,12 @@ MyString::MyString(const char *str) {
 }
 
 MyString::MyString(const std::string &str) {
-  size_t length = str.size() + 1;
-  this->st = new char[length];
-  char buf[length];
-  strcpy(buf, str.c_str());
-  strncpy(this->st, buf, length);
+  size_t size = str.size() + 1;
+  this->st = new char[size];
+  char *buf = new char[size];
+  snprintf(buf, size, "%s", str.c_str());
+  strncpy(this->st, buf, size);
+  delete [] buf;
 }
 
 MyString::MyString(const MyString &new_str) {
@@ -136,11 +137,11 @@ int MyString::operator()(char *new_str) {
   return s1.find(s2);
 }
 
-std::ostream & operator<<(std::ostream &stream, MyString &new_str) {
+std::ostream &operator<<(std::ostream &stream, MyString &new_str) {
   stream << new_str.get();
   return stream << new_str.get();
 }
 
-std::istream & operator>>(std::istream &stream, MyString &new_str) {
+std::istream &operator>>(std::istream &stream, MyString &new_str) {
   return stream >> new_str.get();
 }
