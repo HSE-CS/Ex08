@@ -71,19 +71,22 @@ MyString MyString::operator*(size_t factor) const {
 
 MyString &MyString::operator=(const MyString &string) {
   if (&string != this) {
-    delete this->characters;
-    this->characters = strdup(string.get());
-    this->size = string.size;
+    size = string.length();
+    delete characters;
+    char *temp = new char[size + 1];
+    memset(temp, 0, size + 1);
+    characters = temp;
+    memcpy(characters, string.get(), size);
   }
   return *this;
 }
 
 MyString &MyString::operator=(MyString &&string) noexcept {
+  this->size = string.length();
   delete this->characters;
   this->characters = string.get();
-  this->size = string.size;
-  string.characters = nullptr;
   string.size = 0;
+  string.characters = nullptr;
   return *this;
 }
 
