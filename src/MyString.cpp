@@ -27,7 +27,7 @@ MyString::MyString(const MyString& s) {
     strcpy(str, s.str);    
 }
 
-MyString::MyString( MyString&& s) {
+MyString::MyString(MyString&& s) {
     len = s.len;
     str = s.str;
     s.str = nullptr;
@@ -183,9 +183,9 @@ const char* MyString::operator()(std::string s) {
 MyString& MyString::operator! () {
     for (size_t i=0; i < len; i++) {
       if ((str[i] > 64) && (str[i] < 91))
-      	str[i]+=32;
+        str[i] = str[i]+32;
       if ((str[i] > 96) && (str[i] < 123))
-        str[i]-=32;
+        str[i] = str-32;
     }
     return *this;
 }
