@@ -21,4 +21,9 @@ int main() {
     MyString s9;
     s9 = !s1;
     std::cout << s9.get() << std::endl;
+    MyString a("123");
+    int b = 3;
+    MyString c;
+    c = a * b;
+    std::cout << c.get() << std::endl;  //"123123123" What a problem?
 }

@@ -3,10 +3,9 @@
 #define INCLUDE_MYSTRING_H_
 
 #include <iostream>
-#include <string>
+#include <string.h>
 #include <numeric>
 #include <algorithm>
-#include <string.h>
 
 class MyString {
  private:
@@ -37,7 +36,6 @@ class MyString {
   int operator()(const char*);
   friend std::ostream& operator>>(std::ostream& os, MyString& s);
   friend std::istream& operator>>(std::istream& is, MyString& s);
-
 };
 
 #endif  // INCLUDE_MYSTRING_H_

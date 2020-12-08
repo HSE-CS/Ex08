@@ -41,15 +41,15 @@ MyString::MyString(MyString&& s) {
 
 MyString::~MyString() {
     delete[] this->stroka;
-    this->len = 0;
+    len = 0;
 }
 
 int MyString::length() {
-    return this->len;
+    return len;
 }
 
 char* MyString::get() {
-    return this->stroka;
+    return stroka;
 }
 
 MyString MyString::operator+(const MyString& s) {
