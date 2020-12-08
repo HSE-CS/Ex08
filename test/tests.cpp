@@ -38,7 +38,7 @@ TEST(MyStringTest, test5) {
 
 TEST(MyStringTest, test6) {
   MyString a(std::string("Hello"));
-  EXPECT_STREQ("Hello", a.get());  
+  EXPECT_STREQ("Hello", a.get());
 }
 
 TEST(MyStringTest, test7) {
@@ -54,7 +54,7 @@ TEST(MyStringTest, test8) {
   int b = 3;
   MyString c;
   c = a * b;
-  EXPECT_EQ("123123123", c.get());
+  EXPECT_STREQ("123123123", c.get());
 }
 
 TEST(MyStringTest, test9) {
