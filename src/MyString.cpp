@@ -2,6 +2,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "MyString.h"
+#include <string.h>
 
 MyString::MyString(const char* s) {
     if (s == nullptr) {
