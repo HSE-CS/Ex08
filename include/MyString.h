@@ -10,6 +10,7 @@ class MyString {
  private:
   char* str = nullptr;
   size_t len = 0;
+
  public:
   explicit MyString(const char* = nullptr);
   explicit MyString(std::string);

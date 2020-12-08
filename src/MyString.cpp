@@ -49,8 +49,8 @@ const char* delnullptr(const char* s) {
 }
 
 MyString MyString::operator+(const MyString& s) {
-  return MyString(std::string(delnullptr(str)) 
-   + std::string(delnullptr(s.str)));
+  return MyString(std::string(delnullptr(str))
+  + std::string(delnullptr(s.str)));
 }
 
 MyString MyString::operator-(const MyString& s) {
