@@ -53,7 +53,7 @@ MyString MyString::operator-(const MyString &new_str) {
   std::string s1 = std::string(this->st);
   std::string s2 = std::string(new_str.st);
   std::string result;
-  for (auto ch:s2) {
+  for (auto ch : s2) {
     std::remove_copy(s1.begin(), s1.end(), std::back_inserter(result), ch);
     s1 = result;
     result = "";

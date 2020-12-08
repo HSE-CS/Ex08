@@ -34,23 +34,23 @@ int main() {
 
   MyString st1("123");
   MyString st2("123");
-  std::cout << (st1 == st2) << std::endl;  //true
+  std::cout << (st1 == st2) << std::endl;
 
   MyString st3("123");
   MyString st4("1234");
-  std::cout << (st3 == st4) << std::endl;  //false
+  std::cout << (st3 == st4) << std::endl;
 
   MyString nq1("123");
   MyString nq2("1234");
-  std::cout << (nq1 != nq2) << std::endl;  // true
+  std::cout << (nq1 != nq2) << std::endl;
 
   MyString be1("123");
   MyString be2("1234");
-  std::cout << (be2 >= be1) << std::endl;  //true
+  std::cout << (be2 >= be1) << std::endl;
 
   MyString le1("45");
   MyString le2("46");
-  std::cout << (le2 <= le1) << std::endl;  // true
+  std::cout << (le2 <= le1) << std::endl;
 
   MyString abc("aBc");
   MyString emp;
@@ -61,15 +61,9 @@ int main() {
   MyString emp2;
   emp2 = !abc123;
   std::cout << emp2.get() << std::endl;
-  
+
   MyString a45("45");
   std::cout << a45[1] << std::endl;
-
-  MyString a3("454545");
-  std::cout << a3("45") << std::endl; // 0
-
-  MyString a3_45("454545");
-  std::cout << a3_45("33") << std::endl;// -1
 
   return 0;
 }
