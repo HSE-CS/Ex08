@@ -10,11 +10,11 @@
 
 
 class MyString {
- private:
-     char* str;
+private:
+    char* str;
     unsigned len;
 
- public:
+public:
     explicit MyString(const char* str = nullptr);
     explicit MyString(std::string);
     MyString(const MyString&);
@@ -67,14 +67,14 @@ class MyString {
     MyString operator- (const MyString& a) {
         std::string buf_str = std::string(this->str, this->str + len);
         for (size_t i = 0; i < a.len; i++)
-        buf_str.erase(std::remove(buf_str.begin(), buf_str.end(), a.str[i]),
-                  buf_str.end());
+            buf_str.erase(std::remove(buf_str.begin(), buf_str.end(), a.str[i]),
+                buf_str.end());
         return MyString(buf_str);
     }
 
     MyString operator* (int a) {
         if (a < 0) {
-            throw -1;
+            throw - 1;
         }
         char* tmp = new char[this->len * a + 1];
         size_t cnt = 0;
@@ -93,17 +93,19 @@ class MyString {
         for (size_t i = 0; i < (tmp.len + 1); ++i) {
             if (tmp.str[i] >= 'a' && tmp.str[i] <= 'z') {
                 tmp.str[i] = toupper(tmp.str[i]);
-            } else if (tmp.str[i] >= 'A' && tmp.str[i] <= 'Z') {
+            }
+            else if (tmp.str[i] >= 'A' && tmp.str[i] <= 'Z') {
                 tmp.str[i] = tolower(tmp.str[i]);
             }
         }
         return tmp;
     }
 
-    char & operator[](int num) const {
+    char& operator[](int num) const {
         if (num <= this->len) {
             return this->str[num];
-        } else {
+        }
+        else {
             std::cout << "Out of range";
             exit(-1);
         }
@@ -137,7 +139,7 @@ class MyString {
 
     friend bool operator!= (const MyString& a, const MyString& b);
 
-    friend bool operator== (const MyString &a, const MyString &b);
+    friend bool operator== (const MyString& a, const MyString& b);
 
     friend std::ostream& operator<<(std::ostream& os, const MyString& str);
 
