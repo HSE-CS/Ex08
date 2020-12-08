@@ -1,6 +1,6 @@
 // Copyright 2020 ArinaMonicheva
-#ifndef MYSTRING_MYSTRING_H_
-#define MYSTRING_MYSTRING_H_
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 
 #include <string>
 #include <cstring>
@@ -43,4 +43,4 @@ class MyString {
   friend std::istream& operator>>(std::istream& sin, MyString& toWrite);
 };
 
-#endif // MYSTRING_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
