@@ -7,8 +7,7 @@ MyString::MyString(const char* str) {
         this->string = new char[strlen(str) + 1];
         snprintf(this->string, strlen(str) + 1, "%s", str);
         this->string[strlen(str)] = '\0';
-    }
-    else {
+    } else {
         this->string = new char[1];
         memset(string, 0, 1);
     }
@@ -62,7 +61,7 @@ MyString MyString::operator-(const MyString& str) {
 
 MyString MyString::operator*(int n) {
     std::string res;
-    for (int i = 0; i < n;i++) {
+    for (int i = 0; i < n; i++) {
         res.append(this->get());
     }
     return MyString(res);
@@ -111,7 +110,7 @@ bool MyString::operator<=(const MyString& str) {
 }
 
 MyString MyString::operator!() {
-    for (int i = 0;i < strlen(string);i++) {
+    for (int i = 0; i < strlen(string); i++) {
         if (string[i] >= 'a' && string[i] <= 'z') {
             string[i] -= 'a';
             string[i] += 'A';
@@ -123,8 +122,7 @@ MyString MyString::operator!() {
 char MyString::operator[](int index) {
     if (index > 0 && index < strlen(string)) {
         return string[index];
-    }
-    else {
+    } else {
         throw "Error, index out of range";
     }
 }
