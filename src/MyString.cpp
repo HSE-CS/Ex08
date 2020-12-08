@@ -7,7 +7,7 @@
 MyString::MyString(const char* str) {
   if (str != nullptr) {
     char* newString = new char[strlen(str)];
-    snprintf(newString, strlen(newString), "%s", str);
+    snprintf(newString, strlen(str), "%s", str);
     this->arString = newString;
   } else {
     char* newString = new char[0];
@@ -17,7 +17,7 @@ MyString::MyString(const char* str) {
 
 MyString::MyString(std::string str) {
   char* newString = new char[str.length()];
-  snprintf(newString, strlen(newString), "%s", str.c_str());
+  snprintf(newString, str.length(), "%s", str.c_str());
   this->arString = newString;
 }
 
@@ -39,11 +39,12 @@ int MyString::length() const {
 }
 
 char* MyString::get() const {
-  return this->arString;
+  return arString;
 }
 
 MyString MyString::operator+(const MyString str) {
-  return MyString(std::string(this->get()) + std::string(str.get()));
+  std::string res = std::string(this->get()) + std::string(str.get());
+  return MyString(res);
 }
 
 MyString MyString::operator-(const MyString str) {
@@ -106,6 +107,7 @@ MyString MyString::operator!() {
   for (int i = 0; i < res.length(); ++i)
     if (res[i] >= 'a' && res[i] <= 'z')
       res[i] -= 32;
+  return MyString(res);
 }
 
 char& MyString::operator[](int n) {
@@ -114,7 +116,13 @@ char& MyString::operator[](int n) {
 }
 
 int MyString::operator()(const char* substr) {
-  return 0;
+  char* ptrstr = strstr(this->get(), substr);
+  if (ptrstr == nullptr) {
+    return -1;
+  }
+  else {
+    return ptrstr - this->get();
+  }
 }
 
 std::ostream& operator<<(std::ostream& stream, MyString& str) {
