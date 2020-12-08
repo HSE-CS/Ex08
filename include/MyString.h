@@ -1,17 +1,18 @@
 // Copyright 2020 Dumarevskaya
 #ifndef INCLUDE_MYSTRING_H_
-#define INCLUDE_MYSRTING_H_
+#define INCLUDE_MYSTRING_H_
 
 #include <iostream>
 #include <string>
+#include <cstring>
 
 class MyString {
  private:
   char* str = nullptr;
   size_t len = 0;
  public:
-  MyString(const char* = nullptr);
-  MyString(std::string);
+  explicit MyString(const char* = nullptr);
+  explicit MyString(std::string);
   MyString(const MyString&);
   MyString(MyString&&);
   ~MyString();
@@ -21,7 +22,7 @@ class MyString {
   MyString operator-(const MyString&);
   MyString operator*(const size_t n);
   MyString& operator=(const MyString&);
-  MyString& operator=( MyString&&);
+  MyString& operator=(MyString&&);
   bool operator==(const MyString&);
   bool operator!=(const MyString&);
   bool operator>(const MyString&);
@@ -35,4 +36,4 @@ class MyString {
   friend std::istream& operator>>(std::istream&, MyString&);
 };
 
-#endif // !INCLUDE_MYSTRING_H_
+#endif  // !INCLUDE_MYSTRING_H_

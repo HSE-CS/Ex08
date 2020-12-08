@@ -1,5 +1,4 @@
 // Copyright 2020 Dumarevsaya
-#define _CRT_SECURE_NO_WARNINGS
 #include "MyString.h"
 
 MyString::MyString(const char* _str) {
@@ -8,7 +7,7 @@ MyString::MyString(const char* _str) {
   } else {
     len = strlen(_str);
     str = new char[len + 1];
-   strcpy(str, _str);
+    snprintf(str, len + 1, "%s", _str);
   }
 }
 
@@ -21,14 +20,14 @@ MyString::MyString(std::string _str) {
 MyString::MyString(const MyString& other_str) {
   len = strlen(other_str.str);
   str = new char[len + 1];
-  strcpy(str, other_str.str);
+  snprintf(str, len + 1, "%s", other_str.str);
 }
 
 MyString::MyString(MyString&& other_str) {
   len = other_str.len;
   str = other_str.str;
   other_str.str = nullptr;
-};
+}
 
 MyString::~MyString() {
   delete[] str;
@@ -37,7 +36,7 @@ MyString::~MyString() {
 
 size_t MyString::length() {
   return len;
-};
+}
 
 char* MyString::get() {
   return str;
