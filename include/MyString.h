@@ -21,7 +21,7 @@ class MyString {
 
   MyString(const MyString &string);
 
-  explicit MyString(MyString &&string) noexcept;
+  MyString(MyString &&string) noexcept;
 
   ~MyString();
 

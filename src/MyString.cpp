@@ -3,22 +3,22 @@
 #include <tuple>
 #include "../include/MyString.h"
 
-MyString::MyString(const char *characters) {
+MyString::MyString(const char *characters) : characters{nullptr}, size{0} {
   this->size = strlen(characters);
   this->characters = strdup(characters);
 }
 
-MyString::MyString(const std::string &string) {
+MyString::MyString(const std::string &string) : characters{nullptr}, size{0} {
   this->size = string.length();
   this->characters = strdup(string.c_str());
 }
 
-MyString::MyString(const MyString &string) {
+MyString::MyString(const MyString &string) : characters{nullptr}, size{0} {
   this->size = string.size;
   this->characters = strdup(string.characters);
 }
 
-MyString::MyString(MyString &&string) noexcept {
+MyString::MyString(MyString &&string) noexcept: characters{nullptr}, size{0} {
   this->size = string.size;
   this->characters = strdup(string.characters);
   this->~MyString();
