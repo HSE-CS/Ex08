@@ -1,16 +1,16 @@
 //  Copyright © 2020 Сапожников Андрей Михайлович. All rights reserved.
 
-#include <stdio.h>
-#include <iostream>
 #include <string>
-
+#include <cstring>
+#include <iostream>
 #include "MyString.h"
+
 
 MyString:: MyString(const char* mystring_value) {
   if (mystring_value != nullptr)
     this->string_container = strdup(mystring_value);
   else
-    this->string_container = new char [1];
+    this->string_container = new char[1];
 }
 
 MyString:: MyString(const std::string mystring_value) {
@@ -39,7 +39,8 @@ char* MyString:: get() const {
 }
 
 MyString MyString::operator+(const MyString& other_mystring) {
-  char* buf = new char[strlen(this->string_container) + strlen(other_mystring.get()) + 1];
+  char* buf = new char[strlen(this->string_container)
+                       + strlen(other_mystring.get()) + 1];
   strcpy(buf, this->string_container);
   strcat(buf, other_mystring.get());
   MyString new_mystring(buf);
@@ -52,7 +53,7 @@ MyString MyString::operator-(const MyString& other_mystring) {
   unsigned int other_len = strlen(other_mystring.get());
   char* buf = new char[my_len + 1];
   unsigned int new_index = 0;
-  
+
   for (unsigned int my_index = 0; my_index < my_len; my_index++) {
     bool is_consist = false;
     // check the entry of my_string char
@@ -66,8 +67,8 @@ MyString MyString::operator-(const MyString& other_mystring) {
       buf[new_index++] = this->string_container[my_index];
     }
   }
-  
-  MyString new_mystring (buf);
+
+  MyString new_mystring(buf);
   delete [] buf;
   return new_mystring;
 }
@@ -76,7 +77,7 @@ MyString MyString::operator*(unsigned int num) {
   char* buf = new char[strlen(this->string_container) * num + 1];
   for (int i = 0; i < num; i++)
     strcat(buf, this->string_container);
-  MyString new_mystring (buf);
+  MyString new_mystring(buf);
   delete [] buf;
   return new_mystring;
 }
@@ -119,7 +120,7 @@ bool MyString::operator<=(const MyString& other_mystring) const {
 MyString MyString::operator!() {
   unsigned int my_len = strlen(this->string_container);
   char* buf = new char[my_len + 1];
-  for (int i = 0; i < my_len; i++){
+  for (int i = 0; i < my_len; i++) {
     // up -> down
     if (this->string_container[i] >= 65 && this->string_container[i] <= 90)
       buf[i] = this->string_container[i] + 32;
@@ -128,7 +129,7 @@ MyString MyString::operator!() {
     buf[i] = this->string_container[i] - 32;
   }
   
-  MyString new_mystring (buf);
+  MyString new_mystring(buf);
   delete [] buf;
   return new_mystring;
 }
@@ -139,8 +140,9 @@ char MyString::operator[](unsigned int index) const {
 
 int MyString::operator()(const char *sub_string) const {
   unsigned int sub_index = 0;
-  for (int my_index = 0; my_index < strlen(this->string_container); my_index++) {
-    if (this->string_container[my_index] == sub_string[sub_index]){
+  unsigned int len = strlen(this->string_container)
+  for (int my_index = 0; my_index < len; my_index++) {
+    if (this->string_container[my_index] == sub_string[sub_index]) {
       sub_index += 1;
       if (sub_index >= strlen(sub_string))
         return my_index - strlen(sub_string) + 1;
