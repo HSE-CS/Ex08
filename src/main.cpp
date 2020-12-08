@@ -1,4 +1,4 @@
-﻿// Copyright 2020 Nikita Stifeev
+// Copyright 2020 Nikita Stifeev
 #include "MyString.h"
 
 int main() {
