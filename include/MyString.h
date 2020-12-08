@@ -3,36 +3,38 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 
+#include <iostream>
 #include <string>
+#include <cstring>
 
 class MyString {
-private:
-    char* str;
-    unsigned int len;
-public:
+ private:
+    char* string;
+    unsigned int lenght;
+ public:
     MyString();
-    MyString(const char*);
-    MyString(std::string);
+    explicit MyString(const char*);
+    explicit MyString(std::string str);
     MyString(const MyString&);
     MyString(MyString&&);
     ~MyString();
     unsigned int length();
     char* get();
-	MyString operator+(MyString& a);
-	MyString operator-(MyString& a);
-	MyString operator*(int a);
-	MyString operator=(const MyString&); //TODO
-	MyString operator=(const MyString&); //TODO
-	bool operator==(MyString& a);
-	bool operator!=(MyString& a);
-	bool operator>(MyString& a);
-	bool operator<(MyString& a);
-	bool operator>=(MyString& a);
-	bool operator<= (MyString& a);
-	MyString operator!(const MyString&);
-	MyString operator[](const MyString&);
-	MyString operator()(const MyString&);
-	MyString operator>>(const MyString&);
-	MyString operator>>(const MyString&);
+    MyString operator+(const MyString&);
+    MyString operator-(const MyString&);
+    MyString operator*(const int);
+    MyString& operator=(const MyString&);
+    MyString& operator=(MyString&&);
+    bool operator==(const MyString&);
+    bool operator!= (const MyString&);
+    bool operator> (const MyString&);
+    bool operator< (const MyString&);
+    bool operator>= (const MyString&);
+    bool operator<= (const MyString&);
+    MyString operator!();
+    char& operator[](int);
+    int operator()(const char*);
+    friend std::ostream& operator<<(std::ostream&, MyString&);
+    friend std::istream& operator>>(std::istream&, MyString&);
 };
 #endif  // INCLUDE_MYSTRING_H_
