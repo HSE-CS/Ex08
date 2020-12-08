@@ -2,11 +2,11 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 
-#include <string>
-#include <cstring>
 #include <string.h>
 #include <iostream>
 #include <sstream>
+#include <string>
+#include <cstring>
 
 class MyString {
  public:
@@ -41,7 +41,7 @@ class MyString {
     friend std::istream& operator>>(std::istream&, MyString&);
 
  private:
-	char *str;
+  char *str;
 };
 #endif  // INCLUDE_MYSTRING_H_
 

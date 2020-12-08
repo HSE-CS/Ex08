@@ -9,8 +9,7 @@ MyString::MyString(const char*str = nullptr) {
   if (str == nullptr) {
     this->str = new char[1];
     memset(this->str, 0, 1);
-  }
-  else {
+  } else {
     this->str = new char[strlen(str) + 1];
     memcpy(this->str, str, strlen(str) + 1);
   }
@@ -23,7 +22,7 @@ MyString::MyString(std::string str) {
 
 MyString::MyString(const MyString&obj) {
   this->str = new char[obj.length() + 1];
-  memcpy(this->str,obj.get(), obj.length() + 1);
+  memcpy(this->str, obj.get(), obj.length() + 1);
 }
 
 MyString::~MyString() {
@@ -35,12 +34,12 @@ MyString::MyString(MyString&&obj) {
   obj.str = nullptr;
 }
 
-char* MyString::get() const { 
-  return this->str; 
+char* MyString::get() const {
+  return this->str;
 }
 
-size_t MyString::length() const { 
-  return strlen(this->str); 
+size_t MyString::length() const {
+  return strlen(this->str);
 }
 
 MyString MyString::operator+(const MyString& obj) {
@@ -101,16 +100,16 @@ bool MyString::operator<(const MyString& obj) const {
 }
 
 bool MyString::operator>=(const MyString& obj) const {
-	return (strcmp(this->get(), obj.get()) > 1);
+  return (strcmp(this->get(), obj.get()) > 1);
 }
 
 bool MyString::operator<=(const MyString& obj) const {
-	return (strcmp(this->get(), obj.get()) < 1);
+  return (strcmp(this->get(), obj.get()) < 1);
 }
 
 MyString MyString::operator!() {
   for (int i = 0; i < this->length(); i++) {
-    this->str[i] = std::isupper(this->str[i]) ? 
+    this->str[i] = std::isupper(this->str[i]) ?
     std::tolower(this->str[i]) : std::toupper(this->str[i]);
   }
   return *this;
