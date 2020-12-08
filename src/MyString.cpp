@@ -3,7 +3,7 @@
 
 #include <string.h>
 
-MyString::MyString(const char* s) {
+std::MyString::MyString(const char* s) {
     if (s ==nullptr) {
         len = 0;
         stroka = nullptr;
@@ -182,9 +182,9 @@ MyString::char MyString::operator[](int n) {
 }
 
 MyString::int MyString::operator()(const char* s) {
-    if (strstr(this->stroka, s)==NULL) {
+    if (strstr(this->stroka, s) == NULL) {
         return -1;
-    }else {
+    } else {
         return strstr(this->str, s) - this->stroka;
     }
 }
