@@ -58,9 +58,10 @@ MyString MyString::operator+(const MyString& new_str) {
     temp_str.string_ptr = new char[temp_str.len + 1];
     for (size_t i = 0; i < this->len; ++i)
         temp_str.string_ptr[i] = this->string_ptr[i];
-    if (new_str.string_ptr != nullptr)
+    if (new_str.string_ptr != nullptr) {
         for (size_t i = 0; i < new_str.len; ++i)
             temp_str.string_ptr[i + this->len] = new_str.string_ptr[i];
+    }
     temp_str.string_ptr[temp_str.len] = '\0';
     return temp_str;
 }
@@ -160,13 +161,12 @@ MyString MyString::operator!() {
     size_t pointer = 0;
     for (size_t i = 0; i < this->len; ++i) {
         if (this->string_ptr[i] >= 'a' && this->string_ptr[i] <= 'z')
-            new_str[pointer] = (char)(this->string_ptr[i] - 'a' + 'A');
-        else {
+            new_str[pointer] = static_cast<char>(this->string_ptr[i] - 'a' + 'A');
+        else
             if (this->string_ptr[i] >= 'A' && this->string_ptr[i] <= 'Z')
-                new_str[pointer] = (char)(this->string_ptr[i] - 'A' + 'a');
+                new_str[pointer] = static_cast<char>(this->string_ptr[i] - 'A' + 'a');
             else
                 new_str[pointer] = this->string_ptr[i];
-        }
         pointer++;
     }
     new_str[pointer] = '\0';
@@ -183,7 +183,7 @@ int MyString::operator()(const char* new_str) const {
     if (new_str == nullptr || string_ptr == nullptr)
         throw "nullptr in operator()";
     char* search = strstr(this->string_ptr, new_str);
-    return search == nullptr ? -1 : (int)(search - this->string_ptr);
+    return search == nullptr ? -1 : static_cast<int>(search - this->string_ptr);
 }
 
 std::ostream& operator<<(std::ostream& output_buf, MyString& new_str) {
