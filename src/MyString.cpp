@@ -34,7 +34,7 @@ MyString::~MyString() {
         free(this->string);
 }
 
-int MyString::length() const{
+int MyString::length() const {
         return this->len;
 }
 
