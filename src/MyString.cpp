@@ -10,7 +10,7 @@ MyString::MyString(const char *s) {
     str[0] = '\0';
   }
 }
-MyString::MyString(std::string &s) {
+MyString::MyString(std::string s) {
   str = new char[s.length() + 1];
   snprintf(str, s.length() + 1, "%s", s.c_str());
 }
