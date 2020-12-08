@@ -93,8 +93,7 @@ class MyString {
         for (size_t i = 0; i < (tmp.len + 1); ++i) {
             if (tmp.str[i] >= 'a' && tmp.str[i] <= 'z') {
                 tmp.str[i] = toupper(tmp.str[i]);
-            } else if (tmp.str[i] >= 'A' && tmp.str[i] <= 'Z') 
-            {
+            } else if (tmp.str[i] >= 'A' && tmp.str[i] <= 'Z') {
                 tmp.str[i] = tolower(tmp.str[i]);
             }
         }
@@ -104,8 +103,7 @@ class MyString {
     char& operator[](int num) const {
         if (num <= this->len) {
             return this->str[num];
-        } else 
-        {
+        } else {
             std::cout << "Out of range";
             exit(-1);
         }

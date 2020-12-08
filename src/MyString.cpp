@@ -5,8 +5,7 @@ MyString::MyString(const char* str) {
     if (str == nullptr) {
         this->len = 0;
         this->str = nullptr;
-    } else 
-    {
+    } else {
         this->len = strlen(str);
         this->str = new char[this->len + 1];
         snprintf(this->str, this->len + 1, "%s", str);
@@ -69,11 +68,9 @@ bool operator!= (const MyString& a, const MyString& b) {
 bool operator> (const MyString& a, const MyString& b) {
     if (a.len > b.len) {
         return true;
-    } else if (a.len < b.len) 
-    {
+    } else if (a.len < b.len) {
         return false;
-    }  else 
-    {
+    }  else {
         for (size_t i = 0; i < a.len; ++i) {
             if (a.str[i] > b.str[i]) {
                 return true;
@@ -86,11 +83,9 @@ bool operator> (const MyString& a, const MyString& b) {
 bool operator< (const MyString& a, const MyString& b) {
     if (a.len < b.len) {
         return true;
-    } else if (a.len > b.len) 
-    {
+    } else if (a.len > b.len) {
         return false;
-    } else 
-    {
+    } else {
         for (size_t i = 0; i < a.len; ++i) {
             if (a.str[i] < b.str[i]) {
                 return true;
@@ -103,11 +98,9 @@ bool operator< (const MyString& a, const MyString& b) {
 bool operator>= (const MyString& a, const MyString& b) {
     if (a.len < b.len) {
         return false;
-    } else if (a.len > b.len) 
-    {
+    } else if (a.len > b.len) {
         return true;
-    } else 
-    {
+    } else {
         for (size_t i = 0; i < a.len; ++i) {
             if (a.str[i] < b.str[i]) {
                 return false;
@@ -120,8 +113,7 @@ bool operator>= (const MyString& a, const MyString& b) {
 bool operator<= (const MyString& a, const MyString& b) {
     if (strcmp(a.str, b.str) != 1) {
         return 1;
-    } else 
-    {
+    } else {
         return 0;
     }
 }
