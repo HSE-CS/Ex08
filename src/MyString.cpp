@@ -78,17 +78,10 @@ MyString MyString::operator-(const MyString& other_str) {
 }
 
 MyString MyString::operator*(const size_t n) {
-  MyString new_str;
-  new_str.len = len * n;
-  new_str.str = new char[new_str.len + 1];
-  size_t k = 0;
-  for (size_t i = 0; i < n; i++) {
-    for (size_t j = 0; j < len; j++, k++) {
-     new_str.str[k] = str[j];
-    }
-  }
-  new_str.str[new_str.len] = '\0';
-  return new_str;
+  std::string new_str;
+  for (unsigned int i = 0; i < n; i++)
+    new_str.append(str);
+  return MyString(new_str);
 }
 
 MyString& MyString::operator=(const MyString& other_str) {
