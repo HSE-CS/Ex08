@@ -30,7 +30,7 @@ MyString MyString::operator-(const MyString &obj) {
 MyString MyString::operator*(const unsigned int n) {
     std::string sum;
     for (int i = 0; i < n; i++)
-        sum += str;
+        sum += get();
     return MyString(sum);
 }
 
