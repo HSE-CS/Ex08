@@ -4,10 +4,11 @@
 #include <iostream>
 
 MyString::MyString(const char* str) {
-        this->string = strdup(str);
         if (str != nullptr) {
                 this->len = strlen(str);
+                this->string = strdup(str);
         } else {
+                this->string = new char[1];
                 this->len = 0;
         }
 }
