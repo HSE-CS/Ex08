@@ -158,18 +158,17 @@ MyString MyString::operator!() {
     if (nullptr == this->string_ptr)
         return MyString(nullptr);
     char* new_str = new char[this->len + 1];
-    size_t pointer = 0;
+    size_t ptr = 0;
     for (size_t i = 0; i < this->len; ++i) {
         if (this->string_ptr[i] >= 'a' && this->string_ptr[i] <= 'z')
-            new_str[pointer] = static_cast<char>(this->string_ptr[i] - 'a' + 'A');
-        else
-            if (this->string_ptr[i] >= 'A' && this->string_ptr[i] <= 'Z')
-                new_str[pointer] = static_cast<char>(this->string_ptr[i] - 'A' + 'a');
-            else
-                new_str[pointer] = this->string_ptr[i];
-        pointer++;
+            new_str[ptr] = static_cast<char>(this->string_ptr[i] - 'a' + 'A');
+        else if (this->string_ptr[i] >= 'A' && this->string_ptr[i] <= 'Z') {
+            new_str[ptr] = static_cast<char>(this->string_ptr[i] - 'A' + 'a');
+        }else
+            new_str[ptr] = this->string_ptr[i];
+        ptr++;
     }
-    new_str[pointer] = '\0';
+    new_str[ptr] = '\0';
     return MyString(new_str);
 }
 
