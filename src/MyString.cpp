@@ -124,11 +124,15 @@ MyString MyString::operator!() {
     int size = length();
     char* bufStr = new char[size + 1];
     for (int k = 0; k < size; k++) {
-        if (str[k] > 64 && str[k] < 91) {
-            bufStr[k] = tolower(str[k]);
-        }
-        if (str[k] >= 97 && str[k] <= 122) {
-            bufStr[k] = toupper(str[k]);
+        if (str[k] > 64 && str[k] <= 122) {
+            if (str[k] > 64 && str[k] < 91) {
+                bufStr[k] = tolower(str[k]);
+            }
+            if (str[k] >= 97 && str[k] <= 122) {
+                bufStr[k] = toupper(str[k]);
+            }
+        }else{
+            bufStr[k] = str[k];
         }
     }
 
