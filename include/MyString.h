@@ -5,11 +5,11 @@
 #include <string>
 
 class MyString {
-private:
+ private:
     char* string;
     int len;
 
-public:
+ public:
     MyString();
     explicit MyString(const char* str);
     explicit MyString(const std::string& str);
