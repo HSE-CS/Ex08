@@ -81,17 +81,11 @@ MyString MyString::operator-(const MyString& other_string) {
 }
 
 MyString MyString::operator*(const int num) {
-    int bufSize = (length() * num) + 1;
-    char* bufStr = new char[bufSize];
-    int act_len = 0;
-    for (int i = 0; i < num; i++){
-        for (int k = 0; k < length(); k++) {
-            bufStr[act_len] = str[k];
-            act_len++;
-        }
+    MyString umnozhenie(str);
+    for(int i = 0; i < num - 1; i++){
+        umnozhenie = umnozhenie + *this;
     }
-    bufStr[act_len] = '\0';
-    return MyString(bufStr);
+    return umnozhenie;
 }
 
 bool MyString::operator==(const MyString& string) {
