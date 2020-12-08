@@ -57,7 +57,7 @@ MyString& MyString::operator=(const MyString& other_string) {
 
 MyString& MyString::operator=(MyString&& other_string) {
     str = other_string.str;
-    other_string = nullptr;
+    other_string.str = nullptr;
     return *this;
 }
 
