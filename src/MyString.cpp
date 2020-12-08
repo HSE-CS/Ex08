@@ -101,7 +101,7 @@ MyString& MyString::operator=(MyString&& s) {
 }
 
 bool MyString::operator!=(const MyString& s) {
-    if (strcmp(this->get, s.get()))
+    if (strcmp(this->str, s.str))
       return true;
     else
       return false;
@@ -112,14 +112,14 @@ bool MyString::operator==(const MyString& s) {
 }
 
 bool MyString::operator>(const MyString& s) {
-    if (strcmp(this->get, s.get()) > 0)
+    if (strcmp(this->str, s.str) > 0)
       return true;
     else
       return false;
 }
 
 bool MyString::operator<(const MyString& s) {
-    if (strcmp(this->get, s.get()) < 0)
+    if (strcmp(this->str, s.str) < 0)
       return true;
     else
       return false;
@@ -150,7 +150,7 @@ char*  MyString::operator()(const char* s) {
     return ptr;
 }
 
-MyString& MyString::operator! () {
+MyString MyString::operator! () {
     std::string result(this->get());
     for (size_t pos = 0; pos < result.length(); pos++) {
       char letter = result[pos];

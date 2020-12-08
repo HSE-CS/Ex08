@@ -26,11 +26,11 @@ class MyString{
   MyString& operator=(MyString&&);
   char& operator[] (const int);
   char* operator()(const char*);
-  MyString& operator! ();
+  MyString operator! ();
   bool operator==(const MyString&);
-  bool operator!=(const MyString&);
-  bool operator>(const MyString&);
-  bool operator<(const MyString&);
+  friend bool operator!=(const MyString&);
+  friend bool operator>(const MyString&);
+  friend bool operator<(const MyString&);
   bool operator>=(const MyString&);
   bool operator<=(const MyString&);
   friend std::ostream& operator<<(std::ostream&, MyString&);
