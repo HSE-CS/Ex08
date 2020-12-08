@@ -2,6 +2,8 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 #include <string>
+#include <cstring>
+#include <string.h>
 
 class MyString {
  private:
