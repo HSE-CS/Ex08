@@ -2,7 +2,6 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 #include <cstring>
-#include <string.h>
 #include <string>
 
 class MyString {
