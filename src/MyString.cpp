@@ -43,7 +43,7 @@ int MyString::length() const {
     return len;
 }
 
-const char* MyString::get() const {
+char* MyString::get() {
     return str;
 }
 
@@ -133,11 +133,11 @@ bool MyString::operator<=(const MyString& s) {
     return ((this < s) || (this == s));
 }
 
-std::ostream& MyString::operator<<(std::ostream& os, MyString& s) {
+std::ostream& operator<<(std::ostream& os, MyString& s) {
     return os << s.str;
 }
 
-std::istream& MyString::operator>>(std::istream& is, MyString& s) {
+std::istream& operator>>(std::istream& is, MyString& s) {
     return is >> s.str;
 }
 
@@ -145,21 +145,20 @@ char& MyString::operator[] (const int index) {
     return str[index];
 }
 
-const char*  MyString::operator()(const char* s) {
-    return strstr(str, s);
-}
-
-const char* MyString::operator()(std::string s) {
-    return strstr(str, s.c_str());
+char*  MyString::operator()(const char* s) {
+    char* ptr = strstr(this->get(), s);
+    return ptr;
 }
 
 MyString& MyString::operator! () {
-    for (size_t i=0; i < len; i++) {
-      if ((str[i] > 64) && (str[i] < 91))
-        str[i] = str[i]+32;
-      if ((str[i] > 96) && (str[i] < 123))
-        str[i] = str-32;
+    std::string result(this->get());
+    for (size_t pos = 0; pos < result.length(); pos++) {
+      char letter = result[pos];
+      if ('a' <= letter && letter <= 'z')
+        result[pos] -= 'a' - 'A';
+      else if ('A' <= letter && letter <= 'Z')
+        result[pos] += 'a' - 'A';
     }
-    return *this;
+    return MyString(result);
 }
 

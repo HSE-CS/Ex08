@@ -18,14 +18,14 @@ class MyString{
   MyString(MyString&&);
   ~MyString();
   int length() const;
-  char* get() const;
+  char* get();
   MyString operator+(const MyString&);
   MyString operator-(const MyString&);
   MyString operator*(int);
   MyString& operator=(const MyString&);
   MyString& operator=(MyString&&);
   char& operator[] (const int);
-  const char* operator()(const char*);
+  char* operator()(const char*);
   MyString& operator! ();
   bool operator==(const MyString&);
   bool operator!=(const MyString&);
