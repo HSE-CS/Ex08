@@ -62,7 +62,7 @@ MyString MyString::operator-(const MyString& str) {
 MyString MyString::operator*(int n) {
     std::string res;
     for (int i = 0; i < n; i++) {
-        res.append(this->get());
+        res += this->get();
     }
     return MyString(res);
 }
