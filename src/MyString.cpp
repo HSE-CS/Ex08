@@ -2,6 +2,10 @@
 #include "MyString.h"
 #include <cctype>
 
+MyString::MyString() {
+  
+}
+
 MyString::MyString(char *str) {
   string = new char[strlen(str)];
   snprintf(string, strlen(str), "%s", str);

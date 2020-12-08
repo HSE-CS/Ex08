@@ -11,6 +11,7 @@ class MyString {
   char *string;
 
  public:
+  MyString();
   explicit MyString(char *);
   explicit MyString(std::string);
   MyString(const MyString &);
