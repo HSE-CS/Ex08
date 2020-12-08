@@ -26,8 +26,8 @@ public:
     char &operator[](size_t) const;          //  - доступ к символу по индексу.
     int operator()(const char *);            // - поиск подстроки.
 
-    friend ostream &operator>>(ostream &, MyString &);      // - чтение из потока.
-    friend istream &operator>>(istream &, MyString &);      // - запись в поток.
+    friend std::ostream &operator>>(std::ostream &, MyString &);      // - чтение из потока.
+    friend std::istream &operator>>(std::istream &, MyString &);      // - запись в поток.
 
     bool operator==(const MyString &) const;       // - сравнение на равенство.
     bool operator!=(const MyString &) const;       // - сравнение на неравенство.
