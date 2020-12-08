@@ -66,7 +66,7 @@ MyString MyString::operator-(const MyString& str) {
 }
 
 MyString MyString::operator*(size_t n) {
-  std::string a(this->get());
+  std::string a;
   size_t i = 0;
   while (i < n) {
     a.append(this->get());
