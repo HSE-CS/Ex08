@@ -5,10 +5,9 @@
 
 class MyString {
 private:
-    char *str;
+    char *str = new char;
 public:
-    MyString();
-
+    
     explicit MyString(const char *);           // - конструктор с одним параметром (есть значение по-умолчанию nullptr).
     explicit MyString(std::string);            // - конструктор с одним параметром.
     MyString(const MyString &);                // - конструктор копирования.
