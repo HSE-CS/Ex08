@@ -12,8 +12,7 @@ MyString::MyString(const char* strin) {
         }
         newStr[length - 1] = '\0';
         this->str = newStr;
-    }
-    else {
+    } else {
         char* newStr = new char[1];
         newStr[0] = '\0';
         this->str = newStr;
@@ -34,7 +33,6 @@ MyString::MyString(const MyString &str) {
 }
 
 MyString::MyString(MyString&& strin) {
- //   this->str = strin.str;
     int length = strin.length();
     char* tmp = new char[length + 1];
     for (int i = 0; i < length; i++) {
@@ -140,8 +138,7 @@ MyString MyString::operator!() {
     for (int i = 0; i < length(); i++) {
         if (this->str[i] >= 65 && this->str[i] <= 90) {
             res[i] = str[i] + 32;
-        }
-        else if (this->str[i] >= 97 && this->str[i] <= 122) {
+        } else if (this->str[i] >= 97 && this->str[i] <= 122) {
             res[i] = str[i] - 32;
         } else {
             res[i] = str[i];

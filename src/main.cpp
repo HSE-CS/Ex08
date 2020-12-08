@@ -5,8 +5,7 @@
 #include "MyString.h"
 
 
-int main()
-{
+int main() {
     MyString s1;
     MyString s2("S2");
     MyString s22(s2);
@@ -39,6 +38,5 @@ int main()
     std::cout << "(!s5).get(): " << (!s5).get() << std::endl;
     std::cout << "s5[12]: " << s5[12] << std::endl;
     std::cout << "s5(\"UPPER\"): " << s5("UPPER") << std::endl;
-    
-	return 0;
+    return 0;
 }

@@ -1,7 +1,7 @@
 // Copyright Nikolaev Ivan
 
 
-#ifndef MYSTRING_H_
+#ifndef INCLUDE_MYSTRING_H_ 
 #define MYSTRING_H_
 #include <string>
 #include <iostream>
@@ -35,7 +35,6 @@ class MyString {
     int operator()(const char* str);
     friend std::ostream& operator<<(std::ostream& stream, MyString& str);
     friend std::istream& operator>>(std::istream& stream, MyString& str);
-
 };
 
-#endif MYSTRING_H  //MYSTRING_H_
+#endif INCLUDE_MYSTRING_H_ // INCLUDE_MYSTRING_H_
