@@ -1,3 +1,4 @@
+// Copyright 2020 Polina Lukicheva
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 #include <string>
@@ -5,7 +6,7 @@
 class MyString {
  private:
    char* arString;
-public:
+ public:
   explicit MyString(const char* str = nullptr);
   explicit MyString(std::string);
   MyString(const MyString&);
@@ -34,4 +35,4 @@ public:
   friend std::ostream& operator<<(std::ostream&, MyString&);
   friend std::istream& operator>>(std::istream&, MyString&);
 };
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_

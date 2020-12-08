@@ -9,11 +9,10 @@ MyString::MyString(const char* str) {
     char* newString = new char[strlen(str)];
     strcpy(newString, str);
     this->arString = newString;
-  }
-  else {
+  } else {
     char* newString = new char[0];
     this->arString = newString;
-  }
+}
 }
 
 MyString::MyString(std::string str) {
@@ -26,9 +25,9 @@ MyString::MyString(const MyString &str) {
   this->arString = str.arString;
 }
 
-MyString::MyString (MyString &&str) {
+MyString::MyString(MyString &&str) {
   this->arString = str.arString;
-  str.arString = nullptr; 
+  str.arString = nullptr;
 }
 
 MyString::~MyString() {
@@ -105,12 +104,12 @@ bool MyString::operator<=(const MyString str) {
 MyString MyString::operator!() {
   std::string res(this->arString);
   for (int i = 0; i < res.length(); ++i)
-    if (res[i] >= 'a' and res[i] <= 'z')
+    if (res[i] >= 'a' && res[i] <= 'z')
       res[i] -= 32;
 }
 
 char& MyString::operator[](int n) {
-  if (n < 0 or n >= this->length()) throw "Index out of range";
+  if (n < 0 || n >= this->length()) throw "Index out of range";
   return this->arString[n];
 }
 
