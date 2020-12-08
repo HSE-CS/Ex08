@@ -19,12 +19,11 @@ int main() {
     MyString temp1("TEST FIRST!");
     std::cout << copySec.operator+(temp1).get() << std::endl;
     std::cout << copySec.operator-(temp1).get() << std::endl;
-    MyString a("123456789");
-    MyString b("2468");
+    MyString a("123");
+    int b = 3;
     MyString c;
-    c = a - b;
+    c = a * b;
     std::cout << a.get() << std::endl;
-    std::cout << b.get() << std::endl;
     std::cout << c.get() << std::endl;
     return 0;
 }
