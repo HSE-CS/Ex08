@@ -10,8 +10,7 @@ MyString::MyString(const char* newStr = nullptr) {
   if (newStr) {
     myString = new char[strlen(newStr) + 1];
     strcpy(myString, newStr);
-  }
-  else {
+  } else {
     myString = new char[1];
     myString[0] = '\0';
   }
@@ -57,7 +56,7 @@ MyString MyString::operator-(const MyString& otherString) {
     while (ptr < tempStr.length()) {
       tempStr.erase(ptr, 1);
       ptr = tempStr.find(tempStr2[i]);
-	}
+        }
   }
   return MyString(tempStr);
 }
@@ -65,12 +64,12 @@ MyString MyString::operator-(const MyString& otherString) {
 MyString MyString::operator*(size_t repeat) {
   std::string tempStr = "";
   for (int i = 0; i < repeat; i++) {
-	  tempStr += myString;
+    tempStr += myString;
   }
   return MyString(tempStr);
 }
 
-MyString& MyString::operator=(const MyString& otherString){
+MyString& MyString::operator=(const MyString& otherString) {
   if (myString) {
     delete[] myString;
   }
@@ -103,7 +102,7 @@ bool MyString::operator<(const MyString& otherString) const {
   return strcmp(myString, otherString.get()) == -1;
 }
 
-bool MyString::operator>=(const MyString& otherString) const{
+bool MyString::operator>=(const MyString& otherString) const {
   return strcmp(myString, otherString.get()) > 1;
 }
 
@@ -115,15 +114,14 @@ MyString MyString::operator!() {
   for (int i = 0; i < this->length(); i++) {
     myString[i] = std::isupper(myString[i]) ?
     std::tolower(myString[i]) : std::toupper(myString[i]);
-  };
+  }
   return *this;
 }
 
 char& MyString::operator[](size_t index) const {
   if (index >= 0 && index < strlen(myString)) {
     return myString[index];
-  }
-  else{
+  } else {
     throw "Index is out of range!";
   }
 }
