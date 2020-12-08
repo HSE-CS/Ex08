@@ -6,7 +6,7 @@
 
 class MyString {
  private:
-   char* arString;
+  char* arString;
 
  public:
   explicit MyString(const char* str = nullptr);
