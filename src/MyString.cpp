@@ -45,18 +45,14 @@ MyString MyString::operator+(const MyString &str) {
 MyString MyString::operator-(const MyString &str) {
   char *newStr = new char[strlen(string)];
   int index = 0;
-  for (int i = 0; i < strlen(string); i++)
-  {
+  for (int i = 0; i < strlen(string); i++) {
     bool found = false;
-    for (int j = 0; j < strlen(str.string); i++)
-    {
-      if (str.string[j] == string[i])
-      {
+    for (int j = 0; j < strlen(str.string); i++) {
+      if (str.string[j] == string[i]) {
         found = true;
       }
     }
-    if (!found)
-    {
+    if (!found) {
       newStr[index] = string[i];
       index++;
     }
@@ -66,8 +62,7 @@ MyString MyString::operator-(const MyString &str) {
 
 MyString MyString::operator*(const size_t count) {
   MyString ans(string);
-  for (int i = 0; i < count - 1; i++)
-  {
+  for (int i = 0; i < count - 1; i++) {
     ans = ans + *this;
   }
   return ans;
@@ -111,8 +106,7 @@ bool MyString::operator<=(const MyString &str) {
 
 MyString MyString::operator!() {
   std::string tmp;
-  for (int i = 0; i < strlen(string); i++)
-  {
+  for (int i = 0; i < strlen(string); i++) {
     if (isupper(string[i]))
       tmp.push_back(tolower(string[i]));
     else

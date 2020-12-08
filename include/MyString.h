@@ -10,9 +10,9 @@ class MyString {
   char *string;
 
  public:
-  MyString(char *);
+  explicit MyString(char *);
   explicit MyString(std::string);
-  explicit MyString(const MyString &);
+  MyString(const MyString &);
   MyString(MyString &&);
   ~MyString();
   int length();
