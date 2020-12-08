@@ -7,9 +7,8 @@ MyString::MyString(const char* new_string) {
         if (string != nullptr)
             delete[] string;
         string = new char[strlen(new_string) + 1];
-        strcpy(string, new_string);
-    }
-    else {
+		snprintf(string, strlen(new_string) + 1, "%s", new_string);
+    } else {
         string = new char[1];
         memset(string, 0, 1);
     }
@@ -19,14 +18,14 @@ MyString::MyString(std::string new_string) {
     if (string != nullptr)
         delete[] string;
     string = new char[new_string.size() + 1];
-    strcpy(string, new_string.c_str());
+    snprintf(string, new_string.size() + 1, "%s", new_string.c_str());
 }
 
 MyString::MyString(const MyString& mystring) {
     if (string != nullptr)
         delete[] string;
     string = new char[mystring.length() + 1];
-    strcpy(string, mystring.get());
+    snprintf(string, mystring.length() + 1, "%s", mystring.get());
 }
 
 MyString::MyString(MyString&& mystring) {
@@ -72,7 +71,7 @@ MyString& MyString::operator=(const MyString& mystring) {
     if (string != nullptr)
         delete[] string;
     string = new char[mystring.length() + 1];
-    strcpy(string, mystring.get());
+    snprintf(string, mystring.length() + 1, "%s", mystring.get());
     return *this;
 }
 
@@ -80,7 +79,7 @@ MyString& MyString::operator=(MyString&& mystring) {
     if (string != nullptr)
         delete[] string;
     string = new char[mystring.length() + 1];
-    strcpy(string, mystring.get());
+    snprintf(string, mystring.length() + 1, "%s", mystring.get());
     mystring.string = nullptr;
     return *this;
 }

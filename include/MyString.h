@@ -10,7 +10,7 @@
 class MyString {
  public:
     explicit MyString(const char* new_string = nullptr);
-    MyString(std::string);
+	explicit MyString(std::string);
     MyString(const MyString&);
     MyString(MyString&&);
     ~MyString();
@@ -26,14 +26,13 @@ class MyString {
     bool operator>(const MyString&);
     bool operator<(const MyString&);
     bool operator>=(const MyString&);
-	bool operator<=(const MyString&);
-	MyString operator!();
+    bool operator<=(const MyString&);
+    MyString operator!();
     char operator[](int);
     int operator()(const char*);
-	friend std::ostream& operator<<(std::ostream&, const MyString&);
+    friend std::ostream& operator<<(std::ostream&, const MyString&);
     friend std::istream& operator>>(std::istream&, const MyString&);
  private:
     char* string = nullptr;
 };
-
-#endif
+#endif // INCLUDE_MYSTRING_H_
