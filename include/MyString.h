@@ -14,6 +14,7 @@ class MyString {
  private:
     char* string_ptr;
     unsigned len;
+
  public:
     // Constructors
     explicit MyString(const char* new_ptr = nullptr);
@@ -48,4 +49,4 @@ class MyString {
 };
 
 
-#endif //  INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
