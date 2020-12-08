@@ -7,8 +7,7 @@ MyString::MyString(const char* s) {
     if (s ==nullptr) {
         len = 0;
         str = nullptr;
-    }
-    else {
+    }else {
         len = strlen(s);
         str = new char[len + 1];
         for (size_t i = 0; i <= len; i++) {
@@ -121,8 +120,7 @@ MyString& MyString::operator=(MyString&& s) {
 bool MyString::operator==(const MyString& s) {
     if (strcmp(this->str, s.str) == 0) {
         return 1;
-    }
-    else {
+    }else {
         return 0;
     }
 }
@@ -130,8 +128,7 @@ bool MyString::operator==(const MyString& s) {
 bool MyString::operator!=(const MyString& s) {
     if (strcmp(this->str, s.str) != 0) {
         return 1;
-    }
-    else {
+    }else {
         return 0;
     }
 }
@@ -139,8 +136,7 @@ bool MyString::operator!=(const MyString& s) {
 bool MyString::operator>(const MyString& s) {
     if (strcmp(this->str, s.str) > 0) {
         return 1;
-    }
-    else {
+    }else {
         return 0;
     }
 }
@@ -148,8 +144,7 @@ bool MyString::operator>(const MyString& s) {
 bool MyString::operator<(const MyString& s) {
     if (strcmp(this->str, s.str) < 0) {
         return 1;
-    }
-    else {
+    }else {
         return 0;
     }
 }
@@ -157,8 +152,7 @@ bool MyString::operator<(const MyString& s) {
 bool MyString::operator>=(const MyString& s) {
     if (strcmp(this->str, s.str) >= 0) {
         return 1;
-    }
-    else {
+    }else {
         return 0;
     }
 }
@@ -166,8 +160,7 @@ bool MyString::operator>=(const MyString& s) {
 bool MyString::operator<=(const MyString& s) {
     if (strcmp(this->str, s.str) <=0) {
         return 1;
-    }
-    else {
+    }else {
         return 0;
     }
 }
@@ -192,8 +185,7 @@ char MyString::operator[](size_t n) {
 int MyString::operator()(const char* s) {
     if (strstr(this->str, s)==NULL) {
         return -1;
-    }
-    else {
+    }else {
         return strstr(this->str, s) - this->str;
     }
 }
