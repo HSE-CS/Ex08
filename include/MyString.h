@@ -35,7 +35,7 @@ class MyString {
     MyString(const MyString& obj) {
         size = obj.size;
         this->str = new char[size + 1];
-        memcpy(this->str, str, size + 1);
+        memcpy(this->str, obj.str, size + 1);
     }
 
     MyString(MyString&& obj) noexcept {
