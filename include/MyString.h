@@ -1,4 +1,5 @@
 //  Copyright 2020 Drobot Elizaveta
+#ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 
 #include <iostream>
@@ -14,8 +15,8 @@ class MyString {
     unsigned len;
 
  public:
-    MyString(const char* str = nullptr);
-    MyString(std::string);
+    explicit MyString(const char* str = nullptr);
+    explicit MyString(std::string);
     MyString(const MyString&);
     MyString(MyString&&);
     ~MyString() {
