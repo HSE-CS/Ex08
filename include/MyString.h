@@ -17,19 +17,19 @@ class MyString {
   int length() const;
   char* get() const;
 
-  MyString operator+(const MyString);
-  MyString operator-(const MyString);
+  MyString operator+(const MyString&);
+  MyString operator-(const MyString&);
   MyString operator*(int);
 
-  MyString operator=(const MyString&);
-  MyString operator=(MyString&&);
+  MyString& operator=(const MyString&);
+  MyString& operator=(MyString&&);
 
-  bool operator==(const MyString);
-  bool operator!=(const MyString);
-  bool operator>(const MyString);
-  bool operator<(const MyString);
-  bool operator>=(const MyString);
-  bool operator<=(const MyString);
+  bool operator==(const MyString&);
+  bool operator!=(const MyString&);
+  bool operator>(const MyString&);
+  bool operator<(const MyString&);
+  bool operator>=(const MyString&);
+  bool operator<=(const MyString&);
 
   MyString operator!();
   char& operator[](int);

@@ -3,7 +3,16 @@
 #include "iostream"
 
 int main() {
-  MyString s1("Hello");
-  std::cout << s1.length();
-  std::cout << s1;
+  MyString a;
+  std::cout << 0 << " - " << a.length() << std::endl;
+  MyString a1("hello");
+  std::cout << 5 << " - " << a1.length() << std::endl;
+  MyString a3("123");
+  MyString b3(a3);
+  std::cout << "123" << " - " << b3.get() << std::endl;
+  MyString a4("123");
+  MyString b4(a4);
+  MyString c4;
+  c4 = a4;
+  return 0;
 }

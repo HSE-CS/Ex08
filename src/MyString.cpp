@@ -39,15 +39,14 @@ int MyString::length() const {
 }
 
 char* MyString::get() const {
-  return arString;
+  return this->arString;
 }
 
-MyString MyString::operator+(const MyString str) {
-  std::string res = std::string(this->get()) + std::string(str.get());
-  return MyString(res);
+MyString MyString::operator+(const MyString& str) {
+  return MyString(std::string(this->get()) + std::string(str.get()));
 }
 
-MyString MyString::operator-(const MyString str) {
+MyString MyString::operator-(const MyString& str) {
   std::string sourceStr(this->arString);
   for (int i = 0; i < str.length(); ++i)
     while (sourceStr.find(str.arString[i]) != -1)
@@ -63,14 +62,14 @@ MyString MyString::operator*(int n) {
   return MyString(result);
 }
 
-MyString MyString::operator=(const MyString& str) {
+MyString& MyString::operator=(const MyString& str) {
   if (this->arString != nullptr)
     delete (this->arString);
   this->arString = str.arString;
   return *this;
 }
 
-MyString MyString::operator=(MyString&& str) {
+MyString& MyString::operator=(MyString&& str) {
   if (this->arString != nullptr)
     delete (this->arString);
   this->arString = str.arString;
@@ -78,27 +77,27 @@ MyString MyString::operator=(MyString&& str) {
   return *this;
 }
 
-bool MyString::operator==(const MyString str) {
+bool MyString::operator==(const MyString& str) {
   return !(strcmp(this->arString, str.arString));
 }
 
-bool MyString::operator!=(const MyString str) {
+bool MyString::operator!=(const MyString& str) {
   return (strcmp(this->arString, str.arString));
 }
 
-bool MyString::operator>(const MyString str) {
+bool MyString::operator>(const MyString& str) {
   return strcmp(this->arString, str.arString) > 0;
 }
 
-bool MyString::operator<(const MyString str) {
+bool MyString::operator<(const MyString& str) {
   return strcmp(this->arString, str.arString) < 0;
 }
 
-bool MyString::operator>=(const MyString str) {
+bool MyString::operator>=(const MyString& str) {
   return strcmp(this->arString, str.arString) > -1;
 }
 
-bool MyString::operator<=(const MyString str) {
+bool MyString::operator<=(const MyString& str) {
   return strcmp(this->arString, str.arString) < 1;
 }
 
@@ -124,8 +123,8 @@ int MyString::operator()(const char* substr) {
   }
 }
 
-std::ostream& operator<<(std::ostream& stream, MyString& str) {
-  return stream << str.get();
+std::ostream& operator<<(std::ostream& st, MyString& str) {
+  return st << str.get();
 }
 
 std::istream& operator>>(std::istream& stream, MyString& str) {
