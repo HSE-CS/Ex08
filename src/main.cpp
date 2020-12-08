@@ -19,6 +19,5 @@ int main() {
     std::cout << "myString(s2)" << " = " << myString("ASD") << std::endl;
     s1 = !myString;
     std::cout << "!myString = " << myString << std::endl;
-
     return 0;
 }

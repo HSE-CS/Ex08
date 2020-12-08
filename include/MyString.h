@@ -8,7 +8,7 @@
 
 class MyString {
  private:
-  char *str;
+  char *str = nullptr;
 
  public:
   explicit MyString(const char * = nullptr);
@@ -28,7 +28,7 @@ class MyString {
   MyString& operator=(const MyString&str);
   MyString& operator=(MyString&&str);
 
-  MyString operator!();
+  MyString& operator!();
   bool operator==(const MyString&str);
   bool operator!=(const MyString&str);
   bool operator>(const MyString&str);

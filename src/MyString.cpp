@@ -3,7 +3,7 @@
 
 MyString::MyString(const char *str) {
     if (str == nullptr) {
-        this->str = new char[1];
+        this->str = new char[1]{'\0'};
     } else {
         this->str = new char[strlen(str)+1];
         snprintf(this->str, strlen(str)+1, "%s", str);
@@ -16,17 +16,13 @@ MyString::MyString(std::string str) {
 }
 
 MyString::MyString(const MyString &str) {
-    if (str.str == nullptr) {
-        this->str = new char[1];
-    } else {
-        this->str = new char[strlen(str.str) + 1];
-        snprintf(this->str, strlen(str.str), "%s", str.get());
-    }
+    this->str = new char[str.length()+1];
+    snprintf(this->str, strlen(str.str)+1, "%s", str.get());
 }
 
 MyString::MyString(MyString && str) {
-    this->str = new char[strlen(str.str) + 1];
-    snprintf(this->str, strlen(str.str), "%s", str.get());
+    this->str = new char[str.length()+1];
+    snprintf(this->str, strlen(str.str) + 1, "%s", str.get());
 }
 
 MyString::~MyString() {
@@ -44,7 +40,7 @@ char * MyString::get() const {
 MyString MyString::operator+(const MyString &str) {
     char *tmp = new char[this->length() + str.length()+1];
     snprintf(tmp, this->length()+1, "%s", this->str);
-    snprintf(tmp+this->length(), str.length()+1, "%s", str.str);
+    snprintf(tmp + this->length(), str.length()+1, "%s", str.str);
     return MyString(tmp);
 }
 
@@ -70,8 +66,10 @@ MyString MyString::operator-(const MyString &str) {
 
 MyString MyString::operator*(size_t num) {
     char *tmp = new char[num * this->length() + 1];
+    char *t = tmp;
     for (int i = 0; i < num; ++i) {
-        snprintf(tmp, this->length(), "%s", this->str);
+        snprintf(t, this->length()+1, "%s", this->str);
+        t += this->length();
     }
     return MyString(tmp);
 }
@@ -92,7 +90,7 @@ MyString & MyString::operator=(MyString &&str) {
     return *this;
 }
 
-MyString MyString::operator!() {
+MyString& MyString::operator!() {
     for (int i = 0; i < this->length(); ++i) {
         if (this->str[i] >= 'A' && this->str[i] <= 'Z')
             this->str[i] += 32;
