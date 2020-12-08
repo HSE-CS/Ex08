@@ -1,6 +1,8 @@
 // Copyright 2020 Bulatov D.
 #define _CRT_SECURE_NO_WARNINGS
 
+#include <string.h>
+
 MyString::MyString(const char* s) {
     if (s ==nullptr) {
         len = 0;

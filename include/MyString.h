@@ -6,37 +6,36 @@
 #include <string>
 #include <numeric>
 #include <algorithm>
-#include <string.h>
 
 class MyString {
  private:
-	 char* stroka;
-     int len;
+   char* stroka;
+   int len;
 
  public:
-	 explicit MyString(const char* = nullptr);
-	 explicit MyString(std::string);
-	 MyString(const MyString&);
-	 MyString(MyString&&);
-	 ~MyString();
-	 int length();
-	 char* get();
-	 MyString operator+(const MyString& s);
-	 MyString operator-(const MyString& s);
-	 MyString operator*(const int n);
-	 MyString& operator=(const MyString& s);
-	 MyString& operator=(MyString&& s);
-	 bool operator==(const MyString& s);
-	 bool operator!=(const MyString& s);
-	 bool operator>(const MyString& s);
-	 bool operator<(const MyString& s);
-	 bool operator>=(const MyString& s);
-	 bool operator<=(const MyString& s);
-	 MyString operator!();
-	 char operator[](int n);
-	 int operator()(const char*);
-	 friend std::ostream& operator>>(std::ostream& os, MyString& s);
-	 friend std::istream& operator>>(std::istream& is, MyString& s);
+   explicit MyString(const char* = nullptr);
+   explicit MyString(std::string);
+   MyString(const MyString&);
+   MyString(MyString&&);
+   ~MyString();
+   int length();
+   char* get();
+   MyString operator+(const MyString& s);
+   MyString operator-(const MyString& s);
+   MyString operator*(const int n);
+   MyString& operator=(const MyString& s);
+   MyString& operator=(MyString&& s);
+   bool operator==(const MyString& s);
+   bool operator!=(const MyString& s);
+   bool operator>(const MyString& s);
+   bool operator<(const MyString& s);
+   bool operator>=(const MyString& s);
+   bool operator<=(const MyString& s);
+   MyString operator!();
+   char operator[](int n);
+   int operator()(const char*);
+   friend std::ostream& operator>>(std::ostream& os, MyString& s);
+   friend std::istream& operator>>(std::istream& is, MyString& s);
 };
 
 #endif  // INCLUDE_MYSTRING_H_
