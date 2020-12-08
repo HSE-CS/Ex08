@@ -1,0 +1,7 @@
+# local files
+cmake-build-debug
+.idea
+gtest
+# local changes for run tests
+CMakeLists.txt
+test/tests.cpp
