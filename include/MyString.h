@@ -7,7 +7,7 @@
 class MyString {
  public:
   explicit MyString(const char *str = nullptr);
-  explicit MyString(const std::string &str);
+  explicit MyString(const std::string& str);
   MyString(const MyString &new_str);
   MyString(MyString &&str);
   ~MyString();
@@ -27,7 +27,7 @@ class MyString {
   bool operator<=(const MyString &new_str) const;
   MyString operator!();
   char &operator[](size_t ind) const;
-  int operator()(char *new_str);
+  int operator()(const char *new_str);
   friend std::ostream &operator<<(std::ostream &stream, MyString &new_str);
   friend std::istream &operator>>(std::istream &stream, MyString &new_str);
 
