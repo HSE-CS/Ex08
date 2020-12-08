@@ -44,7 +44,7 @@ MyString::MyString(MyString &&existString) {
 }
 
 MyString::~MyString() {
-    delete this->stringArray;
+    delete [] stringArray;
 }
 
 MyString MyString::operator+(const MyString &s) {
