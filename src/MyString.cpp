@@ -3,7 +3,6 @@
 #include <cctype>
 
 MyString::MyString() {
-  
 }
 
 MyString::MyString(char *str) {
