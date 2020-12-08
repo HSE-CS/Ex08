@@ -4,7 +4,6 @@
 #include <iostream>
 
 int main() {
-
     MyString a1("hELLO");
     MyString b1;
     b1 = !a1;
@@ -18,14 +17,14 @@ int main() {
 
     MyString a3;
     a3 = a1 * 3;
-    std::cout << a3.get() << std::endl; // HelloHelloHello
+    std::cout << a3.get() << std::endl;  // HelloHelloHello
 
     MyString b3;
     b3 = a3 - a1;
     std::cout << (b3 <= a3) << std::endl;   // true
 
     MyString c3(a3);
-    std::cout << c3("oHello") << std::endl; // 4
+    std::cout << c3("oHello") << std::endl;  // 4
 
     std::cout << b1[4] << std::endl;    // o
 

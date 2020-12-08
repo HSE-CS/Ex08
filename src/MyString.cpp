@@ -6,7 +6,7 @@
 MyString::MyString(const char* str) {
     if (str != nullptr) {
         string = new char[strlen(str) + 1];
-        strcpy(string, str);
+        strncpy(string, str, strlen(str) + 1);
     } else {
         string = new char[1];
         string[0] = '\0';
@@ -22,7 +22,7 @@ MyString::MyString(std::string str) {
 
 MyString::MyString(const MyString& str) {
     string = new char[str.length() + 1];
-    strcpy(string, str.get());
+    strncpy(string, str.string, str.length() + 1);
 }
 
 MyString::MyString(MyString&& str) {
