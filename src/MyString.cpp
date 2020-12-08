@@ -128,7 +128,7 @@ MyString MyString::operator!() {
     if (this->string_container[i] >= 97 && this->string_container[i] <= 122)
     buf[i] = this->string_container[i] - 32;
   }
-  
+
   MyString new_mystring(buf);
   delete [] buf;
   return new_mystring;
@@ -140,7 +140,7 @@ char MyString::operator[](unsigned int index) const {
 
 int MyString::operator()(const char *sub_string) const {
   unsigned int sub_index = 0;
-  unsigned int len = strlen(this->string_container)
+  unsigned int len = strlen(this->string_container);
   for (int my_index = 0; my_index < len; my_index++) {
     if (this->string_container[my_index] == sub_string[sub_index]) {
       sub_index += 1;
