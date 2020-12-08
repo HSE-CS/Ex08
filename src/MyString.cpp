@@ -2,6 +2,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "MyString.h"
+#include <string.h>
+#include <iostream>
+#include <string>
 
 MyString::MyString(const char* s) {
     if (s == nullptr) {
@@ -41,15 +44,15 @@ MyString::MyString(MyString&& s) {
 
 MyString::~MyString() {
     delete[] this->stroka;
-    len = 0;
+    this->len = 0;
 }
 
 int MyString::length() {
-    return len;
+    return this->len;
 }
 
 char* MyString::get() {
-    return stroka;
+    return this->stroka;
 }
 
 MyString MyString::operator+(const MyString& s) {
