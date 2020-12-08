@@ -4,17 +4,17 @@
 
 MyString::MyString(char *str) {
   string = new char[strlen(str)];
-  strcpy(string, str);
+  sprintf(string, "%s", str);
 }
 
 MyString::MyString(std::string str) {
   string = new char[str.size()];
-  strcpy(string, str.c_str());
+  sprintf(string, "%s", str.c_str());
 }
 
 MyString::MyString(const MyString &str) {
   string = new char[strlen(str.string)];
-  strcpy(string, str.string);
+  sprintf(string, "%s", str.string);
 }
 
 MyString::MyString(MyString &&str) {
@@ -70,7 +70,7 @@ MyString MyString::operator*(const size_t count) {
 
 MyString &MyString::operator=(const MyString &str) {
   string = new char[strlen(str.string)];
-  strcpy(string, str.string);
+  sprintf(string, "%s", str.string);
   return *this;
 }
 
@@ -119,8 +119,7 @@ char &MyString::operator[](const size_t ind) const {
   return string[ind];
 }
 
-int MyString::operator()(const char *str)
-{
+int MyString::operator()(const char *str) {
   char *p_find = strstr(buf, s);
   if (nullptr == p_find)
     return -1;
