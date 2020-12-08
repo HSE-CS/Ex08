@@ -82,7 +82,8 @@ MyString MyString::operator*(unsigned int num) {
   char* buf = new char[new_len + 1];
   for (int i = 0; i < num; i++)
 //    strcat(buf, this->string_container);
-    snprintf(buf + old_len * i, old_len + 1, "%s%s", buf, this->string_container);
+    snprintf(buf + old_len * i,
+             old_len + 1, "%s%s", buf, this->string_container);
   MyString new_mystring(buf);
   delete [] buf;
   return new_mystring;
