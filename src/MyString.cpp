@@ -47,9 +47,7 @@ char *MyString::get() const {
 }
 
 MyString MyString::operator+(const MyString &string) const {
-  std::string temp(this->get());
-  temp.append(string.get());
-  return MyString(temp);
+  return MyString(std::string(this->get()) + std::string(string.get()));
 }
 
 MyString MyString::operator-(const MyString &string) const {
@@ -62,7 +60,7 @@ MyString MyString::operator-(const MyString &string) const {
 
 MyString MyString::operator*(size_t factor) const {
   std::string result;
-  for (size_t i = 0; i < factor; ++i) result.append(this->get());
+  for (size_t i = 0; i < factor; i++) result.append(this->get());
   return MyString(result);
 }
 
@@ -85,27 +83,27 @@ MyString &MyString::operator=(MyString &&string) noexcept {
 }
 
 bool MyString::operator==(const MyString &string) const {
-  return std::tie(characters, size) == std::tie(string.characters, string.size);
+  return !strcmp(this->get(), string.get());
 }
 
 bool MyString::operator!=(const MyString &string) const {
-  return !(string == *this);
+  return strcmp(this->get(), string.get());
 }
 
 bool MyString::operator>(const MyString &string) const {
-  return 1 == strcmp(this->get(), string.get());
+  return strcmp(this->get(), string.get()) == 1;
 }
 
 bool MyString::operator<(const MyString &string) const {
-  return -1 == strcmp(this->get(), string.get());
+  return strcmp(this->get(), string.get()) == -1;
 }
 
 bool MyString::operator>=(const MyString &string) const {
-  return -1 != strcmp(this->get(), string.get());
+  return strcmp(this->get(), string.get()) != -1;
 }
 
 bool MyString::operator<=(const MyString &string) const {
-  return 1 != strcmp(this->get(), string.get());
+  return strcmp(this->get(), string.get()) != 1;
 }
 
 MyString MyString::operator!() {
