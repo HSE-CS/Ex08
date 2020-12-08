@@ -1,6 +1,7 @@
 // Copyright 2020 Dev-will-work
 #include "MyString.h"
 #include <iostream>
+#include <cstring>
 
 MyString::MyString(const char* str) {
   if (str == nullptr) {
