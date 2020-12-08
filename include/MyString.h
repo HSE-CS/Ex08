@@ -1,13 +1,15 @@
 // Copyright 2020 Shelby Ltd.
+#pragma once
+
 #include <cstring>
 #include <iostream>
 #include <string>
 
 class MyString {
-private:
+ private:
   char *str;
 
-public:
+ public:
   explicit MyString(const char * = nullptr);
   explicit MyString(std::string &);
   MyString(const MyString &);
