@@ -7,7 +7,7 @@
 MyString::MyString(const char* str) {
   if (str != nullptr) {
     char* newString = new char[strlen(str)];
-    snprintf(newString, strlen(str), "%s", str);
+    snprintf(newString, strlen(str) + 1, "%s", str);
     this->arString = newString;
   } else {
     char* newString = new char[0];
@@ -17,7 +17,7 @@ MyString::MyString(const char* str) {
 
 MyString::MyString(std::string str) {
   char* newString = new char[str.length()];
-  snprintf(newString, str.length(), "%s", str.c_str());
+  snprintf(newString, str.length() + 1, "%s", str.c_str());
   this->arString = newString;
 }
 
