@@ -1,6 +1,6 @@
 // Copyright 2020 mkhorosh
-#ifndef MYSTRING_H_
-#define MYSTRING_H_
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 #include <string>
 
 class MyString {
@@ -35,4 +35,4 @@ class MyString {
       MyString &str);  // чтение из потока
 };
 
-#endif  // MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_

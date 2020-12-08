@@ -10,7 +10,7 @@ int main() {
   char mas[4] = {"std"};
   MyString ww(&mas[1]);
   MyString w();
-  int a = std::strlen(mas);
+  int a = strlen(mas);
   std::cout << a << std::endl;
   std::string name = "Marina";
   MyString myname(name);
