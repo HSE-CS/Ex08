@@ -11,7 +11,7 @@ MyString::MyString() {
 MyString::MyString(const char* str) {
     if (str != nullptr) {
         lenght = strlen(str);
-        str = new char[lenght + 1];
+        string = new char[lenght + 1];
         snprintf(string, lenght + 1, "%s", str);
     } else {
         string = nullptr;
@@ -41,15 +41,14 @@ MyString::MyString(MyString&& str) {
         string[i] = str.string[i];
     }
     string[lenght] = '\0';
-    str.~MyString();
 }
 
 MyString::~MyString() {
-    delete[]string;
+    delete[] string;
 }
 
 unsigned int MyString::length() {
-    return strlen(this->string);
+    return strlen(string);
 }
 
 char* MyString::get() {
@@ -60,13 +59,11 @@ MyString MyString::operator+(const MyString& str) {
     MyString new_string;
     new_string.lenght = lenght + str.lenght;
     new_string.string = new char[new_string.lenght + 1];
-    for (int i = 0; i < lenght; i++) {
+    for (int i = 0; i < lenght; i++)
         new_string.string[i] = string[i];
-    }
     if (str.string != nullptr) {
-        for (int i = 0; i < str.lenght; i++) {
+        for (int i = 0; i < str.lenght; i++)
             new_string.string[i + lenght] = str.string[i];
-        }
     }
     new_string.string[new_string.lenght] = '\0';
     return new_string;
