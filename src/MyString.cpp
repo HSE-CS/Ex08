@@ -53,13 +53,12 @@ MyString MyString::operator+(const MyString &valueSringArray) const {
 }
 
 
-MyString MyString::operator-(const MyString &String) const {
+MyString MyString::operator-(const MyString &s) const {
     std::string str(this->get());
     unsigned int iter = 0;
-    while (iter < String.length()) {
-        while (str.find(String.stringArray[iter]) != -1) {
-            int p = str.find(String.stringArray[iter]);
-            str.erase(p, 1);
+    while (iter < s.length()) {
+        while (str.find(s.stringArray[iter]) != -1) {
+            str.erase(str.find(s.stringArray[iter]), 1);
         }
         iter++;
     }
