@@ -36,10 +36,7 @@ MyString::MyString(MyString&& only_str) {
 }
 
 MyString::MyString(const MyString& val_str) {
-    int size = strlen(val_str.str) + 1;
-    str = new char(size);
-    snprintf(str, size, "%s", val_str.str);
-
+    this->str = strdup(val_str.str);
 }
 
 MyString::~MyString() {
