@@ -7,8 +7,9 @@
 #define INCLUDE_MYSTRING_H_
 class MyString {
  private:
-	 char* str;
-	 size_t len;
+  char* str;
+  size_t len;
+
  public:
   explicit MyString(const char* new_str = nullptr);
   explicit MyString(std::string);
@@ -35,4 +36,4 @@ class MyString {
   friend std::istream& operator>>(std::istream& stream, MyString s);
   friend std::ostream& operator<<(std::ostream& stream, MyString s);
 };
-#endif
+#endif  // INCLUDE_MYSTRING_H_
