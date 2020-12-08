@@ -9,17 +9,17 @@ MyString::MyString() {
 
 MyString::MyString(const char *str) {
   string = new char[strlen(str) + 1];
-  snprintf(string, strlen(str), "%s", str);
+  snprintf(string, strlen(str) +1, "%s", str);
 }
 
 MyString::MyString(std::string str) {
   string = new char[str.size() + 1];
-  snprintf(string, str.size(), "%s", str.c_str());
+  snprintf(string, str.size() + 1, "%s", str.c_str());
 }
 
 MyString::MyString(const MyString &str) {
   string = new char[strlen(str.string) + 1];
-  snprintf(string, strlen(str.string), "%s", str.string);
+  snprintf(string, strlen(str.string) + 1, "%s", str.string);
 }
 
 MyString::MyString(MyString &&str) {
@@ -75,7 +75,7 @@ MyString MyString::operator*(const size_t count) {
 
 MyString &MyString::operator=(const MyString &str) {
   string = new char[strlen(str.string) + 1];
-  snprintf(string, strlen(str.string), "%s", str.string);
+  snprintf(string, strlen(str.string) + 1, "%s", str.string);
   return *this;
 }
 
