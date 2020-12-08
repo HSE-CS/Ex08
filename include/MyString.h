@@ -1,4 +1,4 @@
-// Copyrignt 2020 Bekusov Mikhail
+// Copyrignt 2020 BekusovMikhail
 
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_

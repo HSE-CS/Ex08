@@ -1,4 +1,4 @@
-// Copyrignt 2020 Bekusov Mikhail
+// Copyrignt 2020 BekusovMikhail
 
 #include <iostream>
 #include "MyString.h"
