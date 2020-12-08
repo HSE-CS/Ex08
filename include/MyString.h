@@ -33,6 +33,7 @@ class MyString {
     char operator[](int index) const;
     char& operator[](int index);
     int operator()(const MyString& str) const;
+    int operator()(const char *str) const;
     ~MyString();
     friend std::istream& operator>>(std::istream& is, MyString& str);
     friend std::ostream& operator<<(std::ostream& os, const MyString& str);
