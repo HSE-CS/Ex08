@@ -1,148 +1,140 @@
 #include "MyString.h"
-#include <string>
-#include <cstring>
-#include <iostream>
 
-char* MyString::get() const {
-    return my_string;
-}
-
-unsigned int MyString::length() const {
-    return strlen(my_string);
-}
-
-MyString::MyString(const char* initial_string) {
-    if (initial_string == nullptr) {
-        my_string = new char[1];
-    } else {
-        unsigned int len = strlen(initial_string) + 1;
-        my_string = new char[len];
-        snprintf(my_string, len, "%s", initial_string);
+MyString::MyString(const char* new_str) {
+    if (new_str != nullptr) {
+        len = strlen(new_str);
+        str = new char[len + 1];
+        snprintf(str, len + 1, "%s", new_str);
+    }
+    else {
+        str = nullptr;
+        len = 0;
     }
 }
 
-MyString::MyString(std::string initial_string) {
-    unsigned int len = initial_string.length() + 1;
-    my_string = new char[len];
-    snprintf(my_string, len, "%s", initial_string.c_str());
+MyString::MyString(std::string new_str) {
+    len = new_str.size();
+    str = new char[len + 1];
+    snprintf(str, len + 1, "%s", new_str.c_str());
 }
 
-MyString::MyString(const MyString& initial_string) {
-    unsigned int str_len = initial_string.length() + 1;
-    my_string = new char[str_len];
-    snprintf(my_string, str_len, "%s", initial_string.get());
+MyString::MyString(const MyString& new_str) {
+    len = new_str.len;
+    str = new char[len + 1];
+    snprintf(str, len + 1, "%s", new_str.str);
 }
 
-MyString::MyString(MyString&& initial_string) noexcept {
-    my_string = initial_string.my_string;
-    initial_string.my_string = nullptr;
+MyString::MyString(MyString&& new_str) {
+    str = new_str.str;
+    len = new_str.len;
+    new_str.str = nullptr;
+    new_str.len = 0;
 }
 
 MyString::~MyString() {
-    delete my_string;
+    delete[] str;
 }
 
-
-MyString& MyString::operator=(const MyString& second_string) {
-    if (my_string != nullptr)
-        delete my_string;
-    unsigned int str_len = second_string.length() + 1;
-    my_string = new char[str_len];
-    snprintf(my_string, str_len, "%s", second_string.get());
-    return *this;
+size_t MyString::length() const {
+    return len;
 }
 
-MyString& MyString::operator=(MyString&& second_string) noexcept {
-    if (my_string != nullptr)
-        delete my_string;
-    my_string = second_string.get();
-    second_string.my_string = nullptr;
-    return *this;
+char* MyString::get() const {
+    return str;
 }
 
-MyString MyString::operator+(const MyString& second_string) {
-    unsigned int str_len1 = length();
-    unsigned int str_len2 = second_string.length();
-    char* new_str = new char[str_len1 + str_len2 + 1];
-    snprintf(new_str, str_len1 + 1, "%s", my_string);
-    snprintf(new_str + str_len1, str_len2 + 1, "%s", second_string.my_string);
+MyString MyString::operator+(const MyString& s_1) {
+    size_t sum_len = len + s_1.length();
+    char* sum_str = new char[sum_len + 1];
+    snprintf(sum_str, len + 1, "%s", str);
+    snprintf(sum_str + len, s_1.length() + 1, "%s", s_1.get());
+    return MyString(sum_str);
+}
+
+MyString MyString::operator-(const MyString& s_1) {
+    std::string new_str = std::string(str, str + len);
+    for (size_t i{ 0 }; i < s_1.length(); ++i) {
+        new_str.erase(std::remove(new_str.begin(), new_str.end(), s_1.get()[i]),
+            new_str.end());
+    }
     return MyString(new_str);
 }
 
-MyString MyString::operator-(const MyString& second_string) {
-    unsigned int str_len1 = length();
-    unsigned int new_str_len = 0;
-    std::string str2 = second_string.get();
-    char* new_str = new char[str_len1 + 1];
-    for (unsigned int i = 0; i < str_len1; i++)
-        if (!strchr(str2.c_str(), my_string[i]))
-            new_str[new_str_len++] = my_string[i];
-    new_str[new_str_len] = '\0';
-    return MyString(new_str);
+MyString MyString::operator*(const size_t mult) {
+    MyString st(*this);
+    for (size_t i{ 0 }; i < mult - 1; ++i) {
+        st = *this + st;
+    }
+    return st;
 }
 
-MyString MyString::operator*(unsigned int number) {
-    std::string new_str;
-    unsigned int len = length();
-    for (unsigned int i = 0; i < len; i++)
-        new_str.append(get());
-    return MyString(new_str);
-}
-
-MyString& MyString::operator!() {
-    unsigned int str_len = length();
-    for (unsigned int i = 0; i < str_len; i++)
-        if (my_string[i] >= 65 && my_string[i] <= 90)
-            my_string[i] = my_string[i] + 32;
-        else if (my_string[i] >= 97 && my_string[i] <= 122)
-            my_string[i] = my_string[i] - 32;
+MyString& MyString::operator=(const MyString& s_1) {
+    len = s_1.length();
+    str = new char[len + 1];
+    snprintf(str, len + 1, "%s", s_1.get());
     return *this;
 }
 
-
-bool MyString::operator==(const MyString& second_string) const {
-    return !strcmp(my_string, second_string.get());
+MyString& MyString::operator=(MyString&& s_1) {
+    len = s_1.len;
+    str = s_1.str;
+    s_1.len = 0;
+    s_1.str = nullptr;
+    return *this;
 }
 
-bool MyString::operator!=(const MyString& second_string) const {
-    return strcmp(my_string, second_string.get());
+bool MyString::operator==(const MyString& s_1) {
+    return !strcmp(str, s_1.get());
 }
 
-bool MyString::operator>(const MyString& second_string) const {
-    return strcmp(my_string, second_string.get()) > 0;
+bool MyString::operator!=(const MyString& s_1) {
+    return strcmp(str, s_1.get());
 }
 
-bool MyString::operator<(const MyString& second_string) const {
-    return strcmp(my_string, second_string.get()) < 0;
-}
-bool MyString::operator>=(const MyString& second_string) const {
-    return strcmp(my_string, second_string.get()) >= 0;
+bool MyString::operator>(const MyString& s_1) {
+    return (1 == strcmp(str, s_1.get()));
 }
 
-bool MyString::operator<=(const MyString& second_string) const {
-    return strcmp(my_string, second_string.get()) <= 0;
+bool MyString::operator<(const MyString& s_1) {
+    return (-1 == strcmp(str, s_1.get()));
 }
 
-
-char& MyString::operator[](unsigned int index) const {
-    if (index >= length()) throw "Number out of range";
-    return my_string[index];
+bool MyString::operator>=(const MyString& s_1) {
+    return (-1 != strcmp(str, s_1.get()));
 }
 
-int MyString::operator()(const char* target_string) {
-    std::string str = get();
-    return str.find(target_string);
+bool MyString::operator<=(const MyString& s) {
+    return (1 != strcmp(str, s.get()));
 }
 
-
-std::ostream& operator<<(std::ostream& os, MyString& str) {
-    return os << str.get();
+MyString MyString::operator!() {
+    char* new_str = new char[len + 1];
+    snprintf(new_str, len + 1, "%s", str);
+    for (size_t i = 0; i < len; i++) {
+        if (new_str[i] >= 'a' && new_str[i] <= 'z')
+            new_str[i] += 'A' - 'a';
+        else if (new_str[i] >= 'A' && new_str[i] <= 'Z')
+            new_str[i] += 'a' - 'A';
+    }
+    return MyString(new_str);
 }
 
-std::istream& operator>>(std::istream& is, MyString& str) {
-    unsigned int len = is.gcount() + 1;
-    std::string new_str;
-    std::getline(is, new_str);
-    str = MyString(new_str);
-    return is;
+char& MyString::operator[](const size_t i) {
+    return str[i];
+}
+
+int MyString::operator()(const char* s_1) {
+    char* find = strstr(str, s_1);
+    if (nullptr == find)
+        return -1;
+    else
+        return find - str;
+}
+
+std::istream& operator>>(std::istream& stream, MyString s) {
+    return stream >> s.get();
+}
+
+std::ostream& operator<<(std::ostream& stream, MyString s) {
+    return stream << s.get();
 }
