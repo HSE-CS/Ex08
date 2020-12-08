@@ -9,7 +9,7 @@ class MyString {
     size_t size;
     size_t capacity;
     char* chars;
-    
+
  public:
     explicit MyString(const char* str = nullptr);
     explicit MyString(const std::string& str);
@@ -38,5 +38,4 @@ class MyString {
     friend std::ostream& operator<<(std::ostream& os, const MyString& str);
 };
 
-#endif
-// INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
