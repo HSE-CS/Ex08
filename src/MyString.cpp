@@ -1,4 +1,4 @@
-//Copyright 2020 OsmanovIslam
+// Copyright 2020 OsmanovIslam
 
 #include <iostream>
 #include <string>
@@ -6,7 +6,7 @@
 #include "MyString.h"
 
 
-int MyString::length(){
+int MyString::length() {
     return strlen(this->str);
 }
 
@@ -18,10 +18,9 @@ MyString::MyString(const char* StrArr) {
     if (StrArr == nullptr) {
         str = new char[1];
         memset(str, 0, 1);
-    }
-    else {
+    }else {
         str = new char[strlen(StrArr) + 1];
-        //snprintf(str, strlen(StrArr) + 1, "%s", StrArr);
+        // snprintf(str, strlen(StrArr) + 1, "%s", StrArr);
         memcpy(str, StrArr, strlen(StrArr) + 1);
     }
 }
@@ -66,9 +65,9 @@ MyString MyString::operator-(const MyString& other_string) {
     char* bufStr = new char(length());
     int size = 0;
     bool f;
-    for (int i = 0; i < length(); i++){
+    for (int i = 0; i < length(); i++) {
         f = false;
-        for (int k = 0; k < strlen(other_string.str); k++){
+        for (int k = 0; k < strlen(other_string.str); k++) {
             if (str[i] == other_string.str[k])
                 f = true;
         }
@@ -82,7 +81,7 @@ MyString MyString::operator-(const MyString& other_string) {
 
 MyString MyString::operator*(const int num) {
     MyString umnozhenie(str);
-    for(int i = 0; i < num - 1; i++){
+    for (int i = 0; i < num - 1; i++) {
         umnozhenie = umnozhenie + *this;
     }
     return umnozhenie;
@@ -104,13 +103,11 @@ bool MyString::operator>(const MyString& string) {
     return (strcmp(str, string.get()) == 1);
 }
 
-bool MyString::operator>=(const MyString& string)
-{
+bool MyString::operator>=(const MyString& string) {
     return (strcmp(str, string.get()) != -1);
 }
 
-bool MyString::operator<=(const MyString& string)
-{
+bool MyString::operator<=(const MyString& string) {
     return strcmp(str, string.get()) != 1;
 }
 
