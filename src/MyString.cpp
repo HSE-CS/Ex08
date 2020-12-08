@@ -119,8 +119,7 @@ int MyString::operator()(const char* substr) {
   char* ptrstr = strstr(this->get(), substr);
   if (ptrstr == nullptr) {
     return -1;
-  }
-  else {
+  } else {
     return ptrstr - this->get();
   }
 }
