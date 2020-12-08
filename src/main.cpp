@@ -1,21 +1,36 @@
-#include"MyString.h"
+#include <iostream>
+#include "MyString.h"
 
 int main() {
-	const char st[3] = { 'o', 'k', '\0' };
-	std::string st_2 = "okey";
-	MyString NL;
-	std::cout << NL.length() << std::endl;
-	MyString str_1(st);
-	std::cout << !str_1 << std::endl;
-	MyString str_2(st_2);
-	std::cout << str_2 * 3 << std::endl;
-	std::cout << (str_2 <= str_1) << std::endl;
-	std::cout << (str_2 > str_1) << std::endl;
-	MyString str_3;
-	str_3 = str_2 - str_1;
-	std::cout << str_3 << std::endl;
-	str_3 = str_2 + str_1;
-	std::cout << str_3 << std::endl;
-	std::cout << str_2(str_3.get()) << std::endl;
-	return 0;
+    std::string str = "asd";
+    MyString string("abca");
+    MyString string1(str);
+    std::cout << string << std::endl;
+    std::cout << string1 << std::endl;
+
+    MyString string2 = string1 + string;
+    std::cout << string2 << std::endl;
+
+    string2 = string1 - string;
+    std::cout << string2 << std::endl;
+    string2 = string2 * 3;
+    std::cout << string2 << std::endl;
+    string2 = string1;
+
+    bool isEqual = string1 == string2;
+    std::cout << isEqual << std::endl;
+    isEqual = string2 == string;
+    std::cout << isEqual << std::endl;
+
+    bool a = string1 > string;
+    std::cout << a << std::endl;
+
+    string2 = !string;
+    std::cout << string2 << std::endl;
+
+    std::cout << string2[1] << std::endl;
+    std::cout << string2[-2] << std::endl;
+    std::cout << string2("CA") << std::endl;
+
+    return 0;
 }

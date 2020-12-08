@@ -1,140 +1,117 @@
 #include "MyString.h"
 
-MyString::MyString(const char* new_str) {
-    if (new_str != nullptr) {
-        len = strlen(new_str);
-        str = new char[len + 1];
-        snprintf(str, len + 1, "%s", new_str);
-    }
-    else {
-        str = nullptr;
-        len = 0;
-    }
-}
-
-MyString::MyString(std::string new_str) {
-    len = new_str.size();
-    str = new char[len + 1];
-    snprintf(str, len + 1, "%s", new_str.c_str());
-}
-
-MyString::MyString(const MyString& new_str) {
-    len = new_str.len;
-    str = new char[len + 1];
-    snprintf(str, len + 1, "%s", new_str.str);
-}
-
-MyString::MyString(MyString&& new_str) {
-    str = new_str.str;
-    len = new_str.len;
-    new_str.str = nullptr;
-    new_str.len = 0;
-}
-
-MyString::~MyString() {
-    delete[] str;
-}
-
-size_t MyString::length() const {
-    return len;
-}
-
 char* MyString::get() const {
-    return str;
+    return this->str;
+
+int MyString::length() const {
+    return size;
 }
 
-MyString MyString::operator+(const MyString& s_1) {
-    size_t sum_len = len + s_1.length();
-    char* sum_str = new char[sum_len + 1];
-    snprintf(sum_str, len + 1, "%s", str);
-    snprintf(sum_str + len, s_1.length() + 1, "%s", s_1.get());
-    return MyString(sum_str);
+MyString MyString::operator+(const MyString& obj) {
+    return MyString(std::string(this->str) + std::string(obj.str));
 }
 
-MyString MyString::operator-(const MyString& s_1) {
-    std::string new_str = std::string(str, str + len);
-    for (size_t i{ 0 }; i < s_1.length(); ++i) {
-        new_str.erase(std::remove(new_str.begin(), new_str.end(), s_1.get()[i]),
-            new_str.end());
+MyString MyString::operator-(const MyString& obj) {
+    int idx;
+    std::string str = this->str;
+    for (int i = 0; i < obj.size; i++) {
+        idx = str.find(obj[i]);
+        while (idx >= 0) {
+            str.erase(idx, 1);
+            idx = str.find(obj[i]);
+        }
     }
-    return MyString(new_str);
+    return MyString(str);
 }
 
-MyString MyString::operator*(const size_t mult) {
-    MyString st(*this);
-    for (size_t i{ 0 }; i < mult - 1; ++i) {
-        st = *this + st;
+MyString MyString::operator*(size_t count) {
+    std::string tmp;
+    for (size_t i = 0; i < count; i++) {
+        tmp += this->get();
     }
-    return st;
+    return MyString(tmp);
 }
 
-MyString& MyString::operator=(const MyString& s_1) {
-    len = s_1.length();
-    str = new char[len + 1];
-    snprintf(str, len + 1, "%s", s_1.get());
+MyString& MyString::operator=(const MyString &obj) {
+    delete str;
+    size = obj.size;
+    str = new char[size + 1];
+    memcpy(this->str, obj.str, size + 1);
     return *this;
 }
 
-MyString& MyString::operator=(MyString&& s_1) {
-    len = s_1.len;
-    str = s_1.str;
-    s_1.len = 0;
-    s_1.str = nullptr;
+MyString& MyString::operator=(MyString&& obj) noexcept {
+    delete str;
+    size = obj.size;
+    str = obj.str;
+    obj.str = nullptr;
+    obj.size = 0;
     return *this;
 }
 
-bool MyString::operator==(const MyString& s_1) {
-    return !strcmp(str, s_1.get());
+bool MyString::operator==(const MyString& obj) const {
+    std::string a = str;
+    std::string b = obj.str;
+    return a == b;
 }
 
-bool MyString::operator!=(const MyString& s_1) {
-    return strcmp(str, s_1.get());
+bool MyString::operator!=(const MyString& obj) const {
+    std::string a = str;
+    std::string b = obj.str;
+    return a != b;
 }
 
-bool MyString::operator>(const MyString& s_1) {
-    return (1 == strcmp(str, s_1.get()));
+bool MyString::operator>=(const MyString& obj) const {
+    std::string a = str;
+    std::string b = obj.str;
+    return a >= b;
 }
 
-bool MyString::operator<(const MyString& s_1) {
-    return (-1 == strcmp(str, s_1.get()));
+bool MyString::operator<=(const MyString& obj) const {
+    std::string a = str;
+    std::string b = obj.str;
+    return a <= b;
 }
 
-bool MyString::operator>=(const MyString& s_1) {
-    return (-1 != strcmp(str, s_1.get()));
+bool MyString::operator>(const MyString& obj) const {
+    std::string a = str;
+    std::string b = obj.str;
+    return a > b;
 }
 
-bool MyString::operator<=(const MyString& s) {
-    return (1 != strcmp(str, s.get()));
+bool MyString::operator<(const MyString& obj) const {
+    std::string a = str;
+    std::string b = obj.str;
+    return a < b;
 }
 
 MyString MyString::operator!() {
-    char* new_str = new char[len + 1];
-    snprintf(new_str, len + 1, "%s", str);
-    for (size_t i = 0; i < len; i++) {
-        if (new_str[i] >= 'a' && new_str[i] <= 'z')
-            new_str[i] += 'A' - 'a';
-        else if (new_str[i] >= 'A' && new_str[i] <= 'Z')
-            new_str[i] += 'a' - 'A';
+    for (int i = 0; i < size; i++) {
+        str[i] = std::isupper(str[i]) ? std::tolower(str[i]) : std::toupper(str[i]);
     }
-    return MyString(new_str);
+    return *this;
 }
 
-char& MyString::operator[](const size_t i) {
-    return str[i];
-}
-
-int MyString::operator()(const char* s_1) {
-    char* find = strstr(str, s_1);
-    if (nullptr == find)
-        return -1;
+char& MyString::operator[](int i) const {
+    if (i >= 0 && i < size)
+        return str[i];
+    else if (i < 0 && i >= -size)
+        return str[size + i];
     else
-        return find - str;
+        throw "Index out of range";
 }
 
-std::istream& operator>>(std::istream& stream, MyString s) {
-    return stream >> s.get();
+int MyString::operator()(const char* p_str) {
+    int index = strstr(str, p_str) - str;
+    if (index < 0 || index >= size)
+        return -1;
+    return index;
 }
 
-std::ostream& operator<<(std::ostream& stream, MyString s) {
-    return stream << s.get();
+std::ostream& operator<<(std::ostream& stream, MyString& obj) {
+    return stream << obj.str;
+}
+
+std::istream& operator>>(std::istream& stream, MyString& obj) {
+    return stream >> obj.str;
 }

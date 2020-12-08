@@ -1,41 +1,78 @@
+
+
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
-#define _CRT_SECURE_NO_WARNINGS
-#include <string.h>
+
 #include <string>
 #include <cstring>
-#include <sstream>
+
 #include <iostream>
-#include <algorithm>
+
 class MyString {
 private:
-	char* str;
-	size_t len;
-
+    char* str;
+    int size;
 public:
-	explicit MyString(const char* new_str = nullptr);
-	explicit MyString(std::string);
-	MyString(const MyString&);
-	MyString(MyString&&);
-	~MyString();
-	size_t length() const;
-	char* get() const;
+    explicit MyString(const char* str = nullptr) {
+        if (str != nullptr) {
+            size = strlen(str);
+            this->str = new char[size + 1];
+            memcpy(this->str, str, size + 1);
+        } else {
+            size = 0;
+            this->str = new char[1];
+            this->str[0] = 0;
+        }
+    }
 
-	MyString operator+(const MyString&);
-	MyString operator-(const MyString&);
-	MyString operator*(const size_t);
-	MyString& operator=(const MyString&);
-	MyString& operator=(MyString&&);
-	bool operator==(const MyString&);
-	bool operator!=(const MyString&);
-	bool operator>(const MyString&);
-	bool operator<(const MyString&);
-	bool operator>=(const MyString&);
-	bool operator<=(const MyString&);
-	MyString operator!();
-	char& operator[](const size_t);
-	int operator()(const char*);
-	friend std::istream& operator>>(std::istream& stream, MyString s);
-	friend std::ostream& operator<<(std::ostream& stream, MyString s);
+    explicit MyString(std::string str) {
+        size = str.length();
+        this->str = new char[size + 1];
+        memcpy(this->str, str.c_str(), size + 1);
+    }
+
+    MyString(const MyString& obj) {
+        size = obj.size;
+        this->str = new char[size + 1];
+        memcpy(this->str, obj.str, size + 1);
+    }
+
+    MyString(MyString&& obj) noexcept {
+        this->size = obj.size;
+        this->str = obj.str;
+        obj.str = nullptr;
+        obj.size = 0;
+    }
+
+    ~MyString() {
+        delete this->str;
+        this->str = nullptr;
+        this->size = 0;
+    }
+
+    char* get() const;
+    int length() const;
+
+    MyString operator+(const MyString&);
+    MyString operator-(const MyString&);
+    MyString operator*(size_t);
+
+    MyString& operator=(const MyString&);
+    MyString& operator=(MyString&&) noexcept;
+
+    bool operator==(const MyString&) const;
+    bool operator!=(const MyString&) const;
+    bool operator>=(const MyString&) const;
+    bool operator<=(const MyString&) const;
+    bool operator>(const MyString&) const;
+    bool operator<(const MyString&) const;
+
+    MyString operator!();
+    char& operator[](int) const;
+    int operator()(const char*);
+
+    friend std::ostream& operator<<(std::ostream&, MyString&);
+    friend std::istream& operator>>(std::istream&, MyString&);
 };
+
 #endif  // INCLUDE_MYSTRING_H_
