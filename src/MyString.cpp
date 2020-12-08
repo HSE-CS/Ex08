@@ -3,7 +3,7 @@
 #include <cctype>
 
 
-MyString::MyString(const char*str = nullptr) {
+MyString::MyString(const char* str) {
   if (str == nullptr) {
     string = new char[1];
     memset(string, 0, 1);
