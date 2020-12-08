@@ -15,7 +15,7 @@ unsigned int MyString::length() const {
 MyString::MyString(const char *valueSringArray) {
     if (valueSringArray != nullptr) {
         char *newStringArray = new char[strlen(valueSringArray)];
-        strncpy(newStringArray, valueSringArray, sizeof(newStringArray));
+        strncpy(newStringArray, valueSringArray, sizeof(newStringArray) + 1);
         this->stringArray = newStringArray;
     } else {
         char *newStringArray = new char[0];
@@ -26,21 +26,21 @@ MyString::MyString(const char *valueSringArray) {
 MyString::MyString(const std::string &valueSringArray) {
     unsigned int len = valueSringArray.length();
     char *newStringArray = new char[len + 1];
-    strncpy(newStringArray, valueSringArray.c_str(), sizeof(newStringArray));
+    strncpy(newStringArray, valueSringArray.c_str(), sizeof(newStringArray) + 1);
     this->stringArray = newStringArray;
 }
 
 MyString::MyString(const MyString &existString) {
     unsigned int len = existString.length();
     char *newStringArray = new char[len + 1];
-    strncpy(newStringArray, existString.get(), sizeof(newStringArray));
+    strncpy(newStringArray, existString.get(), sizeof(newStringArray) + 1);
     this->stringArray = newStringArray;
 }
 
 MyString::MyString(MyString &&existString) {
     unsigned int len = existString.length();
     char *newStringArray = new char[len + 1];
-    strncpy(newStringArray, existString.get(), sizeof(newStringArray));
+    strncpy(newStringArray, existString.get(), sizeof(newStringArray) + 1);
     this->stringArray = newStringArray;
     existString.stringArray = nullptr;
 }
