@@ -10,22 +10,26 @@ MyString::MyString(const char *characters) {
   }
 }
 
-MyString::MyString(const std::string &string) {
+MyString::MyString(std::string &string) {
   this->size = string.size();
   this->characters = new char[this->size + 1];
   snprintf(this->characters, this->size + 1, "%s", string.c_str());
 }
 
 MyString::MyString(const MyString &string) {
-  this->characters = new char[string.length() + 1];
-  std::strncpy(this->characters, string.get(), size);
-}
-
-MyString::MyString(MyString &&string) noexcept {
-  if (string.characters != nullptr) {
+  if (string.get() != nullptr) {
     this->size = string.length();
     this->characters = new char[this->size + 1];
     snprintf(this->characters, this->size + 1, "%s", string.get());
+  }
+}
+
+MyString::MyString(MyString &&string) noexcept {
+  if (string.get() != nullptr) {
+    this->size = string.length();
+    this->characters = new char[this->size + 1];
+    snprintf(this->characters, this->size + 1, "%s", string.get());
+    string.~MyString();
   }
 }
 
