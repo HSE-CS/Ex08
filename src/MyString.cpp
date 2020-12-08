@@ -82,6 +82,7 @@ MyString &MyString::operator=(const MyString &existString) {
 
 MyString &MyString::operator=(MyString &&existString) {
     this->stringArray = strdup(existString.stringArray);
+    existString.stringArray = nullptr;
     return *this;
 }
 
