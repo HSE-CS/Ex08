@@ -3,7 +3,8 @@
 #include <cctype>
 
 MyString::MyString() {
-  string = new char[0];
+  string = new char[1];
+  string[0] = '\n';
 }
 
 MyString::MyString(const char *str) {
