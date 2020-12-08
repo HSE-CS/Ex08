@@ -22,7 +22,7 @@ class MyString {
   char* get();
   MyString operator+(const MyString& s);
   MyString operator-(const MyString& s);
-  MyString operator*(const int n);
+  MyString operator*(size_t n);
   MyString& operator=(const MyString& s);
   MyString& operator=(MyString&& s);
   bool operator==(const MyString& s);
