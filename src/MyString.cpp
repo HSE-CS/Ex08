@@ -25,22 +25,22 @@ MyString::MyString(const char *valueSringArray) {
 
 MyString::MyString(const std::string &valueSringArray) {
     unsigned int len = valueSringArray.length();
-    char *newStringArray = new char[len+1];
-    strncpy(newStringArray, valueSringArray.c_str(), len+1);
+    char *newStringArray = new char[len + 1];
+    strncpy(newStringArray, valueSringArray.c_str(), len);
     this->stringArray = newStringArray;
 }
 
 MyString::MyString(const MyString &existString) {
     unsigned int len = existString.length();
-    char *newStringArray = new char[len+1];
-    strncpy(newStringArray, existString.get(), len+1);
+    char *newStringArray = new char[len + 1];
+    strncpy(newStringArray, existString.get(), len);
     this->stringArray = newStringArray;
 }
 
 MyString::MyString(MyString &&existString) {
     unsigned int len = existString.length();
-    char *newStringArray = new char[len+1];
-    strncpy(newStringArray, existString.get(), len+1);
+    char *newStringArray = new char[len + 1];
+    strncpy(newStringArray, existString.get(), len);
     this->stringArray = newStringArray;
     existString.stringArray = nullptr;
 }
