@@ -22,7 +22,7 @@ int main() {
   std::cout << s << std::endl;
   s = a < g;
   std::cout << s << std::endl;
-		c = !a;
+  c = !a;
   std::cout << c.get() << std::endl;
   b = !c;
   std::cout << b.get() << std::endl;
