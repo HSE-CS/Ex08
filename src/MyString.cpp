@@ -2,19 +2,20 @@
 #include "MyString.h"
 #include <cctype>
 
-MyString::MyString() {
-  string = new char[1];
-  string[0] = '\n';
-}
 
-MyString::MyString(const char *str) {
-  string = new char[strlen(str) + 1];
-  snprintf(string, strlen(str) +1, "%s", str);
+MyString::MyString(const char*str = nullptr) {
+  if (str == nullptr) {
+    string = new char[1];
+    memset(string, 0, 1);
+  } else {
+    string = new char[strlen(str) + 1];
+    memcpy(string, str, strlen(str) + 1);
+  }
 }
 
 MyString::MyString(std::string str) {
-  string = new char[str.size() + 1];
-  snprintf(string, str.size() + 1, "%s", str.c_str());
+  string = new char[str.length() + 1];
+  memcpy(string, str.c_str(), str.length() + 1);
 }
 
 MyString::MyString(const MyString &str) {
