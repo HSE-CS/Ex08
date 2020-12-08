@@ -76,13 +76,11 @@ MyString MyString::operator*(unsigned int lenght) const {
 }
 
 MyString &MyString::operator=(const MyString &existString) {
-    delete this->stringArray;
     this->stringArray = existString.stringArray;
     return *this;
 }
 
 MyString &MyString::operator=(MyString &&existString) {
-    delete stringArray;
     this->stringArray = existString.stringArray;
     existString.stringArray = nullptr;
     return *this;
