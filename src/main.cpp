@@ -17,7 +17,7 @@ int main() {
     std::cout << string2 << std::endl;
     string2 = string2*3;
     std::cout << string2 << std::endl;
-    string2=string1;
+    string2 = string1;
 
     bool isEqual = string1 == string2;
     std::cout << isEqual << std::endl;

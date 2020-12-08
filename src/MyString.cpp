@@ -2,12 +2,11 @@
 
 #include "MyString.h"
 
-
-char *MyString::get() {
-    return str;
+char *MyString::get() const{
+    return this->str;
 }
 
-int MyString::length() {
+int MyString::length() const {
     return size;
 }
 
@@ -38,8 +37,8 @@ MyString MyString::operator*(const unsigned int n) {
 MyString &MyString::operator=(const MyString &obj) {
     delete str;
     size = obj.size;
-    str = new char[size];
-    strcpy(str, obj.str);
+    str = new char[size + 1];
+    snprintf(this->str, size + 1, "%s", obj.str);
     return *this;
 }
 
@@ -90,7 +89,8 @@ bool MyString::operator<(const MyString &obj) const {
 
 MyString MyString::operator!() {
     for (int i = 0; i < size; i++) {
-        str[i] = std::isupper(str[i]) ? std::tolower(str[i]) : std::toupper(str[i]);
+        str[i] = std::isupper(str[i]) ?
+                std::tolower(str[i]) : std::toupper(str[i]);
     }
     return *this;
 }
@@ -105,7 +105,10 @@ char &MyString::operator[](int i) const {
 }
 
 int MyString::operator()(const char *p_str) {
-    return strstr(str, p_str) - str;
+    int index = strstr(str, p_str) - str;
+    if (index < 0 || index >= size)
+        return -1;
+    return index;
 }
 
 std::ostream &operator<<(std::ostream &stream, MyString &obj) {
