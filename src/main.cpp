@@ -19,4 +19,5 @@ int main() {
     MyString temp1("TEST FIRST!");
     std::cout << copySec.operator+(temp1).get() << std::endl;
     std::cout << copySec.operator-(temp1).get() << std::endl;
+    return 0;
 }

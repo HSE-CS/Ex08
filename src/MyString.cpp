@@ -47,23 +47,23 @@ MyString::~MyString() {
 }
 
 MyString MyString::operator+(const MyString &valueSringArray) const {
-    std::string sec=valueSringArray.get();
-    std::string tempString = (std::string(this->get()) +sec);
+    std::string sec = valueSringArray.get();
+    std::string tempString = (std::string(this->get()) + sec);
     return MyString(tempString);
 }
 
 
-MyString MyString::operator-(const MyString &valueSringArray) const {
-    std::string endString(this->get());
+MyString MyString::operator-(const MyString &String) const {
+    std::string str(this->get());
     unsigned int iter = 0;
-    while (iter < valueSringArray.length()) {
-        while (endString.find(valueSringArray.stringArray[iter]) != -1) {
-            int p=endString.find(valueSringArray.stringArray[iter]);
-            endString.erase(p, 1);
+    while (iter < String.length()) {
+        while (str.find(String.stringArray[iter]) != -1) {
+            int p = str.find(String.stringArray[iter]);
+            str.erase(p, 1);
         }
         iter++;
     }
-    return MyString(endString);
+    return MyString(str);
 }
 
 MyString MyString::operator*(unsigned int lenght) const {
