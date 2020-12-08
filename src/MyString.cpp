@@ -129,14 +129,14 @@ bool MyString::operator!=(const MyString& str) const {
 }
 
 bool MyString::operator>(const MyString& str) const {
-    for (size_t i = 0; i < size && i < str.size; i++)
+    for (size_t i = 0; i <= size && i <= str.size; i++)
         if (chars[i] != str.chars[i])
             return chars[i] > str.chars[i];
     return false;
 }
 
 bool MyString::operator<(const MyString& str) const {
-    for (size_t i = 0; i < size && i < str.size; i++)
+    for (size_t i = 0; i <= size && i <= str.size; i++)
         if (chars[i] != str.chars[i])
             return chars[i] < str.chars[i];
     return false;
