@@ -1,4 +1,6 @@
 // Copyright NikDemoShow 2020
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 #define _CRT_SECURE_NO_WARNINGS
 #include <string.h>
 #include <string>
@@ -6,8 +8,6 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
-#ifndef INCLUDE_MYSTRING_H_
-#define INCLUDE_MYSTRING_H_
 class MyString {
  private:
   char* str;
