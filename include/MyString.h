@@ -6,6 +6,7 @@
 class MyString {
  private:
    char* arString;
+
  public:
   explicit MyString(const char* str = nullptr);
   explicit MyString(std::string);

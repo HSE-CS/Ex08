@@ -7,7 +7,7 @@
 MyString::MyString(const char* str) {
   if (str != nullptr) {
     char* newString = new char[strlen(str)];
-    strcpy(newString, str);
+    sprintf(newString, str);
     this->arString = newString;
   } else {
     char* newString = new char[0];
@@ -17,7 +17,7 @@ MyString::MyString(const char* str) {
 
 MyString::MyString(std::string str) {
   char* newString = new char[str.length()];
-  strcpy(newString, str.c_str());
+  sprintf(newString, str.c_str());
   this->arString = newString;
 }
 
@@ -48,7 +48,7 @@ MyString MyString::operator+(const MyString str) {
 
 MyString MyString::operator-(const MyString str) {
   std::string sourceStr(this->arString);
-  for (int i = 0; i < str.length(); ++i) 
+  for (int i = 0; i < str.length(); ++i)
     while (sourceStr.find(str.arString[i]) != -1)
       sourceStr.erase(sourceStr.find(str.arString[i]), 1);
   return MyString(sourceStr);
