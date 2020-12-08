@@ -1,7 +1,6 @@
 // Copyright 2020 <Jiiijyyy>
 #include "MyString.h"
 
-
 MyString::MyString() {
     this->string = nullptr;
     this->len = 0;
@@ -43,7 +42,7 @@ MyString::MyString(const MyString& str) {
     this->string = new char[len + 1];
     int i = 0;
     while (i < this->len) {
-        this->string[i] = str.string[i]; //After input operator[] rename
+        this->string[i] = str.string[i];
         i++;
     }
     this->string[i] = '\0';
@@ -54,7 +53,7 @@ MyString::MyString(MyString&& str) {
     this->string = new char[this->len + 1];
     int i = 0;
     while (i < this->len) {
-        this->string[i] = str.string[i]; //After input operator[] rename
+        this->string[i] = str[i];
         i++;
     }
     this->string[i] = '\0';
@@ -141,4 +140,100 @@ MyString& MyString::operator=(const MyString& str) {
 MyString& MyString::operator=(MyString&& str) {
     MyString new_str = std::move(str);
     return *this;
+}
+
+bool MyString::operator==(const MyString& str) {
+    if (strcmp(this->string, str.string) == 0) {
+        return 1;
+    }
+    else return 0;
+}
+
+bool MyString::operator!=(const MyString& str) {
+    if (strcmp(this->string, str.string) != 0) {
+        return 1;
+    }
+    else return 0;
+}
+
+bool MyString::operator>(const MyString& str) {
+    if (strcmp(this->string, str.string) == 1) {
+        return 1;
+    }
+    else return 0;
+}
+
+bool MyString::operator<(const MyString& str) {
+    if (strcmp(this->string, str.string) == -1) {
+        return 1;
+    }
+    else return 0;
+}
+
+bool MyString::operator>=(const MyString& str) {
+    if (strcmp(this->string, str.string) != -1) {
+        return 1;
+    }
+    else return 0;
+}
+
+bool MyString::operator<=(const MyString& str) {
+    if (strcmp(this->string, str.string) != 1) {
+        return 1;
+    }
+    else return 0;
+}
+
+MyString MyString::operator!() {
+    if (this->string == nullptr) {
+        return MyString(nullptr);
+    }
+    char* new_str = new char[this->len + 1];
+    unsigned int j = 0;
+    for (unsigned int i = 0; i < this->len; i++) {
+        if (this->string[i] >= 'a' && this->string[i] <= 'z') {
+            new_str[j] = this->string[i] - 32;
+        }
+        else {
+            if (this->string[i] >= 'A' && this->string[i] <= 'Z') {
+                new_str[j] = this->string[i] + 32;
+            }
+            else new_str[j] = this->string[i];
+        }
+        j++;
+    }
+    new_str[j] = '\0';
+    return MyString(new_str);
+}
+
+char& MyString::operator[](int index) {
+    if (index < 0 || index > this->len || this->string == nullptr) {
+        throw - 1;
+    }
+    return this->string[index];
+}
+
+int MyString::operator()(const char* str) {
+    if (str == nullptr || this->string == nullptr) {
+        throw - 1;
+    }
+    char* search = strstr(this->string, str);
+    if (search == nullptr) {
+        return -1;
+    }
+    else return search - this->string;
+}
+
+std::ostream& operator<<(std::ostream& os, MyString& s) {
+    if (s.string == nullptr) {
+        throw - 1;
+    }
+    return os << s.get();
+}
+
+std::istream& operator>>(std::istream& is, MyString& str) {
+    std::string buff;
+    is >> buff;
+    str = MyString(buff);
+    return is;
 }

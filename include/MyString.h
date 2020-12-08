@@ -4,13 +4,13 @@
 #include <cmath>
 #include <iostream>
 #include <string>
-
+#include <cstring>
 
 class MyString {
-private:
+ private:
     char* string;
     unsigned int len;
-public:
+ public:
     MyString();
     MyString(const char*);
     MyString(std::string);
@@ -24,16 +24,17 @@ public:
     MyString operator*(const int a);
     MyString& operator=(const MyString&);
     MyString& operator=(MyString&&);
-    //    operator== -сравнение на равенство.
-    //    operator!= -сравнение на неравенство.
-    //    operator> -лексографическое сравнение .
-    //    operator< -лексографическое сравнение.
-    //    operator>= -лексографическое сравнение.
-    //    operator<= -лексографическое сравнение.
-    //    operator! - у латинских букв меняется регистр.
-    //    operator[] - доступ к символу по индексу.
-    //    operator() - поиск подстроки.
-    //    operator>> -чтение из потока.
-    //    operator>> -запись в поток.
+    bool operator==(const MyString&);
+    bool operator!= (const MyString&);
+    bool operator> (const MyString&);
+    bool operator< (const MyString&);
+    bool operator>= (const MyString&);
+    bool operator<= (const MyString&);
+    MyString operator!();
+    char& operator[](int);
+    int operator()(const char*);
+    friend std::ostream& operator<<(std::ostream&, MyString&);
+    friend std::istream& operator>>(std::istream&, MyString&);
 };
 #endif  // INCLUDE_MYSTRING_H_
+
