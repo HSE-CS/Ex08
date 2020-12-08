@@ -1,5 +1,4 @@
 // Copyright 2020 Khoroshavina Ekaterina
-#pragma warning(disable : 4996)
 #include "MyString.h"
 #include <string>
 #include <iostream>
