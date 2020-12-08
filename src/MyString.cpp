@@ -1,9 +1,7 @@
 // Copyright 2020 Bulatov D.
 #define _CRT_SECURE_NO_WARNINGS
 
-#include <string.h>
-
-std::MyString(const char* s) {
+MyString(const char* s) {
     if (s ==nullptr) {
         len = 0;
         stroka = nullptr;
@@ -16,7 +14,7 @@ std::MyString(const char* s) {
     }
 }
 
-std::MyString(std::string s) {
+MyString(std::string s) {
     len = s.size();
     stroka = new char[len + 1];
     for (size_t i = 0; i <= len; i++) {
@@ -24,7 +22,7 @@ std::MyString(std::string s) {
     }
 }
 
-std::MyString(const MyString& s) {
+MyString(const MyString& s) {
     this->len = s.len;
     this->stroka = new char[len + 1];
     for (size_t i = 0; i <= len; i++) {
@@ -32,27 +30,27 @@ std::MyString(const MyString& s) {
     }
 }
 
-std::MyString(MyString&& s) {
+MyString(MyString&& s) {
     this->len = s.len;
     this->stroka = s.stroka;
     s.len = 0;
     s.stroka = nullptr;
 }
 
-std::~MyString() {
+~MyString() {
     delete[] this->stroka;
     this->len = 0;
 }
 
-std::int MyString::length() {
+int MyString::length() {
     return this->len;
 }
 
-std::char* MyString::get() {
+char* MyString::get() {
     return this->str;
 }
 
-std::MyString::operator+(const MyString& s) {
+MyString::operator+(const MyString& s) {
     unsigned int len1 = this->length();
     unsigned int len2 = s.len + len1;
     char* new_str = new char[len2 + 1];
@@ -70,7 +68,7 @@ std::MyString::operator+(const MyString& s) {
     return nstr;
 }
 
-std::MyString::operator-(const MyString& s) {
+MyString::operator-(const MyString& s) {
     std::string temp = (std::string(this->str));
     int i = 0;
     while (i < s.len) {
@@ -83,7 +81,7 @@ std::MyString::operator-(const MyString& s) {
     return new_str;
 }
 
-std::MyString::operator*(int n) {
+MyString::operator*(int n) {
     char* new_str = new char[len * n + 1];
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = i * len; j < (i + 1) * len; ++j) {
@@ -95,7 +93,7 @@ std::MyString::operator*(int n) {
     return tmp;
 }
 
-std::MyString::operator=(const MyString& s) {
+MyString::operator=(const MyString& s) {
     if (s.stroka == nullptr) {
         this->len = 0;
         this->stroka = nullptr;
@@ -109,7 +107,7 @@ std::MyString::operator=(const MyString& s) {
     return *this;
 }
 
-std::MyString::operator=(MyString&& s) {
+MyString::operator=(MyString&& s) {
     this->len = s.len;
     this->stroka = s.stroka;
     s.len = 0;
@@ -117,7 +115,7 @@ std::MyString::operator=(MyString&& s) {
     return *this;
 }
 
-std::bool operator==(const MyString& s) {
+bool operator==(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) == 0) {
         return 1;
     } else {
@@ -125,7 +123,7 @@ std::bool operator==(const MyString& s) {
     }
 }
 
-std::bool operator!=(const MyString& s) {
+bool operator!=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) != 0) {
         return 1;
     } else {
@@ -133,7 +131,7 @@ std::bool operator!=(const MyString& s) {
     }
 }
 
-std::bool operator>(const MyString& s) {
+bool operator>(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) > 0) {
         return 1;
     } else {
@@ -141,7 +139,7 @@ std::bool operator>(const MyString& s) {
     }
 }
 
-std::bool operator<(const MyString& s) {
+bool operator<(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) < 0) {
         return 1;
     } else {
@@ -149,7 +147,7 @@ std::bool operator<(const MyString& s) {
     }
 }
 
-std::bool operator>=(const MyString& s) {
+bool operator>=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) >= 0) {
         return 1;
     } else {
@@ -157,7 +155,7 @@ std::bool operator>=(const MyString& s) {
     }
 }
 
-std::bool operator<=(const MyString& s) {
+bool operator<=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) <=0) {
         return 1;
     } else {
@@ -165,7 +163,7 @@ std::bool operator<=(const MyString& s) {
     }
 }
 
-std::MyString::operator!() {
+MyString::operator!() {
     MyString temp(*this);
     for (size_t i = 0; i < temp.len; ++i) {
         if (temp.stroka[i] >= 'a' && temp.stroka[i] <= 'z') {
@@ -177,11 +175,11 @@ std::MyString::operator!() {
     return temp;
 }
 
-std::char MyString::operator[](int n) {
+char operator[](int n) {
     return this->stroka[n];
 }
 
-std::int operator()(const char* s) {
+int operator()(const char* s) {
     if (strstr(this->stroka, s) == NULL) {
         return -1;
     } else {
