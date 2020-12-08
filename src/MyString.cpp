@@ -4,23 +4,30 @@
 #include "../include/MyString.h"
 
 MyString::MyString(const char *characters) : characters{nullptr}, size{0} {
-  this->size = strlen(characters);
-  this->characters = strdup(characters);
+  if (characters != nullptr) {
+    size_t len = std::strlen(characters) + 1;
+    this->characters = new char[len];
+    std::strncpy(this->characters, characters, len);
+  } else {
+    this->characters = new char[1];
+    memset(this->characters, 0, 1);
+  }
 }
 
-MyString::MyString(const std::string &string) : characters{nullptr}, size{0} {
-  this->size = string.length();
-  this->characters = strdup(string.c_str());
+MyString::MyString(const std::string &string) : characters{nullptr}, size{0}{
+  size_t len = string.length() + 1;
+  this->characters = new char[len];
+  std::strncpy(this->characters, string.c_str(), len);
 }
 
-MyString::MyString(const MyString &string) : characters{nullptr}, size{0} {
-  this->size = string.size;
-  this->characters = strdup(string.characters);
+MyString::MyString(const MyString &string) : characters{nullptr}, size{0}{
+  this->characters = new char[string.length() + 1];
+  std::strncpy(this->characters, string.characters, size);
 }
 
-MyString::MyString(MyString &&string) noexcept: characters{nullptr}, size{0} {
-  this->size = string.size;
-  this->characters = strdup(string.characters);
+MyString::MyString(MyString &&string) noexcept : characters{nullptr}, size{0} {
+  this->characters = new char[string.length() + 1];
+  std::strncpy(this->characters, string.characters, size);
   this->~MyString();
 }
 
@@ -30,7 +37,7 @@ MyString::~MyString() {
 }
 
 size_t MyString::length() const {
-  return this->size;
+  return strlen(this->get());
 }
 
 char *MyString::get() const {

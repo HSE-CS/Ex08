@@ -7,10 +7,11 @@
 #include <iostream>
 #include <string>
 #include <cstdint>
+#include <cstring>
 
 class MyString {
  private:
-  char *characters;
+  char *characters = new char;
 
   size_t size;
 
