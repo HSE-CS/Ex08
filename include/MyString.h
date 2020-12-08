@@ -10,9 +10,10 @@ class MyString {
  private:
     char* string;
     unsigned int len;
+
  public:
-    MyString();
-    MyString(const char*);
+    explicit MyString();
+    explicit MyString(const char*);
     MyString(std::string);
     MyString(const MyString&);
     MyString(MyString&&);

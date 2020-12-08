@@ -39,7 +39,7 @@ MyString::MyString(std::string str) {
 
 MyString::MyString(const MyString& str) {
     this->len = str.len;
-    this->string = new char[len + 1];
+    this->string = new char[this->len + 1];
     int i = 0;
     while (i < this->len) {
         this->string[i] = str.string[i];
@@ -68,7 +68,9 @@ MyString::~MyString() {
 
 unsigned int MyString::length() {
     if (string) return strlen(this->string);
-    else return 0;
+    else {
+        return 0;
+    }
 }
 
 char* MyString::get() {
@@ -106,8 +108,7 @@ MyString MyString::operator-(const MyString& str) {
         }
         MyString new_str_n(temp);
         return new_str_n;
-    }
-    else {
+    } else {
         MyString new_str_n(nullptr);
         return new_str_n;
     }
@@ -125,63 +126,79 @@ MyString MyString::operator*(const int a) {
         new_str[i] = '\0';
         MyString new_str_n(new_str);
         return new_str_n;
-    }
-    else {
+    } else {
         MyString new_str_n(nullptr);
         return new_str_n;
     }
 }
 
 MyString& MyString::operator=(const MyString& str) {
-    MyString new_str(str.string);
+    this->len = str.len;
+    this->string = new char[this->len + 1];
+    int i = 0;
+    while (i < this->len) {
+        this->string[i] = str.string[i];
+        i++;
+    }
+    this->string[i] = '\0';
     return *this;
 }
 
 MyString& MyString::operator=(MyString&& str) {
-    MyString new_str = std::move(str);
+    this->len = str.len;
+    this->string = str.string;
+    str.len = 0;
+    str.string = nullptr;
     return *this;
 }
 
 bool MyString::operator==(const MyString& str) {
     if (strcmp(this->string, str.string) == 0) {
         return 1;
+    } else {
+        return 0;
     }
-    else return 0;
 }
 
 bool MyString::operator!=(const MyString& str) {
     if (strcmp(this->string, str.string) != 0) {
         return 1;
+    } else {
+        return 0;
     }
-    else return 0;
 }
 
 bool MyString::operator>(const MyString& str) {
     if (strcmp(this->string, str.string) == 1) {
         return 1;
+    } else {
+        return 0;
     }
-    else return 0;
 }
 
 bool MyString::operator<(const MyString& str) {
     if (strcmp(this->string, str.string) == -1) {
         return 1;
+    } else {
+        return 0;
     }
-    else return 0;
 }
 
 bool MyString::operator>=(const MyString& str) {
     if (strcmp(this->string, str.string) != -1) {
         return 1;
     }
-    else return 0;
+    else {
+        return 0; 
+    }
 }
 
 bool MyString::operator<=(const MyString& str) {
     if (strcmp(this->string, str.string) != 1) {
         return 1;
+    } else {
+        return 0;
     }
-    else return 0;
 }
 
 MyString MyString::operator!() {
@@ -220,8 +237,9 @@ int MyString::operator()(const char* str) {
     char* search = strstr(this->string, str);
     if (search == nullptr) {
         return -1;
+    } else {
+        return search - this->string; 
     }
-    else return search - this->string;
 }
 
 std::ostream& operator<<(std::ostream& os, MyString& s) {
