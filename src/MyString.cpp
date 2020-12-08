@@ -7,6 +7,7 @@
 MyString::MyString() {
     this->string = new char[1];
     memset(this->string, 0, 1);
+    this->len = 0;
 }
 
 MyString::MyString(const char* str) {
