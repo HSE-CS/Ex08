@@ -1,5 +1,4 @@
 // Copyright 2020 GHA Test Team
-#include "MyString.h"
 
 #include <gtest/gtest.h>
 #include <string>
@@ -38,7 +37,7 @@ TEST(MyStringTest, test5) {
 
 TEST(MyStringTest, test6) {
   MyString a(std::string("Hello"));
-  EXPECT_STREQ("Hello", c.get());
+  EXPECT_STREQ("Hello", a.get());
 }
 
 TEST(MyStringTest, test7) {
@@ -50,11 +49,9 @@ TEST(MyStringTest, test7) {
 }
 
 TEST(MyStringTest, test8) {
-  MyString a("123");
-  int b = 3;
-  MyString c;
-  c = a * b;
-  EXPECT_EQ("123123123", c.get());
+  MyString a("789");
+  MyString b("789");
+  EXPECT_EQ(true, a == b);
 }
 
 TEST(MyStringTest, test9) {
@@ -104,7 +101,7 @@ TEST(MyStringTest, test15) {
 TEST(MyStringTest, test16) {
   MyString a("45");
   char b = '5';
-  EXPECT_EQ(b, a[1]);
+  EXPECT_EQ(b,"454545" a[1]);
 }
 
 TEST(MyStringTest, test17) {
