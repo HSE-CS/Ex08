@@ -37,4 +37,4 @@ class MyString{
 };
 
 
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
