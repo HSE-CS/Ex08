@@ -260,8 +260,8 @@ char MyString::operator[](int index) {
 	else return this->string[index];
 }// - доступ к символу по индексу.
 
-int MyString::operator()(MyString substr) {
-	size_t text_size = strlen(this->string), substr_size = strlen(substr.string);
+int MyString::operator()(const char* substr) {
+	size_t text_size = strlen(this->string), substr_size = strlen(substr);
 	int counter = 0, place = 0;
 	for (size_t i = 0; i < text_size; i++)
 	{

@@ -1,34 +1,35 @@
 // Copyright 2020 Dev-will-work
-#ifndef INCLUDE_MYSTRING_H
-#define INCLUDE_MYSTRING_H
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 #include <string>
-class MyString
-{
-private:
-	char* string = nullptr;
-public:
-	MyString(const char* str = nullptr); // -конструктор с одним параметром(есть значение по - умолчанию nullptr).
-	MyString(std::string); // -конструктор с одним параметром.
-	MyString(const MyString& str); // -конструктор копирования.
-	MyString(MyString&& str) : string(str.string) { str.string = nullptr; }; // -конструктор переноса.
-	~MyString(); // -деструктор.
-	size_t length(); // -количество символов(длина строки).
-	char* get(); // -возвращение указателя на данные(тип char*).
-	MyString operator+(MyString); // -сложение(конкатенация двух строк).
-	MyString operator-(MyString); // -вычитание(из первой строки удаляются все символы, присутствующие во второй строке).
-	MyString operator*(int); // -умножение на целое число(строка повторяется заданное число раз).
-	MyString& operator=(const MyString&); // -копирующее присваивание.
-	MyString& operator=(MyString&&); // -перемещающее присваивание.
-	bool operator==(MyString); // -сравнение на равенство.
-	bool operator!=(MyString); // -сравнение на неравенство.
-	bool operator>(MyString); // -лексографическое сравнение .
-	bool operator<(MyString); // -лексографическое сравнение.
-	bool operator>=(MyString); // -лексографическое сравнение.
-	bool operator<=(MyString); // -лексографическое сравнение.
-	MyString operator!(); // - у латинских букв меняется регистр.
-	char operator[](int); // - доступ к символу по индексу.
-	int operator()(MyString); // - поиск подстроки.
-	friend std::ostream& operator<<(std::ostream& out, MyString& str); // -чтение из потока.
-	friend std::istream& operator>>(std::istream& in, MyString& str); // -запись в поток.
+class MyString {
+ private:
+  char* string = nullptr;
+
+ public:
+  explicit MyString(const char* str = nullptr);  // default - nullptr
+  explicit MyString(std::string);
+  MyString(const MyString& str);  // copy constructor
+  MyString(MyString&& str) : string(str.string)
+  { str.string = nullptr; }  // move constructor
+  ~MyString();
+  size_t length();
+  char* get();  // return char* string
+  MyString operator+(MyString);  // concatenation
+  MyString operator-(MyString);  // filter 1st string by chars in 2nd
+  MyString operator*(int);  // creates a new string from repeated old
+  MyString& operator=(const MyString&);  // copy assignment
+  MyString& operator=(MyString&&);  // move assignment
+  bool operator==(MyString);
+  bool operator!=(MyString);
+  bool operator>(MyString);  // lexicographic comparison
+  bool operator<(MyString);  // lexicographic comparison
+  bool operator>=(MyString);  // lexicographic comparison
+  bool operator<=(MyString);  // lexicographic comparison
+  MyString operator!();  // creates news string with inverted registers
+  char operator[](int);  // get by index
+  int operator()(const char*);  // substring search (kind of naive)
+  friend std::ostream& operator<<(std::ostream& out, MyString& str);  // write
+  friend std::istream& operator>>(std::istream& in, MyString& str);  // read
 };
-#endif  // INCLUDE_MYSTRING_H
+#endif  // INCLUDE_MYSTRING_H_
