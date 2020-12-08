@@ -13,8 +13,7 @@ unsigned int MyString::length() const {
 MyString::MyString(const char* initial_string) {
   if (initial_string == nullptr) {
     my_string = new char[1];
-  }
-  else {
+  } else {
     unsigned int len = strlen(initial_string) + 1;
     my_string = new char[len];
     snprintf(my_string, len, "%s", initial_string);

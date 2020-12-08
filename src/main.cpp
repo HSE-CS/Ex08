@@ -3,8 +3,7 @@
 #include<stdio.h>
 
 
-int main()
-{
+int main() {
   MyString str("Hello");
   printf("STR: %s\n", str.get());
   std::cout << "Str lenght: " << str.length() << std::endl;

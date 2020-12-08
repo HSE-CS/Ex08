@@ -8,9 +8,10 @@
 class MyString {
  private:
   char* my_string = nullptr;
+
  public:
   explicit MyString(const char* = nullptr);
-  MyString(std::string);
+  explicit MyString(std::string);
   MyString(const MyString&);
   MyString(MyString&&) noexcept;
   ~MyString();
@@ -33,4 +34,4 @@ class MyString {
   friend std::ostream& operator<<(std::ostream&, MyString&);
   friend std::istream& operator>>(std::istream&, MyString&);
 };
-#endif  // !INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
