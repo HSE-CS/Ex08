@@ -14,7 +14,7 @@ MyString::MyString(const char *str) {
   }
 }
 
-MyString::MyString(const std::string &str) {
+MyString::MyString(const std::string& str) {
   size_t size = str.size() + 1;
   this->st = new char[size];
   char *buf = new char[size];
@@ -131,7 +131,7 @@ char &MyString::operator[](size_t ind) const {
   return this->st[ind];
 }
 
-int MyString::operator()(char *new_str) {
+int MyString::operator()(const char *new_str) {
   std::string s1 = std::string(this->st);
   std::string s2 = std::string(new_str);
   return s1.find(s2);
