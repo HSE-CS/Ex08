@@ -3,7 +3,7 @@
 
 #include <string.h>
 
-std::MyString::MyString(const char* s) {
+std::MyString(const char* s) {
     if (s ==nullptr) {
         len = 0;
         stroka = nullptr;
