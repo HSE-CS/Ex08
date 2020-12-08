@@ -20,6 +20,7 @@ MyString::MyString(const char *valueSringArray) {
         this->stringArray = newStringArray;
     } else {
         char *newStringArray = new char[1];
+        snprintf(newStringArray, 1, "%s", valueSringArray);
         this->stringArray = newStringArray;
     }
 }
