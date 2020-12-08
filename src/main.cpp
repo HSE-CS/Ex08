@@ -6,7 +6,8 @@ int main() {
     MyString example_2("aaaa");
     MyString example_3("bbba");
 
-    std::cout << "example_1 + example_2 Answer: " << example_1 + example_2 << "\n";
+    std::cout << "example_1 + example_2 Answer: ";
+    std::cout << example_1 + example_2 << "\n";
 
     MyString example_4(example_2);
     MyString example_5 = example_3 * 3;
