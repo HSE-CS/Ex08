@@ -124,9 +124,9 @@ int MyString::operator()(const char *my_string) {
 }
 
 std::ostream& operator<<(std::ostream& stream, MyString& my_string) {
-    return stream << my_string.get();
+  return stream << my_string.get();
 }
 
 std::istream& operator>>(std::istream& stream, MyString& my_string) {
-    return stream >> my_string.get();
+  return stream >> my_string.get();
 }
