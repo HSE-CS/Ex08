@@ -39,10 +39,13 @@ char* MyString:: get() const {
 }
 
 MyString MyString::operator+(const MyString& other_mystring) {
-  char* buf = new char[strlen(this->string_container)
-                       + strlen(other_mystring.get()) + 1];
-  strcpy(buf, this->string_container);
-  strcat(buf, other_mystring.get());
+  unsigned int new_len = strlen(this->string_container)
+  + strlen(other_mystring.get());
+  char* buf = new char[new_len + 1];
+//  strcpy(buf, this->string_container);
+//  strcat(buf, other_mystring.get());
+  snprintf(buf, new_len, "%s%s",
+           this->string_container, other_mystring.get());
   MyString new_mystring(buf);
   delete [] buf;
   return new_mystring;
@@ -74,9 +77,11 @@ MyString MyString::operator-(const MyString& other_mystring) {
 }
 
 MyString MyString::operator*(unsigned int num) {
-  char* buf = new char[strlen(this->string_container) * num + 1];
+  unsigned int new_len = strlen(this->string_container) * num;
+  char* buf = new char[new_len + 1];
   for (int i = 0; i < num; i++)
-    strcat(buf, this->string_container);
+//    strcat(buf, this->string_container);
+    snprintf(buf, new_len, "%s%s", buf, this->string_container);
   MyString new_mystring(buf);
   delete [] buf;
   return new_mystring;
@@ -121,12 +126,13 @@ MyString MyString::operator!() {
   unsigned int my_len = strlen(this->string_container);
   char* buf = new char[my_len + 1];
   for (int i = 0; i < my_len; i++) {
+    buf[i] = this->string_container[i];
     // up -> down
     if (this->string_container[i] >= 65 && this->string_container[i] <= 90)
       buf[i] = this->string_container[i] + 32;
     //  down -> up
     if (this->string_container[i] >= 97 && this->string_container[i] <= 122)
-    buf[i] = this->string_container[i] - 32;
+      buf[i] = this->string_container[i] - 32;
   }
 
   MyString new_mystring(buf);
@@ -164,5 +170,4 @@ std::istream& operator>>(std::istream& input, MyString& mystring) {
   mystring = MyString(new_str);
   return input;
 }
-
 
