@@ -8,8 +8,8 @@ MyString::MyString(const char* str) {
     snprintf(newString, strlen(str) + 1, "%s", str);
     this->arString = newString;
   } else {
-    char* newString = new char[0];
-    this->arString = newString;
+    this->arString = new char[1];
+    memset(arString, 0, 1);
   }
 }
 
