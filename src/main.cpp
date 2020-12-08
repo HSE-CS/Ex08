@@ -7,7 +7,7 @@ int main() {
     MyString s2("world!");
     MyString s3;
 
-    std::cout << (s1+s2).get() std::<< endl;
+    std::cout << (s1+s2).get() << std::endl;
     s3 = s1;
     s3 = s3 + s2;
     std::cout << s3;
