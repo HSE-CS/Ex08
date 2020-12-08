@@ -18,7 +18,7 @@ class MyString{
   MyString(MyString&&);
   ~MyString();
   int length() const;
-  const char* get() const;
+  char* get() const;
   MyString operator+(const MyString&);
   MyString operator-(const MyString&);
   MyString operator*(int);

@@ -24,7 +24,7 @@ MyString::MyString(std::string x ) {
 MyString::MyString(const MyString& s) {
     len = s.len;
     str = new char[len+1];
-    strcpy(str, s.str);    
+    strcpy(str, s.str);
 }
 
 MyString::MyString(MyString&& s) {
