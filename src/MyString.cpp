@@ -182,8 +182,23 @@ char& MyString::operator[](int idx) {
 	return str[idx];
 }
 
-MyString MyString::operator()(const MyString& a) {}
+int MyString::operator()(const char* a) {
+	char* search = strstr(this->str, a);
+	if (search == nullptr) {
+		return -1;
+	}
+	else {
+		return search - this->str;
+	}
+}
 
-MyString MyString::operator>>(const MyString& a) {}
+std::ostream& operator<<(std::ostream& in, MyString& a) {
+	return in << a.get();
+}
 
-MyString MyString::operator>>(const MyString& a) {}
+std::istream& operator>>(std::istream& out, MyString& a) {
+	std::string buf;
+	out >> buf;
+	a = MyString(buf);
+	return out;
+}

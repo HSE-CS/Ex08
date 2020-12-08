@@ -32,7 +32,7 @@ public:
 	bool operator<= (const MyString& a);
 	MyString operator!();
 	char& operator[](int idx);
-	MyString operator()(const MyString& a); //todo
-	MyString operator>>(const MyString& a); //todo
-	MyString operator>>(const MyString& a); //todo
+	int operator()(const char* a);
+	friend std::ostream& operator<<(std::ostream& in, MyString& a);
+	friend std::istream& operator>>(std::istream& out, MyString& a);
 };
