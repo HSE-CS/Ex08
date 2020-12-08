@@ -1,13 +1,16 @@
 // Copyright 2020 Tyulin Igor
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 #include <iostream>
 #include <string>
 #include <cstring>
 
 class MyString{
-private:
+ private:
     char* str;
     size_t len;
-public:
+
+ public:
     explicit MyString(const char* val = nullptr);
     explicit MyString(std::string);
     MyString(const MyString&);
@@ -32,5 +35,4 @@ public:
     friend std::ostream& operator<<(std::ostream&, MyString&);
     friend std::istream& operator>>(std::istream&, MyString&);
 };
-
-#endif
+#endif // INCLUDE_MYSTRING_H_
