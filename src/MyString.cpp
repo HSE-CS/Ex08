@@ -44,7 +44,7 @@ MyString MyString::operator+(const MyString& other_mystring) {
   char* buf = new char[new_len + 1];
 //  strcpy(buf, this->string_container);
 //  strcat(buf, other_mystring.get());
-  snprintf(buf, new_len, "%s%s",
+  snprintf(buf, new_len + 1, "%s%s",
            this->string_container, other_mystring.get());
   MyString new_mystring(buf);
   delete [] buf;
@@ -81,7 +81,7 @@ MyString MyString::operator*(unsigned int num) {
   char* buf = new char[new_len + 1];
   for (int i = 0; i < num; i++)
 //    strcat(buf, this->string_container);
-    snprintf(buf, new_len, "%s%s", buf, this->string_container);
+    snprintf(buf, new_len + 1, "%s%s", buf, this->string_container);
   MyString new_mystring(buf);
   delete [] buf;
   return new_mystring;
