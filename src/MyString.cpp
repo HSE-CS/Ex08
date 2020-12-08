@@ -2,21 +2,26 @@
 #pragma warning(disable : 4996)
 #include "MyString.h"
 #include <string>
-#include <string.h>
+#include <iostream>
 
 MyString::MyString(const char* str) {
-	this->len = strlen(str);
 	this->string = strdup(str);
+	if (str != nullptr) {
+		this->len = strlen(str);
+	}
+	else {
+		this->len = 0;
+	}
 }
 
 MyString::MyString(const std::string& str) {
-	this->len = str.length();
 	this->string = strdup(str.c_str());
+	this->len = str.length();
 }
 
 MyString::MyString(const MyString& str) {
-	this->len = str.len;
 	this->string = strdup(str.string);
+	this->len = str.len;
 }
 
 MyString::MyString(MyString&& str) noexcept {
@@ -62,3 +67,79 @@ MyString MyString::operator*(int a)
 	return MyString(s);
 }
 
+MyString& MyString::operator=(const MyString& str) {
+	if (this->string != nullptr) {
+		delete this->string;
+	}
+	this->string = strdup(str.get());
+	return *this;
+}
+
+MyString& MyString::operator=(MyString&& str) {
+	if (this->string != nullptr) {
+		delete this->string;
+	}
+	this->string = str.get();
+	str.string = nullptr;
+	return *this;
+}
+
+bool MyString::operator==(const MyString& str) {
+	return !strcmp(this->get(), str.get());
+}
+
+bool MyString::operator!=(const MyString& str) {
+	return strcmp(this->get(), str.get());
+}
+
+bool MyString::operator>(const MyString& str) {
+	return (strcmp(this->get(), str.get()) == 1);
+}
+
+bool MyString::operator<(const MyString& str) {
+	return (strcmp(this->get(), str.get()) == -1);
+}
+
+bool MyString::operator>=(const MyString& str) {
+	return (strcmp(this->get(), str.get()) > 1);
+}
+
+bool MyString::operator<=(const MyString& str) {
+	return (strcmp(this->get(), str.get()) < 1);
+}
+
+MyString MyString::operator!() {
+	for (int i = 0; i < this->length(); i++) {
+		if (this->string[i] = std::isupper(this->string[i])) {
+			std::tolower(this->string[i]);
+		}
+		else {
+			std::toupper(this->string[i]);
+		}
+	}
+	return *this;
+}
+
+char MyString::operator[](int i) {
+	if (i <= this->length()) {
+	return this->string[i];
+	}
+}
+
+int MyString::operator()(const char* str) {
+	char* temp = strstr(this->get(), str);
+	if (temp == nullptr) {
+		return -1;
+	}
+	else {
+		return (str - this->get());
+	}
+}
+
+std::istream& operator>>(std::istream& in, MyString& str) {
+	return in >> str.get();
+}
+
+std::ostream& operator<<(std::ostream& out, MyString& str) {
+	return out << str.get();
+}

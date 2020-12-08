@@ -27,7 +27,7 @@ class MyString {
      bool operator>=(const MyString& str);
      bool operator<=(const MyString& str);
      MyString operator!();
-     char operator[](int index);
+     char operator[](int i);
      int operator()(const char* str);
      friend std::istream& operator>>(std::istream& in, MyString& str);
      friend std::ostream& operator<<(std::ostream& out, MyString& str);
