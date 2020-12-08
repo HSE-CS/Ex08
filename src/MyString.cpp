@@ -88,16 +88,12 @@ MyString MyString::operator-(const MyString& s) {
     return new_str;
 }
 
-MyString MyString::operator*(size_t n) {
-    char* new_str = new char[len * n + 1];
-    for (size_t i = 0; i < n; ++i) {
-        for (size_t j = i * len; j < (i + 1) * len; ++j) {
-            new_str[j] = stroka[j - i * len];
-        }
+MyString MyString::operator*(const size_t n) {
+    MyString ans(stroka);
+    for (int i = 0; i < n - 1; i++) {
+        ans = ans + *this;
     }
-    new_str[len * n] = '\0';
-    MyString tmp(new_str);
-    return tmp;
+    return ans;
 }
 
 MyString& MyString::operator=(const MyString& s) {
