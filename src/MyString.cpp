@@ -30,6 +30,7 @@ MyString::MyString(std::string only_str) {
 }
 
 MyString::MyString(MyString&& only_str) {
+    str = new char[strlen(only_str.str)];
     str = only_str.str;
     only_str.str = nullptr;
 }
