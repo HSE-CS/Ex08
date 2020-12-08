@@ -18,7 +18,7 @@ MyString::MyString(const char* newStr = nullptr) {
 
 MyString::MyString(std::string newStr) {
   myString = new char[newStr.length() + 1];
-  memcpy(myString, newStr.c_str(), newStr.length());
+  memcpy(myString, newStr.c_str(), newStr.length() + 1);
 }
 
 MyString::MyString(const MyString& otherString) {
