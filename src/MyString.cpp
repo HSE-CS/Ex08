@@ -14,32 +14,31 @@ unsigned int MyString::length() const {
 
 MyString::MyString(const char *valueSringArray) {
     if (valueSringArray != nullptr) {
-        unsigned int len=strlen(valueSringArray)+1;
+        unsigned int len = strlen(valueSringArray) + 1;
         char *newStringArray = new char[len];
-        snprintf(newStringArray, len , "%s", valueSringArray);
+        snprintf(newStringArray, len, "%s", valueSringArray);
         this->stringArray = newStringArray;
     } else {
-        char *newStringArray = new char[0];
-        this->stringArray = newStringArray;
+        this->stringArray = nullptr;
     }
 }
 
 MyString::MyString(const std::string &valueSringArray) {
     unsigned int len = valueSringArray.length() + 1;
     char *newStringArray = new char[len];
-    snprintf(newStringArray, len , "%s", valueSringArray.c_str());
+    snprintf(newStringArray, len, "%s", valueSringArray.c_str());
     this->stringArray = newStringArray;
 }
 
 MyString::MyString(const MyString &existString) {
     unsigned int len = existString.length() + 1;
     char *newStringArray = new char[len];
-    snprintf(newStringArray, len , "%s", existString.stringArray);
+    snprintf(newStringArray, len, "%s", existString.stringArray);
     this->stringArray = newStringArray;
 }
 
 MyString::MyString(MyString &&existString) {
-    stringArray=existString.stringArray;
+    stringArray = existString.stringArray;
     existString.stringArray = nullptr;
 }
 
