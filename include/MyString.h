@@ -17,27 +17,25 @@ class MyString {
     explicit MyString(const char* str = nullptr) {
         if (str != nullptr) {
             size = strlen(str);
-            this->str = new char[size];
-            snprintf(this->str, size + 1, "%s", str);
+            this->str = new char[size + 1];
+            memcpy(this->str, str, size + 1);
         } else {
             size = 0;
-            this->str = new char[size];
+            this->str = new char[1];
             this->str[0] = 0;
         }
     }
 
     explicit MyString(std::string str) {
         size = str.length();
-        this->str = new char[size];
-        for (int i = 0; i < size; i++) {
-            this->str[i] = str[i];
-        }
+        this->str = new char[size + 1];
+        memcpy(this->str, str.c_str(), size + 1);
     }
 
     MyString(const MyString& obj) {
         size = obj.size;
-        this->str = new char[size];
-        snprintf(this->str, size + 1, "%s", obj.str);
+        this->str = new char[size + 1];
+        memcpy(this->str, str, size + 1);
     }
 
     MyString(MyString&& obj) noexcept {
