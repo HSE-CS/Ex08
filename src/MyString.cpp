@@ -1,9 +1,9 @@
-// Copyrignt Bekusov Mikhail 2020
+// Copyrignt 2020 Bekusov Mikhail
 
 #include "MyString.h"
 
 size_t MyString::length() const {
-    return strlen(s);
+    return strlen(this->s);
 }
 
 char *MyString::get() const {
@@ -12,12 +12,12 @@ char *MyString::get() const {
 
 MyString::MyString(const char *str) {
     if (str != nullptr) {
-        s = new char[strlen(str) + 1];
-        for (int i = 0; i <= strlen(str); ++i) {
-            s[i] = str[i];
-        }
+        int ln = strlen(str) + 1;
+        s = new char[ln];
+        strncpy(s, str, ln);
     } else {
-        s = nullptr;
+        s = new char[1];
+        memset(s, 0, 1);
     }
 }
 
@@ -71,7 +71,7 @@ MyString MyString::operator*(int n) {
     char *ns = new char[this->length() * n];
     int in = 0;
     for (int i = 0; i < this->length() * n; ++i) {
-        ns[i] = s[i];
+        ns[i] = s[in];
         in++;
         if (in == this->length()) {
             in = 0;

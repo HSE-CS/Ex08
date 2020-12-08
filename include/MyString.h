@@ -1,16 +1,17 @@
-// Copyrignt Bekusov Mikhail 2020
+// Copyrignt 2020 Bekusov Mikhail
 
-#ifndef EX08_MYSTRING_H_
-#define EX08_MYSTRING_H_
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 
 #include <cstring>
 #include <string>
 #include <sstream>
 
 class MyString {
-private:
+ private:
     char *s;
-public:
+
+ public:
     explicit MyString(const char *str = nullptr);
 
     explicit MyString(const std::string &str);
@@ -57,5 +58,4 @@ public:
 
     friend std::istream &operator>>(std::istream &is, MyString &str);
 };
-
-#endif  //EX08_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_

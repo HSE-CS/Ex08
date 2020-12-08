@@ -1,9 +1,18 @@
-// Copyrignt Bekusov Mikhail 2020
+// Copyrignt 2020 Bekusov Mikhail
 
 #include <iostream>
 #include "MyString.h"
 
 int main() {
-    MyString a = MyString("Privet");
-    std::cout << a << std::endl;
+    MyString a;
+    std::cout << a.length() << std::endl;
+    MyString b("hello");
+    std::cout << b.length() << std::endl;
+    MyString c("123");
+    MyString d(c);
+    std::cout << d.get() << std::endl;
+    MyString e = d + c;
+    std::cout << e.get() << std::endl;
+    MyString z(e * 3);
+    std::cout << z << std::endl;
 }
