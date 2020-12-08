@@ -24,9 +24,17 @@ int main() {
   MyString s6(s3 + s4);
   std::cout << s6 << std::endl;
 
-  std::cout << s6 - s3 << std::endl;
-  std::cout << s6 - s4 << std::endl;
-  std::cout << s3 * 3 << std::endl;
+  s1 = s6 - s3;
+
+  std::cout << s1 << std::endl;
+
+  s1 = s6 - s4;
+
+  std::cout << s1 << std::endl;
+
+  s1 = s3 * 3;
+
+  std::cout << s1 << std::endl;
 
   bool isTrue = (s3 > s4);
 
@@ -44,7 +52,9 @@ int main() {
 
   std::cout << isTrue << std::endl;
 
-  std::cout << !s5 << std::endl;
+  !s5;
+
+  std::cout << s5 << std::endl;
   std::cout << s3[4] << std::endl;
   std::cout << s3("ll") << std::endl;
 
