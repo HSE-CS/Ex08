@@ -22,6 +22,7 @@ class MyString {
         } else {
             size = 0;
             this->str = new char[size + 1];
+            snprintf(this->str, size + 1, "\0");
         }
     }
 

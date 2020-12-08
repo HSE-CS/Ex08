@@ -2,7 +2,7 @@
 
 #include "MyString.h"
 
-char *MyString::get() const{
+char *MyString::get() const {
     return this->str;
 }
 
