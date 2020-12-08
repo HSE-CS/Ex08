@@ -1,8 +1,7 @@
 // Copyright Nikolaev Ivan
 
-
 #ifndef INCLUDE_MYSTRING_H_ 
-#define MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 #include <string>
 #include <iostream>
 
@@ -37,4 +36,4 @@ class MyString {
     friend std::istream& operator>>(std::istream& stream, MyString& str);
 };
 
-#endif INCLUDE_MYSTRING_H_ // INCLUDE_MYSTRING_H_
+#endif INCLUDE_MYSTRING_H_  // INCLUDE_MYSTRING_H_
