@@ -124,7 +124,7 @@ int MyString::operator()(const char *str) {
   if (nullptr == p_find)
     return -1;
   else
-    return p_find - buf;
+    return p_find - str;
 }
 
 std::ostream &operator<<(std::ostream &os, MyString &str) {
