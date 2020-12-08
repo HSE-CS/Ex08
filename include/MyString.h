@@ -1,11 +1,9 @@
-#ifndef EX08_MyString_H
-#define EX08_MyString_H
+// Copyright 2020 Tyulin Igor
 #include <iostream>
 #include <string>
 #include <cstring>
 
-class MyString
-{
+class MyString{
 private:
     char* str;
     size_t len;
@@ -35,4 +33,4 @@ public:
     friend std::istream& operator>>(std::istream&, MyString&);
 };
 
-#endif //EX08_MyString_H
+#endif
