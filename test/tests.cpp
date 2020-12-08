@@ -49,9 +49,11 @@ TEST(MyStringTest, test7) {
 }
 
 TEST(MyStringTest, test8) {
-  MyString a("789");
-  MyString b("789");
-  EXPECT_EQ(true, a == b);
+  MyString a("123");
+  int b = 3;
+  MyString c;
+  c = a * b;
+  EXPECT_STREQ("123123123", c.get());
 }
 
 TEST(MyStringTest, test9) {
