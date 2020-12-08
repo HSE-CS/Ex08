@@ -162,9 +162,9 @@ MyString MyString::operator!() {
     for (size_t i = 0; i < this->len; ++i) {
         if (this->string_ptr[i] >= 'a' && this->string_ptr[i] <= 'z')
             new_str[ptr] = static_cast<char>(this->string_ptr[i] - 'a' + 'A');
-        else if (this->string_ptr[i] >= 'A' && this->string_ptr[i] <= 'Z') {
+        else if (this->string_ptr[i] >= 'A' && this->string_ptr[i] <= 'Z')
             new_str[ptr] = static_cast<char>(this->string_ptr[i] - 'A' + 'a');
-        }else
+        else
             new_str[ptr] = this->string_ptr[i];
         ptr++;
     }
