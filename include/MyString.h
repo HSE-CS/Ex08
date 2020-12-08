@@ -36,4 +36,4 @@ class MyString {
   friend std::ostream& operator<<(std::ostream &valStream , MyString &str);
   friend std::istream& operator>>(std::istream &valStream, MyString &str);
 };
-#endif //INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
