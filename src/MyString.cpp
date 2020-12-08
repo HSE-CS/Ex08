@@ -88,7 +88,7 @@ MyString MyString::operator-(const MyString& s) {
     return new_str;
 }
 
-MyString MyString::operator*(const int n) {
+MyString MyString::operator*(size_t n) {
     char* new_str = new char[len * n + 1];
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = i * len; j < (i + 1) * len; ++j) {
