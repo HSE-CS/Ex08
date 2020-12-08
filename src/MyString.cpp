@@ -33,7 +33,7 @@ MyString::MyString(const std::string &valueArrString) {
 
 MyString::MyString(const MyString &existStr) {
     unsigned int leng = existStr.length() + 1;
-    char *newArrString = new char[len];
+    char *newArrString = new char[leng];
     snprintf(newArrString, leng, "%s", existStr.ArrString);
     this->ArrString = newArrString;
 }
