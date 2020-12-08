@@ -155,8 +155,7 @@ MyString MyString::operator!() const {
     for (size_t i = 0; i < size; i++) {
         if (chars[i] >= 'A' && chars[i] <= 'Z') {
             result.chars[i] += 'a' - 'A';
-        }
-        else if (chars[i] >= 'a' && chars[i] <= 'z') {
+        } else if (chars[i] >= 'a' && chars[i] <= 'z') {
             result.chars[i] += 'A' - 'a';
         }
     }
