@@ -1,4 +1,4 @@
-﻿  // Copyright 2020 Bulatov D.
+﻿// Copyright 2020 Bulatov D.
 #include "MyString.h"
 
 int main() {
