@@ -20,7 +20,7 @@ class MyString {
     char* get() const;
     MyString operator+(const MyString&);
     MyString operator-(const MyString&);
-    MyString operator*(int);
+    MyString operator*(int num);
     MyString& operator=(const MyString&);
     MyString& operator=(MyString&&);
     bool operator==(const MyString&);
