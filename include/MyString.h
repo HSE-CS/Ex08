@@ -32,7 +32,9 @@ class MyString {
     int operator()(const char*);
     friend std::ostream& operator<<(std::ostream&, const MyString&);
     friend std::istream& operator>>(std::istream&, const MyString&);
+
  private:
     char* string = nullptr;
 };
 #endif  // INCLUDE_MYSTRING_H_
+
