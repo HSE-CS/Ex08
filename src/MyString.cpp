@@ -53,13 +53,6 @@ const char* delnullptr(const char* s) {
 
 MyString MyString::operator+(const MyString& s) {
   return MyString(std::string(delnullptr(str)) + std::string(delnullptr(s.str)));
-  //char* buf = new char[len + s.len];
-  //strcpy(buf, delnullptr(str));
-  //strcat(buf, delnullptr(s.str));
-  //MyString result(buf);
-  //delete [] buf;
-  //return result;
-  //return MyString(buf);
 }
 
 MyString MyString::operator-(const MyString& s) {
@@ -142,4 +135,24 @@ std::ostream& operator>>(std::ostream& out, MyString& new_str) {
 
 std::istream& operator>>(std::istream& input, MyString& new_str) {
   return input >> new_str.get();
+}
+
+int MyString::operator()(const char* s) {
+  std::string buf = str;
+  return buf.find(s);
+}
+
+char changeRegister(char el) {
+  if (el >= 'A' && el <= 'Z')
+    return el + 32;
+  else if (el >= 'a' && el <= 'z')
+    return el - 32;
+  else
+    return el;
+}
+
+MyString MyString::operator!() {
+  for (int i = 0; i < len; i++)
+    str[i] = changeRegister(str[i]);
+  return *this;
 }

@@ -14,5 +14,6 @@ int main() {
   MyString c = a + b;
   a = b;
   std::cout << c.get() << b.get() << a.get() <<  std::endl;
+  std::cout << (!MyString("aJH343hjkh78hjk")).get();
 }
 

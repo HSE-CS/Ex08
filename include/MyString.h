@@ -29,7 +29,7 @@ class MyString {
    bool operator<= (const MyString&) const;
    MyString& operator=(const MyString&);
    MyString& operator=(MyString&&);
-   MyString& operator!();
+   MyString operator!();
    char& operator[](int);
    int operator()(const char*);
    friend std::ostream& operator>>(std::ostream&, MyString&);
