@@ -40,13 +40,13 @@ MyString::MyString(MyString&& initial_string) noexcept {
 }
 
 MyString::~MyString() {
-  delete[] my_string;
+  delete my_string;
 }
 
 
 MyString& MyString::operator=(const MyString& second_string) {
   if (my_string != nullptr)
-    delete[] my_string;
+    delete my_string;
   unsigned int str_len = second_string.length() + 1;
   my_string = new char[str_len];
   snprintf(my_string, str_len, "%s", second_string.get());
@@ -55,7 +55,7 @@ MyString& MyString::operator=(const MyString& second_string) {
 
 MyString& MyString::operator=(MyString&& second_string) noexcept {
   if (my_string != nullptr)
-    delete[] my_string;
+    delete my_string;
   my_string = second_string.get();
   second_string.my_string = nullptr;
   return *this;
