@@ -152,7 +152,7 @@ bool MyString::operator>=(const MyString& a) {
 	}
 }
 
-bool MyString::operator<= (const MyString& a) {
+bool MyString::operator<=(const MyString& a) {
 	int res = strcmp(str, a.str);
 	if (res <= 0) {
 		return true;
