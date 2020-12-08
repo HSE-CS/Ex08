@@ -21,12 +21,13 @@ MyString::MyString(const char* StrArr) {
     }
     else {
         str = new char[strlen(StrArr) + 1];
-        snprintf(str, strlen(StrArr) + 1, "%s", StrArr);
+        //snprintf(str, strlen(StrArr) + 1, "%s", StrArr);
+        memcpy(str, StrArr, strlen(StrArr) + 1);
     }
 }
 
 MyString::MyString(std::string only_str) {
-    snprintf(str, only_str.size() + 1, "%s", only_str.c_str());
+    str = strdup(only_str.c_str());
 }
 
 MyString::MyString(MyString&& only_str) {
