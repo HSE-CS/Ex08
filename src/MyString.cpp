@@ -12,8 +12,7 @@ MyString::MyString(const char* strin) {
         }
         newStr[length - 1] = '\0';
         this->str = newStr;
-    }
-    else {
+    } else {
         char* newStr = new char[1];
         newStr[0] = '\0';
         this->str = newStr;
@@ -139,11 +138,9 @@ MyString MyString::operator!() {
     for (int i = 0; i < length(); i++) {
         if (this->str[i] >= 65 && this->str[i] <= 90) {
             res[i] = str[i] + 32;
-        }
-        else if (this->str[i] >= 97 && this->str[i] <= 122) {
+        } else if (this->str[i] >= 97 && this->str[i] <= 122) {
             res[i] = str[i] - 32;
-        }
-        else {
+        } else {
             res[i] = str[i];
         }
     }
@@ -155,8 +152,7 @@ MyString MyString::operator!() {
 char MyString::operator[](int index) {
     if (index < 0 || index >= this->length()) {
         throw "IndexOutOfBoundsException";
-    }
-    else {
+    } else {
         return str[index];
     }
 }

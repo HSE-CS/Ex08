@@ -6,10 +6,10 @@
 #include <iostream>
 
 class MyString {
-private:
+ private:
     char* str;
 
-public:
+ public:
     explicit MyString(const char* str = nullptr);
     explicit MyString(std::string str);
     MyString(const MyString& string);
@@ -36,4 +36,4 @@ public:
     friend std::istream& operator>>(std::istream& stream, MyString& str);
 };
 
-#endif INCLUDE_MYSTRING_H_  // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
