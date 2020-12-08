@@ -8,7 +8,7 @@ int main() {
   std::cout << s1 << std::endl;
   std::cout << s2 << std::endl;
 
-  char* charStr = "Hello";
+  const char* charStr = "Hello";
   MyString s3(charStr);
 
   std::cout << s3 << std::endl;
