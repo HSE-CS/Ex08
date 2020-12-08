@@ -2,8 +2,7 @@
 #include "MyString.h"
 
 MyString::MyString(const char* new_str) {
-  if (new_str != nullptr)
-  {
+  if (new_str != nullptr) {
     len = strlen(new_str);
     str = new char[len + 1];
     snprintf(str, len + 1, "%s", new_str);
@@ -17,8 +16,7 @@ MyString::MyString(std::string new_str) {
 }
 
 MyString::MyString(const MyString& for_copy) {
-  if (for_copy.str != nullptr)
-  {
+  if (for_copy.str != nullptr) {
     len = for_copy.len;
     str = new char[len + 1];
     snprintf(str, len + 1, "%s", for_copy.str);
@@ -31,8 +29,7 @@ MyString::~MyString() {
 }
 
 MyString::MyString(MyString&& for_replace) {
-  if (for_replace.str != nullptr)
-  {
+  if (for_replace.str != nullptr) {
     len = for_replace.len;
     str = new char[len + 1];
     snprintf(str, len + 1, "%s", for_replace.str);
@@ -52,7 +49,8 @@ const char* delnullptr(const char* s) {
 }
 
 MyString MyString::operator+(const MyString& s) {
-  return MyString(std::string(delnullptr(str)) + std::string(delnullptr(s.str)));
+  return MyString(std::string(delnullptr(str)) 
+   + std::string(delnullptr(s.str)));
 }
 
 MyString MyString::operator-(const MyString& s) {
