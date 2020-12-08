@@ -1,6 +1,7 @@
 // Copyright NikDemoShow 2020
 #include <string>
 #include <cstring>
+#include <string.h>
 #include <sstream>
 #include <iostream>
 #include <algorithm>
