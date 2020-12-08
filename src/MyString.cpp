@@ -62,7 +62,7 @@ MyString MyString::operator*(int count) {
 }
 
 MyString MyString::operator=(const MyString& my_string) {
-  if (string != nullptr) 
+  if (string != nullptr)
     delete string;
   string = new char[my_string.length() + 1];
   memcpy(string, my_string.get(), my_string.length() + 1);
@@ -106,7 +106,7 @@ MyString MyString::operator!() {
   for (size_t i = 0; i < length(); i++) {
     if (string[i] == std::isupper(string[i]))
       string[i] = std::tolower(string[i]);
-    else 
+    else
       string[i] = std::toupper(string[i]);
   }
   return *this;

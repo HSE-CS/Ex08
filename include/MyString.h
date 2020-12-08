@@ -9,6 +9,7 @@
 class MyString {
  private:
      char* string;
+     
  public:
     explicit MyString(const char* = nullptr);
     explicit MyString(std::string);
