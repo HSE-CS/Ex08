@@ -3,6 +3,6 @@
 #include "../include/MyString.h"
 
 int main() {
-  MyString a;
+  MyString a("hello");
   std::cout << a.length();
 }

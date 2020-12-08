@@ -8,12 +8,13 @@
 #include <string>
 #include <cstdint>
 #include <cstring>
+#include <tuple>
 
 class MyString {
  private:
   char *characters = new char;
 
-  size_t size;
+  size_t size{};
 
  public:
   explicit MyString(const char *characters = nullptr);

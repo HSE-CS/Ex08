@@ -1,32 +1,32 @@
 // Copyright by Stanislav on 07/12/2020.
 
-#include <tuple>
 #include "../include/MyString.h"
 
-MyString::MyString(const char *characters) : characters{nullptr}, size{0} {
+MyString::MyString(const char *characters) {
   if (characters != nullptr) {
-    this->characters = new char[std::strlen(characters) + 1];
-    std::strncpy(this->characters, characters, size);
-  } else {
-    this->characters = new char[1];
-    memset(this->characters, 0, 1);
+    this->size = strlen(characters);
+    this->characters = new char[this->size + 1];
+    snprintf(this->characters, this->size + 1, "%s", characters);
   }
 }
 
-MyString::MyString(const std::string &string) : characters{nullptr}, size{0}{
-  this->characters = new char[string.length() + 1];
-  std::strncpy(this->characters, string.c_str(), size);
+MyString::MyString(const std::string &string) {
+  this->size = string.size();
+  this->characters = new char[this->size + 1];
+  snprintf(this->characters, this->size + 1, "%s", string.c_str());
 }
 
-MyString::MyString(const MyString &string) : characters{nullptr}, size{0}{
+MyString::MyString(const MyString &string) {
   this->characters = new char[string.length() + 1];
-  std::strncpy(this->characters, string.characters, size);
+  std::strncpy(this->characters, string.get(), size);
 }
 
-MyString::MyString(MyString &&string) noexcept : characters{nullptr}, size{0} {
-  this->characters = new char[string.length() + 1];
-  std::strncpy(this->characters, string.characters, size);
-  this->~MyString();
+MyString::MyString(MyString &&string) noexcept {
+  if (string.characters != nullptr) {
+    this->size = string.length();
+    this->characters = new char[this->size + 1];
+    snprintf(this->characters, this->size + 1, "%s", string.get());
+  }
 }
 
 MyString::~MyString() {
