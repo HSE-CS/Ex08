@@ -1,6 +1,7 @@
 // Copyright 2020 Polina Lukicheva
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
+
 #include <string>
 
 class MyString {
