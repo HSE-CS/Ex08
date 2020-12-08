@@ -10,7 +10,7 @@
 class MyString {
  public:
     explicit MyString(const char* new_string = nullptr);
-	explicit MyString(std::string);
+    explicit MyString(std::string);
     MyString(const MyString&);
     MyString(MyString&&);
     ~MyString();
@@ -35,4 +35,4 @@ class MyString {
  private:
     char* string = nullptr;
 };
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_

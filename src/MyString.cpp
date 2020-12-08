@@ -7,7 +7,7 @@ MyString::MyString(const char* new_string) {
         if (string != nullptr)
             delete[] string;
         string = new char[strlen(new_string) + 1];
-		snprintf(string, strlen(new_string) + 1, "%s", new_string);
+        snprintf(string, strlen(new_string) + 1, "%s", new_string);
     } else {
         string = new char[1];
         memset(string, 0, 1);
