@@ -11,6 +11,7 @@ class MyString {
  private:
     char* string;
     unsigned int lenght;
+
  public:
     MyString();
     explicit MyString(const char*);

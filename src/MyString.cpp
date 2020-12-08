@@ -13,8 +13,7 @@ MyString::MyString(const char* str) {
         lenght = strlen(str);
         str = new char[lenght + 1];
         snprintf(string, lenght + 1, "%s", str);
-    }
-    else {
+    } else {
         string = nullptr;
         lenght = 0;
     }
@@ -83,7 +82,6 @@ MyString MyString::operator-(const MyString& str) {
         }
         if (check)
             new_string += string[i];
-        
     }
     return MyString(new_string);
 }
@@ -170,8 +168,9 @@ int MyString::operator()(const char* str) {
     if (pstr != nullptr) {
         result = pstr - get();
         return result;
-    } else
+    } else {
         return -1;
+    }
 }
 
 std::ostream& operator<<(std::ostream& s, MyString& str) {
