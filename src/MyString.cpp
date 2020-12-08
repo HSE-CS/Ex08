@@ -1,5 +1,8 @@
 // Copyright 2020 GHA Test Team
 #include "MyString.h"
+#include <string>
+#include <cstring>
+#include <iostream>
 
 
 char* MyString::get() const {
