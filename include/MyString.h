@@ -11,7 +11,7 @@ class MyString{
     size_t len;
 
  public:
-    explicit MyString(const char* val = nullptr);
+    explicit MyString(const char* p = nullptr);
     explicit MyString(std::string);
     MyString(const MyString&);
     MyString(MyString&&);

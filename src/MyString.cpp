@@ -1,5 +1,7 @@
 // Copyright 2020 Tyulin Igor
 #include "MyString.h"
+#include <iostream>
+
 
 MyString::MyString(const char* p) {
     if (p != nullptr) {
@@ -7,6 +9,7 @@ MyString::MyString(const char* p) {
         str = new char[len + 1];
         for (size_t i = 0; i <= len; i++)
             str[i] = p[i];
+
     } else {
         len = 0;
         str = nullptr;
@@ -18,6 +21,7 @@ MyString::MyString(std::string p) {
     str = new char[len + 1];
     for (size_t i = 0; i <= len; i++)
         str[i] = p[i];
+
 }
 
 MyString::MyString(const MyString& p) {
@@ -42,9 +46,20 @@ char* MyString::get() const {
     return str;
 }
 
-MyString MyString::operator+(const MyString& val) {
-    std::string sum = std::string(this->get()) + std::string(val.get());
-    return MyString(sum);
+MyString MyString::operator+(const MyString& p) {
+    MyString newstr;
+    newstr.len = len + p.len;
+    newstr.str = new char[newstr.len + 1];
+    for (int i = 0; i < len; i++) {
+        newstr.str[i] = str[i];
+    }
+    if (p.str != nullptr) {
+        for (int i = 0; i < p.len; ++i) {
+            newstr.str[i + len] = p.str[i];
+        }
+    }
+    newstr.str[newstr.len] = '\0';
+    return newstr;
 }
 
 MyString MyString::operator-(const MyString & val) {
@@ -134,3 +149,4 @@ std::ostream& operator<<(std::ostream& p, MyString& n) {
 std::istream& operator>>(std::istream& p, MyString& n) {
     return p >> n.get();
 }
+
