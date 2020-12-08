@@ -183,6 +183,10 @@ int MyString::operator()(const MyString& str) const {
     return -1;
 }
 
+int MyString::operator()(const char *str) const {
+    return (*this)(MyString(str));
+}
+
 MyString::~MyString() {
     delete[] chars;
 }
