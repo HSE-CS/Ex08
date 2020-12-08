@@ -20,7 +20,6 @@ MyString::MyString(const char *valueSringArray) {
         this->stringArray = newStringArray;
     } else {
         char *newStringArray = new char[1];
-        snprintf(newStringArray, 1, "%s", valueSringArray);
         this->stringArray = newStringArray;
     }
 }
@@ -49,7 +48,11 @@ MyString::~MyString() {
 }
 
 MyString MyString::operator+(const MyString &s) {
-    return MyString(std::string(this->get()) + std::string(s.get()));
+    unsigned int len = this->length();
+    char *newStringArray = new char[len + s.length()];
+    snprintf(newStringArray, len + 1, "%s", this->stringArray);
+    snprintf(newStringArray + len, len + 1, "%s", s.stringArray);
+    return MyString(newStringArray);
 }
 
 
