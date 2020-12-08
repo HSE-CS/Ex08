@@ -1,32 +1,34 @@
 // Copyright 2020 Polina Lukicheva
 #include "MyString.h"
-#include <cstring>
-#include <iostream>
-#define _CRT_SECURE_NO_WARNINGS
+
 
 MyString::MyString(const char* str) {
   if (str != nullptr) {
-    char* newString = new char[strlen(str)];
+    char* newString = new char[strlen(str) + 1];
     snprintf(newString, strlen(str) + 1, "%s", str);
     this->arString = newString;
   } else {
     char* newString = new char[0];
     this->arString = newString;
-}
+  }
 }
 
 MyString::MyString(std::string str) {
-  char* newString = new char[str.length()];
+  char* newString = new char[str.length() + 1];
   snprintf(newString, str.length() + 1, "%s", str.c_str());
   this->arString = newString;
 }
 
 MyString::MyString(const MyString &str) {
-  this->arString = str.arString;
+  char* newString = new char[str.length() + 1];
+  snprintf(newString, str.length() + 1, "%s", str.get());
+  this->arString = newString;
 }
 
 MyString::MyString(MyString &&str) {
-  this->arString = str.arString;
+  char* newString = new char[str.length() + 1];
+  snprintf(newString, str.length() + 1, "%s", str.get());
+  this->arString = newString;
   str.arString = nullptr;
 }
 
@@ -47,7 +49,7 @@ MyString MyString::operator+(const MyString& str) {
 }
 
 MyString MyString::operator-(const MyString& str) {
-  std::string sourceStr(this->arString);
+  std::string sourceStr(this->get());
   for (int i = 0; i < str.length(); ++i)
     while (sourceStr.find(str.arString[i]) != -1)
       sourceStr.erase(sourceStr.find(str.arString[i]), 1);
@@ -65,51 +67,55 @@ MyString MyString::operator*(int n) {
 MyString& MyString::operator=(const MyString& str) {
   if (this->arString != nullptr)
     delete (this->arString);
-  this->arString = str.arString;
+  char* newString = new char[str.length() + 1];
+  snprintf(newString, str.length() + 1, "%s", str.get());
+  this->arString = newString;
   return *this;
 }
 
 MyString& MyString::operator=(MyString&& str) {
   if (this->arString != nullptr)
     delete (this->arString);
-  this->arString = str.arString;
+  char* newString = new char[str.length() + 1];
+  snprintf(newString, str.length() + 1, "%s", str.get());
+  this->arString = newString;
   str.arString = nullptr;
   return *this;
 }
 
-bool MyString::operator==(const MyString& str) {
+bool MyString::operator==(const MyString& str) const {
   return !(strcmp(this->arString, str.arString));
 }
 
-bool MyString::operator!=(const MyString& str) {
+bool MyString::operator!=(const MyString& str) const {
   return (strcmp(this->arString, str.arString));
 }
 
-bool MyString::operator>(const MyString& str) {
+bool MyString::operator>(const MyString& str) const {
   return strcmp(this->arString, str.arString) > 0;
 }
 
-bool MyString::operator<(const MyString& str) {
+bool MyString::operator<(const MyString& str) const {
   return strcmp(this->arString, str.arString) < 0;
 }
 
-bool MyString::operator>=(const MyString& str) {
+bool MyString::operator>=(const MyString& str) const {
   return strcmp(this->arString, str.arString) > -1;
 }
 
-bool MyString::operator<=(const MyString& str) {
+bool MyString::operator<=(const MyString& str) const {
   return strcmp(this->arString, str.arString) < 1;
 }
 
 MyString MyString::operator!() {
   std::string res(this->arString);
-  for (int i = 0; i < res.length(); ++i)
+  for (int i = 0; i <= res.length(); ++i)
     if (res[i] >= 'a' && res[i] <= 'z')
       res[i] -= 32;
   return MyString(res);
 }
 
-char& MyString::operator[](int n) {
+char& MyString::operator[](int n) const {
   if (n < 0 || n >= this->length()) throw "Index out of range";
   return this->arString[n];
 }
