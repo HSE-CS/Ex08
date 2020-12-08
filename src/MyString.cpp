@@ -1,7 +1,7 @@
 // Copyright 2020 Bulatov D.
 #define _CRT_SECURE_NO_WARNINGS
 
-MyString::MyString(const char* s) {
+MyString(const char* s) {
     if (s ==nullptr) {
         len = 0;
         stroka = nullptr;
@@ -14,7 +14,7 @@ MyString::MyString(const char* s) {
     }
 }
 
-MyString::MyString(std::string s) {
+MyString(std::string s) {
     len = s.size();
     stroka = new char[len + 1];
     for (size_t i = 0; i <= len; i++) {
@@ -22,7 +22,7 @@ MyString::MyString(std::string s) {
     }
 }
 
-MyString::MyString(const MyString& s) {
+MyString(const MyString& s) {
     this->len = s.len;
     this->stroka = new char[len + 1];
     for (size_t i = 0; i <= len; i++) {
@@ -30,27 +30,27 @@ MyString::MyString(const MyString& s) {
     }
 }
 
-MyString::MyString(MyString&& s) {
+MyString(MyString&& s) {
     this->len = s.len;
     this->stroka = s.stroka;
     s.len = 0;
     s.stroka = nullptr;
 }
 
-MyString::~MyString() {
+~MyString() {
     delete[] this->stroka;
     this->len = 0;
 }
 
-MyString::int MyString::length() {
+int MyString::length() {
     return this->len;
 }
 
-MyString::tchar* MyString::get() {
+char* MyString::get() {
     return this->str;
 }
 
-MyStrin::MyString::operator+(const MyString& s) {
+operator+(const MyString& s) {
     unsigned int len1 = this->length();
     unsigned int len2 = s.len + len1;
     char* new_str = new char[len2 + 1];
@@ -68,7 +68,7 @@ MyStrin::MyString::operator+(const MyString& s) {
     return nstr;
 }
 
-MyString::MyString::operator-(const MyString& s) {
+operator-(const MyString& s) {
     std::string temp = (std::string(this->str));
     int i = 0;
     while (i < s.len) {
@@ -81,7 +81,7 @@ MyString::MyString::operator-(const MyString& s) {
     return new_str;
 }
 
-MyString::MyString::operator*(int n) {
+operator*(int n) {
     char* new_str = new char[len * n + 1];
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = i * len; j < (i + 1) * len; ++j) {
@@ -93,7 +93,7 @@ MyString::MyString::operator*(int n) {
     return tmp;
 }
 
-MyString&::MyString::operator=(const MyString& s) {
+operator=(const MyString& s) {
     if (s.stroka == nullptr) {
         this->len = 0;
         this->stroka = nullptr;
@@ -107,7 +107,7 @@ MyString&::MyString::operator=(const MyString& s) {
     return *this;
 }
 
-MyString&::MyString::operator=(MyString&& s) {
+operator=(MyString&& s) {
     this->len = s.len;
     this->stroka = s.stroka;
     s.len = 0;
@@ -115,7 +115,7 @@ MyString&::MyString::operator=(MyString&& s) {
     return *this;
 }
 
-MyString::bool MyString::operator==(const MyString& s) {
+bool operator==(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) == 0) {
         return 1;
     }else {
@@ -123,7 +123,7 @@ MyString::bool MyString::operator==(const MyString& s) {
     }
 }
 
-MyString::bool MyString::operator!=(const MyString& s) {
+bool operator!=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) != 0) {
         return 1;
     }else {
@@ -131,7 +131,7 @@ MyString::bool MyString::operator!=(const MyString& s) {
     }
 }
 
-MyString::bool MyString::operator>(const MyString& s) {
+bool operator>(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) > 0) {
         return 1;
     }else {
@@ -139,7 +139,7 @@ MyString::bool MyString::operator>(const MyString& s) {
     }
 }
 
-MyString::bool MyString::operator<(const MyString& s) {
+bool operator<(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) < 0) {
         return 1;
     }else {
@@ -147,7 +147,7 @@ MyString::bool MyString::operator<(const MyString& s) {
     }
 }
 
-MyString::bool MyString::operator>=(const MyString& s) {
+bool operator>=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) >= 0) {
         return 1;
     }else {
@@ -155,7 +155,7 @@ MyString::bool MyString::operator>=(const MyString& s) {
     }
 }
 
-MyString::bool MyString::operator<=(const MyString& s) {
+bool operator<=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) <=0) {
         return 1;
     }else {
@@ -163,7 +163,7 @@ MyString::bool MyString::operator<=(const MyString& s) {
     }
 }
 
-MyString::MyString::operator!() {
+operator!() {
     MyString temp(*this);
     for (size_t i = 0; i < temp.len; ++i) {
         if (temp.stroka[i] >= 'a' && temp.stroka[i] <= 'z') {
@@ -176,11 +176,11 @@ MyString::MyString::operator!() {
     return temp;
 }
 
-MyString::char MyString::operator[](int n) {
+char operator[](int n) {
     return this->stroka[n];
 }
 
-MyString::int MyString::operator()(const char* s) {
+int operator()(const char* s) {
     if (strstr(this->stroka, s)==NULL) {
         return -1;
     }else {
@@ -188,10 +188,10 @@ MyString::int MyString::operator()(const char* s) {
     }
 }
 
-MyString::std::ostream& operator>>(std::ostream& os, MyString& s) {
+friend std::ostream& operator>>(std::ostream& os, MyString& s) {
     return os << s.get();
 }
 
-MyString::std::istream& operator>>(std::istream& is, MyString& s) {
+friend std::istream& operator>>(std::istream& is, MyString& s) {
     return is >> s.get();
 }
