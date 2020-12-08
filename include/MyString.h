@@ -1,78 +1,33 @@
-
-
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
-
 #include <string>
-#include <cstring>
-
-#include <iostream>
-
 class MyString {
 private:
-    char* str;
-    int size;
+    char* string_container;
+
 public:
-    explicit MyString(const char* str = nullptr) {
-        if (str != nullptr) {
-            size = strlen(str);
-            this->str = new char[size + 1];
-            memcpy(this->str, str, size + 1);
-        } else {
-            size = 0;
-            this->str = new char[1];
-            this->str[0] = 0;
-        }
-    }
-
-    explicit MyString(std::string str) {
-        size = str.length();
-        this->str = new char[size + 1];
-        memcpy(this->str, str.c_str(), size + 1);
-    }
-
-    MyString(const MyString& obj) {
-        size = obj.size;
-        this->str = new char[size + 1];
-        memcpy(this->str, obj.str, size + 1);
-    }
-
-    MyString(MyString&& obj) noexcept {
-        this->size = obj.size;
-        this->str = obj.str;
-        obj.str = nullptr;
-        obj.size = 0;
-    }
-
-    ~MyString() {
-        delete this->str;
-        this->str = nullptr;
-        this->size = 0;
-    }
-
+    explicit MyString(const char* = nullptr);
+    explicit MyString(const std::string mystring_value);
+    MyString(const MyString& other_mystring);
+    MyString(MyString&& other_mystring);
+    ~MyString();
+    unsigned int length() const;
     char* get() const;
-    int length() const;
-
-    MyString operator+(const MyString&);
-    MyString operator-(const MyString&);
-    MyString operator*(size_t);
-
+    MyString operator+(const MyString& other_mystring);
+    MyString operator-(const MyString& other_mystring);
+    MyString operator*(unsigned int num);
     MyString& operator=(const MyString&);
-    MyString& operator=(MyString&&) noexcept;
-
+    MyString& operator=(MyString&&);
     bool operator==(const MyString&) const;
     bool operator!=(const MyString&) const;
-    bool operator>=(const MyString&) const;
-    bool operator<=(const MyString&) const;
     bool operator>(const MyString&) const;
     bool operator<(const MyString&) const;
-
+    bool operator>=(const MyString&) const;
+    bool operator<=(const MyString&) const;
     MyString operator!();
-    char& operator[](int) const;
-    int operator()(const char*);
-
-    friend std::ostream& operator<<(std::ostream&, MyString&);
-    friend std::istream& operator>>(std::istream&, MyString&);
+    char operator[](unsigned int index) const;
+    int operator()(const char* sub_string) const;
+    friend std::ostream& operator<<(std::ostream& vS, MyString& vSt);
+    friend std::istream& operator>>(std::istream& vS, MyString& vSt);
 };
-
 #endif  // INCLUDE_MYSTRING_H_
