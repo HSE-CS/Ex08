@@ -66,7 +66,7 @@ MyString MyString::operator-(const MyString& str) {
 MyString MyString::operator*(int num) {
     std::string str;
     for (int i = 0; i < num; i++) {
-        str += this->get();
+        str += this->string;
     }
     return MyString(str);
 }
