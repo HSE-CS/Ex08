@@ -1,6 +1,6 @@
 // Copyright 2020 Dmitry Vargin
 #include <iostream>
-#include "MyString.h"]
+#include "MyString.h"
 
 int main() {
     MyString myString("Hello, world");
