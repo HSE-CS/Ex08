@@ -1,8 +1,6 @@
 // Copyright 2020 GHA Test Team
 #include "MyString.h"
-#include <string>
-#include <cstring>
-#include <iostream>
+
 
 char* MyString::get() const {
   return my_string;
@@ -14,25 +12,27 @@ unsigned int MyString::length() const {
 
 MyString::MyString(const char* initial_string) {
   if (initial_string == nullptr) {
-    my_string = new char[1];
+    char* new_str = new char[1];
+    my_string = new_str;
   } else {
     unsigned int len = strlen(initial_string) + 1;
-    my_string = new char[len];
-    snprintf(my_string, len, "%s", initial_string);
+    char* new_str = new char[len];
+    snprintf(new_str, len, "%s", initial_string);
+    my_string = new_str;
   }
 }
 
 MyString::MyString(std::string initial_string) {
   unsigned int len = initial_string.length() + 1;
-  char* new_str = new char[len];
-  snprintf(new_str, len, "%s", initial_string.c_str());
-  my_string = new_str;
+  my_string = new char[len];
+  snprintf(my_string, len, "%s", initial_string.c_str());
 }
 
 MyString::MyString(const MyString& initial_string) {
   unsigned int str_len = initial_string.length() + 1;
-  my_string = new char[str_len];
-  snprintf(my_string, str_len, "%s", initial_string.get());
+  char* new_str = new char[str_len];
+  snprintf(new_str, str_len, "%s", initial_string.get());
+  my_string = new_str;
 }
 
 MyString::MyString(MyString&& initial_string) noexcept {
@@ -88,7 +88,7 @@ MyString MyString::operator*(unsigned int number) {
   unsigned int len = length();
   for (unsigned int i = 0; i < len; i++)
     new_str.append(get());
-  return MyString(new_str);
+  return MyString(new_str)
 }
 
 MyString& MyString::operator!() {
