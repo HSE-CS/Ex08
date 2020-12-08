@@ -10,7 +10,7 @@ MyString::MyString(const char *characters) {
   }
 }
 
-MyString::MyString(std::string &string) {
+MyString::MyString(const std::string &string) {
   this->size = string.size();
   this->characters = new char[this->size + 1];
   snprintf(this->characters, this->size + 1, "%s", string.c_str());

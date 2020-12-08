@@ -19,7 +19,7 @@ class MyString {
  public:
   explicit MyString(const char *characters = nullptr);
 
-  explicit MyString(std::string &string);
+  explicit MyString(const std::string &string);
 
   MyString(const MyString &string);
 
