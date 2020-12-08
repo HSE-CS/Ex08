@@ -4,7 +4,7 @@
 MyString::MyString(const char *s) {
   if (s) {
     str = new char[strlen(s) + 1];
-    strcpy(str, s);
+    snprintf(str, strlen(s) + 1, "%s", s);
   } else {
     str = new char[1];
     str[0] = '\0';
@@ -12,11 +12,11 @@ MyString::MyString(const char *s) {
 }
 MyString::MyString(std::string &s) {
   str = new char[s.length() + 1];
-  strcpy(str, s.c_str());
+  snprintf(str, s.length() + 1, "%s", s.c_str());
 }
 MyString::MyString(const MyString &s) {
   str = new char[s.length() + 1];
-  strcpy(str, s.get());
+  snprintf(str, s.length() + 1, "%s", s.get());
 }
 MyString::MyString(MyString &&s) {
   s.str = str;
@@ -27,8 +27,8 @@ int MyString::length() const { return strlen(str); }
 char *MyString::get() const { return str; }
 MyString MyString::operator+(const MyString &s) {
   char *string = new char[this->length() + s.length() + 1];
-  strcpy(string, str);
-  strcpy(string + this->length(), s.str);
+  snprintf(string, strlen(str) + 1, "%s", str);
+  snprintf(string + this->length(), strlen(s.str) + 1, "%s", s.str);
   return MyString(string);
 }
 MyString MyString::operator-(const MyString &s) {
@@ -54,14 +54,14 @@ MyString MyString::operator-(const MyString &s) {
 MyString MyString::operator*(int n) {
   char *string = new char(this->length() * n + 1);
   for (int i = 0; i < n; i++) {
-    strcpy(string + i * this->length(), str);
+    snprintf(string + i * this->length(), strlen(str) + 1, "%s", str);
   }
   return MyString(string);
 }
 
 MyString &MyString::operator=(const MyString &s) {
   str = new char[s.length() + 1];
-  strcpy(str, s.str);
+  snprintf(str, strlen(s.str) + 1, "%s", s.str);
   return *this;
 }
 
@@ -89,7 +89,7 @@ bool MyString::operator<=(const MyString &s) { return strcmp(str, s.str) <= 0; }
 
 MyString MyString::operator!() {
   char *string = new char[this->length() + 1];
-  strcpy(string, str);
+  snprintf(string, strlen(str) + 1, "%s", str);
   for (int i = 0; i < this->length(); i++) {
     if (string[i] >= 65 && string[i] <= 90) {
       string[i] = string[i] + 32;
