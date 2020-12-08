@@ -2,35 +2,40 @@
 
 #include "../include/MyString.h"
 
-MyString::MyString(const char *characters) {
-  if (characters != nullptr) {
-    this->size = strlen(characters);
-    this->characters = new char[this->size + 1];
-    snprintf(this->characters, this->size + 1, "%s", characters);
+MyString::MyString(const char* characters) : characters{nullptr}, size{0} {
+  if (characters == nullptr) {
+    char *buffer = new char[1];
+    memset(buffer, 0, 1);
+    MyString::characters = buffer;
+    return;
   }
+  size = strlen(characters);
+  char *temp = new char[size + 1];
+  memset(temp, 0, size + 1);
+  MyString::characters = temp;
+  memcpy(MyString::characters, characters, size);
 }
 
-MyString::MyString(const std::string &string) {
-  this->size = string.size();
-  this->characters = new char[this->size + 1];
-  snprintf(this->characters, this->size + 1, "%s", string.c_str());
+MyString::MyString(const std::string& string) : characters{nullptr}, size{0} {
+  size = string.length();
+  char *temp = new char[size + 1];
+  memset(temp, 0, size + 1);
+  characters = temp;
+  memcpy(characters, string.c_str(), size);
 }
 
-MyString::MyString(const MyString &string) {
-  if (string.get() != nullptr) {
-    this->size = string.length();
-    this->characters = new char[this->size + 1];
-    snprintf(this->characters, this->size + 1, "%s", string.get());
-  }
+MyString::MyString(const MyString& string) : characters{nullptr}, size{0} {
+  size = string.length();
+  char *temp = new char[size + 1];
+  memset(temp, 0, size + 1);
+  characters = temp;
+  memcpy(characters, string.get(), size);
 }
 
-MyString::MyString(MyString &&string) noexcept {
-  if (string.get() != nullptr) {
-    this->size = string.length();
-    this->characters = new char[this->size + 1];
-    snprintf(this->characters, this->size + 1, "%s", string.get());
-    string.~MyString();
-  }
+MyString::MyString(MyString&& string) noexcept : characters{nullptr}, size{0} {
+  this->size = string.length();
+  this->characters = string.get();
+  string.~MyString();
 }
 
 MyString::~MyString() {
