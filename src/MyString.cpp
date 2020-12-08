@@ -9,7 +9,7 @@ MyString::MyString() {
 MyString::MyString(const char* newStr = nullptr) {
   if (newStr) {
     myString = new char[strlen(newStr) + 1];
-    strcpy(myString, newStr);
+    memcpy(myString, newStr, strlen(newStr) + 1);
   } else {
     myString = new char[1];
     myString[0] = '\0';
@@ -18,12 +18,12 @@ MyString::MyString(const char* newStr = nullptr) {
 
 MyString::MyString(std::string newStr) {
   myString = new char[newStr.length() + 1];
-  strcpy(myString, newStr.c_str());
+  memcpy(myString, newStr.c_str(), newStr.length());
 }
 
 MyString::MyString(const MyString& otherString) {
   myString = new char[otherString.length() + 1];
-  strcpy(myString, otherString.get());
+  memcpy(myString, otherString.get(), otherString.length() + 1);
 }
 
 MyString::MyString(MyString&& toShift) {
@@ -74,7 +74,7 @@ MyString& MyString::operator=(const MyString& otherString) {
     delete[] myString;
   }
   myString = new char[otherString.length() + 1];
-  strcpy(myString, otherString.get());
+  memcpy(myString, otherString.get(), otherString.length() + 1);
   return *this;
 }
 MyString& MyString::operator=(MyString&& toShift) {
