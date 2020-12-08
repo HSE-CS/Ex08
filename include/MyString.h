@@ -4,6 +4,7 @@
 
 #include <string>
 #include <cstring>
+#include <iostream>
 
 class MyString{
  private:
@@ -21,15 +22,21 @@ class MyString{
   MyString operator-(const MyString&);
   MyString operator*(int);
   MyString& operator=(const MyString&);
-  MyString& operator=(const MyString&&);
+  MyString& operator=( MyString&&);
+  char& operator[] (const int);
+  const char* operator()(const char*);
+  const char* operator()(std::string);
+  MyString& operator! ();
   friend bool operator== (const MyString&, const MyString&);
   friend bool operator!= (const MyString&, const MyString&);
   friend bool operator> (const MyString&, const MyString&);
   friend bool operator< (const MyString&, const MyString&);
   friend bool operator>= (const MyString&, const MyString&);
   friend bool operator<= (const MyString&, const MyString&);
-  friend ostream& operator<<(ostream&, MyString&);
-  friend istream& operator>>(istream&, MyString&);
+  friend std::ostream& operator<<(std::ostream&, MyString&);
+  friend std::istream& operator>>(std::istream&, MyString&);
 };
 
 #endif  // INCLUDE_MYSTRING_H_
+
+
