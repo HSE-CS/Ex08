@@ -38,7 +38,9 @@ char *MyString::get() const {
 }
 
 MyString MyString::operator+(const MyString &string) const {
-  return MyString(strcat(this->get(), string.get()));
+  std::string temp(this->get());
+  temp.append(string.get());
+  return MyString(temp);
 }
 
 MyString MyString::operator-(const MyString &string) const {
