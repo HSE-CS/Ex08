@@ -10,11 +10,12 @@ class MyString{
  private:
   char * str;
   unsigned len;
+
  public:
-  MyString( const char* x=nullptr);
-  MyString( std::string );
-  MyString( const MyString& );
-  MyString( MyString&& );
+  explicit MyString(const char* x = nullptr);
+  explicit MyString(std::string);
+  MyString(const MyString&);
+  MyString(MyString&&);
   ~MyString();
   int length() const;
   const char* get() const;
@@ -22,7 +23,7 @@ class MyString{
   MyString operator-(const MyString&);
   MyString operator*(int);
   MyString& operator=(const MyString&);
-  MyString& operator=( MyString&&);
+  MyString& operator=(MyString&&);
   char& operator[] (const int);
   const char* operator()(const char*);
   const char* operator()(std::string);
