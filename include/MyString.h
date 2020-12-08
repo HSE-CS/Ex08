@@ -1,11 +1,12 @@
 // Copyright 2020 mkhorosh
-#ifndef MYSTRING_H
-#define MYSTRING_H
+#ifndef MYSTRING_H_
+#define MYSTRING_H_
 #include <string>
 
 class MyString {
  private:
   char *string;
+
  public:
   explicit MyString(const char *nstring = nullptr);  // pointer
   explicit MyString(const std::string &nstring);  // string
@@ -28,8 +29,10 @@ class MyString {
   MyString &operator!();  // у латинских букв меняется регистр
   char operator[](int i) const;  // доступ к символу по индексу
   int operator()(const char *ss);  // поиск подстроки
-  friend std::ostream &operator<<(std::ostream &stream, MyString &str);  // запись в поток
-  friend std::istream &operator>>(std::istream &stream, MyString &str);  // чтение из потока
+  friend std::ostream &operator<<(std::ostream &stream,
+      MyString &str);  // запись в поток
+  friend std::istream &operator>>(std::istream &stream,
+      MyString &str);  // чтение из потока
 };
 
-#endif
+#endif  // MYSTRING_H_

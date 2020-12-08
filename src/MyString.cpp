@@ -31,7 +31,7 @@ MyString::MyString(MyString &&nstring) {  // moving(r-value)
   std::strncpy(this->string, nstring.string, 1 + nstring.length());
 }
 
-MyString::~MyString() { // destruct
+MyString::~MyString() {  // destruct
   delete this->string;
 }
 
@@ -52,7 +52,8 @@ MyString MyString::operator-(const MyString &str) const {
   std::string first = this->string;
   std::string second = str.string;
   for (int i = 0; i < second.length(); i++) {
-    first.erase(std::remove(first.begin(), first.end(), second[i]), first.end());
+    first.erase(std::remove(first.begin(), first.end(),
+                            second[i]), first.end());
   }
   MyString anstr(first);
   return anstr;
@@ -81,27 +82,27 @@ MyString &MyString::operator=(MyString &&str) {  // перемещающее п�
   return *this;
 }
 
-bool MyString::operator==(const MyString &str) const {  // сравнение на равенство
+bool MyString::operator==(const MyString &str) const {
   return !std::strcmp(this->get(), str.get());
 }
 
-bool MyString::operator!=(const MyString &str) const {  // сравнение на неравенство
+bool MyString::operator!=(const MyString &str) const {
   return std::strcmp(this->get(), str.get());
 }
 
-bool MyString::operator>(const MyString &str) const {  // лексографическое сравнение
+bool MyString::operator>(const MyString &str) const {
   return std::strcmp(this->get(), str.get()) == 1;
 }
 
-bool MyString::operator<(const MyString &str) const {  // лексографическое сравнение
+bool MyString::operator<(const MyString &str) const {
   return std::strcmp(this->get(), str.get()) == -1;
 }
 
-bool MyString::operator>=(const MyString &str) const {  // лексографическое сравнение
+bool MyString::operator>=(const MyString &str) const {
   return std::strcmp(this->get(), str.get()) >= 0;
 }
 
-bool MyString::operator<=(const MyString &str) const {  // лексографическое сравнение
+bool MyString::operator<=(const MyString &str) const {
   return std::strcmp(this->get(), str.get()) < 1;
 }
 
@@ -126,10 +127,10 @@ int MyString::operator()(const char *ss) {  // поиск подстроки
   return s1.find(s2);
 }
 
-std::ostream &operator<<(std::ostream &stream, MyString &str) {  // запись в поток
+std::ostream &operator<<(std::ostream &stream, MyString &str) {
   return stream << str.get();
 }
 
-std::istream &operator>>(std::istream &stream, MyString &str) {  // чтение из потока
+std::istream &operator>>(std::istream &stream, MyString &str) {
   return stream >> str.get();
 }
