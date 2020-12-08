@@ -11,17 +11,15 @@
 
 
 class MyString {
-private:
-
+ private:
     char* string_ptr;
     unsigned len;
-public:
-
+ public:
     // Constructors
     explicit MyString(const char* new_ptr = nullptr);
     explicit MyString(std::string);
     MyString(const MyString&);
-    MyString(MyString&&) noexcept ;
+    MyString(MyString&&) noexcept;
     // Destructor
     ~MyString();
     // Functions
@@ -32,7 +30,7 @@ public:
     MyString operator-(const MyString&);
     MyString operator*(size_t);
     MyString& operator=(const MyString&);
-    MyString& operator=(MyString&&) noexcept ;
+    MyString& operator=(MyString&&) noexcept;
     // Operators of comparison
     bool operator== (const MyString&);
     bool operator!= (const MyString&);
@@ -50,4 +48,4 @@ public:
 };
 
 
-#endif // INCLUDE_MYSTRING_H_
+#endif //  INCLUDE_MYSTRING_H_
