@@ -91,7 +91,7 @@ MyString MyString::operator*(unsigned int number) {
   unsigned int len = length();
   for (unsigned int i = 0; i < len; i++)
     new_str.append(get());
-  return MyString(new_str)
+  return MyString(new_str);
 }
 
 MyString& MyString::operator!() {
