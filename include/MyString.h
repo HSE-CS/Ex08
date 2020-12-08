@@ -8,7 +8,7 @@ class MyString {
  private:
      char* string;
      int len;
- 
+
  public:
      explicit MyString(const char* str = nullptr);
      explicit MyString(const std::string& str);
