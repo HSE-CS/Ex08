@@ -46,10 +46,8 @@ MyString::~MyString() {
     delete this->stringArray;
 }
 
-MyString MyString::operator+(const MyString &valueSringArray) const {
-    std::string sec = valueSringArray.get();
-    std::string tempString = (std::string(this->get()) + sec);
-    return MyString(tempString);
+MyString MyString::operator+(const MyString &s) const {
+    return MyString(std::string(this->get()) + std::string(s.get()));
 }
 
 
