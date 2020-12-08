@@ -37,13 +37,15 @@ char *MyString::get() const {
   return this->characters;
 }
 
-MyString MyString::operator+(MyString &string) const {
+MyString MyString::operator+(const MyString &string) const {
   return MyString(strcat(this->get(), string.get()));
 }
 
-MyString MyString::operator-(MyString &string) const {
+MyString MyString::operator-(const MyString &string) const {
   std::string temp(this->get());
-  for (char c : std::string(string.get())) while (temp.find(c) != -1) temp.erase(temp.find(c), 1);
+  for (char c : std::string(string.get()))
+    while (temp.find(c) != -1)
+      temp.erase(temp.find(c), 1);
   return MyString(temp);
 }
 
@@ -78,33 +80,43 @@ bool MyString::operator==(const MyString &string) const {
 bool MyString::operator!=(const MyString &string) const {
   return !(string == *this);
 }
+
 bool MyString::operator>(const MyString &string) const {
   return 1 == strcmp(this->get(), string.get());
 }
+
 bool MyString::operator<(const MyString &string) const {
   return -1 == strcmp(this->get(), string.get());
 }
+
 bool MyString::operator>=(const MyString &string) const {
   return -1 != strcmp(this->get(), string.get());
 }
+
 bool MyString::operator<=(const MyString &string) const {
   return 1 != strcmp(this->get(), string.get());
 }
 
 MyString MyString::operator!() {
   for (int i = 0; i < this->length(); i++)
-    if (std::isupper(this->characters[i])) this->characters[i] = std::tolower(this->characters[i]);
-    else this->characters[i] = std::toupper(this->characters[i]);
+    if (std::isupper(this->characters[i]))
+      this->characters[i] = std::tolower(this->characters[i]);
+    else
+      this->characters[i] = std::toupper(this->characters[i]);
   return *this;
 }
 
 char &MyString::operator[](size_t index) {
-  if (index <= this->size) return this->characters[index];
-  else throw std::out_of_range("IndexOutOfBoundsException");
+  if (index <= this->size)
+    return this->characters[index];
+  else
+    throw std::out_of_range("IndexOutOfBoundsException");
 }
 
 int32_t MyString::operator()(const char *string) const {
-  return strstr(this->get(), string) != nullptr ? strstr(this->get(), string) - this->get() : -1;
+  return strstr(this->get(), string) != nullptr
+         ? strstr(this->get(), string) - this->get()
+         : -1;
 }
 
 std::istream &operator>>(std::istream &in, MyString &string) {
@@ -114,7 +126,3 @@ std::istream &operator>>(std::istream &in, MyString &string) {
 std::ostream &operator<<(std::ostream &out, MyString &string) {
   return out << string.get();
 }
-
-
-
-

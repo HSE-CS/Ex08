@@ -29,9 +29,9 @@ class MyString {
 
   char *get() const;
 
-  MyString operator+(MyString &string) const;
+  MyString operator+(const MyString &string) const;
 
-  MyString operator-(MyString &string) const;
+  MyString operator-(const MyString &string) const;
 
   MyString operator*(size_t factor) const;
 
@@ -62,5 +62,4 @@ class MyString {
   friend std::ostream &operator<<(std::ostream &out, MyString &string);
 };
 
-
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
