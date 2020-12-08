@@ -27,11 +27,12 @@ MyString MyString::operator-(const MyString &obj) {
     return MyString(str);
 }
 
-MyString MyString::operator*(const unsigned int n) {
-    std::string sum;
-    for (int i = 0; i < n; i++)
-        sum += get();
-    return MyString(sum);
+MyString MyString::operator*(size_t count) {
+    std::string tmp;
+    for (size_t i = 0; i < count; i++) {
+        tmp+=this->get();
+    }
+    return MyString(tmp);
 }
 
 MyString &MyString::operator=(const MyString &obj) {

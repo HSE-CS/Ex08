@@ -56,7 +56,7 @@ class MyString {
 
     MyString operator+(const MyString&);
     MyString operator-(const MyString&);
-    MyString operator*(unsigned int);
+    MyString operator*(size_t);
 
     MyString& operator=(const MyString&);
     MyString& operator=(MyString&&) noexcept;
