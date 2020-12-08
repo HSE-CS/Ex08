@@ -14,7 +14,7 @@
 class MyString {
  private:
      char *ArrString;
-	 
+ 
  public:
      explicit MyString(const char *valueArrString = nullptr);
 
