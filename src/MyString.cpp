@@ -14,7 +14,7 @@ unsigned int MyString::length() const {
 
 MyString::MyString(const char *valueSringArray) {
     if (valueSringArray != nullptr) {
-        char *newStringArray = new char[strlen(valueSringArray)];
+        char *newStringArray = new char[strlen(valueSringArray)+1];
         strcpy(newStringArray, valueSringArray);
         this->stringArray = newStringArray;
     } else {
