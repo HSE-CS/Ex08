@@ -12,8 +12,8 @@ class MyString {
   char* str;
 
  public:
-  MyString(const char* strArray = nullptr);
-  MyString(std::string);
+  explicit MyString(const char* strArray = nullptr);
+  explicit MyString(std::string);
   MyString(const MyString&);
   MyString(MyString&&);
   ~MyString();
@@ -35,6 +35,5 @@ class MyString {
   int operator()(const char*);
   friend std::ostream& operator<<(std::ostream &valStream , MyString &str);
   friend std::istream& operator>>(std::istream &valStream, MyString &str);
-
 };
 #endif //INCLUDE_MYSTRING_H_

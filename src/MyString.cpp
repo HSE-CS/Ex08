@@ -18,7 +18,7 @@ MyString::MyString(const char* StrArr) {
     if (StrArr == nullptr) {
         str = new char[1];
         memset(str, 0, 1);
-    }else {
+    } else {
         str = new char[strlen(StrArr) + 1];
         // snprintf(str, strlen(StrArr) + 1, "%s", StrArr);
         memcpy(str, StrArr, strlen(StrArr) + 1);
@@ -122,7 +122,7 @@ MyString MyString::operator!() {
             if (str[k] >= 97 && str[k] <= 122) {
                 bufStr[k] = toupper(str[k]);
             }
-        }else{
+        } else {
             bufStr[k] = str[k];
         }
     }
