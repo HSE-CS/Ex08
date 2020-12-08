@@ -5,15 +5,14 @@
 #include <string>
 #include <cstring>
 
-class MyString
-{
+class MyString {
  private:
   char *string;
 
  public:
   MyString(char *);
-  MyString(std::string);
-  MyString(const MyString &);
+  explicit MyString(std::string);
+  explicit MyString(const MyString &);
   MyString(MyString &&);
   ~MyString();
   int length();
@@ -36,4 +35,4 @@ class MyString
   friend std::istream &operator>>(std::istream &, MyString &);
 };
 
-#endif  //INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_

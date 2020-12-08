@@ -2,56 +2,47 @@
 #include "MyString.h"
 #include <cctype>
 
-MyString::MyString(char *str)
-{
+MyString::MyString(char *str) {
   string = new char[strlen(str)];
   strcpy(string, str);
 }
 
-MyString::MyString(std::string str)
-{
+MyString::MyString(std::string str) {
   string = new char[str.size()];
   strcpy(string, str.c_str());
 }
 
-MyString::MyString(const MyString &str)
-{
+MyString::MyString(const MyString &str) {
   string = new char[strlen(str.string)];
   strcpy(string, str.string);
 }
 
-MyString::MyString(MyString &&str)
-{
+MyString::MyString(MyString &&str) {
   string = new char[strlen(str.string)];
   string = str.string;
   str.string = NULL;
 }
 
-MyString::~MyString()
-{
+MyString::~MyString() {
   delete string;
 }
 
-int MyString::length()
-{
+int MyString::length() {
   return strlen(string);
 }
 
-char *MyString::get()
-{
+char *MyString::get() {
   return string;
 }
 
-MyString MyString::operator+(const MyString &str)
-{
+MyString MyString::operator+(const MyString &str) {
   std::string tmp;
   tmp.append(string);
   tmp.append(str.string);
   return MyString(tmp);
 }
 
-MyString MyString::operator-(const MyString &str)
-{
+MyString MyString::operator-(const MyString &str) {
   char *newStr = new char[strlen(string)];
   int index = 0;
   for (int i = 0; i < strlen(string); i++)
@@ -73,8 +64,7 @@ MyString MyString::operator-(const MyString &str)
   return MyString(newStr);
 }
 
-MyString MyString::operator*(const size_t count)
-{
+MyString MyString::operator*(const size_t count) {
   MyString ans(string);
   for (int i = 0; i < count - 1; i++)
   {
@@ -83,52 +73,43 @@ MyString MyString::operator*(const size_t count)
   return ans;
 }
 
-MyString &MyString::operator=(const MyString &str)
-{
+MyString &MyString::operator=(const MyString &str) {
   string = new char[strlen(str.string)];
   strcpy(string, str.string);
   return *this;
 }
 
-MyString &MyString::operator=(MyString &&str)
-{
+MyString &MyString::operator=(MyString &&str) {
   string = str.string;
   str.string = NULL;
   return *this;
 }
 
-bool MyString::operator==(const MyString &str)
-{
+bool MyString::operator==(const MyString &str) {
   return !strcmp(string, str.string);
 }
 
-bool MyString::operator!=(const MyString &str)
-{
+bool MyString::operator!=(const MyString &str) {
   return strcmp(string, str.string);
 }
 
-bool MyString::operator>(const MyString &str)
-{
+bool MyString::operator>(const MyString &str) {
   return strcmp(string, str.string) == 1;
 }
 
-bool MyString::operator<(const MyString &str)
-{
+bool MyString::operator<(const MyString &str) {
   return strcmp(string, str.string) == -1;
 }
 
-bool MyString::operator>=(const MyString &str)
-{
+bool MyString::operator>=(const MyString &str) {
   return strcmp(string, str.string) != -1;
 }
 
-bool MyString::operator<=(const MyString &str)
-{
+bool MyString::operator<=(const MyString &str) {
   return strcmp(string, str.string) != 1;
 }
 
-MyString MyString::operator!()
-{
+MyString MyString::operator!() {
   std::string tmp;
   for (int i = 0; i < strlen(string); i++)
   {
@@ -140,8 +121,7 @@ MyString MyString::operator!()
   return MyString(tmp);
 }
 
-char &MyString::operator[](const size_t ind) const
-{
+char &MyString::operator[](const size_t ind) const {
   return string[ind];
 }
 
@@ -154,12 +134,10 @@ int MyString::operator()(const char *str)
     return p_find - buf;
 }
 
-std::ostream &operator<<(std::ostream &os, MyString &str)
-{
+std::ostream &operator<<(std::ostream &os, MyString &str) {
   return os << str.string;
 }
 
-std::istream &operator>>(std::istream &is, MyString &str)
-{
+std::istream &operator>>(std::istream &is, MyString &str) {
   return is >> str.string;
 }
