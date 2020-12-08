@@ -5,9 +5,8 @@
 
 MyString::MyString(const char *characters) : characters{nullptr}, size{0} {
   if (characters != nullptr) {
-    size_t len = std::strlen(characters) + 1;
-    this->characters = new char[len];
-    std::strncpy(this->characters, characters, len);
+    this->characters = new char[std::strlen(characters) + 1];
+    std::strncpy(this->characters, characters, size);
   } else {
     this->characters = new char[1];
     memset(this->characters, 0, 1);
@@ -15,9 +14,8 @@ MyString::MyString(const char *characters) : characters{nullptr}, size{0} {
 }
 
 MyString::MyString(const std::string &string) : characters{nullptr}, size{0}{
-  size_t len = string.length() + 1;
-  this->characters = new char[len];
-  std::strncpy(this->characters, string.c_str(), len);
+  this->characters = new char[string.length() + 1];
+  std::strncpy(this->characters, string.c_str(), size);
 }
 
 MyString::MyString(const MyString &string) : characters{nullptr}, size{0}{
