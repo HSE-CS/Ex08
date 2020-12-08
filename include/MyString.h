@@ -14,26 +14,25 @@ public:
 	MyString(const char*);
 	MyString(std::string);
 	MyString(const MyString&);
-	MyString(MyString&&);
+	MyString(const MyString&&);
 	~MyString();
 	int length();
 	char* get();
 
-	MyString operator+(MyString& a);
-	MyString operator-(MyString& a);
+	MyString operator+(const MyString& a);
+	MyString operator-(const MyString& a);
 	MyString operator*(int a);
-	MyString operator=(const MyString&); //TODO
-	MyString operator=(const MyString&); //TODO
-	bool operator==(MyString& a);
-	bool operator!=(MyString& a);
-	bool operator>(MyString& a);
-	bool operator<(MyString& a);
-	bool operator>=(MyString& a);
-	bool operator<= (MyString& a);
-	MyString operator!(const MyString&);
-	MyString operator[](const MyString&);
-	MyString operator()(const MyString&);
-	MyString operator>>(const MyString&);
-	MyString operator>>(const MyString&);
+	MyString operator=(const MyString&);
+	MyString operator=(const MyString&);
+	bool operator==(const MyString& a);
+	bool operator!=(const MyString& a);
+	bool operator>(const MyString& a);
+	bool operator<(const MyString& a);
+	bool operator>=(const MyString& a);
+	bool operator<= (const MyString& a);
+	MyString operator!();
+	char& operator[](int idx);
+	MyString operator()(const MyString& a); //todo
+	MyString operator>>(const MyString& a); //todo
+	MyString operator>>(const MyString& a); //todo
 };
-

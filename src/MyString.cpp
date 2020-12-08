@@ -10,16 +10,43 @@ MyString::MyString() {
 
 MyString::MyString(int len) {
 	this->len = len;
-	str = new char[len];
+	this->str = new char[this->len];
 }
 
-MyString::MyString(const char* str) {}
+MyString::MyString(const char* str) {
+	this->len = strlen(str);
+	this->str = new char[this->len+1];
+	int i = 0;
+	for (; i < len; i++) {
+		this->str[i] = str[i];
+	}
+	i++;
+	this->str[i] = '/0';
+}
 
-MyString::MyString(std::string) {}
+MyString::MyString(std::string str) {
+	this->len = str.length();
+	this->str = new char[this->len + 1];
+	int i = 0;
+	for (; i < len; i++) {
+		this->str[i] = str[i];
+	}
+	i++;
+	this->str[i] = '/0';
+}
 
-MyString::MyString(const MyString&){}
+MyString::MyString(const MyString& a){
+	this->len = a.len;
+	this->str = new char[this->len + 1];
+	strcpy(this->str, a.str);
+}
 
-MyString::MyString(MyString&&) {}
+MyString::MyString(const MyString&& a) {
+	this->len = a.len;
+	this->str = new char[this->len + 1];
+	strcpy(this->str, a.str);
+	a.~MyString();
+}
 
 MyString::~MyString() {
 	delete[] str;
@@ -35,14 +62,15 @@ char* MyString::get() {
 }
 
 
-MyString MyString::operator+(MyString& a) {
+
+MyString MyString::operator+(const MyString& a) {
 	MyString new_str(len + a.len + 1);
 	strcat(new_str.str, str);
 	strcat(new_str.str, a.str);
 	return new_str;
 }
 
-MyString MyString::operator-(MyString& a) {
+MyString MyString::operator-(const MyString& a) {
 	char* tmp = new char[len + a.len + 1];
 	for (int i = 0; i < a.len; i++) {
 		for (int j = 0; j < len; j++) {
@@ -63,56 +91,99 @@ MyString MyString::operator*(int a) {
 	return new_str;
 }
 
-MyString MyString::operator=(const MyString&) {}
-
-MyString MyString::operator=(const MyString&) {}
-
-bool MyString::operator==(MyString& a) {
-	if (len != a.len) {
-		return false;
-	}
-	int i = 0;
-	for (; i < len; i++) {
-		if (a.str[i] != str[i]) {
-			return false;
-			break;
-		}
-	}
-	if (len == (i - 1)) {
-		return true;
-	}
+MyString MyString::operator=(const MyString& a) {
+	MyString new_str(a);
+	return new_str;
 }
 
-bool MyString::operator!=(MyString& a) {
-	if (len != a.len) {
+MyString MyString::operator=(const MyString& a) {
+	MyString new_str(a);
+	a.~MyString();
+	return new_str;
+}
+
+bool MyString::operator==(const MyString& a) {
+	int res = strcmp(str, a.str);
+	if (res == 0) {
 		return true;
 	}
-	int i = 0;
-	for (; i < len; i++) {
-		if (a.str[i] != str[i]) {
-			return true;
-			break;
-		}
-	}
-	if (len == (i - 1)) {
+	else {
 		return false;
 	}
 }
 
-bool MyString::operator>(MyString& a) {
+bool MyString::operator!=(const MyString& a) {
+	int res = strcmp(str, a.str);
+	if (res == 0) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+bool MyString::operator>(const MyString& a) {
+	int res = strcmp(str, a.str);
+	if (res > 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool MyString::operator<(const MyString& a) {
+	int res = strcmp(str, a.str);
+	if (res < 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool MyString::operator>=(const MyString& a) {
+	int res = strcmp(str, a.str);
+	if (res >= 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool MyString::operator<= (const MyString& a) {
+	int res = strcmp(str, a.str);
+	if (res <= 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+MyString MyString::operator!() {
+	MyString new_str(len + 1);
 	for (int i = 0; i < len; i++) {
-		if (a.str[i] != str[i]) {
-			return true;
-			break;
+		if (((int)str[i] > 64) && ((int)str[i] < 91)) {
+			new_str[i] = tolower(str[i]);
+		}
+		else if (((int)str[i] > 96) && ((int)str[i] < 123)) {
+			new_str[i] = toupper(str[i]);
+		}
+		else {
+			new_str[i] = str[i];
 		}
 	}
+	return new_str;
 }
 
-MyString MyString::operator<(const MyString&);
-MyString MyString::operator>=(const MyString&);
-MyString MyString::operator<= (const MyString&);
-MyString MyString::operator!(const MyString&);
-MyString MyString::operator[](const MyString&);
-MyString MyString::operator()(const MyString&);
-MyString MyString::operator>>(const MyString&);
-MyString MyString::operator>>(const MyString&);
+char& MyString::operator[](int idx) {
+	return str[idx];
+}
+
+MyString MyString::operator()(const MyString& a) {}
+
+MyString MyString::operator>>(const MyString& a) {}
+
+MyString MyString::operator>>(const MyString& a) {}
