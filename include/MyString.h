@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string.h>
 #include <string>
+#include <cstdint>
 
 class MyString {
  private:
@@ -27,35 +28,35 @@ class MyString {
 
   size_t length() const;
 
-  char *get();
+  char *get() const;
 
-  MyString operator+(MyString &string);
+  MyString operator+(MyString &string) const;
 
-  MyString operator-(MyString &string);
+  MyString operator-(MyString &string) const;
 
-  MyString operator*(size_t factor);
+  MyString operator*(size_t factor) const;
 
-  MyString operator=(MyString &string);
+  MyString &operator=(const MyString &string);
 
-  MyString operator=(MyString &&string);
+  MyString &operator=(MyString &&string) noexcept;
 
   bool operator==(const MyString &string) const;
 
   bool operator!=(const MyString &string) const;
 
-  bool operator>(const MyString &string);
+  bool operator>(const MyString &string) const;
 
-  bool operator<(const MyString &string);
+  bool operator<(const MyString &string) const;
 
-  bool operator>=(const MyString &string);
+  bool operator>=(const MyString &string) const;
 
-  bool operator<=(const MyString &string);
+  bool operator<=(const MyString &string) const;
 
   MyString operator!();
 
-  char operator[](size_t index);
+  char &operator[](size_t index);
 
-  int32_t operator()(const char *string);
+  int32_t operator()(const char *string) const;
 
   friend std::istream &operator>>(std::istream &in, MyString &string);
 
