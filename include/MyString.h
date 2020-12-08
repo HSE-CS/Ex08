@@ -2,6 +2,7 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 #include <iostream>
+#include <string>
 
 class MyString {
  public:
@@ -34,4 +35,4 @@ class MyString {
   char *st;
 };
 
-#endif  //INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
