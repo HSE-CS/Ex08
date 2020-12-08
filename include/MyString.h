@@ -1,17 +1,18 @@
 // Copyright 2020 Khoroshavina Ekaterina
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
-#include <string>
 #include <cstring>
 #include <string.h>
+#include <string>
 
 class MyString {
  private:
      char* string;
      int len;
+ 
  public:
-     MyString(const char* str = nullptr);
-     MyString(const std::string& str);
+     explicit MyString(const char* str = nullptr);
+     explicit MyString(const std::string& str);
      MyString(const MyString& str);
      MyString(MyString&& str) noexcept;
      ~MyString();
