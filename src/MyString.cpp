@@ -9,7 +9,7 @@ MyString::MyString(char *str) {
 
 MyString::MyString(std::string str) {
   string = new char[str.size()];
-  snprintf(string, strlen(str.size()), "%s", str.c_str());
+  snprintf(string, str.size(), "%s", str.c_str());
 }
 
 MyString::MyString(const MyString &str) {
@@ -120,7 +120,7 @@ char &MyString::operator[](const size_t ind) const {
 }
 
 int MyString::operator()(const char *str) {
-  char *p_find = strstr(buf, s);
+  char *p_find = strstr(string, str);
   if (nullptr == p_find)
     return -1;
   else

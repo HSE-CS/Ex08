@@ -4,6 +4,7 @@
 
 #include <string>
 #include <cstring>
+#include <iostream>
 
 class MyString {
  private:
