@@ -2,7 +2,6 @@
 #include "MyString.h"
 
 int main() {
-
     MyString s1("Hello,");
     MyString s2("world!");
     MyString s3;
