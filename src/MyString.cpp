@@ -42,15 +42,15 @@ MyString::~MyString() {
     this->len = 0;
 }
 
-size_t MyString::length() {
+MyString::int MyString::length() {
     return this->len;
 }
 
-char* MyString::get() {
+MyString::tchar* MyString::get() {
     return this->str;
 }
 
-MyString MyString::operator+(const MyString& s) {
+MyStrin::MyString::operator+(const MyString& s) {
     unsigned int len1 = this->length();
     unsigned int len2 = s.len + len1;
     char* new_str = new char[len2 + 1];
@@ -68,7 +68,7 @@ MyString MyString::operator+(const MyString& s) {
     return nstr;
 }
 
-MyString MyString::operator-(const MyString& s) {
+MyString::MyString::operator-(const MyString& s) {
     std::string temp = (std::string(this->str));
     int i = 0;
     while (i < s.len) {
@@ -81,7 +81,7 @@ MyString MyString::operator-(const MyString& s) {
     return new_str;
 }
 
-MyString MyString::operator*(size_t n) {
+MyString::MyString::operator*(int n) {
     char* new_str = new char[len * n + 1];
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = i * len; j < (i + 1) * len; ++j) {
@@ -93,7 +93,7 @@ MyString MyString::operator*(size_t n) {
     return tmp;
 }
 
-MyString& MyString::operator=(const MyString& s) {
+MyString&::MyString::operator=(const MyString& s) {
     if (s.stroka == nullptr) {
         this->len = 0;
         this->stroka = nullptr;
@@ -107,7 +107,7 @@ MyString& MyString::operator=(const MyString& s) {
     return *this;
 }
 
-MyString& MyString::operator=(MyString&& s) {
+MyString&::MyString::operator=(MyString&& s) {
     this->len = s.len;
     this->stroka = s.stroka;
     s.len = 0;
@@ -115,7 +115,7 @@ MyString& MyString::operator=(MyString&& s) {
     return *this;
 }
 
-bool MyString::operator==(const MyString& s) {
+MyString::bool MyString::operator==(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) == 0) {
         return 1;
     }else {
@@ -123,7 +123,7 @@ bool MyString::operator==(const MyString& s) {
     }
 }
 
-bool MyString::operator!=(const MyString& s) {
+MyString::bool MyString::operator!=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) != 0) {
         return 1;
     }else {
@@ -131,7 +131,7 @@ bool MyString::operator!=(const MyString& s) {
     }
 }
 
-bool MyString::operator>(const MyString& s) {
+MyString::bool MyString::operator>(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) > 0) {
         return 1;
     }else {
@@ -139,7 +139,7 @@ bool MyString::operator>(const MyString& s) {
     }
 }
 
-bool MyString::operator<(const MyString& s) {
+MyString::bool MyString::operator<(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) < 0) {
         return 1;
     }else {
@@ -147,7 +147,7 @@ bool MyString::operator<(const MyString& s) {
     }
 }
 
-bool MyString::operator>=(const MyString& s) {
+MyString::bool MyString::operator>=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) >= 0) {
         return 1;
     }else {
@@ -155,7 +155,7 @@ bool MyString::operator>=(const MyString& s) {
     }
 }
 
-bool MyString::operator<=(const MyString& s) {
+MyString::bool MyString::operator<=(const MyString& s) {
     if (strcmp(this->stroka, s.stroka) <=0) {
         return 1;
     }else {
@@ -163,7 +163,7 @@ bool MyString::operator<=(const MyString& s) {
     }
 }
 
-MyString MyString::operator!() {
+MyString::MyString::operator!() {
     MyString temp(*this);
     for (size_t i = 0; i < temp.len; ++i) {
         if (temp.stroka[i] >= 'a' && temp.stroka[i] <= 'z') {
@@ -176,11 +176,11 @@ MyString MyString::operator!() {
     return temp;
 }
 
-char MyString::operator[](size_t n) {
+MyString::char MyString::operator[](int n) {
     return this->stroka[n];
 }
 
-int MyString::operator()(const char* s) {
+MyString::int MyString::operator()(const char* s) {
     if (strstr(this->stroka, s)==NULL) {
         return -1;
     }else {
@@ -188,10 +188,10 @@ int MyString::operator()(const char* s) {
     }
 }
 
-std::ostream& operator>>(std::ostream& os, MyString& s) {
+MyString::std::ostream& operator>>(std::ostream& os, MyString& s) {
     return os << s.get();
 }
 
-std::istream& operator>>(std::istream& is, MyString& s) {
+MyString::std::istream& operator>>(std::istream& is, MyString& s) {
     return is >> s.get();
 }

@@ -11,7 +11,7 @@
 class MyString {
  private:
 	 char* stroka;
-     size_t len;
+     int len;
 
  public:
 	 explicit MyString(const char* = nullptr);
@@ -19,11 +19,11 @@ class MyString {
 	 MyString(const MyString&);
 	 MyString(MyString&&);
 	 ~MyString();
-	 size_t length();
+	 int length();
 	 char* get();
 	 MyString operator+(const MyString& s);
 	 MyString operator-(const MyString& s);
-	 MyString operator*(const size_t n);
+	 MyString operator*(const int n);
 	 MyString& operator=(const MyString& s);
 	 MyString& operator=(MyString&& s);
 	 bool operator==(const MyString& s);
@@ -33,7 +33,7 @@ class MyString {
 	 bool operator>=(const MyString& s);
 	 bool operator<=(const MyString& s);
 	 MyString operator!();
-	 char operator[](size_t n);
+	 char operator[](int n);
 	 int operator()(const char*);
 	 friend std::ostream& operator>>(std::ostream& os, MyString& s);
 	 friend std::istream& operator>>(std::istream& is, MyString& s);
