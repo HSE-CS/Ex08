@@ -17,18 +17,18 @@ class MyString {
     explicit MyString(const char* str = nullptr) {
         if (str != nullptr) {
             size = strlen(str);
-            this->str = new char[size + 1];
+            this->str = new char[size];
             snprintf(this->str, size + 1, "%s", str);
         } else {
             size = 0;
-            this->str = new char[size + 1];
+            this->str = new char[size];
             this->str[0] = 0;
         }
     }
 
     explicit MyString(std::string str) {
-        size = str.size();
-        this->str = new char[size + 1];
+        size = str.length();
+        this->str = new char[size];
         for (int i = 0; i < size; i++) {
             this->str[i] = str[i];
         }
@@ -36,7 +36,7 @@ class MyString {
 
     MyString(const MyString& obj) {
         size = obj.size;
-        this->str = new char[size + 1];
+        this->str = new char[size];
         snprintf(this->str, size + 1, "%s", obj.str);
     }
 

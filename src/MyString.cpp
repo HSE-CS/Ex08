@@ -37,7 +37,7 @@ MyString MyString::operator*(const unsigned int n) {
 MyString &MyString::operator=(const MyString &obj) {
     delete str;
     size = obj.size;
-    str = new char[size + 1];
+    str = new char[size];
     snprintf(this->str, size + 1, "%s", obj.str);
     return *this;
 }
