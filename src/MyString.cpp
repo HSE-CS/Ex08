@@ -49,21 +49,22 @@ MyString MyString::operator+(const MyString &str) {
 }
 
 MyString MyString::operator-(const MyString &str) {
-  char *newStr = new char[strlen(string)];
-  int index = 0;
-  for (int i = 0; i < strlen(string); i++) {
-    bool found = false;
-    for (int j = 0; j < strlen(str.string); i++) {
-      if (str.string[j] == string[i]) {
-        found = true;
+  unsigned int my_len = strlen(string);
+  unsigned int other_len = strlen(str.string);
+  char* buf = new char[my_len + 1];
+  unsigned int new_index = 0;
+  for (unsigned int my_index = 0; my_index < my_len; my_index++) {
+    bool is_consist = false;
+    for (unsigned int other_index = 0; other_index < other_len; other_index++)
+      if (string[my_index] == str.string[other_index]) {
+        is_consist = true;
+        break;
       }
-    }
-    if (!found) {
-      newStr[index] = string[i];
-      index++;
+    if (!is_consist) {
+      buf[new_index++] = string[my_index];
     }
   }
-  return MyString(newStr);
+    return MyString(buf);
 }
 
 MyString MyString::operator*(const size_t count) {
@@ -126,11 +127,18 @@ char &MyString::operator[](const size_t ind) const {
 }
 
 int MyString::operator()(const char *str) {
-  char *p_find = strstr(string, str);
-  if (nullptr == p_find)
-    return -1;
-  else
-    return p_find - str;
+  unsigned int sub_index = 0;
+  unsigned int len = strlen(string);
+  for (int my_index = 0; my_index < len; my_index++) {
+    if (string[my_index] == str[sub_index]) {
+      sub_index += 1;
+      if (sub_index >= strlen(str))
+        return my_index - strlen(str) + 1;
+    } else {
+      sub_index = 0;
+    }
+  }
+  return -1;
 }
 
 std::ostream &operator<<(std::ostream &os, MyString &str) {
