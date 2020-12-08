@@ -5,7 +5,7 @@ MyString::MyString(const char* new_str) {
   if (new_str != nullptr) {
   len = strlen(new_str);
   str = new char[len + 1];
-  strcpy(str, new_str);
+  snprintf(str, len + 1, "%s", new_str);
   } else {
   str = nullptr;
   len = 0;
@@ -15,13 +15,13 @@ MyString::MyString(const char* new_str) {
 MyString::MyString(std::string new_str) {
   len = new_str.size();
   str = new char[len + 1];
-  strcpy(str, new_str.c_str());
+  snprintf(str, len + 1, "%s", new_str.c_str());
 }
 
 MyString::MyString(const MyString& new_str) {
   len = new_str.len;
   str = new char[len + 1];
-  strcpy(str, new_str.str);
+  snprintf(str, len + 1, "%s", new_str.str);
 }
 
 MyString::MyString(MyString&& new_str) {
@@ -46,8 +46,8 @@ char* MyString::get() const {
 MyString MyString::operator+(const MyString& s_1) {
   size_t sum_len = len + s_1.length();
   char* sum_str = new char[sum_len + 1];
-  strcpy(sum_str, str);
-  strcpy(sum_str + len, s_1.get());
+  snprintf(sum_str, len + 1, "%s", str);
+  snprintf(sum_str + len, s_1.length() + 1, "%s", s_1.get());
   return MyString(sum_str);
 }
 
@@ -55,7 +55,7 @@ MyString MyString::operator-(const MyString& s_1) {
   std::string new_str = std::string(str, str + len);
   for (size_t i{ 0 }; i < s_1.length(); ++i) {
   new_str.erase(std::remove(new_str.begin(), new_str.end(), s_1.get()[i]),
-  new_str.end());
+    new_str.end());
   }
   return MyString(new_str);
 }
@@ -71,7 +71,7 @@ MyString MyString::operator*(const size_t mult) {
 MyString& MyString::operator=(const MyString& s_1) {
   len = s_1.length();
   str = new char[len + 1];
-  strcpy(str, s_1.get());
+  snprintf(str, len + 1, "%s", s_1.get());
   return *this;
 }
 
@@ -109,12 +109,12 @@ bool MyString::operator<=(const MyString& s) {
 
 MyString MyString::operator!() {
   char* new_str = new char[len + 1];
-  strcpy(new_str, str);
+  snprintf(new_str, len + 1, "%s", str);
   for (size_t i = 0; i < len; i++) {
   if (new_str[i] >= 'a' && new_str[i] <= 'z')
-  new_str[i] += 'A' - 'a';
+    new_str[i] += 'A' - 'a';
   else if (new_str[i] >= 'A' && new_str[i] <= 'Z')
-  new_str[i] += 'a' - 'A';
+    new_str[i] += 'a' - 'A';
   }
   return MyString(new_str);
 }
