@@ -47,8 +47,11 @@ MyString::~MyString() {
     delete[] string;
 }
 
-unsigned int MyString::length() {
-    return strlen(string);
+unsigned int MyString::length() const {
+    if (string)
+        return strlen(string);
+    else
+        return 0;
 }
 
 char* MyString::get() {
