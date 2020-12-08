@@ -1,14 +1,15 @@
 // Copyright 2020 mkhorosh
 #include "MyString.h"
 #include <string>
+#include <cstring>
 #include <iostream>
 #define _CRT_SECURE_NO_WARNINGS
 #include <algorithm>
 
 MyString::MyString(const char *nstring) {  // pointer
   if (nstring != nullptr) {
-    this->string = new char[1 + std::strlen(nstring)];
-    std::strncpy(this->string, nstring, 1 + std::strlen(nstring));
+    this->string = new char[1 + strlen(nstring)];
+    std::strncpy(this->string, nstring, 1 + strlen(nstring));
   } else {
     this->string = new char[1];
     memset(this->string, 0, 1);
@@ -36,7 +37,7 @@ MyString::~MyString() {  // destruct
 }
 
 int MyString::length() const {  // string length
-  return std::strlen(this->string);
+  return strlen(this->string);
 }
 
 char *MyString::get() const {  // get pointer
