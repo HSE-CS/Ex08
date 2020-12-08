@@ -2,7 +2,7 @@
 #include <iostream>
 #include "MyString.h"]
 
-int main(){
+int main() {
     MyString myString("Hello, world");
     std::cout << "str.get() = " << myString.get() << std::endl;
     std::cout << "str.length() = " << myString.length() << std::endl;
