@@ -30,7 +30,7 @@ class MyString {
 
      unsigned int length() const;
 
-     MyString operator+(const MyString &valueSringArray) const;
+     MyString operator+(const MyString &valueSringArray);
 
      MyString operator-(const MyString &valueSringArray) const;
 

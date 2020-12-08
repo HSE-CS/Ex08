@@ -46,19 +46,18 @@ MyString::~MyString() {
     delete this->stringArray;
 }
 
-MyString MyString::operator+(const MyString &s) const {
+MyString MyString::operator+(const MyString &s){
     return MyString(std::string(this->get()) + std::string(s.get()));
 }
 
 
 MyString MyString::operator-(const MyString &s) const {
     std::string str(this->get());
-    unsigned int iter = 0;
-    while (iter < s.length()) {
-        while (str.find(s.stringArray[iter]) != -1) {
-            str.erase(str.find(s.stringArray[iter]), 1);
-        }
-        iter++;
+    unsigned int q = 0;
+    while (q < s.length()) {
+        while (str.find(s.stringArray[q]) != -1)
+            str.erase(str.find(s.stringArray[q]), 1);
+        q++;
     }
     return MyString(str);
 }
