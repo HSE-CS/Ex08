@@ -58,21 +58,15 @@ MyString MyString::operator+(const MyString& s) {
 }
 
 MyString MyString::operator-(const MyString& s) {
-    unsigned l = len;
-    char* buf1 = new char[l+1];
-    char* buf2 = new char[l+1];
-    strcpy(buf1, str);
-    char* pch = strpbrk(buf1, s.str);
-    while (pch != NULL) {
-      *pch = '\0';
-      strcpy(buf2, buf1);
-      strcat(buf2, pch+1);
-      pch = strpbrk(buf1, s.str);
+    std::string res(this->get());
+    size_t i = 0;
+    while (i < s.length()) {
+      while (res.find(s.str[i]) != -1) {
+        res.erase(res.find(s.str[i]), 1);
+      }
+      i++;
     }
-    MyString ret(buf1);
-    delete[] buf1;
-    delete[] buf2;
-    return ret;
+    return MyString(res);
 }
 
 MyString MyString::operator*(int x) {
@@ -106,37 +100,37 @@ MyString& MyString::operator=(MyString&& s) {
     return *this;
 }
 
-bool MyString::operator!= (const MyString& s1, const MyString& s2) {
-    if (strcmp(s1.str, s2.str))
+bool MyString::operator!=(const MyString& s) {
+    if (strcmp(this->get, s.get()))
       return true;
     else
       return false;
 }
 
-bool MyString::operator== (const MyString& s1, const MyString& s2) {
-    return !(s1 != s2);
+bool MyString::operator==(const MyString& s) {
+    return !(this != s);
 }
 
-bool MyString::operator> (const MyString& s1, const MyString& s2) {
-    if (strcmp(s1.str, s2.str) > 0)
+bool MyString::operator>(const MyString& s) {
+    if (strcmp(this->get, s.get()) > 0)
       return true;
     else
       return false;
 }
 
-bool MyString::operator< (const MyString& s1, const MyString& s2) {
-    if (strcmp(s1.str, s2.str) < 0)
+bool MyString::operator<(const MyString& s) {
+    if (strcmp(this->get, s.get()) < 0)
       return true;
     else
       return false;
 }
 
-bool MyString::operator>= (const MyString& s1, const MyString& s2) {
-    return ((s1>  s2) || (s1 == s2));
+bool MyString::operator>=(const MyString& s) {
+    return ((this >  s) || (this == s));
 }
 
-bool MyString::operator<= (const MyString& s1, const MyString& s2) {
-    return ((s1 < s2) || (s1 == s2));
+bool MyString::operator<=(const MyString& s) {
+    return ((this < s) || (this == s));
 }
 
 std::ostream& MyString::operator<<(std::ostream& os, MyString& s) {
@@ -144,28 +138,7 @@ std::ostream& MyString::operator<<(std::ostream& os, MyString& s) {
 }
 
 std::istream& MyString::operator>>(std::istream& is, MyString& s) {
-    char* buf = new char[100];
-    char ch;
-    ch = is.get();
-    int i = 0, len = 100;
-    while ((ch != '\n') && (ch != 0)) {
-      if (i == len) {
-        len+=100;
-        char* buf2 = new char[len];
-        buf[len]='\0';
-        strcpy(buf2, buf);
-        delete[] buf;
-        char* buf = new char[len];
-        strcpy(buf, buf2);
-        delete[] buf2;
-      }
-      buf[i] = ch;
-      i++;
-      ch = is.get();
-    }
-    s.len = strlen(buf);
-    strcpy(s.str, buf);
-    return is;
+    return is >> s.str;
 }
 
 char& MyString::operator[] (const int index) {
