@@ -79,7 +79,6 @@ MyString& MyString::operator=(MyString&& str) {
   this->arString = str.get();
   str.arString = nullptr;
   return *this;
-  
 }
 
 bool MyString::operator==(const MyString& str) const {
