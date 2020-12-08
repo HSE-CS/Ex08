@@ -1,4 +1,5 @@
 // Copyright 2020 GHA Test Team
+#include "MyString.h"
 
 #include <gtest/gtest.h>
 #include <string>
@@ -103,7 +104,7 @@ TEST(MyStringTest, test15) {
 TEST(MyStringTest, test16) {
   MyString a("45");
   char b = '5';
-  EXPECT_EQ(b,"454545" a[1]);
+  EXPECT_EQ(b, a[1]);
 }
 
 TEST(MyStringTest, test17) {
