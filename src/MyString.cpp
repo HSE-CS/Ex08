@@ -7,8 +7,7 @@ MyString::MyString(const char* p) {
         str = new char[len + 1];
         for (size_t i = 0; i <= len; i++)
             str[i] = p[i];
-    }
-    else{
+    } else {
         len = 0;
         str = nullptr;
     }
@@ -17,7 +16,7 @@ MyString::MyString(const char* p) {
 MyString::MyString(std::string p) {
     len = p.size();
     str = new char[len + 1];
-    for(size_t i = 0; i <= len; i++)
+    for( size_t i = 0; i <= len; i++)
         str[i] = p[i];
 }
 
@@ -89,7 +88,7 @@ bool MyString::operator!=(const MyString & p) {
 }
 
 bool MyString::operator>(const MyString & p) {
-   return(strcmp(str, p.get()) == 1);
+    return(strcmp(str, p.get()) == 1);
 }
 
 bool MyString::operator<(const MyString & p) {
