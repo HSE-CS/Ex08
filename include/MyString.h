@@ -58,9 +58,9 @@ class MyString {
 
      int operator()(const char *valueStringArray) const;
 
-     friend std::ostream &operator<<(std::ostream &valueStream, MyString &valueString);
+     friend std::ostream &operator<<(std::ostream &vS, MyString &vSt);
 
-     friend std::istream &operator>>(std::istream &valueStream, MyString &valueString);
+     friend std::istream &operator>>(std::istream &vS, MyString &vSt);
 };
 
 #endif  // INCLUDE_MYSTRING_H_
