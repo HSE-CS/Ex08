@@ -21,7 +21,6 @@ MyString::MyString(std::string p) {
     str = new char[len + 1];
     for (size_t i = 0; i <= len; i++)
         str[i] = p[i];
-
 }
 
 MyString::MyString(const MyString& p) {
