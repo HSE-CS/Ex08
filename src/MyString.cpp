@@ -83,13 +83,10 @@ MyString MyString::operator-(const MyString& second_string) {
 }
 
 MyString MyString::operator*(unsigned int number) {
-  unsigned int str_len = length();
-  unsigned int new_str_len = 0;
-  char* new_str = new char[str_len * number + 1];
-  for (unsigned int i = 0; i < number; i++)
-    for (unsigned int j = 0; j < str_len; j++)
-      new_str[new_str_len++] = my_string[j];
-  new_str[new_str_len] = '\0';
+  std::string new_str;
+  unsigned int len = length();
+  for (unsigned int i = 0; i < len; i++)
+    new_str.append(get());
   return MyString(new_str);
 }
 

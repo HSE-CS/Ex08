@@ -1,6 +1,9 @@
 // Copyright 2020 GHA Test Team
 #include "MyString.h"
 #include<stdio.h>
+#include <string>
+#include <cstring>
+#include <iostream>
 
 
 int main() {
@@ -64,8 +67,13 @@ int main() {
   std::cout << "Find hello in STR2: " << str2("hello") << std::endl;
   //
   std::cout << "STR2 in COUT: " << str2 << std::endl;
-  MyString str9;
-  std::cin >> str9;
-  std::cout << str9;
+  // MyString str9;
+  // std::cin >> str9;
+  // std::cout << str9;
+  MyString a("123");
+  int b = 3;
+  MyString c;
+  c = a * b;
+  std::cout << c.get() << std::endl;
   return 0;
 }
