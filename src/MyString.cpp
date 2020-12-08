@@ -12,7 +12,8 @@ MyString::MyString(const char* strin) {
         }
         newStr[length - 1] = '\0';
         this->str = newStr;
-    } else {
+    }
+    else {
         char* newStr = new char[1];
         newStr[0] = '\0';
         this->str = newStr;
@@ -28,7 +29,7 @@ MyString::MyString(std::string str) {
     this->str = tempString;
 }
 
-MyString::MyString(const MyString &str) {
+MyString::MyString(const MyString& str) {
     this->str = str.str;
 }
 
@@ -40,7 +41,7 @@ MyString::MyString(MyString&& strin) {
     }
     tmp[length] = '\0';
     this->str = tmp;
-//    strin.str = nullptr;
+    //    strin.str = nullptr;
 }
 
 MyString::~MyString() { }
@@ -53,23 +54,23 @@ char* MyString::get() {
     return str;
 }
 
-MyString MyString::operator+(MyString& myString) {
-    int summaryLength = this->length() + myString.length();
+MyString MyString::operator+(const MyString& myString) {
+    int summaryLength = this->length() + strlen(myString.str);
     char* tempString = new char[summaryLength + 1];
     for (int i = 0; i < this->length(); i++) {
         tempString[i] = str[i];
     }
     for (int i = this->length(); i < summaryLength; i++) {
-        tempString[i] = myString.str[i- this->length()];
+        tempString[i] = myString.str[i - this->length()];
     }
     tempString[summaryLength] = '\0';
     MyString result(tempString);
     return result;
 }
 
-MyString MyString::operator-(MyString& myString) {
+MyString MyString::operator-(const MyString& myString) {
     std::string s(this->get());
-    for (char ch : std::string(myString.get())) {
+    for (char ch : std::string(myString.str)) {
         while (s.find(ch) != -1) {
             s.erase(s.find(ch), 1);
         }
@@ -92,7 +93,7 @@ MyString MyString::operator*(int num) {
     return result;
 }
 
-MyString MyString::operator=(MyString& myString) {
+MyString MyString::operator=(const MyString& myString) {
     this->str = myString.str;
     return *this;
 }
@@ -103,32 +104,32 @@ MyString MyString::operator=(MyString&& myString) {
     return *this;
 }
 
-bool MyString::operator==(MyString& myString) {
+bool MyString::operator==(const MyString& myString) {
     bool result = !strcmp(this->get(), myString.str);
     return result;
 }
 
-bool MyString::operator!=(MyString& myString) {
+bool MyString::operator!=(const MyString& myString) {
     bool result = strcmp(this->get(), myString.str);
     return result;
 }
 
-bool MyString::operator>(MyString& myString) {
+bool MyString::operator>(const MyString& myString) {
     bool result = (strcmp(str, myString.str) > 0);
     return result;
 }
 
-bool MyString::operator<(MyString& myString) {
+bool MyString::operator<(const MyString& myString) {
     bool result = (strcmp(str, myString.str) < 0);
     return result;
 }
 
-bool MyString::operator>=(MyString& myString) {
+bool MyString::operator>=(const MyString& myString) {
     bool result = (strcmp(str, myString.str) >= 0);
     return result;
 }
 
-bool MyString::operator<=(MyString& myString) {
+bool MyString::operator<=(const MyString& myString) {
     bool result = (strcmp(str, myString.str) <= 0);
     return result;
 }
@@ -138,9 +139,11 @@ MyString MyString::operator!() {
     for (int i = 0; i < length(); i++) {
         if (this->str[i] >= 65 && this->str[i] <= 90) {
             res[i] = str[i] + 32;
-        } else if (this->str[i] >= 97 && this->str[i] <= 122) {
+        }
+        else if (this->str[i] >= 97 && this->str[i] <= 122) {
             res[i] = str[i] - 32;
-        } else {
+        }
+        else {
             res[i] = str[i];
         }
     }
@@ -152,7 +155,8 @@ MyString MyString::operator!() {
 char MyString::operator[](int index) {
     if (index < 0 || index >= this->length()) {
         throw "IndexOutOfBoundsException";
-    } else {
+    }
+    else {
         return str[index];
     }
 }
