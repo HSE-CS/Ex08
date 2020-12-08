@@ -1,0 +1,7 @@
+.idea
+cmake-build-debug
+
+.github
+img
+
+/src/CMakeLists.txt
