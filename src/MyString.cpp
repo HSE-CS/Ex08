@@ -15,13 +15,11 @@ unsigned int MyString::length() const {
 
 MyString::MyString(const char* initial_string) {
   if (initial_string == nullptr) {
-    char* new_str = new char[1];
-    my_string = new_str;
+    my_string = new char[1];
   } else {
     unsigned int len = strlen(initial_string) + 1;
-    char* new_str = new char[len];
-    snprintf(new_str, len, "%s", initial_string);
-    my_string = new_str;
+    my_string = new char[len];
+    snprintf(my_string, len, "%s", initial_string);
   }
 }
 
@@ -33,9 +31,8 @@ MyString::MyString(std::string initial_string) {
 
 MyString::MyString(const MyString& initial_string) {
   unsigned int str_len = initial_string.length() + 1;
-  char* new_str = new char[str_len];
-  snprintf(new_str, str_len, "%s", initial_string.get());
-  my_string = new_str;
+  my_string = new char[str_len];
+  snprintf(my_string, str_len, "%s", initial_string.get());
 }
 
 MyString::MyString(MyString&& initial_string) noexcept {
