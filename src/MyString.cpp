@@ -149,4 +149,3 @@ std::ostream& operator<<(std::ostream& p, MyString& n) {
 std::istream& operator>>(std::istream& p, MyString& n) {
     return p >> n.get();
 }
-
