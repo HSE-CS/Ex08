@@ -67,7 +67,9 @@ MyString::~MyString() {
 }
 
 unsigned int MyString::length() {
-    if (string) return strlen(this->string);
+    if (string) {
+        return strlen(this->string);
+    }
     else {
         return 0;
     }
@@ -187,9 +189,8 @@ bool MyString::operator<(const MyString& str) {
 bool MyString::operator>=(const MyString& str) {
     if (strcmp(this->string, str.string) != -1) {
         return 1;
-    }
-    else {
-        return 0; 
+    } else {
+        return 0;
     }
 }
 
@@ -210,12 +211,12 @@ MyString MyString::operator!() {
     for (unsigned int i = 0; i < this->len; i++) {
         if (this->string[i] >= 'a' && this->string[i] <= 'z') {
             new_str[j] = this->string[i] - 32;
-        }
-        else {
+        } else {
             if (this->string[i] >= 'A' && this->string[i] <= 'Z') {
                 new_str[j] = this->string[i] + 32;
+            } else {
+                new_str[j] = this->string[i];
             }
-            else new_str[j] = this->string[i];
         }
         j++;
     }
@@ -238,7 +239,7 @@ int MyString::operator()(const char* str) {
     if (search == nullptr) {
         return -1;
     } else {
-        return search - this->string; 
+        return search - this->string;
     }
 }
 

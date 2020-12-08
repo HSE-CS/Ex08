@@ -12,9 +12,9 @@ class MyString {
     unsigned int len;
 
  public:
-    explicit MyString();
+    MyString();
     explicit MyString(const char*);
-    MyString(std::string);
+    explicit MyString(std::string);
     MyString(const MyString&);
     MyString(MyString&&);
     ~MyString();
