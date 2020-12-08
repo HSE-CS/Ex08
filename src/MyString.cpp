@@ -112,8 +112,7 @@ MyString MyString::operator!() {
     for (int i = 0; i < this->length(); i++) {
         if (std::isupper(this->string[i])) {
             this->string[i] = std::tolower(this->string[i]);
-        }
-        else {
+        } else {
             this->string[i] = std::toupper(this->string[i]);
         }
     }
@@ -130,8 +129,7 @@ int MyString::operator()(const char* str) {
     char* temp = strstr(this->get(), str);
     if (temp == nullptr) {
         return -1;
-    }
-    else {
+    } else {
         return (temp - this->get());
     }
 }
