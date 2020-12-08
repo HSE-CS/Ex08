@@ -35,7 +35,7 @@ class MyString {
 
   MyString operator-(const MyString &string) const;
 
-  MyString operator*(size_t factor) const;
+  MyString operator*(size_t factor);
 
   MyString &operator=(const MyString &string);
 

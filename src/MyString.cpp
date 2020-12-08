@@ -63,7 +63,7 @@ MyString MyString::operator-(const MyString &string) const {
   return MyString(temp);
 }
 
-MyString MyString::operator*(size_t factor) const {
+MyString MyString::operator*(size_t factor) {
   std::string result;
   for (size_t i = 0; i < factor; i++) result.append(this->get());
   return MyString(result);
