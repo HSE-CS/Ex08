@@ -48,9 +48,9 @@ MyString MyString::operator+(const MyString &str) {
     return MyString(tmp);
 }
 
-int findCharacter(char *str, char c){
+int findCharacter(char *str, char c) {
     for (int i = 0; i < strlen(str); ++i) {
-        if (str[i] == c){
+        if (str[i] == c) {
             return i;
         }
     }
@@ -61,7 +61,7 @@ MyString MyString::operator-(const MyString &str) {
     char *tmp = new char[this->length()]{'\0'};
     int tmp_len = 0;
     for (int i = 0; i < this->length(); ++i) {
-        if (findCharacter(str.str, this->str[i]) == -1){
+        if (findCharacter(str.str, this->str[i]) == -1) {
             tmp[tmp_len++] = this->str[i];
         }
     }
@@ -71,7 +71,7 @@ MyString MyString::operator-(const MyString &str) {
 MyString MyString::operator*(size_t num) {
     char *tmp = new char[num * this->length() + 1];
     for (int i = 0; i < num; ++i) {
-        strcat(tmp, this->str);
+        snprintf(tmp, this->length(), "%s", this->str);
     }
     return MyString(tmp);
 }
@@ -93,8 +93,6 @@ MyString & MyString::operator=(MyString &&str) {
 }
 
 MyString MyString::operator!() {
-    std::cout << this->str << " - " << this->length() << std::endl;
-
     for (int i = 0; i < this->length(); ++i) {
         if (this->str[i] >= 'A' && this->str[i] <= 'Z')
             this->str[i] += 32;
@@ -136,7 +134,7 @@ char & MyString::operator[](unsigned int index) const {
 
 int MyString::operator()(const char* substring) {
     if (strstr(this->str, substring) != nullptr)
-        return (int) (strstr(this->str, substring) - this->str);
+        return strstr(this->str, substring) - this->str;
     return -1;
 }
 

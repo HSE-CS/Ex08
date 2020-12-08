@@ -9,9 +9,10 @@
 class MyString {
  private:
   char *str;
+
  public:
-  MyString(const char * = nullptr);
-  MyString(std::string str);
+  explicit MyString(const char * = nullptr);
+  explicit MyString(std::string str);
   MyString(const MyString& str);
   MyString(MyString&& str);
 

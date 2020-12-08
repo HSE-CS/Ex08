@@ -1,27 +1,24 @@
 // Copyright 2020 Dmitry Vargin
 #include <iostream>
-#include "MyString.h"
-using namespace std;
+#include "MyString.h"]
 
 int main(){
     MyString myString("Hello, world");
-
-    cout << "str.get() = " << myString.get() << endl;
-    cout << "str.length() = " << myString.length() << endl;
-    cout << endl;
+    std::cout << "str.get() = " << myString.get() << std::endl;
+    std::cout << "str.length() = " << myString.length() << std::endl;
+    std::cout << std::endl;
     MyString s1;
-    cout << "Enter s1(test cin >>): ";
-    cin >> s1;
-    cout << endl;
+    std::cout << "Enter s1(test cin >>): ";
+    std::cin >> s1;
+    std::cout << std::endl;
     MyString s2("ASD");
     myString = s1 + s2;
-    cout << s1 << " + " << s2 << " = " << myString << endl;
-    cout << s1 << " == " << s2 << " = " << (s1 == s2) << endl;
-    cout << "s1[1]" << " = " << s1[1] << endl;
-    cout << "myString(s2)" << " = " << myString("ASD") << endl;
-    cout << myString << " - " << myString.length() << endl;
+    std::cout << s1 << " + " << s2 << " = " << myString << std::endl;
+    std::cout << s1 << " == " << s2 << " = " << (s1 == s2) << std::endl;
+    std::cout << "s1[1]" << " = " << s1[1] << std::endl;
+    std::cout << "myString(s2)" << " = " << myString("ASD") << std::endl;
     s1 = !myString;
-    cout << "!myString = " << myString << endl;
+    std::cout << "!myString = " << myString << std::endl;
 
     return 0;
 }
