@@ -11,7 +11,6 @@ MyString::MyString(const char *new_string) {
         string = nullptr;
         len = 0;
     }
-
 }
 
 MyString::MyString(std::string new_string) {
