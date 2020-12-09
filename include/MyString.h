@@ -9,6 +9,7 @@
 class MyString {
  private:
     char *str = new char;
+
  public:
     explicit MyString(const char * = nullptr);
     explicit MyString(const std::string&);
@@ -40,4 +41,4 @@ class MyString {
     MyString operator!();    //  - у латинских букв меняется регистр.
 };
 
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
