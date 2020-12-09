@@ -41,7 +41,7 @@ size_t MyString::length() {
 char* MyString::get() {
     return string;
 }
-   
+
 MyString MyString::operator+(const MyString &add_str) {
   std::string tmp;
   tmp.append(string);
