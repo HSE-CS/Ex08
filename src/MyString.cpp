@@ -3,7 +3,7 @@
 #include "MyString.h"
 
 MyString::MyString(const char *string) {
-    if (string == nullptr){
+    if (string == nullptr) {
         str_length = 0;
         my_string = nullptr;
     } else {
@@ -18,6 +18,7 @@ MyString::MyString(const std::string& string) {
     my_string = new char [str_length + 1];
     for (size_t i = 0; i < str_length; i++) my_string[i] = string[i];
 }
+
 MyString::MyString(const MyString &string) {
     str_length = string.str_length;
     my_string = new char [str_length + 1];
@@ -43,12 +44,12 @@ char * MyString::get() const {
     return this->my_string;
 }
 
-
 MyString MyString::operator+(const MyString &str) {
-    int overall_length = str_length + str.str_length;
+    int overall_length = str_length + str.str_length + 1;
     char *new_str = new char[overall_length];
     for (size_t i = 0; i < str_length; i++) new_str[i] = my_string[i];
-    for (size_t i = str_length; i < overall_length; i++) new_str[i] = str.my_string[i - str_length];
+    for (size_t i = str_length; i < overall_length - 1; i++)
+        new_str[i] = str.my_string[i - str_length];
     new_str[str_length - 1] = '\0';
     MyString result_str = MyString(new_str);
     return result_str;
@@ -59,13 +60,14 @@ MyString MyString::operator-(const MyString &str) {
     bool flag = false;
     unsigned int cnt = 0;
     for (size_t i = 0; i < str_length; i++) {
-        for (size_t j = 0; j < str.str_length; j++){
-            if (my_string[i] == str.my_string[j]) indexes.push_back(i);
+        for (size_t j = 0; j < str.str_length; j++) {
+            if (my_string[i] == str.my_string[j]) indexes.push_back(my_string[i]);
         }
     }
     char *new_str = new char [str_length - indexes.size()];
     for (size_t i = 0; i < str_length; i++){
-        for (auto j : indexes){
+        flag = false;
+        for (auto j : indexes) {
             if (my_string[i] == j) flag = true;
         }
         if (!flag) {
@@ -79,8 +81,9 @@ MyString MyString::operator-(const MyString &str) {
 MyString MyString::operator*(int num) {
     char *new_str = new char [str_length * num + 1];
     unsigned int cnt = 0;
-    for (size_t i = 0; i < num; i++){
-        for (size_t j = i * str_length; j < (i + 1) * str_length; j++) new_str[j] = my_string[j - i * str_length];
+    for (size_t i = 0; i < num; i++) {
+        for (size_t j = i * str_length; j < (i + 1) * str_length; j++)
+            new_str[j] = my_string[j - i * str_length];
     }
     new_str[str_length * num] = '\0';
     return MyString(new_str);
