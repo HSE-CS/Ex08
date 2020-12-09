@@ -178,11 +178,3 @@ int MyString::operator()(const char* string) {
         return pointer - this->string;
     }
 }
-
-std::istream& operator>>(std::istream& is, MyString& str) {
-	return is >> str.get();
-}
-
-std::ostream& operator<<(std::ostream& os, MyString& str) {
-    return os << str.get();
-}

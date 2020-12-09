@@ -14,7 +14,7 @@ class MyString {
     int lenofstr;
 
  public:
-    explicit MyString(const char* string = nullptr);
+    explicit MyString(const char* str = nullptr);
     explicit MyString(std::string string);
     MyString(const MyString& prevstring);
     MyString(MyString&& prevstring);
@@ -35,11 +35,11 @@ class MyString {
     MyString operator! ();
     char operator[] (const int number);
     int operator() (const char* string);
-    friend std::istream& operator>>(std::istream& is, MyString& string) {
-        return is >> string.get();
+	friend std::istream& operator>>(std::istream& is, MyString& str) {
+		return is >> str.get();
     }
-    friend std::ostream& operator<<(std::ostream& os, MyString& string) {
-        return os << string.get();
+	friend std::ostream& operator<<(std::ostream& os, MyString& str) {
+		return os << str.get();
     }
 };
 
