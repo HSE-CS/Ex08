@@ -12,7 +12,7 @@ class MyString {
  private:
     char* string;
     int lenofstr;
- 
+
  public:
     explicit MyString(const char* string = nullptr);
     explicit MyString(std::string string);

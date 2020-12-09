@@ -25,7 +25,10 @@ MyString::MyString(std::string string) {
 
 MyString::MyString(const MyString& prevstring) {
     this->lenofstr = prevstring.lenofstr;
-    this->string = prevstring.string;
+    this->string = new char[this->lenofstr+1];
+    for (int i = 0; i < this->lenofstr + 1; i++) {
+        this->string[i] = prevstring.string[i];
+    }
 }
 
 MyString::MyString(MyString&& prevstring) {
