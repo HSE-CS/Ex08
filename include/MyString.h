@@ -9,6 +9,7 @@
 #include <cstring>
 
 class MyString {
+
  private:
   char* data;
   int len;

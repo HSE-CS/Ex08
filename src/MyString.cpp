@@ -12,7 +12,7 @@ MyString::MyString(const char* str) {
   data = nullptr;
   len = 0;
   if (str != nullptr) {
-	int len = strlen(str);
+  int len = strlen(str);
   this->len = len;
   data = new char[len + 1];
   for (int i = 0; i < len; i++)
@@ -25,12 +25,12 @@ MyString::MyString(std::string str) {
   data = nullptr;
   len = 0;
   if (str.length() != 0) {
-    int len = str.length();
-	this->len = len;
-	data = new char[len + 1];
-	for (int i = 0; i < len; i++)
-	  data[i] = str[i];
-	data[len] = '\0';
+   int len = str.length();
+   this->len = len;
+   data = new char[len + 1];
+   for (int i = 0; i < len; i++)
+     data[i] = str[i];
+   data[len] = '\0';
   }
 }
 
