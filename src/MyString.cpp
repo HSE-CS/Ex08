@@ -7,22 +7,19 @@
 
 
 MyString::MyString(const char* str) {
-
     if (str != nullptr) {
         char* newStr = new char[strlen(str)];
         for (int i = 0; i < strlen(str); ++i) {
             newStr[i] = str[i];
         }
         this->str = newStr;
-    }
-    else {
+    } else {
         char* newStr = new char[0];
         this->str = newStr;
-    }
+           }
 }
 
 MyString::MyString(std::string str) {
-
     char* newStr = new char[str.length()];
     for (int i = 0; i < str.length(); ++i) {
         newStr[i] = str[i];
@@ -31,28 +28,23 @@ MyString::MyString(std::string str) {
 }
 
 MyString::MyString(const MyString& originalStr) {
-
     str = originalStr.str;
 }
 
 MyString::MyString(MyString&& otherStr) {
-
     this->str = otherStr.str;
     otherStr.str = nullptr;
 }
 
 char* MyString::get() {
-
     return str;
 }
 
 int MyString::length() {
-
     return strlen(this->str);
 }
 
 MyString MyString::operator+(MyString addStr) {
-
     char* newStr = new char[this->length() + addStr.length()];
     snprintf(newStr, this->length() + 1, "%s", this->str);
     snprintf(newStr + this->length(), this->length() + 1, "%s", addStr.str);
@@ -62,7 +54,6 @@ MyString MyString::operator+(MyString addStr) {
 }
 
 MyString MyString::operator-(MyString minStr) {
-
     char* newStr = new char[this->length()];
     int index = 0;
 
@@ -84,13 +75,11 @@ MyString MyString::operator-(MyString minStr) {
 }
 
 MyString& MyString::operator=(const MyString& otherStr) {
-
     this->str = otherStr.str;
     return *this;
 }
 
 MyString MyString::operator*(int n) {
-
     char* newStr = new char[this->length() * n];
     int index = 0;
 
@@ -108,39 +97,32 @@ MyString MyString::operator*(int n) {
 }
 
 int MyString::operator==(const MyString& otherStr) {
-
     int isEq = strcmp(this->str, otherStr.str);
     return !isEq;
 }
 
 int MyString::operator!=(const MyString& otherStr) {
-
     bool isEq = strcmp(this->str, otherStr.str);
     return isEq;
 }
 
 int MyString::operator>=(const MyString& otherStr) {
-
     return (strcmp(str, otherStr.str) > -1);
 }
 
 int MyString::operator<=(const MyString& otherStr) {
-
     return (strcmp(str, otherStr.str) < 1);
 }
 
 int MyString::operator>(const MyString& otherStr) {
-
     return (strcmp(str, otherStr.str) == 1);
 }
 
 int MyString::operator<(const MyString& otherStr) {
-
     return (strcmp(str, otherStr.str) == -1);
 }
 
 MyString& MyString::operator!() {
-
     for (int i = 0; i < this->length(); ++i) {
         if (str[i] >= 'a' && str[i] <= 'z') {
             str[i] -= 32;
@@ -150,23 +132,19 @@ MyString& MyString::operator!() {
 }
 
 char MyString::operator[](int n) {
-
     return str[n];
 }
 
 int MyString::operator()(const char* podStr) {
-
     char* where = strstr(str, podStr);
     if (where != nullptr) {
         return where - str;
-    }
-    else {
+    } else {
         return -1;
-    }
+           }
 }
 
 MyString& MyString::operator=(MyString&& otherStr) {
-
     this->str = otherStr.str;
     otherStr.str = nullptr;
     return *this;
