@@ -1,149 +1,150 @@
 // Copyright 2020 GHA Test Team
-#include <iostream>
 #include "MyString.h"
+#include <cctype>
 
-MyString::MyString(const char *new_string) {
-    if (new_string != nullptr) {
-        len = strlen(new_string);
-        string = new char[len + 1];
-        snprintf(string, len + 1, "%s", new_string);
-    } else {
-        string = nullptr;
-        len = 0;
-    }
+
+MyString::MyString(const char* new_string) {
+  if (new_string != nullptr) {
+    string = new char[strlen(new_string) + 1];
+    memcpy(string, new_string, strlen(new_string) + 1);
+  } else {
+    string = new char[1];
+    memset(string, 0, 1);
+  }
 }
 
 MyString::MyString(std::string new_string) {
-  string = new char[new_string.size() + 1];
-  snprintf(string, new_string.size() + 1, "%s", new_string.c_str());
+  string = new char[new_string.length() + 1];
+  memcpy(string, new_string.c_str(), new_string.length() + 1);
 }
 
-MyString::MyString(const MyString &str) {
-  string = new char[str.len + 1];
-  snprintf(string, str.len + 1, "%s", str.string);
+MyString::MyString(const MyString &new_string) {
+  string = new char[strlen(new_string.string) + 1];
+  snprintf(string, strlen(new_string.string) + 1, "%s", new_string.string);
 }
 
-MyString::MyString(MyString &&str) {
-  len = str.len;
-  string = str.string;
-  str.string = nullptr;
-  str.len = 0;
+MyString::MyString(MyString &&new_string) {
+  string = new char[strlen(new_string.string)];
+  string = new_string.string;
+  new_string.string = NULL;
 }
 
 MyString::~MyString() {
-    len = 0;
-    delete[] string;
+  delete string;
 }
 
 size_t MyString::length() {
-    return len;
+  return strlen(string);
 }
 
-char* MyString::get() {
-    return string;
+char *MyString::get() {
+  return string;
 }
 
-MyString MyString::operator+(const MyString &add_str) {
-  int new_len = add_str.len + len + 1;
-  char *new_str = new char[new_len];
-  for (int i = 0; i < len; ++i) {
-    new_str[i] = string[i];
-  }
-  for (int i = len; i < new_len - 1; ++i) {
-    new_str[i] = add_str.string[i - len];
-  }
-  new_str[new_len - 1] = '\0';
-  return MyString(new_str);
+MyString MyString::operator+(const MyString &add_string) {
+  std::string tmp;
+  tmp.append(string);
+  tmp.append(add_string.string);
+  return MyString(tmp);
 }
 
-MyString MyString::operator-(const MyString& str) {
-    std::string new_string;
-    for (int i = 0; i <= strlen(string); i++) {
-        bool check = true;
-        for (int j = 0; j < strlen(str.string); j++) {
-            if (string[i] == str.string[j])
-                check = false;
-        }
-        if (check)
-            new_string += string[i];
-    }
-    return MyString(new_string);
-}
-
-MyString MyString::operator*(size_t n) {
-  char *new_str = new char[len * n + 1];
-  for (int i = 0; i < n; ++i) {
-    for (int j = i * len; j < (i + 1) * len; ++j) {
-      new_str[j] = string[j - i * len];
+MyString MyString::operator-(const MyString &new_string) {
+  int len_first = strlen(string);
+  int len_second = strlen(new_string.string);
+  char* buffer = new char[len_first + 1];
+  int new_index = 0;
+  for (int my_index = 0; my_index < len_first; my_index++) {
+    bool is_consist = false;
+    for (unsigned int other_index = 0; other_index < len_second; other_index++)
+      if (string[my_index] == new_string.string[other_index]) {
+        is_consist = true;
+        break;
+      }
+    if (!is_consist) {
+      buffer[new_index++] = string[my_index];
     }
   }
-  new_str[len * n] = '\0';
-  return MyString(new_str);
+    return MyString(buffer);
 }
 
-MyString &MyString::operator=(const MyString &str) {
-  string = str.string;
-  len = str.len;
+MyString MyString::operator*(const size_t n) {
+  MyString answer(string);
+  for (int i = 0; i < n - 1; i++) {
+    answer = answer + *this;
+  }
+  return answer;
+}
+
+MyString &MyString::operator=(const MyString &new_string) {
+  string = new char[strlen(new_string.string) + 1];
+  snprintf(string, strlen(new_string.string) + 1, "%s", new_string.string);
   return *this;
 }
 
-MyString &MyString::operator=(MyString &&str) {
-  string = str.string;
-  str.string = nullptr;
-  len = str.len;
-  str.len = 0;
+MyString &MyString::operator=(MyString &&new_string) {
+  string = new_string.string;
+  new_string.string = NULL;
   return *this;
 }
 
-bool MyString::operator==(const MyString &s) {
-  return (strcmp(string, s.string) == 0 ? 1 : 0);
+bool MyString::operator==(const MyString &new_string) {
+  return !strcmp(string, new_string.string);
 }
 
-bool MyString::operator!=(const MyString &s) {
-  return (strcmp(string, s.string) != 0 ? 1 : 0);
+bool MyString::operator!=(const MyString &new_string) {
+  return strcmp(string, new_string.string);
 }
 
-bool MyString::operator>(const MyString &s) {
-  return (strcmp(string, s.string) <= 0 ? 0 : 1);
+bool MyString::operator>(const MyString &new_string) {
+  return strcmp(string, new_string.string) == 1;
 }
 
-bool MyString::operator<(const MyString &s) {
-  return (strcmp(string, s.string) >= 0 ? 0 : 1);
+bool MyString::operator<(const MyString &new_string) {
+  return strcmp(string, new_string.string) == -1;
 }
 
-bool MyString::operator>=(const MyString &s) {
-  return (strcmp(string, s.string) < 0 ? 0 : 1);
+bool MyString::operator>=(const MyString &new_string) {
+  return strcmp(string, new_string.string) != -1;
 }
 
-bool MyString::operator<=(const MyString &s) {
-  return (strcmp(string, s.string) > 0 ? 0 : 1);
+bool MyString::operator<=(const MyString &new_string) {
+  return strcmp(string, new_string.string) != 1;
 }
 
 MyString MyString::operator!() {
-    MyString result(*this);
-    for (int i = 0; i < result.len; i++) {
-        if ((result.string[i] >= 'a') && (result.string[i] <= 'z'))
-            result.string[i] -= 'a' - 'A';
-        else
-            if ((result.string[i] >= 'A') && (result.string[i] <= 'Z'))
-                result.string[i] += 'a' - 'A';
+  std::string tmp;
+  for (int i = 0; i < strlen(string); i++) {
+    if (isupper(string[i]))
+      tmp.push_back(tolower(string[i]));
+    else
+      tmp.push_back(toupper(string[i]));
+  }
+  return MyString(tmp);
+}
+
+char &MyString::operator[](const size_t ind) const {
+  return string[ind];
+}
+
+int MyString::operator()(const char *new_string) {
+  int sub_index = 0;
+  int len = strlen(string);
+  for (int my_index = 0; my_index < len; my_index++) {
+    if (string[my_index] == new_string[sub_index]) {
+      sub_index += 1;
+      if (sub_index >= strlen(new_string))
+        return my_index - strlen(new_string) + 1;
+    } else {
+      sub_index = 0;
     }
-    return result;
+  }
+  return -1;
 }
 
-char& MyString::operator[](int i) {
-    return string[i];
+std::ostream &operator<<(std::ostream &in, MyString &new_string) {
+  return in << new_string.string;
 }
 
-int MyString::operator()(const char* str) {
-    char* pstr = strstr(get(), str);
-    return (pstr != nullptr ? (pstr - get()) : -1);
-}
-
-std::istream &operator>>(std::istream &input, MyString &s) {
-  return input >> s.get();
-}
-
-std::ostream &operator<<(std::ostream &output, MyString &s) {
-  return output << s.get();
+std::istream &operator>>(std::istream &out, MyString &new_string) {
+  return out >> new_string.string;
 }

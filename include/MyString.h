@@ -9,7 +9,6 @@
 class MyString {
  private:
      char* string;
-     size_t len;
 
  public:
      explicit MyString(const char* ptr = nullptr);
@@ -31,7 +30,7 @@ class MyString {
      bool operator>= (const MyString& s);
      bool operator<= (const MyString& s);
      MyString operator!();
-     char& operator[](int ind);
+     char& operator[](const size_t ind) const;
      int operator()(const char* s);
      friend std::ostream& operator<<(std::ostream &os, MyString& s);
      friend std::istream& operator>>(std::istream &is, MyString& s);
