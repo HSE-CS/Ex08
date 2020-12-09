@@ -57,7 +57,8 @@ MyString MyString::operator-(const MyString &str) {
 MyString MyString::operator*(int num) {
   char *string = new char(this->length() * num + 1);
   for (int i = 0; i < num; i++) {
-    snprintf(string + i * this->length(), strlen(this->str) + 1, "%s", this->str);
+    snprintf(string + i * this->length(),
+             strlen(this->str) + 1, "%s", this->str);
   }
   return MyString(string);
 }
@@ -82,13 +83,21 @@ bool MyString::operator!=(const MyString &str) {
   return strcmp(this->str, str.str) ? true : false;
 }
 
-bool MyString::operator>(const MyString &str) { return strcmp(this->str, str.str) > 0; }
+bool MyString::operator>(const MyString &str) {
+  return strcmp(this->str, str.str) > 0;
+}
 
-bool MyString::operator<(const MyString &str) { return strcmp(this->str, str.str) < 0; }
+bool MyString::operator<(const MyString &str) {
+  return strcmp(this->str, str.str) < 0;
+}
 
-bool MyString::operator>=(const MyString &str) { return strcmp(this->str, str.str) >= 0; }
+bool MyString::operator>=(const MyString &str) {
+  return strcmp(this->str, str.str) >= 0;
+}
 
-bool MyString::operator<=(const MyString &str) { return strcmp(this->str, str.str) <= 0; }
+bool MyString::operator<=(const MyString &str) {
+  return strcmp(this->str, str.str) <= 0;
+}
 
 MyString MyString::operator!() {
   char *str = new char[this->length() + 1];
@@ -106,13 +115,16 @@ MyString MyString::operator!() {
   return MyString(str);
 }
 
-char &MyString::operator[](int index) { return str[index]; }
+char &MyString::operator[](int index) {
+  return str[index];
+}
 
 int MyString::operator()(const char *str) {
   int i = 0;
   while (i < this->length()) {
     int j = 0;
-    while (this->str[i + j] == str[j] && i + j < this->length() && j < strlen(str)) {
+    while (this->str[i + j] == str[j] &&
+    i + j < this->length() && j < strlen(str)) {
       j++;
     }
     if (j == strlen(str)) {
