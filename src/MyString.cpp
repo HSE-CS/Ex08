@@ -109,14 +109,15 @@ bool MyString::operator<=(const MyString &s) {
 }
 
 MyString MyString::operator!() {
-  for (int i = 0; i < len; ++i) {
-    if (string[i] >= 'A' && string[i] <= 'Z') {
-      string[i] += 'a' - 'A';
-    } else if (string[i] >= 'a' && string[i] <= 'z') {
-      string[i] -= 'a' - 'A';
+    MyString result(*this);
+    for (int i = 0; i < result.len; i++) {
+        if ((result.string[i] >= 'a') && (result.string[i] <= 'z'))
+            result.string[i] -= 'a' - 'A';
+        else
+            if ((result.string[i] >= 'A') && (result.string[i] <= 'Z'))
+                result.string[i] += 'a' - 'A';
     }
-  }
-  return MyString(string);
+    return result;
 }
 
 char& MyString::operator[](int i) {

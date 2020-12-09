@@ -2,6 +2,6 @@
 #include "MyString.h"
 
 int main() {
-  MyString a;  
+  MyString a;
   return 0;
 }
