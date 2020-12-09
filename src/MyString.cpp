@@ -3,13 +3,15 @@
 #include "MyString.h"
 
 MyString::MyString(const char *new_string) {
-  if (new_string != nullptr) {
-    string = new char[strlen(new_string) + 1];
-    snprintf(string, strlen(new_string) + 1, "%s", new_string);
-  } else {
-    string = new char[1];
-    memset(string, 0, 1);
-  }
+    if (new_string != nullptr) {
+        len = strlen(new_string);
+        string = new char[len + 1];
+        snprintf(string, len + 1, "%s", new_string);
+    } else {
+        string = nullptr;
+        len = 0;
+    }
+
 }
 
 MyString::MyString(std::string new_string) {
