@@ -44,10 +44,17 @@ char* MyString::get() {
 }
 
 MyString MyString::operator+(const MyString &add_str) {
-  std::string tmp;
-  tmp.append(string);
-  tmp.append(add_str.string);
-  return MyString(tmp);
+    MyString new_string;
+    new_string.len = len + add_str.len;
+    new_string.string = new char[new_string.len + 1];
+    for (int i = 0; i < len; i++)
+        new_string.string[i] = string[i];
+    if (add_str.string != nullptr) {
+        for (int i = 0; i < add_str.len; i++)
+            new_string.string[i + len] = add_str.string[i];
+    }
+    new_string.string[new_string.len] = '\0';
+    return new_string;
 }
 
 MyString MyString::operator-(const MyString& str) {
