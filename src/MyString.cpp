@@ -1,4 +1,4 @@
-
+// Copyright 2020 GHA Test Team
 #include <iostream>
 #include "MyString.h"
 
@@ -85,7 +85,7 @@ MyString &MyString::operator=(MyString &&str) {
 }
 
 bool MyString::operator==(const MyString &s) {
-  return (strcmp(string,s.string)==0 ? 1 : 0) ;
+  return (strcmp(string, s.string) == 0 ? 1 : 0);
 }
 
 bool MyString::operator!=(const MyString &s) {
