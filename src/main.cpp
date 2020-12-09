@@ -7,7 +7,6 @@
 
 
 int main() {
-
-	MyString a;
-	return 0;
+ MyString a;
+ return 0;
 }
