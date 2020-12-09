@@ -1,7 +1,7 @@
-// Created by mila on 08.12.2020
+// Copyright 2020 milalupehina
 #include "MyString.h"
-#include <string>
 #include <string.h>
+#include <string>
 #include <cstring>
 
 // - конструктор с одним параметром (есть значение по-умолчанию nullptr).
@@ -54,7 +54,8 @@ MyString MyString::operator+(const MyString &s) {
     return MyString(std::string(this->get()) + std::string(s.get()));
 }
 
-// вычитание (из первой строки удаляются все символы, присутствующие во второй строке).
+// вычитание (из первой строки удаляются все символы,
+// присутствующие во второй строке).
 MyString MyString::operator-(const MyString &s) {
     std::string s0 = this->get();
     int l = s.length();
@@ -126,7 +127,8 @@ bool MyString::operator<=(const MyString &s1) const {
 //  - у латинских букв меняется регистр.
 MyString MyString::operator!()  {
     for (int i = 0; i < this->length(); ++i) {
-        this->str[i] = std::isupper(this->str[i]) ? std::tolower(this->str[i]) : std::toupper(this->str[i]);
+        this->str[i] = std::isupper(this->str[i]) ?
+                std::tolower(this->str[i]) : std::toupper(this->str[i]);
     }
 
     return *this;
