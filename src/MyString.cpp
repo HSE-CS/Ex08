@@ -8,20 +8,20 @@ MyString::MyString(const char *string) {
         my_string = nullptr;
     } else {
         str_length = strlen(string);
-        my_string = new char [str_length + 1];
+        my_string = new char[str_length + 1];
         for (size_t i = 0; i < str_length + 1; i++) my_string[i] = string[i];
     }
 }
 
 MyString::MyString(const std::string& string) {
     str_length = string.size();
-    my_string = new char [str_length + 1];
+    my_string = new char[str_length + 1];
     for (size_t i = 0; i < str_length; i++) my_string[i] = string[i];
 }
 
 MyString::MyString(const MyString &string) {
     str_length = string.str_length;
-    my_string = new char [str_length + 1];
+    my_string = new char[str_length + 1];
     for (size_t i = 0; i < str_length; i++) my_string[i] = string.my_string[i];
 }
 
@@ -50,7 +50,7 @@ MyString MyString::operator+(const MyString &str) {
     for (size_t i = 0; i < str_length; i++) new_str[i] = my_string[i];
     for (size_t i = str_length; i < overall_length - 1; i++)
         new_str[i] = str.my_string[i - str_length];
-    new_str[str_length - 1] = '\0';
+    new_str[overall_length - 1] = '\0';
     MyString result_str = MyString(new_str);
     return result_str;
 }
@@ -61,10 +61,11 @@ MyString MyString::operator-(const MyString &str) {
     unsigned int cnt = 0;
     for (size_t i = 0; i < str_length; i++) {
         for (size_t j = 0; j < str.str_length; j++) {
-            if (my_string[i] == str.my_string[j]) indexes.push_back(my_string[i]);
+            if (my_string[i] == str.my_string[j])
+                indexes.push_back(my_string[i]);
         }
     }
-    char *new_str = new char [str_length - indexes.size()];
+    char *new_str = new char[str_length - indexes.size()];
     for (size_t i = 0; i < str_length; i++){
         flag = false;
         for (auto j : indexes) {
@@ -79,7 +80,7 @@ MyString MyString::operator-(const MyString &str) {
 }
 
 MyString MyString::operator*(int num) {
-    char *new_str = new char [str_length * num + 1];
+    char *new_str = new char[str_length * num + 1];
     unsigned int cnt = 0;
     for (size_t i = 0; i < num; i++) {
         for (size_t j = i * str_length; j < (i + 1) * str_length; j++)

@@ -1,7 +1,7 @@
 // Copyright 2020 Vladimir Uspensky
 
-#ifndef EX08_MYSTRING_H_
-#define EX08_MYSTRING_H_
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 
 #include <string>
 #include <cstring>
@@ -12,10 +12,12 @@
 class MyString {
 
 private:
+
     char *my_string{};
     int str_length{};
 
 public:
+
     explicit MyString(const char *string = nullptr);
     explicit MyString(const std::string&);
     MyString(const MyString &);
@@ -41,4 +43,4 @@ public:
     friend std::ostream &operator<<(std::ostream &output, MyString &string);
 };
 
-#endif  // EX08_MYSTRING_H_
+#endif // INCLUDE_MYSTRING_H_
