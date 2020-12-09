@@ -85,13 +85,12 @@ MyString MyString::operator-(const MyString& str) {
   int i = 0;
   while (i < str.len) {
     while (temp.find(str.data[i]) != -1)
-	  temp.erase(temp.find(str.data[i]), 1);
+	temp.erase(temp.find(str.data[i]), 1);
     i++;
   }
   MyString str1(temp);
   return str1;
-  }
-  else {
+  } else {
   MyString str1(nullptr);
   return str1;
   }
@@ -103,13 +102,12 @@ MyString MyString::operator*(const int a) {
   str.len = len * a;
   str.data = new char[len * a + 1];
   for (int i = 0; i < a; i++) {
-	for (int j = 0; j < len; j++)
-	  str.data[i * len + j] = data[j];
+  for (int j = 0; j < len; j++)
+	str.data[i * len + j] = data[j];
   }
   str.data[len * a] = '\0';
   return str;
-  }
-  else {
+  } else {
   MyString str(nullptr);
   return str;
   }
@@ -163,15 +161,15 @@ MyString MyString::operator!() {
   char* str = new char[len + 1];
   int j = 0;
   for (int i = 0; i < len; i++) {
-    if (data[i] >= 'a' && data[i] <= 'z')
-	  str[j] = data[i] - 32;
-	else {
-	  if (data[i] >= 'A' && data[i] <= 'Z')
-	    str[j] = data[i] + 32;
-	  else 
-		str[j] = data[i];
-	}
-	j++;
+  if (data[i] >= 'a' && data[i] <= 'z')
+  str[j] = data[i] - 32;
+  else {
+  if (data[i] >= 'A' && data[i] <= 'Z')
+  str[j] = data[i] + 32;
+  else 
+  str[j] = data[i];
+  }
+  j++;
   }
   str[j] = '\0';
   return MyString(str);
