@@ -44,17 +44,16 @@ char* MyString::get() {
 }
 
 MyString MyString::operator+(const MyString &add_str) {
-    MyString new_string;
-    new_string.len = len + add_str.len;
-    new_string.string = new char[new_string.len + 1];
-    for (int i = 0; i < len; i++)
-        new_string.string[i] = string[i];
-    if (add_str.string != nullptr) {
-        for (int i = 0; i < add_str.len; i++)
-            new_string.string[i + len] = add_str.string[i];
-    }
-    new_string.string[new_string.len] = '\0';
-    return new_string;
+  int new_len = add_str.len + len + 1;
+  char *new_str = new char[new_len];
+  for (int i = 0; i < len; ++i) {
+    new_str[i] = string[i];
+  }
+  for (int i = len; i < new_len - 1; ++i) {
+    new_str[i] = add_str.string[i - len];
+  }
+  new_str[new_len - 1] = '\0';
+  return MyString(new_str);
 }
 
 MyString MyString::operator-(const MyString& str) {
@@ -72,10 +71,14 @@ MyString MyString::operator-(const MyString& str) {
 }
 
 MyString MyString::operator*(size_t n) {
-    std::string str;
-    for (int i = 0; i < n; i++)
-        str += get();
-    return MyString(str);
+  char *new_str = new char[len * n + 1];
+  for (int i = 0; i < n; ++i) {
+    for (int j = i * len; j < (i + 1) * len; ++j) {
+      new_str[j] = string[j - i * len];
+    }
+  }
+  new_str[len * n] = '\0';
+  return MyString(new_str);
 }
 
 MyString &MyString::operator=(const MyString &str) {
