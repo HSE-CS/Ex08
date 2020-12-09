@@ -2,15 +2,15 @@
 
 #include"MyString.h"
 
-MyString::MyString(const char* string) {
-    if (string == nullptr) {
+MyString::MyString(const char* str) {
+    if (str == nullptr) {
         this->lenofstr = 0;
         this->string = nullptr;
     } else {
-        this->lenofstr = strlen(string);
+        this->lenofstr = strlen(str);
         this->string = new char[this->lenofstr + 1];
         for (int i = 0; i < this->lenofstr + 1; i++) {
-            this->string[i] = string[i];
+            this->string[i] = str[i];
         }
     }
 }
@@ -39,7 +39,7 @@ MyString::MyString(MyString&& prevstring) {
 }
 
 MyString::~MyString() {
-    delete[]string;
+    delete []string;
 }
 
 int MyString::length() {
@@ -47,17 +47,23 @@ int MyString::length() {
 }
 
 char* MyString::get() {
-    return this->string;
+    return string;
 }
 
 MyString MyString::operator+(const MyString& astring) {
     char* summ = new char[this->lenofstr + astring.lenofstr + 1];
-    for (int i = 0; i < this->lenofstr; i++) {
-        summ[i] = this->string[i];
-    }
-    for (int j = this->lenofstr;
-        j < this->lenofstr + astring.lenofstr + 1; j++) {
-        summ[j] = astring.string[j - this->lenofstr];
+    if (astring.lenofstr != 0) {
+        for (int i = 0; i < this->lenofstr; i++) {
+            summ[i] = this->string[i];
+        }
+        for (int j = this->lenofstr;
+            j < this->lenofstr + astring.lenofstr + 1; j++) {
+            summ[j] = astring.string[j - this->lenofstr];
+        }
+    } else {
+        for (int i = 0; i < this->lenofstr + 1; i++) {
+            summ[i] = this->string[i];
+        }
     }
     return MyString(summ);
 }
@@ -171,4 +177,12 @@ int MyString::operator()(const char* string) {
         std::cout << "Same from: " << pointer - this->string << std::endl;
         return pointer - this->string;
     }
+}
+
+std::istream& operator>>(std::istream& is, MyString& str) {
+	return is >> str.get();
+}
+
+std::ostream& operator<<(std::ostream& os, MyString& str) {
+    return os << str.get();
 }
