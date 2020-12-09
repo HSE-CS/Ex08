@@ -140,7 +140,7 @@ char &MyString::operator[](int k) const {
 // - поиск подстроки.
 int MyString::operator()(const char *s) {
     std::string s0 = this->str;
-    return s0.find(str);
+    return s0.find(s);
 }
 
 // - чтение из потока.
