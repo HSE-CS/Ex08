@@ -9,10 +9,10 @@
 #include <cstring>
 
 class MyString {
-
  private:
   char* data;
   int len;
+
  public:
   MyString();
   explicit MyString(const char*);

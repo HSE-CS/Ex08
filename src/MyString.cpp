@@ -25,12 +25,12 @@ MyString::MyString(std::string str) {
   data = nullptr;
   len = 0;
   if (str.length() != 0) {
-   int len = str.length();
-   this->len = len;
-   data = new char[len + 1];
-   for (int i = 0; i < len; i++)
-     data[i] = str[i];
-   data[len] = '\0';
+  int len = str.length();
+  this->len = len;
+  data = new char[len + 1];
+  for (int i = 0; i < len; i++)
+    data[i] = str[i];
+  data[len] = '\0';
   }
 }
 
@@ -46,7 +46,7 @@ MyString::MyString(MyString&& str) {
   len = str.len;
   data = new char[len + 1];
   for (int i = 0; i < len; i++)
-	data[i] = str[i];
+    data[i] = str[i];
   data[len] = '\0';
   str.~MyString();
   str.data = nullptr;
@@ -74,43 +74,44 @@ MyString MyString::operator+(const MyString& str) {
   for (i; i < len; i++)
     str1.data[i] = data[i];
   for (i; i < len + len1; i++)
-	str1.data[i] = str.data[i - len];
+    str1.data[i] = str.data[i - len];
   str1.data[i] = '\0';
   return str1;
 }
 
 MyString MyString::operator-(const MyString& str) {
   if (data) {
-    std::string temp = (std::string(data));
-    int i = 0;
-	while (i < str.len) {
-	  while (temp.find(str.data[i]) != -1) {
-		temp.erase(temp.find(str.data[i]), 1);
-	  }
-	  i++;
-	}
-	MyString str1(temp);
-	return str1;
-  } else {
-    MyString str1(nullptr);
-	return str1;
+  std::string temp = (std::string(data));
+  int i = 0;
+  while (i < str.len) {
+    while (temp.find(str.data[i]) != -1)
+	  temp.erase(temp.find(str.data[i]), 1);
+    i++;
+  }
+  MyString str1(temp);
+  return str1;
+  }
+  else {
+  MyString str1(nullptr);
+  return str1;
   }
 }
 
 MyString MyString::operator*(const int a) {
   if (data) {
-	MyString str;
-	str.len = len * a;
-	str.data = new char[len * a + 1];
-	for (int i = 0; i < a; i++) {
-	  for (int j = 0; j < len; j++)
-	    str.data[i * len + j] = data[j];
-	}
-	str.data[len * a] = '\0';
-	return str;
-  } else {
-	MyString str(nullptr);
-	return str;
+  MyString str;
+  str.len = len * a;
+  str.data = new char[len * a + 1];
+  for (int i = 0; i < a; i++) {
+	for (int j = 0; j < len; j++)
+	  str.data[i * len + j] = data[j];
+  }
+  str.data[len * a] = '\0';
+  return str;
+  }
+  else {
+  MyString str(nullptr);
+  return str;
   }
 }
 
@@ -119,7 +120,7 @@ MyString& MyString::operator=(const MyString& str) {
   data = new char[len + 1];
   int i = 0;
   for (int i = 0; i < len; i++)
-	data[i] = str[i];
+    data[i] = str[i];
   data[len] = '\0';
   return *this;
 }
@@ -158,7 +159,7 @@ bool MyString::operator<=(const MyString& str) {
 
 MyString MyString::operator!() {
   if (data == nullptr)
-	return MyString(nullptr);
+  return MyString(nullptr);
   char* str = new char[len + 1];
   int j = 0;
   for (int i = 0; i < len; i++) {
@@ -178,18 +179,18 @@ MyString MyString::operator!() {
 
 char& MyString::operator[](int index) const {
   if (index < 0 || index > len || data == nullptr)
-    throw "Index out of range";
+  throw "Index out of range";
   return data[index];
 }
 
 int MyString::operator()(const char* str) {
   if (str == nullptr || data == nullptr)
-	throw "Incorrect data";
+  throw "Incorrect data";
   char* search = strstr(data, str);
   if (search == nullptr)
-	return -1;
+  return -1;
   else
-	return search - data;
+  return search - data;
 }
 
 std::ostream& operator<<(std::ostream& stream, MyString& str) {
