@@ -52,7 +52,7 @@ char* MyString::get() {
 
 MyString MyString::operator+(const MyString& astring) {
     if (astring.lenofstr != 0) {
-        char* summ = new char[this->lenofstr + astring.lenofstr + 1]; 
+        char* summ = new char[this->lenofstr + astring.lenofstr + 1];
         for (int i = 0; i < this->lenofstr; i++) {
             summ[i] = this->string[i];
         }
