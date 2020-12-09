@@ -6,8 +6,7 @@ MyString::MyString(const char* string) {
     if (string == nullptr) {
         this->lenofstr = 0;
         this->string = nullptr;
-    }
-    else {
+    } else {
         this->lenofstr = strlen(string);
         this->string = new char[this->lenofstr + 1];
         for (int i = 0; i < this->lenofstr + 1; i++) {
@@ -88,11 +87,11 @@ MyString& MyString::operator=(const MyString& string) {
 }
 
 MyString& MyString::operator=(MyString&& string) {
-	this->lenofstr = string.lenofstr;
-	this->string = string.string;
-	string.lenofstr = 0;
-	string.string = nullptr;
-	return *this;
+    this->lenofstr = string.lenofstr;
+    this->string = string.string;
+    string.lenofstr = 0;
+    string.string = nullptr;
+    return *this;
 }
 
 bool MyString::operator==(const MyString& string) {
@@ -157,7 +156,7 @@ MyString MyString::operator!() {
     return MyString(str2);
 }
 
-char MyString::operator[](const int number){
+char MyString::operator[](const int number) {
     return this->string[number];
 }
 

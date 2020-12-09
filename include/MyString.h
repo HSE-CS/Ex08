@@ -4,13 +4,14 @@
 #define INCLUDE_MYSTRING_H_
 
 #include <iostream>
+#include <string>
 #include <cstring>
 #include <algorithm>
 
 class MyString {
  private:
     char* string;
-	int lenofstr;
+    int lenofstr;
  public:
     explicit MyString(const char* string = nullptr);
     explicit MyString(std::string string);

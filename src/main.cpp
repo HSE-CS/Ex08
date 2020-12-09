@@ -1,8 +1,8 @@
-#include "MyString.h"
-#include <string>
+// Copyright 08.12.20 DenisKabanov
 
-int main()
-{
+#include "MyString.h"
+
+int main(){
     MyString s1("Hello,");
     MyString s2("world!");
     MyString s3;
@@ -23,7 +23,7 @@ int main()
     std::cout << " s9 > s10? " << (s9 > s10) << std::endl;
     std::cout << " s9 < s10? " << (s9 < s10) << std::endl;
     std::cout << "Second letter of s10: " << s10[1] << std::endl;
-    MyString s11=s9+s10;
+    MyString s11 = s9 + s10;
     std::cout << "substring from: " << s11("tHub") << std::endl;
     MyString s12 = !(s11);
     std::cout << "Reverse " << s12 << std::endl;
