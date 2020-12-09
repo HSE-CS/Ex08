@@ -51,8 +51,8 @@ char* MyString::get() {
 }
 
 MyString MyString::operator+(const MyString& astring) {
-    char* summ = new char[this->lenofstr + astring.lenofstr + 1];
     if (astring.lenofstr != 0) {
+        char* summ = new char[this->lenofstr + astring.lenofstr + 1]; 
         for (int i = 0; i < this->lenofstr; i++) {
             summ[i] = this->string[i];
         }
@@ -60,12 +60,14 @@ MyString MyString::operator+(const MyString& astring) {
             j < this->lenofstr + astring.lenofstr + 1; j++) {
             summ[j] = astring.string[j - this->lenofstr];
         }
+        return MyString(summ);
     } else {
+        char* summ = new char[this->lenofstr + 1];
         for (int i = 0; i < this->lenofstr + 1; i++) {
             summ[i] = this->string[i];
         }
+        return MyString(summ);
     }
-    return MyString(summ);
 }
 
 MyString MyString::operator-(const MyString& string) {
@@ -79,9 +81,9 @@ MyString MyString::operator-(const MyString& string) {
 }
 
 MyString MyString::operator*(const int number) {
-    MyString mult;
-    for (int i = 0; i < number; i++) {
-        mult = mult + *this;
+    MyString mult, change = *this;
+    for (size_t i = 0; i < number; i++) {
+        mult = mult + change;
     }
     return mult;
 }

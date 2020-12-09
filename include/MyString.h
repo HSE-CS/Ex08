@@ -35,11 +35,11 @@ class MyString {
     MyString operator! ();
     char operator[] (const int number);
     int operator() (const char* string);
-	friend std::istream& operator>>(std::istream& is, MyString& str) {
-		return is >> str.get();
+    friend std::istream& operator>>(std::istream& is, MyString& str) {
+        return is >> str.get();
     }
-	friend std::ostream& operator<<(std::ostream& os, MyString& str) {
-		return os << str.get();
+    friend std::ostream& operator<<(std::ostream& os, MyString& str) {
+        return os << str.get();
     }
 };
 
