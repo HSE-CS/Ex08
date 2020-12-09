@@ -41,7 +41,7 @@ int main() {
 
     */
 
-    //test5 ---
+    // test5 ---
     MyString a5("123");
     MyString b5;
     MyString c5;
