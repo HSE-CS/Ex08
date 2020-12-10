@@ -55,10 +55,11 @@ MyString MyString::operator+(const MyString& x) {
 MyString MyString::operator-(const MyString& x) {
     std::string x_ = std::string(x.str);
     std::string str_ = std::string(str);
+    std::string st1 = str_.substr(0, pos - 1);
+    std::string st2 = str_.substr(pos + x_.size(), std::string::npos);
     int pos = str_.find(x_);
 
-    std::string res = str_.substr(0, pos - 1) + str_.substr(pos + x_.size(), std::string::npos);
-
+    std::string res = st1 + st2;
     return MyString(res);
 }
 MyString MyString::operator*(int x) {
