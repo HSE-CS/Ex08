@@ -16,19 +16,19 @@ MyString::MyString(const char* x) {
 MyString::MyString(std::string x) {
     int length = x.length();
     str = new char[length + 1];
-    strcpy(str, x.c_str());
+    snprintf(str, length, x.c_str());
     str[length] = '\0';
 }
 MyString::MyString(const MyString& x) {
     int length = strlen(x.str);
 
     str = new char[length + 1];
-    strcpy(str, x.str);
+    snprintf(str, length, x.str);
     str[length] = '\0';
 }
 MyString::MyString(MyString&& x) {
     str = new char[strlen(x.str) +1];
-    strcpy(str, x.str);
+    snprintf(str, strlen(x.str), x.str);
     str[strlen(x.str)] = '\0';
     // str = x.str;
     x.~MyString();
@@ -48,17 +48,17 @@ char* MyString::get() {
 MyString MyString::operator+(const MyString& x) {
     MyString t;
     t.str = new char[strlen(x.str) + strlen(str) + 1];
-    strcpy( t.str, str);
+    snprintf( t.str, strlen(str), str);
     strcat(t.str, x.str);
     // MyString t_n = t;
     return t;
 }
 MyString MyString::operator-(const MyString& x) {
-    std::string x_array = std::string(x.str);
-    std::string str_array = std::string(str);
-    int pos1 = str_array.find(x_array);
+    std::string x_ = std::string(x.str);
+    std::string str_ = std::string(str);
+    int pos = str_.find(x_);
 
-    std::string res = str_array.substr(0, pos1 - 1) + str_array.substr(pos1 + x_array.size(), std::string::npos);
+    std::string res = str_.substr(0, pos - 1) + str_.substr(pos + x_.size(), std::string::npos);
 
     return MyString(res);
 }
@@ -67,7 +67,7 @@ MyString MyString::operator*(int x) {
     t.str = new char[strlen(str) * x + 1];
     for (int i = 0; i < x; i++) {
         if (i == 0) {
-            strcpy(t.str, str); continue;
+            snprintf(t.str, strlen(str), str); continue;
         }
         strcat(t.str, str);
     }
@@ -76,10 +76,10 @@ MyString MyString::operator*(int x) {
 }
 MyString MyString::operator=(const MyString& x) {
     str = new char[strlen(x.str) + 1];
-    strcpy(str, x.str);
+    snprintf(str, strlen(x.str), x.str);
     return *this;
 }
-MyString MyString::operator=( MyString&& x) {
+MyString MyString::operator=(MyString&& x) {
     str = x.str;
     x.str = nullptr;
     x.~MyString();
@@ -121,10 +121,10 @@ bool MyString::operator<=(const MyString& x) {
 MyString MyString::operator!() {
     for (int i = 0; i < strlen(str); i++) {
         if (str[i] >= 'A' && str[i] <= 'Z') {
-            str[i] = (char)tolower(str[i]); continue;
+            str[i] = tolower(str[i]); continue;
         }
         if (str[i] >= 'a' && str[i] <= 'z') {
-            str[i] = (char)toupper(str[i]); continue;
+            str[i] = toupper(str[i]); continue;
         }
     }
     return MyString(str);
@@ -147,7 +147,7 @@ std::istream& operator>>(std::istream &tr, MyString& x) {
     char* str1 = new char[100];
     tr >> str1;
     x.str = new char[strlen(str1) + 1];
-    strcpy(x.str, str1);
+    snprintf(x.str, strlen(str1), str1);
     x.str[strlen(str1)] = '\0';
     delete[] str1;
     // x.str = str1;
