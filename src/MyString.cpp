@@ -3,6 +3,7 @@
 #include<algorithm>
 #include<iostream>
 #include<string>
+#include<cstring>
 #include"MyString.h"
 
 MyString::MyString() {
@@ -11,7 +12,8 @@ MyString::MyString() {
 MyString::MyString(const char* x) {
     int length = strlen(x);
     str = new char[length + 1];
-    strncpy(str, x, length + 1);
+    snprintf(str, length + 1, x);
+    str[length] = '\0';
 }
 MyString::MyString(std::string x) {
     int length = x.length();
