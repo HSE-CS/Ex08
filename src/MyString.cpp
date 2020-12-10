@@ -12,25 +12,25 @@ MyString::MyString() {
 MyString::MyString(const char* x) {
     int length = strlen(x);
     str = new char[length + 1];
-    snprintf(str, length + 1, x);
+    snprintf(str, length + 1, "%s", x);
     str[length] = '\0';
 }
 MyString::MyString(std::string x) {
     int length = x.length();
     str = new char[length + 1];
-    snprintf(str, length, x.c_str());
+    snprintf(str, length, "%s", x.c_str());
     str[length] = '\0';
 }
 MyString::MyString(const MyString& x) {
     int length = strlen(x.str);
 
     str = new char[length + 1];
-    snprintf(str, length, x.str);
+    snprintf(str, length,"%s", x.str);
     str[length] = '\0';
 }
 MyString::MyString(MyString&& x) {
     str = new char[strlen(x.str) +1];
-    snprintf(str, strlen(x.str), x.str);
+    snprintf(str, strlen(x.str),"%s", x.str);
     str[strlen(x.str)] = '\0';
     // str = x.str;
     x.~MyString();
@@ -71,7 +71,7 @@ MyString MyString::operator*(int x) {
 }
 MyString MyString::operator=(const MyString& x) {
     str = new char[strlen(x.str) + 1];
-    snprintf(str, strlen(x.str), x.str);
+    snprintf(str, strlen(x.str),"%s", x.str);
     return *this;
 }
 MyString MyString::operator=(MyString&& x) {
@@ -142,7 +142,7 @@ std::istream& operator>>(std::istream &tr, MyString& x) {
     char* str1 = new char[100];
     tr >> str1;
     x.str = new char[strlen(str1) + 1];
-    snprintf(x.str, strlen(str1), str1);
+    snprintf(x.str, strlen(str1),"%s", str1);
     x.str[strlen(str1)] = '\0';
     delete[] str1;
     // x.str = str1;
