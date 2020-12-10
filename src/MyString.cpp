@@ -46,12 +46,9 @@ char* MyString::get() {
 }
 
 MyString MyString::operator+(const MyString& x) {
-    MyString t;
-    t.str = new char[strlen(x.str) + strlen(str) + 1];
-    snprintf( t.str, strlen(str), str);
-    strcat(t.str, x.str);
-    // MyString t_n = t;
-    return t;
+    std::string this_ = std::string(str);
+    std::string x_ = std::string(x.str);
+    return MyString(this_ + x_);
 }
 MyString MyString::operator-(const MyString& x) {
     std::string x_ = std::string(x.str);
@@ -63,16 +60,12 @@ MyString MyString::operator-(const MyString& x) {
     return MyString(res);
 }
 MyString MyString::operator*(int x) {
-    MyString t;
-    t.str = new char[strlen(str) * x + 1];
+    std::string this_ = std::string(str);
+    std::string result;
     for (int i = 0; i < x; i++) {
-        if (i == 0) {
-            snprintf(t.str, strlen(str), str); continue;
-        }
-        strcat(t.str, str);
+        result += this_;
     }
-    t.str[strlen(str) * x] = '\0';
-    return t;
+    return MyString(result);
 }
 MyString MyString::operator=(const MyString& x) {
     str = new char[strlen(x.str) + 1];
