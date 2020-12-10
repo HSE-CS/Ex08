@@ -66,7 +66,7 @@ MyString MyString::operator-(const MyString &str) {
         }
     }
     char *new_str = new char[str_length - indexes.size()];
-    for (size_t i = 0; i < str_length; i++){
+    for (size_t i = 0; i < str_length; i++) {
         flag = false;
         for (auto j : indexes) {
             if (my_string[i] == j) flag = true;
