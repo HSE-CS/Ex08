@@ -69,7 +69,7 @@ MyString MyString::operator-(const MyString& x) {
     int j;
     for (int i = 0; i < x_array.size(); i++) {
         for (j = 0; j < str_array.size(); j++) {
-            if (x_array[i] == str_array[j]) { 
+            if (x_array[i] == str_array[j]) {
                 if (k == 0) {
                     res = res + str_array.substr(k, j - k);
                     k = j;
