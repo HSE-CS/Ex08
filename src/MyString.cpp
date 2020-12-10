@@ -16,7 +16,7 @@ MyString::MyString(const char *string) {
 MyString::MyString(const std::string& string) {
     str_length = string.size();
     my_string = new char[str_length + 1];
-    for (size_t i = 0; i < str_length; i++) my_string[i] = string[i];
+    for (size_t i = 0; i < str_length + 1; i++) my_string[i] = string[i];
 }
 
 MyString::MyString(const MyString &string) {
@@ -148,14 +148,12 @@ int MyString::operator()(const char *string) {
     for (size_t i = 0; i < str_length - substring_length + 1; i++) {
         bool flag = true;
         for (size_t j = 0; j < substring_length; j++) {
-            if (string[i + j] != string[j]) {
+            if (my_string[i + j] != string[j]) {
                 flag = false;
                 break;
             }
         }
-        if (flag) {
-            return i;
-        }
+        if (flag) return i;
     }
     return -1;
 }

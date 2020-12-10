@@ -10,7 +10,6 @@
 
 
 class MyString {
-
  private:
     char *my_string{};
     int str_length{};
