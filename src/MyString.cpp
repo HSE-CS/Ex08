@@ -18,14 +18,14 @@ MyString::MyString(const char* x) {
 MyString::MyString(std::string x) {
     int length = x.length();
     str = new char[length + 1];
-    snprintf(str, length, "%s", x.c_str());
+    snprintf(str, length + 1, "%s", x.c_str());
     str[length] = '\0';
 }
 MyString::MyString(const MyString& x) {
     int length = strlen(x.str);
 
     str = new char[length + 1];
-    snprintf(str, length, "%s", x.str);
+    snprintf(str, length + 1, "%s", x.str);
     str[length] = '\0';
 }
 MyString::MyString(MyString&& x) {
@@ -49,9 +49,17 @@ char* MyString::get() {
 }
 
 MyString MyString::operator+(const MyString& x) {
-    std::string this_ = std::string(str);
-    std::string x_ = std::string(x.str);
-    return MyString(this_ + x_);
+    if (x.str == nullptr) {
+        std::string this_ = std::string(str);
+        return MyString(str);
+    } else if (str == nullptr) {
+        std::string x_ = std::string(x.str);
+        return MyString(x.str);
+    } else {
+        std::string this_ = std::string(str);
+        std::string x_ = std::string(x.str);
+        return MyString(this_ + x_);
+      }
 }
 MyString MyString::operator-(const MyString& x) {
     std::string x_ = std::string(x.str);
