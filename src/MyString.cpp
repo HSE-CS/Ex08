@@ -62,13 +62,25 @@ MyString MyString::operator+(const MyString& x) {
       }
 }
 MyString MyString::operator-(const MyString& x) {
-    std::string x_ = std::string(x.str);
-    std::string str_ = std::string(str);
-    int pos = str_.find(x_);
-    std::string st1 = str_.substr(0, pos - 1);
-    std::string st2 = str_.substr(pos + x_.size(), std::string::npos);
-
-    std::string res = st1 + st2;
+    std::string x_array = std::string(x.str);
+    std::string str_array = std::string(str);
+    std::string res;
+    int  k = 0;
+    int j;
+    for (int i = 0; i < x_array.size(); i++) {
+        for (j = 0; j < str_array.size(); j++) {
+            if (x_array[i] == str_array[j]) { 
+                if (k == 0) {
+                    res = res + str_array.substr(k, j - k);
+                    k = j;
+                } else {
+                    res = res + str_array.substr(k + 1, j - k - 1);
+                    k = j;
+                }
+            }
+        }
+    }
+    if (str_array[j-1]) res += str_array.substr(j - 1, str_array.size() - 1);
     return MyString(res);
 }
 MyString MyString::operator*(int x) {
