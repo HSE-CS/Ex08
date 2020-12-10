@@ -1,13 +1,16 @@
+// Copyright 2020 Ilya Tatsenko
 #pragma once
 #include<iostream>
+#include<string>
 
 class MyString {
-   private:
-       char* str;
-public:
+ private:
+    char* str;
+
+ public:
     MyString();
-    MyString(const char*s);
-    MyString(std::string);
+    explicit MyString(const char*s);
+    explicit MyString(std::string);
     MyString(const MyString&);
     MyString(MyString&&);
     ~MyString();
