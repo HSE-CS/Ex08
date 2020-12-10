@@ -28,6 +28,7 @@ class MyString {
     bool operator>=(const MyString& x);
     bool operator<=(const MyString& x);
     MyString operator!();
+
     char operator[](int x);
     int operator()(const char* x);
 
