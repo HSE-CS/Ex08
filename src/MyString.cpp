@@ -41,6 +41,7 @@ MyString :: ~MyString() {
     delete[] this->str;
 }
 int MyString::length() {
+    if(str == nullptr) return 0;
     return strlen(str);
 }
 char* MyString::get() {
