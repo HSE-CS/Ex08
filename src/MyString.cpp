@@ -258,11 +258,9 @@ bool MyString::operator<=(const MyString& _str) {
 MyString MyString::operator!() {
     char* _temp = new char[_length];
     for (size_t i = 0; i < _length; ++i) {
-        if (_string[i] <= 122
-            && _string[i] >= 97) {
+        if (_string[i] <= 122 && _string[i] >= 97) {
             _string[i] -= 32;
-        } else if (_string[i] <= 90
-                    && _string[i] >= 65) {
+        } else if (_string[i] <= 90 && _string[i] >= 65) {
             _string[i] += 32;
         }
     }
