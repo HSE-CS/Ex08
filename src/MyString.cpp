@@ -1,3 +1,5 @@
+// Copyright 2020 GHA created by Klykov Anton
+
 #include "MyString.h"
 
 MyString::MyString(const char* _str) {
@@ -60,30 +62,37 @@ char* MyString::get() {
 }
 
 MyString MyString::operator+(const MyString& _str) {
-    unsigned int _temp_length = this->length() + _str._length;
-    char* _tem = new char[_temp_length + 1];
+    if (_string == nullptr && _str._string == nullptr) {
+        throw std::exception();
+    }
+    MyString _temporary;
+    _temporary._length = this->length() + _str._length;
+    _temporary._string = new char[_temporary._length + 1];
     size_t i = 0;
-    while (this->_string[i] != '\0') {
-        _tem[i] = this->_string[i];
-        i++;
+    if (_string != nullptr) {
+        while (this->_string[i] != '\0') {
+            _temporary._string[i] = this->_string[i];
+            i++;
+        }
     }
-    size_t k{0};
-    while (_str._string[k] != '\0') {
-        _tem[i] = _str._string[k];
-        k++;
-        i++;
+    if (_str._string != nullptr) {
+        size_t k{0};
+        while (_str._string[k] != '\0') {
+            _temporary._string[i] = _str._string[k];
+            k++;
+            i++;
+        }
     }
-    _tem[_temp_length] = '\0';
-    MyString _temporary_str(_tem);
-    return _temporary_str;
+    _temporary._string[_temporary._length] = '\0';
+    return _temporary;
 }
 
 MyString MyString::operator-(const MyString& _str) {
-    size_t temp_length{0};
+    MyString _temporary;
     for (int i = 0; i < _str._length; ++i) {
         for (int j = 0; j < length(); ++j) {
             if (_string[j] == _str._string[i]) {
-                temp_length++;
+                _temporary._length++;
                 break;
             }
         }
@@ -91,34 +100,33 @@ MyString MyString::operator-(const MyString& _str) {
     size_t k{0};
     static size_t i = 0;
     static size_t j = 0;
-    char* _temp = new char[length() - temp_length + 1];
+    _temporary._string = new char[length() - _temporary._length + 1];
     for (; i < _str._length; ++i) {
         for (; j < length(); ++j) {
             if (_string[j] != _str._string[i]) {
-                _temp[k] = _string[j];
+                _temporary._string[k] = _string[j];
                 k++;
             } else {
                 break;
             }
         }
     }
-    _temp[length() - temp_length] = '\0';
-    MyString _temporary(_temp);
+    _temporary._string[length() - _temporary._length] = '\0';
     return _temporary;
 }
 
 MyString MyString::operator*(int val) {
-    unsigned  int _temp_length = 3 * length();
-    char* _temp = new char[_temp_length + 1];
+    MyString _temporary;
+    _temporary._length = 3 * _length;
+    _temporary._string = new char[_temporary._length  + 1];
     size_t k{0};
     for (size_t i = 0; i < val; ++i) {
         for (size_t j = 0; j < length(); ++j) {
-            _temp[k] = _string[j];
+            _temporary._string[k] = _string[j];
             k++;
         }
     }
-    _temp[_temp_length] = '\0';
-    MyString _temporary(_temp);
+    _temporary._string[_temporary._length] = '\0';
     return _temporary;
 }
 
@@ -245,15 +253,17 @@ bool MyString::operator<=(const MyString& _str) {
 }
 
 MyString MyString::operator!() {
-    char* _temp = new char[_length];
+    MyString _temporary;
+    _temporary._length = _length;
+    _temporary._string = new char[_length + 1];
     for (size_t i = 0; i < _length; ++i) {
         if (_string[i] <= 122 && _string[i] >= 97) {
-            _string[i] -= 32;
+            _temporary._string[i] -= 32;
         } else if (_string[i] <= 90 && _string[i] >= 65) {
-            _string[i] += 32;
+            _temporary._string[i] += 32;
         }
     }
-    MyString _temporary(_temp);
+    _temporary._string[_length] = '\0';
     return _temporary;
 }
 
