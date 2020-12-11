@@ -24,8 +24,8 @@ MyString::MyString(const char* _str) {
 }
 
 MyString::MyString(std::string _str) {
-   _length = _str.size();
-   _string = new char[_length + 1];
+    _length = _str.size();
+    _string = new char[_length + 1];
     size_t i = 0;
     for (; i < _length; ++i) {
         _string[i] = _str[i];
@@ -43,9 +43,11 @@ MyString::MyString(const MyString& _str) {
     _string[i] = '\0';
 }
 
-MyString::MyString(MyString&& _str) : _string(_str._string), _length(_str._length)
-{
+MyString::MyString(MyString&& _str) {
+    _string = _str._string;
+    _length = _str._length;
     _str._string = nullptr;
+    _str._length = 0;
 }
 
 MyString::~MyString() {
@@ -62,18 +64,25 @@ char* MyString::get() {
 }
 
 MyString MyString::operator+(const MyString& _str) {
+    if (_string == nullptr && _str._string == nullptr) {
+        throw std::exception();
+    }
     unsigned int _temp_length = this->length() + _str._length;
     char* _tem = new char[_temp_length + 1];
     size_t i = 0;
-    while (this->_string[i] != '\0') {
-        _tem[i] = this->_string[i];
-        i++;
+    if (_string != nullptr) {
+        while (this->_string[i] != '\0') {
+            _tem[i] = this->_string[i];
+            i++;
+        }
     }
-    size_t k{0};
-    while (_str._string[k] != '\0') {
-        _tem[i] = _str._string[k];
-        k++;
-        i++;
+    if (_str._string != nullptr) {
+        size_t k{0};
+        while (_str._string[k] != '\0') {
+            _tem[i] = _str._string[k];
+            k++;
+            i++;
+        }
     }
     _tem[_temp_length] = '\0';
     MyString _temporary_str(_tem);
@@ -249,9 +258,11 @@ bool MyString::operator<=(const MyString& _str) {
 MyString MyString::operator!() {
     char* _temp = new char[_length];
     for (size_t i = 0; i < _length; ++i) {
-        if (_string[i] <= 122 && _string[i] >= 97) {
+        if (_string[i] <= 122
+            && _string[i] >= 97) {
             _string[i] -= 32;
-        } else if (_string[i] <= 90 && _string[i] >= 65) {
+        } else if (_string[i] <= 90
+                    && _string[i] >= 65) {
             _string[i] += 32;
         }
     }
@@ -286,7 +297,7 @@ int MyString::operator()(const char* _str) {
     return 0;
 }
 
-std::ostream& operator<<(std::ostream& out, MyString& _str){
+std::ostream& operator<<(std::ostream& out, MyString& _str) {
     if (_str._string == nullptr) {
         throw std::exception();
     } else {
@@ -294,7 +305,7 @@ std::ostream& operator<<(std::ostream& out, MyString& _str){
     }
 }
 
-std::istream& operator>>(std::istream& in, MyString& _str){
+std::istream& operator>>(std::istream& in, MyString& _str) {
     std::string _temp;
     in >> _temp;
     _str = MyString(_temp);

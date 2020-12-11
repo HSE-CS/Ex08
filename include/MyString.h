@@ -3,7 +3,7 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 
-#include <cstring>
+#include <string>
 #include <iostream>
 #include <fstream>
 
@@ -11,11 +11,12 @@ class MyString{
  private:
     unsigned int _length;
     char* _string;
+
  public:
-    MyString(const char* = nullptr);
-    MyString(std::string);
-    MyString(const MyString&);
-    MyString(MyString&&);
+    explicit MyString(const char* = nullptr);
+    explicit MyString(std::string);
+    explicit MyString(const MyString&);
+    explicit MyString(MyString&&);
     ~MyString();
     unsigned int length();
     char* get();
@@ -37,4 +38,4 @@ class MyString{
     friend std::istream& operator>>(std::istream& is, MyString& c);
 };
 
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
