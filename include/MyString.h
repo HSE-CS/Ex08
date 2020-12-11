@@ -3,7 +3,7 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 
-#include <string>
+#include <cstring>
 #include <iostream>
 #include <fstream>
 
@@ -15,8 +15,8 @@ class MyString{
  public:
     explicit MyString(const char* = nullptr);
     explicit MyString(std::string);
-    explicit MyString(const MyString&);
-    explicit MyString(MyString&&);
+    MyString(const MyString&);
+    MyString(MyString&&) noexcept ;
     ~MyString();
     unsigned int length();
     char* get();

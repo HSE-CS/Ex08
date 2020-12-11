@@ -43,9 +43,11 @@ MyString::MyString(const MyString& _str) {
     _string[i] = '\0';
 }
 
-MyString::MyString(MyString&& _str) :
-_string(_str._string), _length(_str._length) {
+MyString::MyString(MyString&& _str)  noexcept {
+    _string = _str._string;
+    _length = _str._length;
     _str._string = nullptr;
+    _str._length = 0;
 }
 
 MyString::~MyString() {
