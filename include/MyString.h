@@ -2,15 +2,16 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 #include <string>
+#include <cstring>
+#include <iostream>
 
 class MyString {
  private:
     char* string;
 
  public:
-    MyString();
-    explicit MyString(const char*);
-    explicit MyString(std::string);
+    explicit MyString(const char* ptr = nullptr);
+    explicit MyString(std::string s);
     MyString(const MyString& s);
     MyString(MyString&& s);
     ~MyString();
