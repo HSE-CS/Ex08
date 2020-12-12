@@ -70,7 +70,7 @@ MyString MyString::operator-(const MyString &new_string) {
 
 MyString MyString::operator*(const size_t n) {
   MyString answer(string);
-  for (long unsigned int i = 0; i < n - 1; i++) {
+  for (unsigned int i = 0; i < n - 1; i++) {
     answer = answer + *this;
   }
   return answer;
@@ -133,7 +133,7 @@ int MyString::operator()(const char *new_string) {
   for (int my_index = 0; my_index < len; my_index++) {
     if (string[my_index] == new_string[sub_index]) {
       sub_index += 1;
-      if (sub_index >= (int)strlen(new_string))
+      if (sub_index >= strlen(new_string))
         return my_index - strlen(new_string) + 1;
     } else {
       sub_index = 0;
