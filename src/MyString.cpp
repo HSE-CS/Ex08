@@ -91,8 +91,10 @@ MyString MyString::operator+(const MyString& _str) {
 
 MyString MyString::operator-(const MyString& _str) {
     MyString _temporary;
+    static size_t i{0};
+    static size_t j{0};
     for (int i = 0; i < _str._length; ++i) {
-        for (int j = 0; j < length(); ++j) {
+        for (int j = 0; j < _length; ++j) {
             if (_string[j] == _str._string[i]) {
                 _temporary._length++;
                 break;
@@ -100,20 +102,22 @@ MyString MyString::operator-(const MyString& _str) {
         }
     }
     size_t k{0};
-    static size_t i = 0;
-    static size_t j = 0;
-    _temporary._string = new char[length() - _temporary._length + 1];
-    for (; i < _str._length; ++i) {
-        for (; j < length(); ++j) {
-            if (_string[j] != _str._string[i]) {
-                _temporary._string[k] = _string[j];
-                k++;
-            } else {
+    size_t ind{0};
+    _temporary._string = new char[_length - _temporary._length + 1];
+    for (size_t i = 0; i < _length; ++i) {
+        for (size_t j = 0; j < _temporary._length; ++j) {
+            if (_string[i] == _str._string[j]) {
+                ind++;
                 break;
             }
         }
+        if (ind == 0) {
+            _temporary._string[k] = _string[i];
+            k++;
+        }
+        ind = 0;
     }
-    _temporary._string[length() - _temporary._length] = '\0';
+    _temporary._string[_length - _temporary._length] = '\0';
     return _temporary;
 }
 
@@ -123,7 +127,7 @@ MyString MyString::operator*(int val) {
     _temporary._string = new char[_temporary._length  + 1];
     size_t k{0};
     for (size_t i = 0; i < val; ++i) {
-        for (size_t j = 0; j < length(); ++j) {
+        for (size_t j = 0; j < _length; ++j) {
             _temporary._string[k] = _string[j];
             k++;
         }
