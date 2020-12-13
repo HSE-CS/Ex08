@@ -135,8 +135,8 @@ char MyString::operator[](const int& index) {
     return string[index];
 }
 
-int MyString::operator()(const MyString& str) const {
-    if (strstr(string, str.string) == nullptr)
+int MyString::operator()(const char* str) const {
+    if (strstr(string, str) == nullptr)
         return -1;
     return 0;
 }
