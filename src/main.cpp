@@ -20,7 +20,7 @@ int main() {
     std::cout << a.get() << "\t" << a.length() << std::endl;
     if (d == c)
         std::cout << "Equal" << std::endl;
-    else 
+    else
         std::cout << "Not equal" << std::endl;
     if (d != b)
         std::cout << "Not Equal" << std::endl;
