@@ -12,7 +12,7 @@ class MyString {
  public:
         ~MyString();
         MyString();
-        MyString(const char* str, int y = 0);
+        explicit MyString(const char* str);
         explicit MyString(std::string str);
         MyString(const MyString& str);
         MyString(MyString&& str);
@@ -29,7 +29,7 @@ class MyString {
         bool operator<=(const MyString& str);
         MyString operator!();
         char operator[](const int& index);
-        int operator()(const MyString& str);
+        int operator()(const MyString& str) const;
         friend std::ostream& operator<<(std::ostream& os, MyString& str);
         friend std::istream& operator>>(std::istream& is, MyString& str);
         MyString& operator=(const MyString& str);

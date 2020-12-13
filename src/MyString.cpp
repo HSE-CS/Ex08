@@ -17,7 +17,7 @@ MyString::MyString() {
     string = nullptr;
 }
 
-MyString::MyString(const char* str, int y = 0) {
+MyString::MyString(const char* str) {
     size = strlen(str);
     string =  new char[size + 1];
     snprintf(string, size+1, "%s", str);
@@ -135,7 +135,7 @@ char MyString::operator[](const int& index) {
     return string[index];
 }
 
-int MyString::operator()(const MyString& str) {
+int MyString::operator()(const MyString& str) const {
     if (strstr(string, str.string) == nullptr)
         return -1;
     return 0;
