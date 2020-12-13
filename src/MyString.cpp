@@ -60,7 +60,7 @@ MyString MyString::operator+(const MyString& str) {
         result.string[i] = string[i];
     }
     for (int i = 0; i < str.size; i++) {
-        result.string[i+size-1] = str.string[i];
+        result.string[i+size] = str.string[i];
     }
     return result;
 }
