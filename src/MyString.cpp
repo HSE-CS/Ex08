@@ -93,55 +93,27 @@ MyString MyString::operator*(int n) {
 }
 
 bool MyString::operator==(const MyString& str) {
-    if (size != str.size)
-        return false;
-    for (int i = 0; i < size; i++) {
-        if (string[i] != str.string[i])
-            return false;
-    }
-    return true;
+   return strcmp(string,str.string) == 0;
 }
 
 bool MyString::operator!=(const MyString& str) {
-    if (size != str.size)
-        return true;
-    for (int i = 0; i < size; i++) {
-        if (string[i] != str.string[i])
-            return true;
-    }
-    return false;
+   return strcmp(string,str.string) == 0;
 }
 
 bool MyString::operator<(const MyString& str) {
-    for (int i = 0; i < std::min(size-1, str.size-1); i++) {
-        if (string[i] >= str.string[i] )
-            return false;
-    }
-    return true;
+   return strcmp(string,str.string) == -1;
 }
 
 bool MyString::operator<=(const MyString& str) {
-    for (int i = 0; i < std::min(size-1, str.size-1); i++) {
-        if (string[i] > str.string[i] )
-            return false;
-    }
-    return true;
+   return strcmp(string,str.string) != 1;
 }
 
 bool MyString::operator>(const MyString& str) {
-    for (int i = 0; i < std::min(size-1, str.size-1); i++) {
-        if (string[i] <= str.string[i] )
-            return false;
-    }
-    return true;
+   return strcmp(string,str.string) == 1;
 }
 
 bool MyString::operator>=(const MyString& str) {
-    for (int i = 0; i < std::min(size-1, str.size-1); i++) {
-        if (string[i] < str.string[i] )
-            return false;
-    }
-    return true;
+   return strcmp(string,str.string) != -1;
 }
 
 MyString MyString::operator!() {
