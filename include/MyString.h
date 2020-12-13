@@ -4,16 +4,15 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 
-class MyString
-{
-    private:
+class MyString {
+ private:
         char * string;
         int size;
-    public:
+ public:
         ~MyString();
-        MyString();
+        explicit MyString();
         MyString(const char* str);
-        MyString(std::string str);
+        explicit MyString(std::string str);
         MyString(const MyString& str);
         MyString(MyString&& str);
         int length();
@@ -36,4 +35,6 @@ class MyString
         MyString& operator=(MyString&& str);
 
 };
+
 #endif  // INCLUDE_MYSTRING_H_
+
