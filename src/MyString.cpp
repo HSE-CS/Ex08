@@ -6,34 +6,29 @@ MyString::MyString(const char* c_str)
 {
   if (c_str == nullptr) 
 {
-    this->array = new char[0];
-    this->array = new char[1];
-	memset(this->array, 0, 1);
     this->size = 0;
+    this->array = new char[1];
+    memset(this->array, 0, 1);
     return;
   }
 
   this->size = strlen(c_str);
   this->array = new char[this->size + 1];
-  memset(this->array, 0, this->size + 1);
-  memcpy(this->array, c_str, this->size);
+  snprintf(this->array, this->size + 1, "%s", c_str);
 }
 
 MyString::MyString(std::string str) 
 {
   this->size = str.length();
   this->array = new char[this->size + 1];
-  memset(this->array, 0, this->size + 1);
-  memcpy(this->array, str.c_str(), this->size);
+  snprintf(this->array, this->size + 1, "%s", str.c_str());
 }
 
 MyString::MyString(const MyString& str) 
 {
   this->size = str.length();
-  this->array = new char[this->size];
   this->array = new char[this->size + 1];
-  memset(this->array, 0, this->size + 1);
-  memcpy(this->array, str.get(), this->size);
+  snprintf(this->array, this->size + 1, "%s", str.get());
 }
 
 MyString::MyString(MyString&& str) 
@@ -69,11 +64,12 @@ MyString MyString::operator+(const MyString& str)
 MyString MyString::operator-(const MyString& str) 
 {
   std::string result;
+
   std::string a(this->get());
+
   for (size_t i = 0; i < str.length(); i++) 
 {
     while (a.find(str[i]) != std::string::npos) 
-
 {
       a.erase(a.find(str[i]), 1);
     }
@@ -92,15 +88,13 @@ MyString MyString::operator*(size_t n)
   return MyString(a);
 }
 
-
 MyString& MyString::operator=(const MyString& str) 
 {
   if (this->array != nullptr) delete this->array;
 
   this->size =  str.length();
   this->array = new char[this->size + 1];
-  memset(this->array, 0, this->size + 1);
-  memcpy(this->array, str.get(), this->size);
+  snprintf(this->array, this->size + 1, "%s", str.get());
 
   return *this;
 }
@@ -123,4 +117,72 @@ bool MyString::operator==(const MyString& str)
 bool MyString::operator!=(const MyString& str) 
 {
   return (strcmp(this->get(), str.get()) != 0);
+}
+
+bool MyString::operator>(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) > 0);
+}
+
+bool MyString::operator>=(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) >= 0);
+}
+
+bool MyString::operator<(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) < 0);
+}
+
+bool MyString::operator<=(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) <= 0);
+}
+
+MyString MyString::operator!() 
+{
+  std::string str(this->get());
+  int length = str.length();
+  for (int i = 0; i < length; i++) 
+{
+    int c = str[i];
+
+    if (islower(c))
+{
+      str[i] = toupper(c);
+} 
+else if (isupper(c)) 
+{
+      str[i] = tolower(c);
+    }
+  }
+  return MyString(str);
+}
+char& MyString::operator[](const size_t ind) const 
+{
+  if (ind >= this->size) 
+{
+    throw "Something wrong with index";
+  }
+  return this->array[ind];
+}
+
+int MyString::operator()(const char* str) 
+
+{
+  char* p_str = strstr(this->get(), str);
+  if (p_str == nullptr) {
+    return -1;
+  }
+  return p_str - this->get();
+}
+
+std::ostream& operator<<(std::ostream& os, MyString& str) 
+{
+  return os << str.get();
+}
+
+std::istream& operator>>(std::istream& is, MyString& str) 
+{
+  return is >> str.get();
 }

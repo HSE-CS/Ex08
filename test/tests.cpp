@@ -1,118 +1,180 @@
-// Copyright 2020 GHA Test Team
+// Copyright 2020 DBarinov
+
 #include "MyString.h"
-
-#include <gtest/gtest.h>
-#include <string>
-
-TEST(MyStringTest, test1) {
-  MyString a;
-  EXPECT_EQ(0, a.length());
+MyString::MyString(const char* c_str) 
+{
+  if (c_str == nullptr) 
+{
+    this->size = 0;
+    this->array = new char[1];
+    memset(this->array, 0, 1);
+    return;
+  }
+  this->size = strlen(c_str);
+  this->array = new char[this->size + 1];
+  snprintf(this->array, this->size + 1, "%s", c_str);
 }
 
-TEST(MyStringTest, test2) {
-  MyString a("hello");
-  EXPECT_EQ(5, a.length());
+
+MyString::MyString(std::string str) 
+{
+  this->size = str.length();
+  this->array = new char[this->size + 1];
+  snprintf(this->array, this->size + 1, "%s", str.c_str());
 }
 
-TEST(MyStringTest, test3) {
-  MyString a("123");
-  MyString b(a);
-  EXPECT_STREQ("123", b.get());
+MyString::MyString(const MyString& str) 
+{
+  this->size = str.length();
+  this->array = new char[this->size + 1];
+  snprintf(this->array, this->size + 1, "%s", str.get());
 }
 
-TEST(MyStringTest, test4) {
-  MyString a("123");
-  MyString b(a);
-  MyString c;
-  c = a + b;
-  EXPECT_STREQ("123123", c.get());
+MyString::MyString(MyString&& str) 
+{
+  this->size = str.size;
+  this->array = str.array;
+  str.array = nullptr;
+  str.size = 0;
 }
 
-TEST(MyStringTest, test5) {
-  MyString a("123");
-  MyString b;
-  MyString c;
-  c = a + b;
-  EXPECT_STREQ("123", c.get());
+MyString::~MyString() 
+{
+  delete this->array;
 }
 
-TEST(MyStringTest, test6) {
-  MyString a(std::string("Hello"));
-  EXPECT_STREQ("Hello", a.get());
+size_t MyString::length() const 
+{
+  return this->size;
 }
 
-TEST(MyStringTest, test7) {
-  MyString a("123456789");
-  MyString b("2468");
-  MyString c;
-  c = a - b;
-  EXPECT_STREQ("13579", c.get());
+char* MyString::get() const 
+{
+  return this->array;
 }
 
-TEST(MyStringTest, test8) {
-  MyString a("123");
-  int b = 3;
-  MyString c;
-  c = a * b;
-  EXPECT_STREQ("123123123", c.get());
+MyString MyString::operator+(const MyString& str) 
+{
+  std::string a(this->get());
+  std::string b(str.get());
+  return MyString(a + b);
 }
 
-TEST(MyStringTest, test9) {
-  MyString a("123");
-  MyString b("123");
-  EXPECT_EQ(true, a == b);
+MyString MyString::operator-(const MyString& str) 
+{
+  std::string result;
+  std::string a(this->get());
+  for (size_t i = 0; i < str.length(); i++) 
+{
+    while (a.find(str[i]) != std::string::npos) 
+{
+      a.erase(a.find(str[i]), 1);
+    }
+  }
+  return MyString(a);
 }
 
-TEST(MyStringTest, test10) {
-  MyString a("123");
-  MyString b("1234");
-  EXPECT_EQ(false, a == b);
+MyString MyString::operator*(size_t n) 
+{
+  std::string a;
+  size_t i = 0;
+  while (i < n) {
+    a.append(this->get());
+    i++;
+  }
+  return MyString(a);
 }
 
-TEST(MyStringTest, test11) {
-  MyString a("123");
-  MyString b("1234");
-  EXPECT_EQ(true, a != b);
+MyString& MyString::operator=(const MyString& str) 
+{
+  if (this->array != nullptr) delete this->array;
+  this->size =  str.length();
+  this->array = new char[this->size + 1];
+  snprintf(this->array, this->size + 1, "%s", str.get());
+  return *this;
 }
 
-TEST(MyStringTest, test12) {
-  MyString a("123");
-  MyString b("1234");
-  EXPECT_EQ(true, b >= a);
+MyString& MyString::operator=(MyString&& str) 
+{
+  if (this->array != nullptr) delete this->array;
+  this->size = str.length();
+  this->array = str.get();
+  str.array = nullptr;
+  str.size = 0;
+  return *this;
 }
 
-TEST(MyStringTest, test13) {
-  MyString a("45");
-  MyString b("1234");
-  EXPECT_EQ(true, b <= a);
+bool MyString::operator==(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) == 0);
 }
 
-TEST(MyStringTest, test14) {
-  MyString a("abc");
-  MyString b;
-  b = !a;
-  EXPECT_STREQ("ABC", b.get());
+bool MyString::operator!=(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) != 0);
 }
 
-TEST(MyStringTest, test15) {
-  MyString a("abc123");
-  MyString b;
-  b = !a;
-  EXPECT_STREQ("ABC123", b.get());
+bool MyString::operator>(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) > 0);
 }
 
-TEST(MyStringTest, test16) {
-  MyString a("45");
-  char b = '5';
-  EXPECT_EQ(b, a[1]);
+bool MyString::operator>=(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) >= 0);
 }
 
-TEST(MyStringTest, test17) {
-  MyString a("454545");
-  EXPECT_EQ(0, a("45"));
+bool MyString::operator<(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) < 0);
 }
 
-TEST(MyStringTest, test18) {
-  MyString a("454545");
-  EXPECT_EQ(-1, a("33"));
+bool MyString::operator<=(const MyString& str) 
+{
+  return (strcmp(this->get(), str.get()) <= 0);
+}
+
+MyString MyString::operator!() 
+{
+  std::string str(this->get());
+  int length = str.length();
+  for (int i = 0; i < length; i++) 
+{
+    int c = str[i];
+    if (islower(c)) 
+{
+      str[i] = toupper(c);
+    } else if (isupper(c)) 
+{
+      str[i] = tolower(c);
+    }
+  }
+  return MyString(str);
+}
+
+char& MyString::operator[](const size_t ind) const 
+{
+  if (ind >= this->size) {
+    throw "Index out of bounds!";
+  }
+  return this->array[ind];
+}
+
+int MyString::operator()(const char* str) 
+{
+  char* p_str = strstr(this->get(), str);
+  if (p_str == nullptr) {
+    return -1;
+  }
+  return p_str - this->get();
+}
+
+std::ostream& operator<<(std::ostream& os, MyString& str) 
+{
+  return os << str.get();
+}
+
+std::istream& operator>>(std::istream& is, MyString& str) 
+{
+  return is >> str.get();
 }
