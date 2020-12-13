@@ -19,8 +19,8 @@ MyString::MyString() {
 
 MyString::MyString(const char* str) {
     size = strlen(str);
-    string = string_ptr = new char[size + 1];
-    snprintf(string, str.size+1, "%s\n", str); 
+    string =  new char[size + 1];
+    snprintf(string, size+1, "%s\n", str);
 }
 
 MyString::MyString(std :: string str) {
@@ -32,18 +32,18 @@ MyString::MyString(std :: string str) {
 MyString::MyString(const MyString& str) {
     size = str.size;
     string = new char[size + 1];
-    snprintf(string, str.size+1, "%s\n", str.string); 
+    snprintf(string, str.size+1, "%s\n", str.string);
 }
 MyString::MyString(MyString&& str) {
     size = str.length();
     string = new char[size + 1];
-    snprintf(string, str.size+1, "%s\n", str.string); 
+    snprintf(string, str.size+1, "%s\n", str.string);
     str.size = 0;
     str.string = nullptr;
 }
 
 MyString::~MyString() {
-    delete[] string);
+    delete[] string;
 }
 
 
@@ -83,9 +83,9 @@ MyString MyString::operator*(int n) {
     char * temp = new char[n*size + 1];
     int pointer = 0;
     for (int i = 0; i < n; i++) {
-     for(int j = 0; j < size; j++) {
-    	   temp[pointer] = string[j];
-    	   pointer++;
+     for (int j = 0; j < size; j++) {
+          temp[pointer] = string[j];
+          pointer++;
      }
     }
     temp[pointer] = '\0';
@@ -122,7 +122,7 @@ bool MyString::operator<(const MyString& str) {
 
 bool MyString::operator<=(const MyString& str) {
     for (int i = 0; i < std::min(size-1, str.size-1); i++) {
-        if ((int)string[i] > (int)str.string[i] )
+        if (string[i] > str.string[i] )
             return false;
     }
     return true;
@@ -149,11 +149,10 @@ MyString MyString::operator!() {
     result.size = size-1;
     result.string =  new char[result.size + 1];
     for (int i = 0; i < size; i++) {
-        if ((int)string[i] > 96)
-            result.string[i] = (int)string[i] - 32;
-        else if ((int)string[i] > 64 && (int)string[i] < 91) {
-                result.string[i] = (int)string[i] + 32;
-        }
+        if (string[i] > 96)
+            result.string[i] = string[i] - 32;
+        else if (string[i] > 64 && string[i] < 91)
+                result.string[i] = string[i] + 32;
         else
             result.string[i] = string[i];
     }
@@ -181,14 +180,14 @@ std::istream& operator>>(std::istream& is, MyString& str) {
 MyString& MyString::operator=(const MyString& str) {
     size = str.size;
     string =  new char[size + 1];
-        snprintf(string, str.size+1, "%s\n", str.string); 
+        snprintf(string, str.size+1, "%s\n", str.string);
     return *this;
 }
 
 MyString& MyString::operator=(MyString&& str) {
     size = str.size;
     string =  new char[size + 1];;
-    strcpy(string, str.string);
+    snprintf(string, str.size+1, "%s\n", str.string);
     str.size = 0;
     str.string = nullptr;
     return *this;
