@@ -81,17 +81,19 @@ MyString MyString::operator-(const MyString&str){
 }
 
 MyString MyString::operator*(int n) {
-    MyString result;
-    result.size = n * (size-1);
-    result.string  = (char*)calloc(result.size,sizeof(char));
-    int j = 0;
-    for(int i = 0; i < result.size; i++) {
-        if(i % (size-1) == 0)
-            j = 0;
-        result.string[i] = string[j];
-        j++;
+    char * temp = (char *)calloc(n*(size) + 1,sizeof(char));
+    int pointer = 0;
+    for(int i = 0; i < n; i++)
+    {
+    	for(int j = 0; j < size-1; j++)
+    	{
+    		temp[pointer] = string[j];
+    		pointer++;
+    	}
+    	
     }
-    return result;
+    temp[pointer] = '\0';
+    return MyString(temp);
 }
 
 bool MyString::operator==(const MyString& str) {
