@@ -3,7 +3,7 @@
 #include "MyString.h"
 #include <iostream>
 
-MyString::MyString(const char* other) {
+MyString::MyString(const char* other) : mystr{ nullptr }, size{ 0 } {
     if (other != nullptr) {
         this->size = strlen(other);
         this->mystr = new char[size + 1];
@@ -15,7 +15,7 @@ MyString::MyString(const char* other) {
     }
 }
 
-MyString::MyString(std::string other) {
+MyString::MyString(std::string other) : mystr{ nullptr }, size{ 0 } {
     this->size = other.length();
     mystr = new char[other.length() + 1];
     memset(this->mystr, 0, size + 1);
@@ -27,16 +27,18 @@ MyString::~MyString() {
     delete[] mystr;
 }
 
-MyString::MyString(const MyString& other) {
+MyString::MyString(const MyString& other) : mystr{ nullptr }, size{ 0 } {
     this->size = other.size;
     this->mystr = new char[size + 1];
     memset(this->mystr, 0, size + 1);
     memcpy(this->mystr, other.get(), this->size);
 }
 
-MyString::MyString(MyString&& other) noexcept {
-    this->size = std::move(other.size);
-    this->mystr = std::move(other.mystr);
+MyString::MyString(MyString&& other) : mystr{ nullptr }, size{ 0 } {
+    this->size = other.length();
+    this->mystr = other.get();
+    other.size = 0;
+    other.mystr = nullptr;
 }
 
 size_t MyString::length() const {
@@ -48,6 +50,8 @@ char * MyString::get() const {
 }
 
 MyString MyString::operator+(const MyString &other) {
+    if (other.get() == nullptr)
+        return MyString(std::string(this->get()));
     return MyString(std::string(this->get()) + std::string(other.get()));
 }
 
@@ -71,7 +75,7 @@ MyString MyString::operator*(const size_t value) const {
 }
 
 MyString MyString::operator=(const MyString &other) {
-    this->size = other.size;
+    this->size = other.length();
     if (this->mystr != nullptr)
         delete[] this->mystr;
     this->mystr = new char[size + 1];
@@ -81,7 +85,11 @@ MyString MyString::operator=(const MyString &other) {
 }
 
 MyString& MyString::operator=(MyString &&other) {
-    this->mystr = other.mystr;
+    this->size = other.length();
+    if (this->mystr != nullptr)
+        delete this->mystr;
+    this->mystr = other.get();
+    other.size = 0;
     other.mystr = nullptr;
     return *this;
 }

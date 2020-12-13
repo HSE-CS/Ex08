@@ -10,7 +10,7 @@ int main() {
     MyString c(ss);
     MyString d(c);
     MyString a;
-    a = b;
+    a = b + c;
     std::cout << b.get() << "\t" << b.length() << std::endl;
     std::cout << c.get() << "\t" << c.length() << std::endl;
     std::cout << d.get() << "\t" << d.length() << std::endl;
@@ -27,5 +27,10 @@ int main() {
     else
         std::cout << "Equal" << std::endl;
     std::cout << (!b).get() << "\t" << (!b).length() << std::endl;
+    MyString aa("123");
+    MyString bb;
+    MyString cc;
+    cc = aa + bb;
+    std::cout << cc << std::endl;
     return 0;
 }

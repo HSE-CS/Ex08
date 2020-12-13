@@ -5,6 +5,7 @@
 
 #include <string>
 #include <cstring>
+#include <sstream>
 
 class MyString {
  private:
@@ -12,10 +13,10 @@ class MyString {
      size_t size;
 
  public:
-     explicit MyString(const char* other = nullptr);
+     explicit MyString(const char* = nullptr);
      explicit MyString(std::string other);
      MyString(const MyString& other);
-     MyString(MyString&& other) noexcept;
+     MyString(MyString&& other);
      ~MyString();
      size_t length() const;
      char * get() const;
