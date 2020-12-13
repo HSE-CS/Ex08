@@ -93,27 +93,27 @@ MyString MyString::operator*(int n) {
 }
 
 bool MyString::operator==(const MyString& str) {
-   return strcmp(string,str.string) == 0;
+  return strcmp(string, str.string) == 0;
 }
 
 bool MyString::operator!=(const MyString& str) {
-   return strcmp(string,str.string) != 0;
+  return strcmp(string, str.string) != 0;
 }
 
 bool MyString::operator<(const MyString& str) {
-   return strcmp(string,str.string) == -1;
+  return strcmp(string, str.string) == -1;
 }
 
 bool MyString::operator<=(const MyString& str) {
-   return strcmp(string,str.string) != 1;
+  return strcmp(string, str.string) != 1;
 }
 
 bool MyString::operator>(const MyString& str) {
-   return strcmp(string,str.string) == 1;
+  return strcmp(string,str.string) == 1;
 }
 
 bool MyString::operator>=(const MyString& str) {
-   return strcmp(string,str.string) != -1;
+  return strcmp(string, str.string) != -1;
 }
 
 MyString MyString::operator!() {
