@@ -8,13 +8,14 @@ class MyString {
  private:
         char * string;
         int size;
+
  public:
         ~MyString();
-        explicit MyString();
-        MyString(const char* str);
+        MyString();
+        explicit MyString(const char* str);
         explicit MyString(std::string str);
-        MyString(const MyString& str);
-        MyString(MyString&& str);
+        explicit MyString(const MyString& str);
+        explicit MyString(MyString&& str);
         int length();
         char* get();
         MyString operator+(const MyString& str);

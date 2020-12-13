@@ -9,9 +9,9 @@
 
 
 int MyString :: length() {
-	if (size == 0)
-		return 0;
-    return size-1;
+if (size == 0)
+  return 0;
+return size-1;
 }
 
 MyString::MyString() {
@@ -36,7 +36,7 @@ MyString::MyString(const MyString& str) {
     string = (char*)calloc(size, sizeof(char));
     strcpy(string, str.string);
 }
-MyString::MyString(MyString&& str){
+MyString::MyString(MyString&& str) {
     size = str.length() + 1;
     string = (char*)calloc(size, sizeof(char));
     strcpy(string, str.string);
@@ -46,7 +46,7 @@ MyString::MyString(MyString&& str){
 
 MyString::~MyString() {
     free(string);
- }
+}
 
 
 
@@ -54,26 +54,26 @@ char * MyString :: get() {
     return string;
 }
 
-MyString MyString::operator+(const MyString& str){
+MyString MyString::operator+(const MyString& str) {
     MyString result;
     result.size = size + str.size;
     result.string = result.string = (char*)calloc(result.size, sizeof(char));
-    for(int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         result.string[i] = string[i];
     }
-    for(int i = 0; i < str.size; i++) {
+    for (int i = 0; i < str.size; i++) {
         result.string[i+size-1] = str.string[i];
     }
     return result;
 }
 
-MyString MyString::operator-(const MyString&str){
+MyString MyString::operator-(const MyString&str) {
     MyString result;
     result.size = size;
     result.string = result.string = (char*)calloc(result.size, sizeof(char));
     int j = 0;
-    for(int i = 0; i < size; i++) {
-        if(strchr(str.string,string[i]) == nullptr) {
+    for (int i = 0; i < size; i++) {
+        if (strchr(str.string, string[i]) == nullptr) {
             result.string[j] = string[i];
             j++;
         }
@@ -84,14 +84,11 @@ MyString MyString::operator-(const MyString&str){
 MyString MyString::operator*(int n) {
     char * temp = (char *)calloc(n*(size) + 1, sizeof(char));
     int pointer = 0;
-    for(int i = 0; i < n; i++)
-    {
-    	for(int j = 0; j < size-1; j++)
-    	{
-    		temp[pointer] = string[j];
-    		pointer++;
+    for (int i = 0; i < n; i++) {
+    	for(int j = 0; j < size-1; j++) {
+    	    temp[pointer] = string[j];
+    	    pointer++;
     	}
-    	
     }
     temp[pointer] = '\0';
     return MyString(temp);
@@ -156,15 +153,12 @@ MyString MyString::operator!() {
     for (int i = 0; i < size; i++) {
         if ((int)string[i] > 96)
             result.string[i] = (int)string[i] - 32;
-        else if((int)string[i] > 64 && (int)string[i] < 91)
-        {
+        else if ((int)string[i] > 64 && (int)string[i] < 91) {
                 result.string[i] = (int)string[i] + 32;
         }
-        else
-        {
+        else {
         	result.string[i] = string[i];
-        }
-        
+        }   
     }
     return result;
 }
