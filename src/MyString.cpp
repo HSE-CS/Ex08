@@ -81,8 +81,8 @@ MyString MyString::operator=(const MyString &other) {
 }
 
 MyString& MyString::operator=(MyString &&other) {
-    this->size = std::move(other.size);
-    this->mystr = std::move(other.mystr);
+    this->mystr = other.mystr;
+    other.mystr = nullptr;
     return *this;
 }
 
