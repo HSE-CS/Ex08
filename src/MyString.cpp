@@ -122,17 +122,10 @@ MyString MyString::operator-(const MyString& _str) {
 }
 
 MyString MyString::operator*(int val) {
-    MyString _temporary;
-    _temporary._length = 3 * _length;
-    _temporary._string = new char[_temporary._length  + 1];
-    size_t k{0};
-    for (size_t i = 0; i < val; ++i) {
-        for (size_t j = 0; j < _length; ++j) {
-            _temporary._string[k] = _string[j];
-            k++;
-        }
+    MyString _temporary(*this);
+    for (size_t i = 0; i < val - 1; ++i) {
+        _temporary = *this + _temporary;
     }
-    _temporary._string[_temporary._length] = '\0';
     return _temporary;
 }
 
