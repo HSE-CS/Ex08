@@ -17,7 +17,7 @@ MyString::MyString() {
     string = nullptr;
 }
 
-MyString::MyString(const char* str) {
+MyString::MyString(const char* str, int y = 0) {
     size = strlen(str);
     string =  new char[size + 1];
     snprintf(string, size+1, "%s", str);
@@ -109,7 +109,7 @@ bool MyString::operator<=(const MyString& str) {
 }
 
 bool MyString::operator>(const MyString& str) {
-  return strcmp(string,str.string) == 1;
+  return strcmp(string, str.string) == 1;
 }
 
 bool MyString::operator>=(const MyString& str) {
