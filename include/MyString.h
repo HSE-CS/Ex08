@@ -14,8 +14,8 @@ class MyString {
         MyString();
         explicit MyString(const char* str);
         explicit MyString(std::string str);
-        explicit MyString(const MyString& str);
-        explicit MyString(MyString&& str);
+        MyString(const MyString& str);
+        MyString(MyString&& str);
         int length();
         char* get();
         MyString operator+(const MyString& str);
@@ -34,7 +34,6 @@ class MyString {
         friend std::istream& operator>>(std::istream& is, MyString& str);
         MyString& operator=(const MyString& str);
         MyString& operator=(MyString&& str);
-
 };
 
 #endif  // INCLUDE_MYSTRING_H_

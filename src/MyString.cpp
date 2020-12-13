@@ -9,9 +9,7 @@
 
 
 int MyString :: length() {
-if (size == 0)
-  return 0;
-return size-1;
+  return size;
 }
 
 MyString::MyString() {
@@ -20,32 +18,32 @@ MyString::MyString() {
 }
 
 MyString::MyString(const char* str) {
-    size = strlen(str) + 1;
-    string = (char*)calloc(size, sizeof(char));
-    strcpy(string, str);
+    size = strlen(str);
+    string = string_ptr = new char[size + 1];
+    snprintf(string, str.size+1, "%s\n", str); 
 }
 
 MyString::MyString(std :: string str) {
-    size = str.length() + 1;
-    string = (char*)calloc(size, sizeof(char));
-    strcpy(string, str.c_str());
+    size = str.length();
+    string = new char[size + 1];
+    snprintf(string, size+1, "%s\n", str.c_str());
 }
 
 MyString::MyString(const MyString& str) {
-    size = str.size + 1;
-    string = (char*)calloc(size, sizeof(char));
-    strcpy(string, str.string);
+    size = str.size;
+    string = new char[size + 1];
+    snprintf(string, str.size+1, "%s\n", str.string); 
 }
 MyString::MyString(MyString&& str) {
-    size = str.length() + 1;
-    string = (char*)calloc(size, sizeof(char));
-    strcpy(string, str.string);
+    size = str.length();
+    string = new char[size + 1];
+    snprintf(string, str.size+1, "%s\n", str.string); 
     str.size = 0;
     str.string = nullptr;
 }
 
 MyString::~MyString() {
-    free(string);
+    delete[] string);
 }
 
 
@@ -57,7 +55,7 @@ char * MyString :: get() {
 MyString MyString::operator+(const MyString& str) {
     MyString result;
     result.size = size + str.size;
-    result.string = result.string = (char*)calloc(result.size, sizeof(char));
+    result.string = result.string = new char[result.size + 1];
     for (int i = 0; i < size; i++) {
         result.string[i] = string[i];
     }
@@ -70,7 +68,7 @@ MyString MyString::operator+(const MyString& str) {
 MyString MyString::operator-(const MyString&str) {
     MyString result;
     result.size = size;
-    result.string = result.string = (char*)calloc(result.size, sizeof(char));
+    result.string = result.string = new char[result.size + 1];
     int j = 0;
     for (int i = 0; i < size; i++) {
         if (strchr(str.string, string[i]) == nullptr) {
@@ -82,13 +80,13 @@ MyString MyString::operator-(const MyString&str) {
 }
 
 MyString MyString::operator*(int n) {
-    char * temp = (char *)calloc(n*(size) + 1, sizeof(char));
+    char * temp = new char[n*size + 1];
     int pointer = 0;
     for (int i = 0; i < n; i++) {
-    	for(int j = 0; j < size-1; j++) {
-    	    temp[pointer] = string[j];
-    	    pointer++;
-    	}
+     for(int j = 0; j < size; j++) {
+    	   temp[pointer] = string[j];
+    	   pointer++;
+     }
     }
     temp[pointer] = '\0';
     return MyString(temp);
@@ -149,16 +147,15 @@ bool MyString::operator>=(const MyString& str) {
 MyString MyString::operator!() {
     MyString result;
     result.size = size-1;
-    result.string =  (char*)calloc(result.size, sizeof(char));
+    result.string =  new char[result.size + 1];
     for (int i = 0; i < size; i++) {
         if ((int)string[i] > 96)
             result.string[i] = (int)string[i] - 32;
         else if ((int)string[i] > 64 && (int)string[i] < 91) {
                 result.string[i] = (int)string[i] + 32;
         }
-        else {
-        	result.string[i] = string[i];
-        }   
+        else
+            result.string[i] = string[i];
     }
     return result;
 }
@@ -168,7 +165,7 @@ char MyString::operator[](const int& index) {
 }
 
 int MyString::operator()(const MyString& str) {
-    if (strstr(string,str.string) == nullptr)
+    if (strstr(string, str.string) == nullptr)
         return -1;
     return 0;
 }
@@ -183,15 +180,15 @@ std::istream& operator>>(std::istream& is, MyString& str) {
 
 MyString& MyString::operator=(const MyString& str) {
     size = str.size;
-    string =  (char*)calloc(size, sizeof(char));
-    strcpy(string, str.string);
+    string =  new char[size + 1];
+        snprintf(string, str.size+1, "%s\n", str.string); 
     return *this;
 }
 
 MyString& MyString::operator=(MyString&& str) {
     size = str.size;
-    string =  (char*)calloc(size, sizeof(char));
-    strcpy(string,str.string);
+    string =  new char[size + 1];;
+    strcpy(string, str.string);
     str.size = 0;
     str.string = nullptr;
     return *this;
