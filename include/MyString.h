@@ -10,6 +10,7 @@ class MyString {
  private:
      char * mystr;
      size_t size;
+
  public:
      explicit MyString(const char* other = nullptr);
      explicit MyString(std::string other);
@@ -32,8 +33,8 @@ class MyString {
      MyString operator!();
      char &operator[](size_t i) const;
      int operator()(const char* substring);
-     friend std::ostream& operator<<(std::ostream& os, const MyString&);
+     friend std::ostream& operator<<(std::ostream& os, MyString&);
      friend std::istream& operator>>(std::istream& is, MyString&);
 };
 
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_

@@ -1,6 +1,7 @@
 // Copyright 2020 by Sozinov Kirill
 
 #include "MyString.h"
+#include <iostream>
 
 MyString::MyString(const char* other) {
     if (other != nullptr) {
@@ -8,8 +9,7 @@ MyString::MyString(const char* other) {
         this->mystr = new char[size + 1];
         memset(this->mystr, 0, size + 1);
         memcpy(this->mystr, other, this->size);
-    }
-    else {
+    } else {
         this->size = 0;
         this->mystr = nullptr;
     }
@@ -91,7 +91,7 @@ bool MyString::operator==(const MyString &other) {
         return false;
     if (!strcmp(this->mystr, other.mystr))
         return true;
-    else 
+    else
         return false;
 }
 
@@ -141,7 +141,7 @@ int MyString::operator()(const char* substring) {
     return ptr_substring - this->get();
 }
 
-std::ostream& operator<<(std::ostream& os, const MyString& output) {
+std::ostream& operator<<(std::ostream& os, MyString& output) {
     return os << output.get();
 }
 

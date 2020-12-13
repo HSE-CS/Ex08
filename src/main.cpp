@@ -1,4 +1,4 @@
-﻿// Copyright 2020 by Sozinov Kirill
+﻿  // Copyright 2020 by Sozinov Kirill
 #include <iostream>
 #include "MyString.h"
 #include <string>
@@ -10,9 +10,7 @@ int main() {
     MyString c(ss);
     MyString d(c);
     MyString a;
-    MyString inp;
     a = b;
-    
     std::cout << b.get() << "\t" << b.length() << std::endl;
     std::cout << c.get() << "\t" << c.length() << std::endl;
     std::cout << d.get() << "\t" << d.length() << std::endl;
@@ -22,12 +20,12 @@ int main() {
     std::cout << a.get() << "\t" << a.length() << std::endl;
     if (d == c)
         std::cout << "Equal" << std::endl;
-    else std::cout << "Not equal" << std::endl;
+    else 
+        std::cout << "Not equal" << std::endl;
     if (d != b)
         std::cout << "Not Equal" << std::endl;
-    else std::cout << "Equal" << std::endl;
+    else
+        std::cout << "Equal" << std::endl;
     std::cout << (!b).get() << "\t" << (!b).length() << std::endl;
-    std::cin >> inp;
-    std::cout << inp << std::endl;
     return 0;
 }
