@@ -20,24 +20,24 @@ MyString::MyString() {
 MyString::MyString(const char* str) {
     size = strlen(str);
     string =  new char[size + 1];
-    snprintf(string, size+1, "%s\n", str);
+    snprintf(string, size+1, "%s", str);
 }
 
 MyString::MyString(std :: string str) {
     size = str.length();
     string = new char[size + 1];
-    snprintf(string, size+1, "%s\n", str.c_str());
+    snprintf(string, size+1, "%s", str.c_str());
 }
 
 MyString::MyString(const MyString& str) {
     size = str.size;
     string = new char[size + 1];
-    snprintf(string, str.size+1, "%s\n", str.string);
+    snprintf(string, str.size+1, "%s", str.string);
 }
 MyString::MyString(MyString&& str) {
     size = str.length();
     string = new char[size + 1];
-    snprintf(string, str.size+1, "%s\n", str.string);
+    snprintf(string, str.size+1, "%s", str.string);
     str.size = 0;
     str.string = nullptr;
 }
@@ -97,7 +97,7 @@ bool MyString::operator==(const MyString& str) {
 }
 
 bool MyString::operator!=(const MyString& str) {
-   return strcmp(string,str.string) == 0;
+   return strcmp(string,str.string) != 0;
 }
 
 bool MyString::operator<(const MyString& str) {
@@ -118,7 +118,7 @@ bool MyString::operator>=(const MyString& str) {
 
 MyString MyString::operator!() {
     MyString result;
-    result.size = size-1;
+    result.size = size;
     result.string =  new char[result.size + 1];
     for (int i = 0; i < size; i++) {
         if (string[i] > 96)
@@ -152,14 +152,14 @@ std::istream& operator>>(std::istream& is, MyString& str) {
 MyString& MyString::operator=(const MyString& str) {
     size = str.size;
     string =  new char[size + 1];
-        snprintf(string, str.size+1, "%s\n", str.string);
+        snprintf(string, str.size+1, "%s", str.string);
     return *this;
 }
 
 MyString& MyString::operator=(MyString&& str) {
     size = str.size;
     string =  new char[size + 1];;
-    snprintf(string, str.size+1, "%s\n", str.string);
+    snprintf(string, str.size+1, "%s", str.string);
     str.size = 0;
     str.string = nullptr;
     return *this;
