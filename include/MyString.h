@@ -6,17 +6,18 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
-#include <cstring>
+#include <string>
 
 class MyString{
  private:
     unsigned int _length;
     char* _string;
+
  public:
     explicit MyString(const char* = nullptr);
     explicit MyString(std::string);
     MyString(const MyString&);
-    MyString(MyString&&) noexcept ;
+    MyString(MyString&&) noexcept;
     ~MyString();
     unsigned int length();
     char* get();
@@ -38,4 +39,4 @@ class MyString{
     friend std::istream& operator>>(std::istream& is, MyString& c);
 };
 
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
