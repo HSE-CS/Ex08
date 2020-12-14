@@ -64,29 +64,26 @@ char* MyString::get() {
 }
 
 MyString MyString::operator+(const MyString& _str) {
-    if (_string == nullptr && _str._string == nullptr) {
-        throw std::exception();
-    }
-    MyString _temporary;
-    _temporary._length = this->length() + _str._length;
-    _temporary._string = new char[_temporary._length + 1];
-    size_t i = 0;
-    if (_string != nullptr) {
-        while (this->_string[i] != '\0') {
-            _temporary._string[i] = this->_string[i];
-            i++;
+        MyString _temporary;
+        _temporary._length = this->length() + _str._length;
+        _temporary._string = new char[_temporary._length + 1];
+        size_t i = 0;
+        if (_string != nullptr) {
+            while (this->_string[i] != '\0') {
+                _temporary._string[i] = this->_string[i];
+                i++;
+            }
         }
-    }
-    if (_str._string != nullptr) {
-        size_t k{0};
-        while (_str._string[k] != '\0') {
-            _temporary._string[i] = _str._string[k];
-            k++;
-            i++;
+        if (_str._string != nullptr) {
+            size_t k{0};
+            while (_str._string[k] != '\0') {
+                _temporary._string[i] = _str._string[k];
+                k++;
+                i++;
+            }
         }
-    }
-    _temporary._string[_temporary._length] = '\0';
-    return _temporary;
+        _temporary._string[_temporary._length] = '\0';
+        return _temporary;
 }
 
 MyString MyString::operator-(const MyString& _str) {
@@ -267,11 +264,7 @@ MyString MyString::operator!() {
 }
 
 char& MyString::operator[](const int val) {
-    if (val < _length && val >= 0) {
-        return _string[val];
-    } else {
-        throw std::exception();
-    }
+    return _string[val];
 }
 
 int MyString::operator()(const char* _str) {
@@ -294,11 +287,7 @@ int MyString::operator()(const char* _str) {
 }
 
 std::ostream& operator<<(std::ostream& out, MyString& _str) {
-    if (_str._string == nullptr) {
-        throw std::exception();
-    } else {
-        return out << _str.get();
-    }
+    return out << _str.get();
 }
 
 std::istream& operator>>(std::istream& in, MyString& _str) {
