@@ -32,4 +32,9 @@ int main() {
     MyString h;
     h = e * f;
     std::cout << h.get() << std::endl;
+    MyString a1("123");
+    MyString b1(a1);
+    MyString c1;
+    c1 = a1 + b1;
+    std::cout << c1.get() << std::endl;
 }

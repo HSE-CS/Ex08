@@ -72,23 +72,24 @@ MyString MyString::operator-(const MyString& arg) {
 }
 
 MyString MyString::operator*(unsigned int n) {
-    char* result = new char[size * n + 1];
+    char* result = new char[size * n];
     for (int i = 0; i < n; i++) {
-        snprintf(result + size * i, size + 1, "%s", mystr);
+        snprintf(result + i * size, size + 1, "%s", mystr);
     }
+    size = size * n;
     return MyString(result);
 }
 
 MyString MyString::operator=(const MyString& arg) {
     this->mystr = new char[arg.size + 1];
-    snprintf(this->mystr, arg.size + 1, "%s", arg.mystr);
+    strcpy(this->mystr, arg.mystr);
     this->size = arg.size;
     return *this;
 }
 
 MyString MyString::operator=(MyString&& arg) {
     this->mystr = new char[arg.size + 1];
-    snprintf(this->mystr, arg.size + 1, "%s", arg.mystr);
+    strcpy(this->mystr, arg.mystr);
     this->size = arg.size;
     arg.mystr = nullptr;
     arg.size = 0;
@@ -139,7 +140,7 @@ bool MyString::operator<=(const MyString& arg) {
 
 MyString MyString::operator!() {
     MyString result;
-    for (int i = 0; i < this->size; i++) {
+    for (int i = 0; i < strlen(this->mystr); i++) {
         int c = this->mystr[i];
         if (islower(c))
             result.mystr[i] = toupper(c);
@@ -150,7 +151,7 @@ MyString MyString::operator!() {
 }
 
 char MyString::operator[](unsigned int index) {
-    if ((index < size)&&(index >= 0))
+    if ((index < strlen(mystr))&&(index >= 0))
         return mystr[index];
     throw "error";
 }
