@@ -10,6 +10,9 @@ MyString::MyString(const char* s) {
         int l = std::strlen(s) + 1;
         this->str = new char[l];
         strncpy(this->str, s, l);
+    } else {
+        this->str = new char[1];
+        memset(this->str, 0,1);
     }
 }
 
@@ -24,7 +27,7 @@ MyString::MyString(const std::string& s) {
 MyString::MyString(const MyString &s) {
     int l = s.length() + 1;
     this->str = new char[l];
-    strncpy(this->str, s.str, l);
+    strncpy(this->str, s.str, l + 1);
 }
 
 // - конструктор переноса.
