@@ -138,19 +138,17 @@ bool MyString::operator<=(const MyString& arg) {
 }
 
 MyString MyString::operator!() {
-    MyString result;
-    result.mystr = new char[size];
+    char* result = new char[size];
     for (int i = 0; i < size; i++) {
         char c = this->mystr[i];
         if (isdigit(c))
-            result.mystr[i] = c;
+            result[i] = c;
         else if (islower(c))
-            result.mystr[i] = toupper(c);
+            result[i] = toupper(c);
         else if (isupper(c))
-            result.mystr[i] = tolower(c);
+            result[i] = tolower(c);
     }
-    result.size = size;
-    return result;
+    return MyString(result);
 }
 
 char MyString::operator[](unsigned int index) {
