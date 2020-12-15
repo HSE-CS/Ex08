@@ -1,9 +1,7 @@
 // Copyright [2020] <Olesya Nikolaeva>
 
-//#ifndef INCLUDE_MYSTRING_H_
-//#define INCLUDE_MYSTRING_H_
-#ifndef MyString_h
-#define MyString_h
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 
 #include <cstring>
 #include <iostream>
@@ -16,7 +14,7 @@ class MyString {
     int size = 0;
  public:
     explicit MyString(const char* str = nullptr);
-    MyString(std::string str);
+    explicit MyString(std::string str);
     MyString(const MyString& copy);
     MyString(MyString&& move);
     ~MyString();

@@ -15,7 +15,7 @@ int main() {
     std::cout << s5.length() << std::endl;
     MyString s6(s5);
     std::cout << s6.get() << std::endl;
-    s6 = s5 + s4;
+    s6 = s5 + s2;
     std::cout << s6.get() << std::endl;
     MyString s7(std::string("Hello"));
     std::cout << s7.get() << std::endl;
@@ -27,4 +27,9 @@ int main() {
     MyString d;
     d = c * 3;
     std::cout << d.get() << std::endl;
+    MyString e("123");
+    int f = 3;
+    MyString h;
+    h = e * f;
+    std::cout << h.get() << std::endl;
 }

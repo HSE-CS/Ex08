@@ -6,26 +6,26 @@
 MyString::MyString(const char* str) {
     if (str != nullptr) {
         mystr = new char[strlen(str) + 1];
-        strcpy(mystr, str);
+        snprintf(mystr, strlen(str) + 1, "%s", str);
         size = strlen(str);
     }
 }
 
 MyString::MyString(std::string str) {
     mystr = new char[str.length() + 1];
-    strcpy(mystr, str.c_str());
+    snprintf(mystr, str.length() + 1, "%s", str.c_str());
     size = str.length();
 }
 
 MyString::MyString(const MyString& copy) {
-    mystr = new char[strlen(copy.mystr) + 1];
-    strcpy(this->mystr, copy.mystr);
-    this->size = copy.size;
+    mystr = new char[copy.size + 1];
+    snprintf(mystr, copy.size + 1, "%s", copy.mystr);
+    size = copy.size;
 }
 
 MyString::MyString(MyString&& move) {
-    mystr = new char[strlen(move.mystr) + 1];
-    strcpy(this->mystr, move.mystr);
+    mystr = new char[move.size + 1];
+    snprintf(mystr, move.size + 1, "%s", move.mystr);
     this->size = move.size;
     move.mystr = nullptr;
     move.size = 0;
@@ -46,9 +46,8 @@ char* MyString::get() {
 MyString MyString::operator+(const MyString& arg) {
     MyString result;
     result.mystr = new char[size + arg.size + 1];
-    strcpy(result.mystr, this->mystr);
-    if (arg.mystr != nullptr)
-        strcat(result.mystr, arg.mystr);
+    snprintf(result.mystr, size + arg.size + 1,
+             "%s%s", this->mystr, arg.mystr);
     size = size + arg.size;
     return result;
 }
@@ -73,26 +72,23 @@ MyString MyString::operator-(const MyString& arg) {
 }
 
 MyString MyString::operator*(unsigned int n) {
-    MyString result;
-    result.mystr = new char[size * n];
-    char * str = mystr;
-    for (int i = 0; i < n - 1; i++) {
-        strcat(result.mystr, str);
+    char* result = new char[size * n + 1];
+    for (int i = 0; i < n; i++) {
+        snprintf(result + size * i, size + 1, "%s", mystr);
     }
-    size = size * n;
-    return result;
+    return MyString(result);
 }
 
 MyString MyString::operator=(const MyString& arg) {
     this->mystr = new char[arg.size + 1];
-    strcpy(this->mystr, arg.mystr);
+    snprintf(this->mystr, arg.size + 1, "%s", arg.mystr);
     this->size = arg.size;
     return *this;
 }
 
 MyString MyString::operator=(MyString&& arg) {
     this->mystr = new char[arg.size + 1];
-    strcpy(this->mystr, arg.mystr);
+    snprintf(this->mystr, arg.size + 1, "%s", arg.mystr);
     this->size = arg.size;
     arg.mystr = nullptr;
     arg.size = 0;
@@ -143,7 +139,7 @@ bool MyString::operator<=(const MyString& arg) {
 
 MyString MyString::operator!() {
     MyString result;
-    for (int i = 0; i < strlen(this->mystr); i++) {
+    for (int i = 0; i < this->size; i++) {
         int c = this->mystr[i];
         if (islower(c))
             result.mystr[i] = toupper(c);
@@ -154,7 +150,7 @@ MyString MyString::operator!() {
 }
 
 char MyString::operator[](unsigned int index) {
-    if ((index < strlen(mystr))&&(index >= 0))
+    if ((index < size)&&(index >= 0))
         return mystr[index];
     throw "error";
 }
