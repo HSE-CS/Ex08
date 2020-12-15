@@ -12,7 +12,7 @@ MyString::MyString(const char* s) {
         strncpy(this->str, s, l);
     } else {
         this->str = new char[1];
-        memset(this->str, 0,1);
+        memset(this->str, 0, 1);
     }
 }
 
