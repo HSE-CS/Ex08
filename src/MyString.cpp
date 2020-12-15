@@ -82,14 +82,13 @@ MyString MyString::operator*(unsigned int n) {
 
 MyString MyString::operator=(const MyString& arg) {
     this->mystr = new char[arg.size + 1];
-    strcpy(this->mystr, arg.mystr);
+    snprintf(this->mystr, arg.size + 1, "%s", arg.mystr);
     this->size = arg.size;
     return *this;
 }
 
 MyString MyString::operator=(MyString&& arg) {
-    this->mystr = new char[arg.size + 1];
-    strcpy(this->mystr, arg.mystr);
+    this->mystr = arg.mystr;
     this->size = arg.size;
     arg.mystr = nullptr;
     arg.size = 0;
