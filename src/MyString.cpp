@@ -6,37 +6,37 @@ MyString::MyString(const char *String) {
     if (String != nullptr) {
         char *newString = new char[strlen(String)];
         strcpy(newString, String);
-        this->lenofstr = newString;
+        this->string_array = newString;
     } else {
-        char *newString = new char[0];
-        this->lenofstr = newString;
+        this->string_array = new char[1];
+        memset(string_array, 0, 1);
     }
 }
 MyString::MyString(const std::string &String) {
     char *newString = new char[String.length()];
     strcpy(newString, String.c_str());
-    this->lenofstr = newString;
+    this->string_array = newString;
 }
 MyString::MyString(const MyString &existString) {
     char *newString = new char[existString.length()];
     strcpy(newString, existString.get());
-    this->lenofstr = newString;
+    this->string_array = newString;
 }
 MyString::MyString(MyString &&existString) {
     char *newString = new char[existString.length()];
     strcpy(newString, existString.get());
-    this->lenofstr = newString;
-    existString.lenofstr = nullptr;
+    this->string_array = newString;
+    existString.string_array = nullptr;
 }
 MyString::~MyString() {
-    delete this->lenofstr;
+    delete this->string_array;
 }
 
 char *MyString::get() const {
-    return lenofstr;
+    return string_array;
 }
 unsigned int MyString::length() const {
-    return strlen(this->lenofstr);
+    return strlen(this->string_array);
 }
 
 MyString MyString::operator+(const MyString &String) const {
@@ -47,8 +47,8 @@ MyString MyString::operator-(const MyString &String) const {
     std::string endString(this->get());
     unsigned int iter = 0;
     while (iter < String.length()) {
-        while (endString.find(String.lenofstr[iter]) != -1) {
-            endString.erase(endString.find(String.lenofstr[iter]), 1);
+        while (endString.find(String.string_array[iter]) != -1) {
+            endString.erase(endString.find(String.string_array[iter]), 1);
         }
         iter++;
     }
@@ -62,20 +62,20 @@ MyString MyString::operator*(unsigned int lenght) const {
     return MyString(endString);
 }
 MyString &MyString::operator=(const MyString &existString) {
-    delete this->lenofstr;
-    this->lenofstr = existString.lenofstr;
+    delete this->string_array;
+    this->string_array = existString.string_array;
     return *this;
 }
 MyString &MyString::operator=(MyString &&existString) {
-    delete lenofstr;
-    this->lenofstr = existString.lenofstr;
-    existString.lenofstr = nullptr;
+    delete string_array;
+    this->string_array = existString.string_array;
+    existString.string_array = nullptr;
     return *this;
 }
 MyString &MyString::operator!() {
     for (unsigned int iter = 0; iter < this->length(); iter++) {
-        if (lenofstr[iter] >= 'a' && lenofstr[iter] <= 'z') {
-            lenofstr[iter] -= 32;
+        if (string_array[iter] >= 'a' && string_array[iter] <= 'z') {
+            string_array[iter] -= 32;
         }
     }
     return *this;
@@ -89,21 +89,21 @@ bool MyString::operator!=(const MyString &existString) const {
     return strcmp(this->get(), existString.get());
 }
 bool MyString::operator>(const MyString &existString) {
-    return (strcmp(this->lenofstr, existString.lenofstr) == 1);
+    return (strcmp(this->string_array, existString.string_array) == 1);
 }
 bool MyString::operator<(const MyString &existString) {
-    return (strcmp(this->lenofstr, existString.lenofstr) == -1);
+    return (strcmp(this->string_array, existString.string_array) == -1);
 }
 bool MyString::operator>=(const MyString &existString) {
-    return (strcmp(this->lenofstr, existString.lenofstr) > -1);
+    return (strcmp(this->string_array, existString.string_array) > -1);
 }
 bool MyString::operator<=(const MyString &existString) {
-    return (strcmp(this->lenofstr, existString.lenofstr) < 1);
+    return (strcmp(this->string_array, existString.string_array) < 1);
 }
 
 char &MyString::operator[](unsigned int number) const {
     if (number > this->length()) throw "Number out of range!";
-    return this->lenofstr[number];
+    return this->string_array[number];
 }
 long MyString::operator()(const char *String) const {
     char *pointerString = strstr(this->get(), String);

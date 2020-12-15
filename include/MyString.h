@@ -9,13 +9,15 @@
 
 class MyString{
  private:
-    char *lenofstr;
+    char *string_array;
+
  public:
     explicit MyString(const char* String = nullptr);
     explicit MyString(const std::string &String);
-    MyString( const MyString& existString);
     MyString( MyString&& existString);
     ~MyString();
+    MyString( const MyString& existString);
+
 
     char *get() const;
     unsigned int length() const;
