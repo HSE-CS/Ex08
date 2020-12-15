@@ -5,10 +5,8 @@
 MyString::MyString(const char* first_str) {
     if (first_str == nullptr) {
         str = nullptr;
-        len = 0;
-        
-    }
-    else {
+        len = 0;  
+    } else {
         len = strlen(first_str);
         str = new char[len + 1];
         snprintf(str, len + 1, "%s", first_str);
@@ -117,8 +115,7 @@ bool MyString::operator>(const MyString& string) {
 bool MyString::operator<(const MyString& string) {
     if (strcmp(str, string.str) < 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -126,8 +123,7 @@ bool MyString::operator<(const MyString& string) {
 bool MyString::operator>=(const MyString& string) {
     if (strcmp(str, string.str) >= 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -135,8 +131,7 @@ bool MyString::operator>=(const MyString& string) {
 bool MyString::operator<=(const MyString& string) {
     if (strcmp(str, string.str) <= 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -156,7 +151,7 @@ MyString MyString::operator!() {
     return MyString(s_new);
 }
 
-char& MyString::operator[](const size_t ind) const{
+char& MyString::operator[](const size_t ind) const {
     return str[ind];
 }
 
@@ -164,8 +159,7 @@ int MyString::operator()(const char* string) {
     char* point = strstr(str, string);
     if (point == nullptr) {
         return -1;
-    }
-    else {
+    } else {
         return point - str;
     }
 }

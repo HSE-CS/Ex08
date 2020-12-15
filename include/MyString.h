@@ -9,11 +9,11 @@
 #include <cstdio>
 
 class MyString {
-private:
+ private:
     char* str;
     size_t len;
 
-public:
+ public:
     friend std::ostream& operator<<(std::ostream& os, MyString&);
     friend std::istream& operator>>(std::istream& is, MyString&);
     explicit MyString(const char* first_str = nullptr);
