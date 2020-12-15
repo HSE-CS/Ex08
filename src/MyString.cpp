@@ -140,7 +140,7 @@ bool MyString::operator<=(const MyString& arg) {
 MyString MyString::operator!() {
     MyString result;
     result.mystr = new char[size];
-    for (int i = 0; i < strlen(this->mystr); i++) {
+    for (int i = 0; i < size; i++) {
         char c = this->mystr[i];
         if (isdigit(c))
             result.mystr[i] = c;
@@ -149,6 +149,7 @@ MyString MyString::operator!() {
         else if (isupper(c))
             result.mystr[i] = tolower(c);
     }
+    result.size = size;
     return result;
 }
 
