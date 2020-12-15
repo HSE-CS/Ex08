@@ -5,7 +5,7 @@
 MyString::MyString(const char* first_str) {
     if (first_str == nullptr) {
         str = nullptr;
-        len = 0;  
+        len = 0;
     } else {
         len = strlen(first_str);
         str = new char[len + 1];
@@ -40,7 +40,7 @@ MyString::~MyString() {
     len = 0;
 }
 
-size_t MyString::length() const { 
+size_t MyString::length() const {
     return len;
 }
 
