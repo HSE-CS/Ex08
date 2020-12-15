@@ -13,6 +13,7 @@
 class MyString {
  private:
     char* mystr = nullptr;
+    int size = 0;
  public:
     explicit MyString(const char* str = nullptr);
     MyString(std::string str);
@@ -34,7 +35,7 @@ class MyString {
     bool operator<=(const MyString& arg);
     MyString operator!();
     char operator[](unsigned int index);
-    unsigned long operator()(const char* arg);
+    int operator()(const char* arg);
     friend std::ostream& operator<<(std::ostream& output, MyString& arg);
     friend std::istream& operator>>(std::istream& input, MyString& arg);
 };

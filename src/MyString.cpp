@@ -7,23 +7,28 @@ MyString::MyString(const char* str) {
     if (str != nullptr) {
         mystr = new char[strlen(str) + 1];
         strcpy(mystr, str);
+        size = strlen(str);
     }
 }
 
 MyString::MyString(std::string str) {
     mystr = new char[str.length() + 1];
     strcpy(mystr, str.c_str());
+    size = str.length();
 }
 
 MyString::MyString(const MyString& copy) {
     mystr = new char[strlen(copy.mystr) + 1];
     strcpy(this->mystr, copy.mystr);
+    this->size = copy.size;
 }
 
 MyString::MyString(MyString&& move) {
     mystr = new char[strlen(move.mystr) + 1];
     strcpy(this->mystr, move.mystr);
+    this->size = move.size;
     move.mystr = nullptr;
+    move.size = 0;
 }
 
 MyString::~MyString() {
@@ -31,7 +36,7 @@ MyString::~MyString() {
 }
 
 size_t MyString::length() {
-    return strlen(mystr);
+    return size;
 }
 
 char* MyString::get() {
@@ -40,51 +45,58 @@ char* MyString::get() {
 
 MyString MyString::operator+(const MyString& arg) {
     MyString result;
-    result.mystr = new char[strlen(mystr) + strlen(arg.mystr) + 1];
+    result.mystr = new char[size + arg.size + 1];
     strcpy(result.mystr, this->mystr);
-    strcat(result.mystr, arg.mystr);
+    if (arg.mystr != nullptr)
+        strcat(result.mystr, arg.mystr);
+    size = size + arg.size;
     return result;
 }
 
 MyString MyString::operator-(const MyString& arg) {
-    MyString result;
+    std::string result = "";
     int index = 0;
-    for (int i = 0; i < strlen(this->mystr); i++) {
+    for (int i = 0; i < size; i++) {
         int j = 0;
-        while (j < strlen(arg.mystr)) {
-            if (arg.mystr[j] == this->mystr[i])
+        int n = 0;
+        while (n < arg.size) {
+            if (arg.mystr[n] == this->mystr[i])
                 j++;
+            n++;
         }
         if (j == 0) {
-            result.mystr[index] = this->mystr[i];
+            result += this->mystr[i];
             index++;
         }
     }
-    return result;
+    return MyString(result);
 }
 
 MyString MyString::operator*(unsigned int n) {
     MyString result;
-    result.mystr = new char[strlen(mystr) * n];
-    for (int i = 0; i < n; i++) {
-        strcat(result.mystr, result.mystr);
+    result.mystr = new char[size * n];
+    char * str = mystr;
+    for (int i = 0; i < n - 1; i++) {
+        strcat(result.mystr, str);
     }
+    size = size * n;
     return result;
 }
 
 MyString MyString::operator=(const MyString& arg) {
-    MyString result;
-    result.mystr = new char[strlen(arg.mystr) + 1];
-    strcpy(result.mystr, arg.mystr);
-    return result;
+    this->mystr = new char[arg.size + 1];
+    strcpy(this->mystr, arg.mystr);
+    this->size = arg.size;
+    return *this;
 }
 
 MyString MyString::operator=(MyString&& arg) {
-    MyString result;
-    result.mystr = new char[strlen(arg.mystr) + 1];
-    strcpy(result.mystr, arg.mystr);
+    this->mystr = new char[arg.size + 1];
+    strcpy(this->mystr, arg.mystr);
+    this->size = arg.size;
     arg.mystr = nullptr;
-    return result;
+    arg.size = 0;
+    return *this;
 }
 
 bool MyString::operator==(const MyString& arg) {
@@ -147,9 +159,13 @@ char MyString::operator[](unsigned int index) {
     throw "error";
 }
 
-unsigned long MyString::operator()(const char* arg) {
+int MyString::operator()(const char* arg) {
     std::string s = mystr;
-    return s.find(arg);
+    size_t index = s.find(arg);
+    if (index != std::string::npos)
+        return index;
+    else
+        return -1;
 }
 
 std::ostream& operator<<(std::ostream& output, MyString& arg) {
