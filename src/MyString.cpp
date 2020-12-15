@@ -138,7 +138,7 @@ bool MyString::operator<=(const MyString& arg) {
 }
 
 MyString MyString::operator!() {
-    char* result = new char[size];
+    char* result = new char[size + 1];
     for (int i = 0; i < size; i++) {
         char c = this->mystr[i];
         if (isdigit(c))
@@ -148,6 +148,7 @@ MyString MyString::operator!() {
         else if (isupper(c))
             result[i] = tolower(c);
     }
+    result[size] = '\0';
     return MyString(result);
 }
 
