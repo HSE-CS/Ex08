@@ -139,6 +139,7 @@ bool MyString::operator<=(const MyString& arg) {
 
 MyString MyString::operator!() {
     MyString result;
+    result.mystr = new char[size + 1];
     for (int i = 0; i < strlen(this->mystr); i++) {
         int c = this->mystr[i];
         if (islower(c))
