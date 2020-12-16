@@ -5,6 +5,9 @@
 
 int main() {
 
+    MyString null;
+    std::cout << null.length() << '\n';
+
     MyString s1("Hello,");
     MyString s2("world!");
     MyString s3;

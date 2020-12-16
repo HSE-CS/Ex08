@@ -34,7 +34,9 @@ char *MyString::get() {
 }
 
 int MyString::length() const {
-    return strlen(this->string);
+    if (this->string == nullptr) {
+        return 0;
+    } else { return strlen(this->string); };
 }
 
 //////////////////////////////////////////////////////////////////
