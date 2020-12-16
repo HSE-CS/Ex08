@@ -1,11 +1,12 @@
 // Copyright 10.12.20 KostinAndrej
 #define _CRT_SECURE_NO_WARNINGS
 #include "MyString.h"
-
+#include "stdio.h"
 MyString::MyString(const char *String) {
     if (String != nullptr) {
+        unsigned int len = strlen(String) + 1;
         char *newString = new char[strlen(String)];
-        strcpy(newString, String);
+        snprintf(newString,len, "%s", String);
         this->string_array = newString;
     } else {
         this->string_array = new char[1];
@@ -13,19 +14,18 @@ MyString::MyString(const char *String) {
     }
 }
 MyString::MyString(const std::string &String) {
-    char *newString = new char[String.length()];
-    strcpy(newString, String.c_str());
+    unsigned int len = String.length() + 1;
+    char *newString = new char[len];
+    snprintf(newString, len, "%s", String.c_str());
     this->string_array = newString;
 }
 MyString::MyString(const MyString &existString) {
     char *newString = new char[existString.length()];
-    strcpy(newString, existString.get());
+    snprintf(newString,existString.length()+1,"%s", existString.string_array);
     this->string_array = newString;
 }
 MyString::MyString(MyString &&existString) {
-    char *newString = new char[existString.length()];
-    strcpy(newString, existString.get());
-    this->string_array = newString;
+    string_array = existString.string_array;
     existString.string_array = nullptr;
 }
 MyString::~MyString() {
@@ -40,8 +40,11 @@ unsigned int MyString::length() const {
 }
 
 MyString MyString::operator+(const MyString &String) const {
-    std::string tempString = std::string(this->get()) + std::string(String.get());
-    return MyString(tempString);
+    unsigned int len = this->length();
+    char *newString = new char[len + String.length()];
+    snprintf(newString, len + 1, "%s", this->string_array);
+    snprintf(newString + len, len + 1, "%s", String.string_array);
+    return MyString(newString);
 }
 MyString MyString::operator-(const MyString &String) const {
     std::string endString(this->get());
@@ -83,14 +86,6 @@ MyString MyString::operator!() {
     }
     return MyString(res);
 }
-//MyString &MyString::operator!() {
-//    for (unsigned int iter = 0; iter < this->length(); iter++) {
-//        if (string_array[iter] >= 'a' && string_array[iter] <= 'z') {
-//            string_array[iter] -= 32;
-//        }
-//    }
-//    return *this;
-//}
 
 bool MyString::operator==(const MyString &existString) const {
     return !strcmp(this->get(), existString.get());
@@ -116,7 +111,7 @@ char &MyString::operator[](unsigned int number) const {
     if (number > this->length()) throw "Number out of range!";
     return this->string_array[number];
 }
-long MyString::operator()(const char *String) const {
+int MyString::operator()(const char *String) const {
     char *pointerString = strstr(this->get(), String);
     if (pointerString == nullptr) {
         return -1;
@@ -124,9 +119,9 @@ long MyString::operator()(const char *String) const {
         return pointerString - this->get();
     }
 }
-std::ostream &operator<<(std::ostream &valueStream, MyString &valueString) {
-    return valueStream << valueString.get();
+std::ostream &operator<<(std::ostream &valueStr, MyString &valueString) {
+    return valueStr << valueString.get();
 }
-std::istream &operator>>(std::istream &valueStream, MyString &valueString) {
-    return valueStream >> valueString.get();
+std::istream &operator>>(std::istream &valueStr, MyString &valueString) {
+    return valueStr >> valueString.get();
 }

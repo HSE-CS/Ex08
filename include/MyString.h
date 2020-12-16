@@ -14,9 +14,9 @@ class MyString{
  public:
     explicit MyString(const char* String = nullptr);
     explicit MyString(const std::string &String);
-    MyString( MyString&& existString);
+    MyString(MyString&& existString);
     ~MyString();
-    MyString( const MyString& existString);
+    MyString(const MyString& existString);
 
 
     char *get() const;
@@ -37,10 +37,8 @@ class MyString{
     bool operator<= (const MyString& existString);
 
     char &operator[] (unsigned  int number) const;
-    long operator() (const char* String) const;
-    friend std::ostream& operator<<(std::ostream& valueStream,  MyString& valueString);
-    friend std::istream& operator>>(std::istream& valueStream, MyString& valueString);
-
+    int operator() (const char* String) const;
+    friend std::ostream& operator<<(std::ostream& valueStr, MyString& valueString);
+    friend std::istream& operator>>(std::istream& valueStr, MyString& valueString);
 };
-
 #endif  // INCLUDE_MYSTRING_H_
