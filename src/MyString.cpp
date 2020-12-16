@@ -13,7 +13,7 @@ MyString::MyString(std::string str) {
     this->string = newString;
 }
 
-MyString::MyString(MyString &OldString) {
+MyString::MyString(const MyString &OldString) {
     int newLen = OldString.length() + 1;
     char *newString = new char[newLen];
     for (int i = 0; i < newLen; i++) newString[i] = OldString.string[i];
