@@ -1,7 +1,6 @@
 // Copyright 10.12.20 KostinAndrej
 #define _CRT_SECURE_NO_WARNINGS
 #include "MyString.h"
-#include "stdio.h"
 MyString::MyString(const char *String) {
     if (String != nullptr) {
         unsigned int len = strlen(String) + 1;

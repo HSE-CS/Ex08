@@ -38,7 +38,7 @@ class MyString{
 
     char &operator[] (unsigned  int number) const;
     int operator() (const char* String) const;
-    friend std::ostream& operator<<(std::ostream& valueStr, MyString& valueString);
-    friend std::istream& operator>>(std::istream& valueStr, MyString& valueString);
+    friend std::ostream& operator<<(std::ostream& Str, MyString& String);
+    friend std::istream& operator>>(std::istream& valueStr, MyString& String);
 };
 #endif  // INCLUDE_MYSTRING_H_
