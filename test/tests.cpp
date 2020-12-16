@@ -87,12 +87,12 @@ TEST(MyStringTest, test13) {
   EXPECT_EQ(true, b <= a);
 }
 
-//TEST(MyStringTest, test14) {
-//  MyString a("abc");
-//  MyString b;
-//  b = !a;
-//  EXPECT_STREQ("ABC", b.get());
-//}
+TEST(MyStringTest, test14) {
+  MyString a("abc");
+  MyString b;
+  b = !a;
+  EXPECT_STREQ("ABC", b.get());
+}
 
 TEST(MyStringTest, test15) {
   MyString a("abc123");

@@ -27,7 +27,7 @@ class MyString{
     MyString operator*(unsigned int lenght) const;
     MyString & operator=(const MyString& existString);
     MyString & operator=(MyString&& existString);
-    MyString & operator! ();
+    MyString  operator! ();
 
     bool operator== (const MyString& existString) const;
     bool operator!= (const MyString& existString) const;

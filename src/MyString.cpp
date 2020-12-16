@@ -72,14 +72,25 @@ MyString &MyString::operator=(MyString &&existString) {
     existString.string_array = nullptr;
     return *this;
 }
-MyString &MyString::operator!() {
-    for (unsigned int iter = 0; iter < this->length(); iter++) {
-        if (string_array[iter] >= 'a' && string_array[iter] <= 'z') {
-            string_array[iter] -= 32;
-        }
+MyString MyString::operator!() {
+    std::string res(this->get());
+    for (unsigned int  iter = 0;  iter < res.length();  iter++) {
+        char per = res[ iter];
+        if ('a' <= per && per <= 'z')
+            res[ iter] -= 32;
+        else if ('A' <= per && per <= 'Z')
+            res[ iter] += 32;
     }
-    return *this;
+    return MyString(res);
 }
+//MyString &MyString::operator!() {
+//    for (unsigned int iter = 0; iter < this->length(); iter++) {
+//        if (string_array[iter] >= 'a' && string_array[iter] <= 'z') {
+//            string_array[iter] -= 32;
+//        }
+//    }
+//    return *this;
+//}
 
 bool MyString::operator==(const MyString &existString) const {
     return !strcmp(this->get(), existString.get());

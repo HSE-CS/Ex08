@@ -17,8 +17,8 @@ int main() {
 //    std::cout << std::endl;
 //    std::cout << kk.get() << std::endl;
 //    std::cout <<  kiki;
-    MyString a("abc");
+    MyString a("abc123");
     MyString b;
     b = !a;
-    std::cout << b.get();
+    std::cout<< b.get();
 }
