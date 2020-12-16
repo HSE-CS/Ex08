@@ -29,7 +29,7 @@ MyString::~MyString() {
     delete this->string;
 }
 
-char * MyString::get() const{
+char * MyString::get() const {
     if (this->string == nullptr) {
         return const_cast<char *>("");
     } else { return this->string; }
