@@ -63,7 +63,6 @@ class MyString {
     friend std::ostream &operator<<(std::ostream &Str, MyString &String);
 
     friend std::istream &operator>>(std::istream &Str, MyString &String);
-
 };
 
-#endif //INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_

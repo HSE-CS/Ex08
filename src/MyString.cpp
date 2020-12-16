@@ -7,7 +7,7 @@ MyString::MyString() {
 }
 
 MyString::MyString(std::string str) {
-    int newLen = (int) str.length() + 1;
+    int newLen = static_cast<int>(str.length() + 1);
     char *newString = new char[newLen];
     for (int i = 0; i < newLen; i++) newString[i] = str[i];
     this->string = newString;
@@ -31,13 +31,13 @@ MyString::~MyString() {
 
 char *MyString::get() {
     if (this->string == nullptr) {
-        return (char *) "";
+        return const_cast<char *>("");
     } else { return this->string; }
 }
 
 int MyString::length() const {
     if (this->string == nullptr) return 0;
-    else { return strlen(this->string); }
+    return strlen(this->string);
 }
 
 //////////////////////////////////////////////////////////////////
@@ -48,7 +48,8 @@ MyString MyString::operator+(MyString &PlusString) {
     if (len2 == 0) len1++;
     char *newString = new char[len1 + len2];
     for (int i = 0; i < len1 + 1; i++) newString[i] = this->string[i];
-    for (int i = len1; i < len1 + len2; i++) newString[i] = PlusString.get()[i - len1];
+    for (int i = len1; i < len1 + len2; i++)
+        newString[i] = PlusString.get()[i - len1];
     return MyString(newString);
 }
 
@@ -131,7 +132,7 @@ bool MyString::operator<=(MyString &CompareString) {
 
 char MyString::operator[](int index) {
     if (index > this->length()) throw;
-    else return this->string[index];
+    return this->string[index];
 }
 
 int MyString::operator()(const char *substring) {
@@ -139,7 +140,7 @@ int MyString::operator()(const char *substring) {
     if (result == nullptr) {
         return -1;
     } else {
-        return (int) (result - this->get());
+        return  static_cast<int>(result - this->get());
     }
 }
 
@@ -150,8 +151,3 @@ std::ostream &operator<<(std::ostream &Str, MyString &String) {
 std::istream &operator>>(std::istream &Str, MyString &String) {
     return Str >> String.get();
 }
-
-
-
-
-

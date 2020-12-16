@@ -4,7 +4,6 @@
 #include <iostream>
 
 int main() {
-
     MyString a("123asd");
     MyString b;
     MyString c;
@@ -21,7 +20,7 @@ int main() {
     s3 = s1 + s2;
     std::cout << s3 << '\n';
     std::cout << s3("ll") << '\n';   // 2
-    std::cout << s3("mama") << '\n'; // -1
+    std::cout << s3("mama") << '\n';  // -1
 
     MyString str1("123456789");
     MyString str2("457");
