@@ -78,7 +78,7 @@ MyString &MyString::operator=(MyString const &CopyString) {
     return *this;
 }
 
-MyString &MyString::operator=(MyString &&MoveString)  noexcept {
+MyString &MyString::operator=(MyString &&MoveString) noexcept {
     delete string;
     this->string = MoveString.string;
     MoveString.string = nullptr;
@@ -87,7 +87,7 @@ MyString &MyString::operator=(MyString &&MoveString)  noexcept {
 
 MyString MyString::operator!() {
     std::string result(this->get());
-    for (char & i : result) {
+    for (char &i : result) {
         char x = i;
         if ('a' <= x && x <= 'z')
             i -= 32;
@@ -99,51 +99,51 @@ MyString MyString::operator!() {
 
 ///////////////////////////////////////////////////////////////
 
-bool  MyString::operator==(MyString &CompareString){
-    return !strcmp(this->get(),CompareString.get());
+bool MyString::operator==(MyString &CompareString) {
+    return !strcmp(this->get(), CompareString.get());
 }
 
-bool MyString::operator!=( MyString &CompareString)  {
+bool MyString::operator!=(MyString &CompareString) {
     return strcmp(this->get(), CompareString.get());
 }
 
-bool MyString::operator>( MyString &CompareString) {
+bool MyString::operator>(MyString &CompareString) {
     return (strcmp(this->string, CompareString.string) == 1);
 }
 
-bool MyString::operator<( MyString &CompareString) {
+bool MyString::operator<(MyString &CompareString) {
     return (strcmp(this->string, CompareString.string) == -1);
 }
 
-bool MyString::operator>=( MyString &CompareString) {
+bool MyString::operator>=(MyString &CompareString) {
     return (strcmp(this->string, CompareString.string) > -1);
 }
 
-bool MyString::operator<=( MyString &CompareString) {
+bool MyString::operator<=(MyString &CompareString) {
     return (strcmp(this->string, CompareString.string) < 1);
 }
 
 ///////////////////////////////////////////////////////////////
 
-char MyString::operator [] (int index)  {
+char MyString::operator[](int index) {
     if (index > this->length()) throw;
     else return this->string[index];
 }
 
-int MyString::operator () (char *substring) {
+int MyString::operator()(char *substring) {
     char *result = strstr(this->get(), substring);
     if (result == nullptr) {
         return -1;
     } else {
-        return (int)(result - this->get());
+        return (int) (result - this->get());
     }
 }
 
-std::ostream &operator << (std::ostream &Str, MyString &String) {
+std::ostream &operator<<(std::ostream &Str, MyString &String) {
     return Str << String.get();
 }
 
-std::istream &operator >> (std::istream &Str, MyString &String) {
+std::istream &operator>>(std::istream &Str, MyString &String) {
     return Str >> String.get();
 }
 
