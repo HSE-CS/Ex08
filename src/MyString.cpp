@@ -5,7 +5,7 @@ MyString::MyString(const char *String) {
     if (String != nullptr) {
         unsigned int len = strlen(String) + 1;
         char *newString = new char[strlen(String)];
-        snprintf(newString,len, "%s", String);
+        snprintf(newString, len, "%s", String);
         this->string_array = newString;
     } else {
         this->string_array = new char[1];
@@ -20,7 +20,7 @@ MyString::MyString(const std::string &String) {
 }
 MyString::MyString(const MyString &existString) {
     char *newString = new char[existString.length()];
-    snprintf(newString,existString.length()+1,"%s", existString.string_array);
+    snprintf(newString, existString.length()+1, "%s", existString.string_array);
     this->string_array = newString;
 }
 MyString::MyString(MyString &&existString) {
