@@ -30,7 +30,9 @@ MyString::~MyString() {
 }
 
 char *MyString::get() {
-    return this->string;
+    if (this->string == nullptr) {
+        return (char *) "";
+    } else { return this->string; }
 }
 
 int MyString::length() const {
