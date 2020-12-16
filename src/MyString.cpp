@@ -29,7 +29,7 @@ MyString::~MyString() {
     delete this->string;
 }
 
-char *MyString::get() {
+char * MyString::get() const{
     if (this->string == nullptr) {
         return const_cast<char *>("");
     } else { return this->string; }
@@ -42,7 +42,7 @@ int MyString::length() const {
 
 //////////////////////////////////////////////////////////////////
 
-MyString MyString::operator+(MyString &PlusString) {
+MyString MyString::operator+(const MyString &PlusString) {
     int len1 = this->length();
     int len2 = PlusString.length();
     if (len2 == 0) len1++;
@@ -53,7 +53,7 @@ MyString MyString::operator+(MyString &PlusString) {
     return MyString(newString);
 }
 
-MyString MyString::operator-(MyString &MinusString) {
+MyString MyString::operator-(const MyString &MinusString) {
     std::string result(this->string);
     int len1 = this->length();
     int len2 = MinusString.length();
@@ -69,7 +69,7 @@ MyString MyString::operator-(MyString &MinusString) {
     return MyString(result);
 }
 
-MyString MyString::operator*(int num) {
+MyString MyString::operator*(int num) const {
     std::string result;
     for (int i = 0; i < num; i++) {
         result.append(this->get());
@@ -90,7 +90,7 @@ MyString &MyString::operator=(MyString &&MoveString) noexcept {
     return *this;
 }
 
-MyString MyString::operator!() {
+MyString MyString::operator!() const {
     std::string result(this->get());
     for (char &i : result) {
         char x = i;
@@ -104,27 +104,27 @@ MyString MyString::operator!() {
 
 ///////////////////////////////////////////////////////////////
 
-bool MyString::operator==(MyString &CompareString) {
+bool MyString::operator==(const MyString &CompareString) const {
     return !strcmp(this->get(), CompareString.get());
 }
 
-bool MyString::operator!=(MyString &CompareString) {
+bool MyString::operator!=(const MyString &CompareString) const {
     return strcmp(this->get(), CompareString.get());
 }
 
-bool MyString::operator>(MyString &CompareString) {
+bool MyString::operator>(const MyString &CompareString) {
     return (strcmp(this->string, CompareString.string) == 1);
 }
 
-bool MyString::operator<(MyString &CompareString) {
+bool MyString::operator<(const MyString &CompareString) {
     return (strcmp(this->string, CompareString.string) == -1);
 }
 
-bool MyString::operator>=(MyString &CompareString) {
+bool MyString::operator>=(const MyString &CompareString) {
     return (strcmp(this->string, CompareString.string) > -1);
 }
 
-bool MyString::operator<=(MyString &CompareString) {
+bool MyString::operator<=(const MyString &CompareString) {
     return (strcmp(this->string, CompareString.string) < 1);
 }
 

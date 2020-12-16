@@ -18,25 +18,25 @@ class MyString {
     MyString(MyString &&OldString) noexcept;
     ~MyString();
     [[nodiscard]] int length() const;
-    char *get();
+    [[nodiscard]] char *get() const;
 
     ////////////////////////////////////////////
 
-    MyString operator+(MyString &PlusString);
-    MyString operator-(MyString &MinusString);
-    MyString operator*(int num);
+    MyString operator+(const MyString &PlusString);
+    MyString operator-(const MyString &MinusString);
+    MyString operator*(int num) const;
     MyString &operator=(MyString const &CopyString);
     MyString &operator=(MyString &&MoveString) noexcept;
-    MyString operator!();
+    MyString operator!() const;
 
     ////////////////////////////////////////////
 
-    bool operator==(MyString &CompareString);
-    bool operator!=(MyString &CompareString);
-    bool operator>(MyString &CompareString);
-    bool operator<(MyString &CompareString);
-    bool operator>=(MyString &CompareString);
-    bool operator<=(MyString &CompareString);
+    bool operator==(const MyString &CompareString) const;
+    bool operator!=(const MyString &CompareString) const;
+    bool operator>(const MyString &CompareString);
+    bool operator<(const MyString &CompareString);
+    bool operator>=(const MyString &CompareString);
+    bool operator<=(const MyString &CompareString);
 
     ////////////////////////////////////////////
 
