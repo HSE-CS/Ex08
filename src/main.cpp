@@ -5,6 +5,13 @@
 
 int main() {
 
+    MyString a("123asd");
+    MyString b;
+    MyString c;
+    c = a + b;
+    std::cout << b.length() << '\n';
+    std::cout << c.get() << '\n';
+
     MyString null;
     std::cout << null.length() << '\n';
 

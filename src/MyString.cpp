@@ -36,9 +36,8 @@ char *MyString::get() {
 }
 
 int MyString::length() const {
-    if (this->string == nullptr) {
-        return 0;
-    } else { return strlen(this->string); };
+    if (this->string == nullptr) return 0;
+    else { return strlen(this->string); }
 }
 
 //////////////////////////////////////////////////////////////////
@@ -46,9 +45,10 @@ int MyString::length() const {
 MyString MyString::operator+(MyString &PlusString) {
     int len1 = this->length();
     int len2 = PlusString.length();
+    if (len2 == 0) len1++;
     char *newString = new char[len1 + len2];
-    for (int i = 0; i < len1; i++) newString[i] = this->string[i];
-    for (int i = len1; i < len1 + len2; i++) newString[i] = PlusString.string[i - len1];
+    for (int i = 0; i < len1 + 1; i++) newString[i] = this->string[i];
+    for (int i = len1; i < len1 + len2; i++) newString[i] = PlusString.get()[i - len1];
     return MyString(newString);
 }
 
