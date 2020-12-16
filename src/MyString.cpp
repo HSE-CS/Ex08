@@ -130,7 +130,7 @@ char MyString::operator[](int index) {
     else return this->string[index];
 }
 
-int MyString::operator()(char *substring) {
+int MyString::operator()(const char *substring) {
     char *result = strstr(this->get(), substring);
     if (result == nullptr) {
         return -1;

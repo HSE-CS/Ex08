@@ -1,18 +1,18 @@
 // Copyright Mushka Nikita 2020
 
-#ifndef EX08_MYSTRING_H
-#define EX08_MYSTRING_H
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 
 #include <iostream>
 #include <string>
 #include <cstring>
 
 class MyString {
-private:
+ private:
     char *string;
 
-public:
-    explicit MyString();
+ public:
+    MyString();
 
     explicit MyString(std::string str);
 
@@ -58,7 +58,7 @@ public:
 
     char operator[](int index);
 
-    int operator()(char *substring);
+    int operator()(const char *substring);
 
     friend std::ostream &operator<<(std::ostream &Str, MyString &String);
 
@@ -66,4 +66,4 @@ public:
 
 };
 
-#endif //EX08_MYSTRING_H
+#endif //INCLUDE_MYSTRING_H_
