@@ -1,4 +1,6 @@
-﻿// Copyright 2020 SmirnovGrigory
+﻿// Copyright 2020 SmirnovGrigory  
+
+
 #include "MyString.h"
 
 MyString::MyString(const char* new_str) {
