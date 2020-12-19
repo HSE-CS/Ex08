@@ -10,12 +10,12 @@ class MyString {
     friend std::istream &operator>>(std::istream &inp, MyString &s);
     friend std::ostream &operator<<(std::ostream &out, MyString &s);
 
-private:
+ private:
     char *str;
     int len;
     bool CharInString(char c) const;
 
-public:
+ public:
     explicit MyString(const char *new_str = nullptr);
     explicit MyString(std::string);
     MyString(const MyString &);

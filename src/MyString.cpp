@@ -8,8 +8,7 @@ MyString::MyString(const char *new_str) {
     if (new_str == nullptr) {
         len = 0;
         str = nullptr;
-    }
-    else {
+    } else {
         len = strlen(new_str);
         str = new char[len + 1];
         snprintf(str, len + 1, "%s", new_str);
@@ -156,9 +155,10 @@ MyString MyString::operator!() {
     for (int i = 0; i < len; ++i) {
         if (str[i] >= 'A' && str[i] <= 'Z') {
             str[i] += 'a' - 'A';
-        }
-        else if (str[i] >= 'a' && str[i] <= 'z') {
-            str[i] -= 'a' - 'A';
+        } else {
+            if (str[i] >= 'a' && str[i] <= 'z') {
+                str[i] -= 'a' - 'A';
+            }
         }
     }
     return MyString(str);
