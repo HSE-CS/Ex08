@@ -8,7 +8,7 @@ MyString::MyString(const char* new_ptr) {
         len = 0;
         string_ptr = nullptr;
     }
-    else {
+    if (new_ptr != nullptr) {
         len = strlen(new_ptr);
         string_ptr = new char[len + 1];
         for (size_t i = 0; i <= len; ++i)
