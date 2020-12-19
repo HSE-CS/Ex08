@@ -3,26 +3,29 @@
 #define INCLUDE_MYSTRING_H_
 
 #include <iostream>
+#include <cstring>
 #include <string>
-#include <numeric>
-#include <algorithm>
 
 class MyString {
- private:
-	char* str;
-	unsigned len;
+	friend std::istream &operator>>(std::istream &inp, MyString &s);
+	friend std::ostream &operator<<(std::ostream &out, MyString &s);
 
- public:
+private:
+	char *str;
+	int len;
+	bool CharInString(char c) const;
+
+public:
 	explicit MyString(const char *new_str = nullptr);
 	explicit MyString(std::string);
 	MyString(const MyString &);
 	MyString(MyString &&);
 	~MyString();
-	int length();
-	char *get();
+	int length() const;
+	char *get() const;
 	MyString operator+(const MyString &);
 	MyString operator-(const MyString &);
-	MyString operator*(int);
+	MyString operator*(int n);
 	MyString &operator=(const MyString &);
 	MyString &operator=(MyString &&);
 	bool operator==(const MyString &);
@@ -32,10 +35,10 @@ class MyString {
 	bool operator>=(const MyString &);
 	bool operator<=(const MyString &);
 	MyString operator!();
-	char &operator[](int);
+	char &operator[](int i);
 	int operator()(const char *);
-
-	friend std::istream &operator>>(std::istream &inp, MyString &new_str);
-	friend std::ostream &operator<<(std::ostream &out, MyString &new_str);
 };
+
+char *AddCharResize(char *, char);
+
 #endif  // INCLUDE_MYSTRING_H_
