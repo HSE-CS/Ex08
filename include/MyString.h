@@ -1,6 +1,4 @@
-﻿// Copyright 2020 SmirnovGrigory  
-
-
+﻿  // Copyright 2020 SmirnovGrigory
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 

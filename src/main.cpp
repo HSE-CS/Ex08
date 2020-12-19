@@ -1,6 +1,4 @@
-﻿// Copyright 2020 SmirnovGrigory  
-
-
+﻿  // Copyright 2020 SmirnovGrigory
 #include "MyString.h"
 
 int main() {
