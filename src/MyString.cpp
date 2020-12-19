@@ -1,7 +1,7 @@
 // Copyright 2020 Bugrov
 #define _CRT_SECURE_NO_WARNINGS
-
 #include "MyString.h"
+#include <string.h>
 
 MyString::MyString(const char* new_str) {
 	if (new_str == nullptr) {
