@@ -158,3 +158,4 @@ std::ostream& operator<<(std::ostream& os, MyString& str) {
 std::istream& operator>>(std::istream& is, MyString& str) {
   return is >> str.get();
 }
+

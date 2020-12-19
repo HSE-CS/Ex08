@@ -7,7 +7,7 @@ int main() {
   MyString s3;
   s3 = s1 + s2;
   std::cout << s3 << "\n";
-  std::cout << s3("ll") << "\n";  
-  std::cout << s3("fork") << "\n";  
+  std::cout << s3("ll") << "\n";
+  std::cout << s3("fork") << "\n";
   return 0;
 }
