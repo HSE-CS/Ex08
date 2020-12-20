@@ -109,8 +109,7 @@ MyString MyString::operator-(const MyString& str) {
         }
         MyString new_str_n(temp);
         return new_str_n;
-    }
-    else {
+    } else {
         MyString new_str_n(nullptr);
         return new_str_n;
     }
@@ -128,8 +127,7 @@ MyString MyString::operator*(const int a) {
         new_str[i] = '\0';
         MyString new_str_n(new_str);
         return new_str_n;
-    }
-    else {
+    } else {
         MyString new_str_n(nullptr);
         return new_str_n;
     }
@@ -158,8 +156,7 @@ MyString& MyString::operator=(MyString&& str) {
 bool MyString::operator==(const MyString& str) {
     if (strcmp(this->string, str.string) == 0) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -167,8 +164,7 @@ bool MyString::operator==(const MyString& str) {
 bool MyString::operator!=(const MyString& str) {
     if (strcmp(this->string, str.string) != 0) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -176,8 +172,7 @@ bool MyString::operator!=(const MyString& str) {
 bool MyString::operator>(const MyString& str) {
     if (strcmp(this->string, str.string) == 1) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -185,8 +180,7 @@ bool MyString::operator>(const MyString& str) {
 bool MyString::operator<(const MyString& str) {
     if (strcmp(this->string, str.string) == -1) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -194,8 +188,7 @@ bool MyString::operator<(const MyString& str) {
 bool MyString::operator>=(const MyString& str) {
     if (strcmp(this->string, str.string) != -1) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -203,8 +196,7 @@ bool MyString::operator>=(const MyString& str) {
 bool MyString::operator<=(const MyString& str) {
     if (strcmp(this->string, str.string) != 1) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
@@ -218,12 +210,10 @@ MyString MyString::operator!() {
     for (unsigned int i = 0; i < this->len; i++) {
         if (this->string[i] >= 'a' && this->string[i] <= 'z') {
             new_str[j] = this->string[i] - 32;
-        }
-        else {
+        } else {
             if (this->string[i] >= 'A' && this->string[i] <= 'Z') {
                 new_str[j] = this->string[i] + 32;
-            }
-            else {
+            } else {
                 new_str[j] = this->string[i];
             }
         }
@@ -247,8 +237,7 @@ int MyString::operator()(const char* str) {
     char* search = strstr(this->string, str);
     if (search == nullptr) {
         return -1;
-    }
-    else {
+    } else {
         return search - this->string;
     }
 }
