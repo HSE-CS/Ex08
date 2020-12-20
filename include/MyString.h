@@ -41,4 +41,4 @@ class MyString {
 
 char *AddCharResize(char *, char);
 
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
