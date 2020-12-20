@@ -1,9 +1,9 @@
 //RogozyanAnastasiya
-#include "../include/MyString.h"
+#include "MyString.h"
 #include <cctype>
 #include <cstring>
 #include <iostream>
-#include "../include/MyString.h"
+#include "MyString.h"
 
 MyString::MyString(const char* new_string) {
   if (new_string != nullptr) {
