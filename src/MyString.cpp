@@ -1,4 +1,7 @@
 //RogozyanAnastasiya
+
+#include "../include/MyString.h"
+#include <cctype>
 #include <cstring>
 #include <iostream>
 #include "../include/MyString.h"
@@ -12,42 +15,34 @@ MyString::MyString(const char* new_string) {
     memset(string, 0, 1);
   }
 }
-
 MyString::MyString(std::string new_string) {
   string = new char[new_string.length() + 1];
   memcpy(string, new_string.c_str(), new_string.length() + 1);
 }
-
 MyString::MyString(const MyString &new_string) {
   string = new char[strlen(new_string.string) + 1];
   snprintf(string, strlen(new_string.string) + 1, "%s", new_string.string);
 }
-
 MyString::MyString(MyString &&new_string) {
   string = new char[strlen(new_string.string)];
   string = new_string.string;
   new_string.string = NULL;
 }
-
 MyString::~MyString() {
   delete string;
 }
-
 size_t MyString::length() {
   return strlen(string);
 }
-
 char *MyString::get() {
   return string;
 }
-
 MyString MyString::operator+(const MyString &add_string) {
   std::string tmp;
   tmp.append(string);
   tmp.append(add_string.string);
   return MyString(tmp);
 }
-
 MyString MyString::operator-(const MyString &new_string) {
   int len_first = strlen(string);
   int len_second = strlen(new_string.string);
@@ -66,7 +61,6 @@ MyString MyString::operator-(const MyString &new_string) {
   }
     return MyString(buffer);
 }
-
 MyString MyString::operator*(const size_t n) {
   MyString answer(string);
   for (unsigned int i = 0; i < n - 1; i++) {
@@ -74,43 +68,34 @@ MyString MyString::operator*(const size_t n) {
   }
   return answer;
 }
-
 MyString &MyString::operator=(const MyString &new_string) {
   string = new char[strlen(new_string.string) + 1];
   snprintf(string, strlen(new_string.string) + 1, "%s", new_string.string);
   return *this;
 }
-
 MyString &MyString::operator=(MyString &&new_string) {
   string = new_string.string;
   new_string.string = NULL;
   return *this;
 }
-
 bool MyString::operator==(const MyString &new_string) {
   return !strcmp(string, new_string.string);
 }
-
 bool MyString::operator!=(const MyString &new_string) {
   return strcmp(string, new_string.string);
 }
-
 bool MyString::operator>(const MyString &new_string) {
   return strcmp(string, new_string.string) == 1;
 }
-
 bool MyString::operator<(const MyString &new_string) {
   return strcmp(string, new_string.string) == -1;
 }
-
 bool MyString::operator>=(const MyString &new_string) {
   return strcmp(string, new_string.string) != -1;
 }
-
 bool MyString::operator<=(const MyString &new_string) {
   return strcmp(string, new_string.string) != 1;
 }
-
 MyString MyString::operator!() {
   std::string tmp;
   for (size_t i = 0; i < strlen(string); i++) {
@@ -121,11 +106,9 @@ MyString MyString::operator!() {
   }
   return MyString(tmp);
 }
-
 char &MyString::operator[](const size_t ind) const {
   return string[ind];
 }
-
 int MyString::operator()(const char *new_string) {
   int sub_index = 0;
   int len = strlen(string);
@@ -140,11 +123,9 @@ int MyString::operator()(const char *new_string) {
   }
   return -1;
 }
-
 std::ostream &operator<<(std::ostream &in, MyString &new_string) {
   return in << new_string.string;
 }
-
 std::istream &operator>>(std::istream &out, MyString &new_string) {
   return out >> new_string.string;
 }

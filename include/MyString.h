@@ -10,6 +10,9 @@ class MyString {
     char* string;
 
  public:
+    MyString();
+    explicit MyString(const char*);
+    explicit MyString(std::string);
     explicit MyString(const char* ptr = nullptr);
     explicit MyString(std::string s);
     MyString(const MyString& s);
@@ -34,5 +37,4 @@ class MyString {
     friend std::ostream& operator<<(std::ostream &os, MyString& s);
     friend std::istream& operator>>(std::istream &is, MyString& s);
 };
-
 #endif  //  INCLUDE_MYSTRING_H_
