@@ -12,10 +12,9 @@ class MyString {
     unsigned int reserved_size;
 
  public:
-
     MyString();
     MyString(const MyString& val);
-    MyString(std::string val);
+    explicit MyString(std::string val);
     ~MyString();
     void append(const char* val);
     void append(const MyString& val);
@@ -49,7 +48,5 @@ class MyString {
     int operator()(const MyString& val);
     int operator()(const char* val);
 };
-
-MyString intToMyString(int val);
 
 #endif   // INCLUDE_MYSTRING_H_
