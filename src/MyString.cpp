@@ -42,7 +42,7 @@ MyString :: ~MyString() {
     delete[] stroka;
 }
 int MyString::length() {
-    if (this->stroka == nullptr) 
+    if (this->stroka == nullptr)
         return 0;
     else
         return strlen(stroka);
@@ -73,14 +73,14 @@ MyString MyString::operator+(const MyString& s) {
     return MyString(str_new);
 }
 MyString MyString::operator-(const MyString& s) {
-    std::string x_array = std::string(s.stroka);
-    std::string str_array = std::string(stroka);
+    std::string s_ = std::string(s.stroka);
+    std::string str_ = std::string(stroka);
 
-    for(int i = 0; i < x_array.size(); i++)
-        for (int j = 0; j < str_array.size(); j++) {
-            if (str_array[j] == x_array[i]) str_array.erase(str_array.begin() + j);
+    for (int i = 0; i < s_.size(); i++)
+        for (int j = 0; j < str_.size(); j++) {
+            if (str_[j] == s_[i]) str_.erase(str_.begin() + j);
         }
-    return MyString(str_array);
+    return MyString(str_);
 }
 MyString MyString::operator*(int n) {
     char* str_new = new char[strlen(this->stroka) * n + 1];
@@ -133,7 +133,6 @@ bool MyString::operator<=(const MyString& s) {
 
 MyString MyString::operator!() {
     for (int i = 0; i < strlen(this->stroka); i++) {
-
         if (stroka[i] >= 'a' && stroka[i] <= 'z') {
             stroka[i] = toupper(stroka[i]);
             continue;
@@ -143,7 +142,6 @@ MyString MyString::operator!() {
             stroka[i] = tolower(stroka[i]);
             continue;
         }
-
     }
     return MyString(stroka);
 }
@@ -152,7 +150,7 @@ char MyString::operator[](int n) {
 }
 int MyString::operator()(const char* s) {
     char* podstr = strstr(stroka, s);
-    if (podstr == NULL) 
+    if (podstr == NULL)
          return -1;
     else
          return (podstr - stroka);
