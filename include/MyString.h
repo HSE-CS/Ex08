@@ -1,6 +1,6 @@
 // Copyright 2020 Golovanov
-#ifndef MYSTRING_H
-#define MYSTRING_H
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 
 #include <iostream>
 #include <cstring>
@@ -41,4 +41,4 @@ class MyString {
 
 char *AddCharResize(char *, char);
 
-#endif // MYSTRING_H
+#endif // INCLUDE_MYSTRING_H_
