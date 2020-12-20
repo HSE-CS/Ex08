@@ -13,7 +13,7 @@ int main() {
     std::cout << a << std::endl;
     a = b + temp + c * 15 + temp + d;
     std::cout << a.get() << std::endl;
-    a = !a;                             
+    a = !a;
     std::cout << a << std::endl;
     std::cout << a.length() << std::endl;
     std::cout << a[0] << std::endl;
