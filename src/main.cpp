@@ -23,5 +23,11 @@ int main() {
 	std::cout << s8 << std::endl;
 	s8[4] = 'm';
 	std::cout << s8 << std::endl;
+	MyString a("123");
+	int b = 3;
+	MyString c;
+	c = a * b;
+	std::cout << c << std::endl;
+	/*if ("123123123"= c.get());*/
 	return 0;
 }
