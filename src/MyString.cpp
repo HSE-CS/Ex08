@@ -139,7 +139,7 @@ MyString& MyString::operator=(const MyString& str) {
     int i = 0;
     while (i < this->len) {
         this->string[i] = str.string[i];
-        i++;
+        ++i;
     }
     this->string[i] = '\0';
     return *this;
