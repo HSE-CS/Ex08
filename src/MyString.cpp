@@ -6,8 +6,7 @@ MyString::MyString(const char* first_str) {
     if (first_str == nullptr) {
         str = nullptr;
         len = 0;
-    }
-    else {
+    } else {
         len = strlen(first_str);
         str = new char[len + 1];
         snprintf(str, len + 1, "%s", first_str);
@@ -92,8 +91,7 @@ MyString& MyString::operator=(MyString&& string) {
 bool MyString::operator==(const MyString& string) {
     if (strcmp(str, string.str) == 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -101,8 +99,7 @@ bool MyString::operator==(const MyString& string) {
 bool MyString::operator!=(const MyString& string) {
     if (strcmp(str, string.str) == 0) {
         return false;
-    }
-    else {
+    } else {
         return true;
     }
 }
@@ -110,8 +107,7 @@ bool MyString::operator!=(const MyString& string) {
 bool MyString::operator>(const MyString& string) {
     if (strcmp(str, string.str) > 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -119,8 +115,7 @@ bool MyString::operator>(const MyString& string) {
 bool MyString::operator<(const MyString& string) {
     if (strcmp(str, string.str) < 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -128,8 +123,7 @@ bool MyString::operator<(const MyString& string) {
 bool MyString::operator>=(const MyString& string) {
     if (strcmp(str, string.str) >= 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -137,8 +131,7 @@ bool MyString::operator>=(const MyString& string) {
 bool MyString::operator<=(const MyString& string) {
     if (strcmp(str, string.str) <= 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -149,8 +142,7 @@ MyString MyString::operator!() {
     for (int i = 0; i < len; i++) {
         if (str[i] <= 'Z' && str[i] >= 'A') {
             s_new += 32;
-        }
-        else {
+        } else {
             if (str[i] <= 'z' && str[i] >= 'a') {
                 s_new[i] -= 32;
             }
@@ -167,8 +159,7 @@ int MyString::operator()(const char* string) {
     char* point = strstr(str, string);
     if (point == nullptr) {
         return -1;
-    }
-    else {
+    } else {
         return point - str;
     }
 }
