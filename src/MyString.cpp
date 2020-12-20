@@ -239,7 +239,7 @@ MyString MyString::operator-(const MyString& val){
     return res;
 }
 
-MyString MyString::operator+(int a) {
+MyString MyString::operator*(int a) {
     MyString res(*this);
     for (int i = 0; i < a-1; ++i)
     {

@@ -44,6 +44,7 @@ class MyString {
     bool operator<(const MyString& val);
     MyString operator+(const MyString& val);
     MyString operator-(const MyString& val);
+    MyString operator*(int a);
     MyString operator!();
     int operator()(const MyString& val);
     int operator()(const char* val);
