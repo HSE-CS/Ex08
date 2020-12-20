@@ -240,10 +240,10 @@ MyString MyString::operator-(const MyString& val){
 }
 
 MyString MyString::operator*(int a) {
-    MyString res(*this);
-    for (int i = 0; i < a-1; ++i)
+    MyString res;
+    for (int i = 0; i < a; ++i)
     {
-        res += res;
+        res += *this;
     }
     return res;
 }
