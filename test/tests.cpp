@@ -1,7 +1,7 @@
 // Copyright 2020 GHA Test Team
 #include <gtest/gtest.h>
 #include <string>
-#include "MyString.h"
+#include "../include/MyString.h"
 
 TEST(MyStringTest, test1) {
   MyString a;

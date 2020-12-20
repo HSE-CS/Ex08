@@ -1,6 +1,6 @@
 //RogozyanAnastasiya
 #include <iostream>
-#include "MyString.h"
+#include "../include/MyString.h"
 
 int main() {
     MyString s;
