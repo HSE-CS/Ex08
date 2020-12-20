@@ -251,8 +251,7 @@ MyString MyString::operator!() {
     for (int i = 0; i < res.size; ++i)
         if (res.value[i] >= 65 && res.value[i] <= 90) {
             res.value[i] += 32;
-        }
-        else if(res.value[i] >= 97 && res.value[i] <= 112) {
+        } else if (res.value[i] >= 97 && res.value[i] <= 112) {
             res.value[i] -= 32;
         }
     return res;
