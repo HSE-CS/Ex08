@@ -7,11 +7,11 @@
 #include <sstream>
 
 class MyString {
-private:
+ private:
     char* mystr;
     size_t size;
 
-public:
+ public:
     explicit MyString(const char* = nullptr);
     explicit MyString(std::string other);
     MyString(const MyString& other);

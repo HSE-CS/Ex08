@@ -8,8 +8,7 @@ MyString::MyString(const char* other) : mystr{ nullptr }, size{ 0 } {
         this->mystr = new char[size + 1];
         memset(this->mystr, 0, size + 1);
         memcpy(this->mystr, other, this->size);
-    }
-    else {
+    } else {
         this->size = 0;
         this->mystr = nullptr;
     }
