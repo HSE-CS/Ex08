@@ -17,7 +17,7 @@ class MyString {
     int length();
     char* get();
     MyString operator+(const MyString &);
-    MyString operator-(const MyString& );
+    MyString operator-(const MyString&);
     MyString operator*(int);
     MyString operator=(const MyString&);
     MyString operator=(MyString&&);
