@@ -238,11 +238,13 @@ MyString MyString::operator-(const MyString& val) {
     return res;
 }
 
-void MyString::operator*(int a) {
-    MyString p(*this);
-    for (int i = 0; i < a - 1; ++i) {
-        *this += p;
+MyString MyString::operator*(int a) {
+    std::string p(this->value);
+    std::string res;
+    for (int i = 0; i < a; ++i) {
+        res += p;
     }
+    return MyString(res);
 }
 
 MyString MyString::operator!() {

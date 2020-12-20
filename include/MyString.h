@@ -43,7 +43,7 @@ class MyString {
     bool operator<(const MyString& val);
     MyString operator+(const MyString& val);
     MyString operator-(const MyString& val);
-    void operator*(int a);
+    MyString operator*(int a);
     MyString operator!();
     int operator()(const MyString& val);
     int operator()(const char* val);
