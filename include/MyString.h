@@ -1,21 +1,21 @@
 // Copyright [2020] <Balayan Roman>
 
-#ifndef MYSTRING_H_
-#define MYSTRING_H_
+#ifndef INCLUDE_MYSTRING_H_
+#define INCLUDE_MYSTRING_H_
 #include <iostream>
-#include <string.h>
+#include <string>
 
 class MyString {
-private:
+ private:
     char* value;
     unsigned int size;
     unsigned int reserved_size;
-public:
-    //MyString(const char* val = nullptr);
+
+ public:
+
     MyString();
     MyString(const MyString& val);
     MyString(std::string val);
-    //MyString(MyString&& val);
     ~MyString();
     void append(const char* val);
     void append(const MyString& val);
@@ -33,7 +33,6 @@ public:
     friend std::istream& operator>>(std::istream& in, MyString& val);
     void operator=(const MyString& val);
     void operator=(const char* val);
-    //MyString& operator=(MyString&& val);
     void operator+=(const MyString& val);
     void operator+=(const char* val);
     void operator+=(char val);
@@ -52,5 +51,4 @@ public:
 
 MyString intToMyString(int val);
 
-
-#endif   // MYSTRING_H_ 
+#endif   // INCLUDE_MYSTRING_H_

@@ -11,8 +11,7 @@ int len(const char* val) {
     return size;
 }
 
-MyString::MyString()
-{
+MyString::MyString(){
         this->reserved_size = 255;
         this->size = 0;
         this->value = new char[this->reserved_size];
@@ -20,8 +19,7 @@ MyString::MyString()
         return;
 }
 
-MyString::MyString(const MyString& val)
-{
+MyString::MyString(const MyString& val){
     this->reserved_size = val.reserved_size;
     this->size = val.size;
     this->value = new char[this->reserved_size];
@@ -29,8 +27,7 @@ MyString::MyString(const MyString& val)
         this->value[i] = val.value[i];
 }
 
-MyString::MyString(std::string val)
-{
+MyString::MyString(std::string val){
     this->reserved_size = val.length() + 100;
     this->size = val.length();
     this->value = new char[this->reserved_size];
@@ -38,18 +35,11 @@ MyString::MyString(std::string val)
         this->value[i] = val[i];
 }
 
-//MyString::MyString(MyString&& val) : value(val.value)
-//{
-//    val.value = nullptr;
-//}
-
-MyString::~MyString()
-{
+MyString::~MyString(){
     delete this->value;
 }
 
-void MyString::append(const char* val)
-{
+void MyString::append(const char* val){
     if (len(val) + this->size >= this->reserved_size)
         this->resize(len(val) + this->size + 10);
     for (int i = this->size, j = 0; j < len(val) + 1; ++j, ++i)
@@ -57,8 +47,7 @@ void MyString::append(const char* val)
     this->size += len(val);
 }
 
-void MyString::append(const MyString& val)
-{
+void MyString::append(const MyString& val){
     if (val.size + this->size >= this->reserved_size)
         this->resize(val.size + this->size + 10);
     for (int i = this->size, j = 0; j < val.size + 1; ++j, ++i)
@@ -66,24 +55,21 @@ void MyString::append(const MyString& val)
     this->size += val.size;
 }
 
-char MyString::pop_back()
-{
+char MyString::pop_back(){
     char res = this->value[this->size - 1];
     this->size--;
     this->value[this->size] = '\0';
     return res;
 }
 
-void MyString::reverse()
-{
+void MyString::reverse(){
     MyString copy(*this);
     for (int i = 0; i < this->size; ++i)
         this->value[i] = copy.value[this->size - 1 - i];
     this->value[this->size] = '\0';
 }
 
-void MyString::del(char val)
-{
+void MyString::del(char val){
     for (int i = 0; i < this->size; ++i)
     {
         if (this->value[i] == val) {
@@ -97,13 +83,11 @@ void MyString::del(char val)
     }
 }
 
-unsigned int MyString::length()
-{
+unsigned int MyString::length(){
     return this->size;
 }
 
-void MyString::resize(unsigned int size)
-{
+void MyString::resize(unsigned int size){
     MyString copy(*this);
     delete this->value;
     this->reserved_size = size;
@@ -112,24 +96,19 @@ void MyString::resize(unsigned int size)
         this->value[i] = copy.value[i];
 }
 
-unsigned int MyString::get_reserved_size()
-{
+unsigned int MyString::get_reserved_size(){
     return this->reserved_size;
 }
 
-char* MyString::get()
-{
+char* MyString::get(){
     return this->value;
 }
 
-float MyString::get_float()
-{
+float MyString::get_float(){
     float res = 0;
     int exp1 = 1, exp2 = 1;
-    for (int i = this->size - 1; i >= 0; --i)
-    {
-        if (this->value[i] == '.')
-        {
+    for (int i = this->size - 1; i >= 0; --i){
+        if (this->value[i] == '.'){
             res /= exp1;
             exp1 = 1;
             continue;
@@ -140,8 +119,7 @@ float MyString::get_float()
     return res;
 }
 
-int* MyString::get_date()
-{
+int* MyString::get_date(){
     int* dates = new int[3];
     dates[0] = 0;
     dates[1] = 0;
@@ -157,13 +135,11 @@ int* MyString::get_date()
     return dates;
 }
 
-char& MyString::operator[](unsigned int i)
-{
+char& MyString::operator[](unsigned int i){
     return this->value[i];
 }
 
-void MyString::operator=(const MyString& val)
-{
+void MyString::operator=(const MyString& val){
     this->reserved_size = val.reserved_size;
     this->size = val.size;
     this->value = new char[this->reserved_size];
@@ -171,8 +147,7 @@ void MyString::operator=(const MyString& val)
         this->value[i] = val.value[i];
 }
 
-void MyString::operator=(const char* val)
-{
+void MyString::operator=(const char* val){
     this->reserved_size = len(val) + 100;
     this->size = len(val);
     this->value = new char[this->reserved_size];
@@ -180,19 +155,7 @@ void MyString::operator=(const char* val)
         this->value[i] = val[i];
 }
 
-//MyString& MyString::operator=(MyString&& val)
-//{
-//    if (&val == this)
-//        return *this;
-//    delete value;
-//
-//    value = new char[(val).reserved_size];
-//    *value = *val.value;
-//    return *this;
-//}
-
-void MyString::operator+=(const MyString& val)
-{
+void MyString::operator+=(const MyString& val){
     if (val.size + this->size >= this->reserved_size)
         this->resize(val.size + this->size + 10);
     for (int i = this->size, j = 0; j < val.size + 1; ++j, ++i)
@@ -200,8 +163,7 @@ void MyString::operator+=(const MyString& val)
     this->size += val.size;
 }
 
-void MyString::operator+=(const char* val)
-{
+void MyString::operator+=(const char* val){
     if (len(val) + this->size >= this->reserved_size)
         this->resize(len(val) + this->size + 10);
     for (int i = this->size, j = 0; j < len(val) + 1; ++j, ++i)
@@ -209,8 +171,7 @@ void MyString::operator+=(const char* val)
     this->size += len(val);
 }
 
-void MyString::operator+=(char val)
-{
+void MyString::operator+=(char val){
     if (1 + this->size >= this->reserved_size)
         this->resize(1 + this->size + 10);
     this->value[this->size] = val;
@@ -218,8 +179,7 @@ void MyString::operator+=(char val)
     this->value[this->size] = '\0';
 }
 
-bool MyString::operator==(const MyString& val)
-{
+bool MyString::operator==(const MyString& val){
     if (this->size != val.size)
         return false;
     for (int i = 0; i < this->size; ++i)
@@ -228,23 +188,19 @@ bool MyString::operator==(const MyString& val)
     return true;
 }
 
-bool MyString::operator!=(const MyString& val)
-{
+bool MyString::operator!=(const MyString& val){
     return !(*this == val);
 }
 
-bool MyString::operator>=(const MyString& val)
-{
+bool MyString::operator>=(const MyString& val){
     return *this > val || *this == val;
 }
 
-bool MyString::operator<=(const MyString& val)
-{
+bool MyString::operator<=(const MyString& val){
     return *this < val || *this == val;
 }
 
-bool MyString::operator>(const MyString& val)
-{
+bool MyString::operator>(const MyString& val){
     int i = 0;
     while (i < val.size && i < this->size) {
         if (val.value[i] < this->value[i]) {
@@ -257,8 +213,7 @@ bool MyString::operator>(const MyString& val)
     return false;
 }
 
-bool MyString::operator<(const MyString& val)
-{
+bool MyString::operator<(const MyString& val){
     int i = 0;
     while (i < val.size && i < this->size) {
         if (val.value[i] > this->value[i]) {
@@ -271,23 +226,29 @@ bool MyString::operator<(const MyString& val)
     return false;
 }
 
-MyString MyString::operator+(const MyString& val)
-{
+MyString MyString::operator+(const MyString& val){
     MyString res(*this);
     res += val;
     return res;
 }
 
-MyString MyString::operator-(const MyString& val)
-{
+MyString MyString::operator-(const MyString& val){
     MyString res(*this);
     for (int i = 0; i < val.size; ++i)
         res.del(val.value[i]);
     return res;
 }
 
-MyString MyString::operator!()
-{
+MyString MyString::operator+(int a) {
+    MyString res(*this);
+    for (int i = 0; i < a-1; ++i)
+    {
+        res += res;
+    }
+    return res;
+}
+
+MyString MyString::operator!(){
     MyString res(*this);
     for (int i = 0; i < res.size; ++i)
         if (res.value[i] >= 65 && res.value[i] <= 90)
@@ -298,8 +259,7 @@ MyString MyString::operator!()
     return res;
 }
 
-int MyString::operator()(const MyString& val)
-{
+int MyString::operator()(const MyString& val){
     for (int i = 0; i < this->size; ++i) {
         bool check = true;
         for (int j = 0; j < val.size; ++j) {
@@ -318,8 +278,7 @@ int MyString::operator()(const MyString& val)
     return -1;
 }
 
-int MyString::operator()(const char* a)
-{
+int MyString::operator()(const char* a){
     MyString val(a);
     for (int i = 0; i < this->size; ++i) {
         bool check = true;
@@ -339,8 +298,7 @@ int MyString::operator()(const char* a)
     return -1;
 }
 
-MyString intToMyString(int val)
-{
+MyString intToMyString(int val){
     MyString res;
     bool isMinus = val < 0;
     if (isMinus)
@@ -356,14 +314,12 @@ MyString intToMyString(int val)
     return res;
 }
 
-std::ostream& operator<<(std::ostream& out, const MyString& val)
-{
+std::ostream& operator<<(std::ostream& out, const MyString& val){
     out << val.value;
     return out;
 }
 
-std::istream& operator>>(std::istream& in, MyString& val)
-{
+std::istream& operator>>(std::istream& in, MyString& val){
     char* buf = new char[255];
     std::cin.getline(buf, 255);
     val = MyString(buf);
