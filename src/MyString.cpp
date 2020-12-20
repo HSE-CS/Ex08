@@ -1,4 +1,5 @@
 // Copyright 2020 KarMashanova
+#define _CRT_SECURE_NO_WARNINGS
 #include "MyString.h"
 #include <string.h>
 #include <iostream>
