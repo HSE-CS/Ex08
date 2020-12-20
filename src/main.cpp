@@ -8,6 +8,6 @@ int main() {
     MyString s3;
     s3 = s1 + s2;
     std::cout << s3;
-    std::cout << s3("ll");   
-    std::cout << s3("mama"); 
+    std::cout << s3("ll");
+    std::cout << s3("mama");
 }
