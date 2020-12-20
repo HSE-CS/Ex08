@@ -8,57 +8,57 @@
 #include <iostream>
 
 class MyString {
-    private:
-        char *string;
+ private:
+  char *string;
 
-    public:
-        MyString();
+ public:
+MyString();
 
-        MyString(std::string);
+explicit MyString(std::string);
 
-        MyString(const MyString &);
+MyString(const MyString &);
 
-        MyString(const char *);
+explicit MyString(const char *);
 
-        MyString(MyString &&);
+MyString(MyString &&);
 
-        ~MyString() { delete[]this->string; }
+~MyString() { delete[]this->string; }
 
-        int length() { return strlen(this->string); }
+int length() { return strlen(this->string); }
 
-        char *get() const;
+char *get() const;
 
-        MyString operator+(MyString &);
+  MyString operator+(MyString &);
 
-        MyString operator-(MyString &);
+  MyString operator-(MyString &);
 
-        MyString operator*(int);
+  MyString operator*(int);
 
-        MyString &operator=(MyString);
+  MyString &operator=(MyString);
 
-        MyString &operator=(MyString &&);
+  MyString &operator=(MyString &&);
 
-        bool operator>(const MyString &);
+  bool operator>(const MyString &);
 
-        bool operator<(const MyString &);
+  bool operator<(const MyString &);
 
-        bool operator==(const MyString &);
+  bool operator==(const MyString &);
 
-        bool operator!=(const MyString &);
+  bool operator!=(const MyString &);
 
-        bool operator>=(const MyString &);
+  bool operator>=(const MyString &);
 
-        bool operator<=(const MyString &);
+  bool operator<=(const MyString &);
 
-        MyString operator!();
+  MyString operator!();
 
-        char operator[](int);
+  char operator[](int);
 
-        int operator()(const char *);
+  int operator()(const char *);
 
-        friend std::istream &operator>>(std::istream &, MyString &);
+  friend std::istream &operator>>(std::istream &, MyString &);
 
-        friend std::ostream &operator<<(std::ostream &, MyString &);
+  friend std::ostream &operator<<(std::ostream &, MyString &);
 };
 
-#endif // INCLUDE_MYSTRING_H_
+#endif  // INCLUDE_MYSTRING_H_
