@@ -7,11 +7,11 @@
 #include <cstring>
 
 class MyString {
-private:
+ private:
     char* string;
     unsigned int len;
 
-public:
+ public:
     MyString();
     explicit MyString(const char*);
     explicit MyString(std::string);

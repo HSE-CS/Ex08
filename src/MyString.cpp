@@ -69,8 +69,7 @@ MyString::~MyString() {
 unsigned int MyString::length() {
     if (string) {
         return strlen(this->string);
-    }
-    else {
+    } else {
         return 0;
     }
 }
