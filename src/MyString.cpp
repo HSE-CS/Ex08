@@ -3,7 +3,8 @@
 #include "../include/MyString.h"
 
 MyString::MyString() {
-    this->string = nullptr;
+    this->string = new char[1];
+    this->string[0] = '\n';
 }
 
 MyString::MyString(std::string s) {
@@ -61,7 +62,7 @@ MyString MyString::operator*(int n) {
     for (unsigned int i = 0; i < n; ++i)
         // strcpy(i * this->length() + result, this->string);
         snprintf(i * this->length() + result,
-            this->length(), "%s", this->string);
+                 this->length(), "%s", this->string);
     return MyString(result);
 }
 
