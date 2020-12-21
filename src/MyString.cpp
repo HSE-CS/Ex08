@@ -58,17 +58,15 @@ MyString MyString::operator+(const MyString& s) {
 
     int i = 0;
     int j = 0;
-    while (i < l || j < l) {
-        while (this->stroka[i] != '\0') {
+        while (this->stroka[i] != '\0' && i < strlen(stroka)) {
             str_new[i] = stroka[i];
             i++;
         }
-        while (s.stroka[i] != '\0') {
+        while (s.stroka[j] != '\0' && j < strlen(s.stroka)) {
             str_new[i] = s.stroka[j];
             i++;
             j++;
         }
-    }
     str_new[l] = '\0';
     return MyString(str_new);
 }
@@ -105,7 +103,10 @@ MyString MyString::operator=(const MyString& s) {
     return *this;
 }
 MyString MyString::operator=(MyString&& s) {
-    stroka = s.stroka;
+    stroka = new char[strlen(s.stroka) + 1];
+    for (int i = 0; i < strlen(s.stroka); i++)
+    stroka[i] = s.stroka[i];
+    stroka[strlen(s.stroka)] = '\0';
     s.~MyString();
     s.stroka = nullptr;
     return *this;
