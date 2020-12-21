@@ -1,5 +1,6 @@
 #ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
+
 #include <cstring>
 #include <iostream>
 #include <string>
@@ -8,11 +9,9 @@
 
 class MyString {
 private:
-private:
     char* str;
     size_t len;
 
-public:
 public:
     friend std::ostream& operator<<(std::ostream& os, MyString&);
     friend std::istream& operator>>(std::istream& is, MyString&);
@@ -38,4 +37,5 @@ public:
     char& operator[](const size_t) const;
     int operator()(const char*);
 };
-#endif  // INCLUDE_MYSTRING_H_
+
+#endif
