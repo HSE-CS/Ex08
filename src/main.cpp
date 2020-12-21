@@ -9,8 +9,9 @@ signed main() noexcept {
     auto u = new MyString("I'm blue da ba dee");
 
     MyString a{"Hello"};
-    MyString b("World");
-    MyString c = !a;
+    MyString b(a);
+    MyString c;
+    c = a + b;
     std::cout << c << '\n';
     MyString res = *s + *t;
     MyString doubled = res * 2;

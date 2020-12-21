@@ -19,6 +19,7 @@ MyString MyString::operator+(const MyString &s) {
         result[i] = this->string[i];
     for (unsigned int i = this->length(); i < this->length() + s.length(); ++i)
         result[i] = s.string[i - this->length()];
+    // std::cout<<result<<'\n';
     return MyString(result);
 }
 
@@ -67,9 +68,9 @@ MyString MyString::operator*(int n) {
 }
 
 MyString &MyString::operator=(const MyString &s) {
-    auto result = new char[s.length() + 1];
+    this->string=new char[s.length()+1];
     // strcpy(this->string, s.string);
-    snprintf(this->string, this->length(), "%s", s.string);
+    snprintf(this->string, s.length() + 1, "%s", s.string);
     return *this;
 }
 
