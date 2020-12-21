@@ -32,7 +32,7 @@ MyString::MyString(const char *s) {
     if (s) {
         this->string = new char[strlen(s) + 1];
         // strcpy(this->string, s);
-        snprintf(this->string, this->length(), "%s", s);
+        snprintf(this->string, strlen(s) + 1, "%s", s);
     } else {
         this->string = new char[1];
         this->string[0] = '\n';
@@ -141,9 +141,12 @@ int MyString::operator()(const char *sub) {
         if (s.substr(i, substring.length()) == substring)
             counter++;
     }
-    return counter;
+    if (counter > 0)
+        return 0;
+    else
+        return -1;
 }
 
 int MyString::length() const {
-    return strlen(this->string);
+    return strlen(string);
 }
