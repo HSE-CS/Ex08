@@ -162,7 +162,7 @@ std::ostream& operator<<(std::ostream &out, const MyString& s) {
 }
 
 std::istream& operator>>(std::istream &in, MyString& s) {
-    char* str = 0;
+    char* str = new char[30]{};
     in >> str;
     s.stroka = new char[strlen(str) + 1];
     for (int i = 0; i < strlen(s.stroka); i++)
