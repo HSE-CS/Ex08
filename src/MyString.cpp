@@ -53,6 +53,11 @@ char* MyString::get() {
 }
 
 MyString MyString::operator+(const MyString& s) {
+    if (s.stroka == nullptr) {
+        return MyString(stroka);
+    } else if (stroka == nullptr) {
+        return MyString(s.stroka);
+    } else {
     char * str_new = new char[strlen(this->stroka) + strlen(s.stroka) + 1];
     int l = strlen(this->stroka) + strlen(s.stroka);
 
@@ -69,6 +74,7 @@ MyString MyString::operator+(const MyString& s) {
         }
     str_new[l] = '\0';
     return MyString(str_new);
+    }
 }
 MyString MyString::operator-(const MyString& s) {
     std::string s_ = std::string(s.stroka);
