@@ -60,13 +60,14 @@ MyString MyString::operator*(int n) {
     auto result = new char[1 + n * this->length()];
     for (unsigned int i = 0; i < n; ++i)
         // strcpy(i * this->length() + result, this->string);
-        snprintf(i * this->length() + result, this->length(), "%s", this->string);
+        snprintf(i * this->length() + result,
+            this->length(), "%s", this->string);
     return MyString(result);
 }
 
 MyString &MyString::operator=(const MyString &s) {
     auto result = new char[s.length() + 1];
-    //strcpy(this->string, s.string);
+    // strcpy(this->string, s.string);
     snprintf(this->string, this->length(), "%s", s.string);
     return *this;
 }
