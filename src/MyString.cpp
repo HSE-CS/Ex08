@@ -142,3 +142,7 @@ int MyString::operator()(const char *sub) {
     }
     return counter;
 }
+
+int MyString::length() const {
+    return strlen(this->string);
+}

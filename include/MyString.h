@@ -24,7 +24,7 @@ class MyString {
 
   ~MyString() { delete[]this->string; }
 
-  int length() { return strlen(this->string); }
+  int length() const;
 
   char *get();
 
