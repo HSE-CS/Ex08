@@ -125,16 +125,16 @@ bool MyString::operator!=(const MyString& s) {
 }
 
 bool MyString::operator>(const MyString& s) {
-    return strcmp(stroka, s.stroka) < 0;
-}
-bool MyString::operator<(const MyString& s) {
     return strcmp(stroka, s.stroka) > 0;
 }
+bool MyString::operator<(const MyString& s) {
+    return strcmp(stroka, s.stroka) < 0;
+}
 bool MyString::operator>=(const MyString& s) {
-    return (strcmp(stroka, s.stroka) < 0 || strcmp(stroka, s.stroka) == 0);
+    return (strcmp(stroka, s.stroka) > 0 || strcmp(stroka, s.stroka) == 0);
 }
 bool MyString::operator<=(const MyString& s) {
-    return (strcmp(stroka, s.stroka) > 0 || strcmp(stroka, s.stroka) == 0);
+    return (strcmp(stroka, s.stroka) < 0 || strcmp(stroka, s.stroka) == 0);
 }
 
 
