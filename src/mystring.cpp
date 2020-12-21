@@ -1,4 +1,4 @@
-#include "MyString.h"
+#include "../include/mystring.h"
 #include <string>
 MyString::MyString(const char* first_str) {
     if (first_str == nullptr) {

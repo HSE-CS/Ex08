@@ -1,4 +1,4 @@
-#include "MyString.h"
+#include "../include/mystring.h"
 
 int main() {
 	MyString s1("1234");
