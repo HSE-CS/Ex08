@@ -2,18 +2,13 @@
 
 #include "../include/MyString.h"
 
-MyString::MyString() {
-    this->string = new char[1];
-    this->string[0] = '\n';
-}
-
 MyString::MyString(std::string s) {
     this->string = new char[s.length() + 1];
     for (unsigned int i = 0; i < s.length(); ++i)
         this->string[i] = s[i];
 }
 
-MyString::MyString(MyString &&s) {
+MyString::MyString(MyString &&s) noexcept {
     s.string = this->string;
     this->string = nullptr;
 }
@@ -34,9 +29,14 @@ MyString::MyString(const MyString &s) {
 }
 
 MyString::MyString(const char *s) {
-    this->string = new char[strlen(s) + 1];
-    // strcpy(this->string, s);
-    snprintf(this->string, this->length(), "%s", s);
+    if (s) {
+        this->string = new char[strlen(s) + 1];
+        // strcpy(this->string, s);
+        snprintf(this->string, this->length(), "%s", s);
+    } else {
+        this->string = new char[1];
+        this->string[0] = '\n';
+    }
 }
 
 MyString MyString::operator-(const MyString &s) {

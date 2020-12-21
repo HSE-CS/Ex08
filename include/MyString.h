@@ -12,15 +12,13 @@ class MyString {
   char *string;
 
  public:
-  MyString();
-
   explicit MyString(std::string);
 
   MyString(const MyString &);
 
   explicit MyString(const char *);
 
-  MyString(MyString &&);
+  MyString(MyString &&) noexcept;
 
   ~MyString() { delete[]this->string; }
 
