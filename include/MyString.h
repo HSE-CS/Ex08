@@ -12,21 +12,21 @@ class MyString {
   char *string;
 
  public:
-MyString();
+  MyString();
 
-explicit MyString(std::string);
+  explicit MyString(std::string);
 
-MyString(const MyString &);
+  MyString(const MyString &);
 
-explicit MyString(const char *);
+  explicit MyString(const char *);
 
-MyString(MyString &&);
+  MyString(MyString &&);
 
-~MyString() { delete[]this->string; }
+  ~MyString() { delete[]this->string; }
 
-int length() { return strlen(this->string); }
+  int length() { return strlen(this->string); }
 
-char *get() const;
+  char *get();
 
   MyString operator+(const MyString &);
 

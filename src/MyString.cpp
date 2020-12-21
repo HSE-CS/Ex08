@@ -28,12 +28,14 @@ MyString MyString::operator+(const MyString &s) {
 
 MyString::MyString(const MyString &s) {
     this->string = new char[strlen(s.string) + 1];
-    snprintf(this->string, this->length(), s.string);
+    // strcpy(this->string, s.string);
+    snprintf(this->string, this->length(), "%s", s.string);
 }
 
 MyString::MyString(const char *s) {
     this->string = new char[strlen(s) + 1];
-    snprintf(this->string, this->length(), s);
+    // strcpy(this->string, s);
+    snprintf(this->string, this->length(), "%s", s);
 }
 
 MyString MyString::operator-(const MyString &s) {
@@ -58,14 +60,14 @@ MyString MyString::operator*(int n) {
     auto result = new char[1 + n * this->length()];
     for (unsigned int i = 0; i < n; ++i)
         // strcpy(i * this->length() + result, this->string);
-        snprintf(i * this->length() + result, this->length(), this->string);
+        snprintf(i * this->length() + result, this->length(), "%s", this->string);
     return MyString(result);
 }
 
 MyString &MyString::operator=(const MyString &s) {
     auto result = new char[s.length() + 1];
-    // strcpy(this->string, s.string);
-    snprintf(this->string, this->length(), s.string);
+    //strcpy(this->string, s.string);
+    snprintf(this->string, this->length(), "%s", s.string);
     return *this;
 }
 
@@ -121,7 +123,7 @@ std::istream &operator>>(std::istream &stream, MyString &s) {
     return stream >> s.get();
 }
 
-char *MyString::get() const {
+char *MyString::get() {
     return this->string;
 }
 
