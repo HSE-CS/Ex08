@@ -35,7 +35,7 @@ MyString::MyString(const char *s) {
         snprintf(this->string, strlen(s) + 1, "%s", s);
     } else {
         this->string = new char[1];
-        this->string[0] = '\n';
+        this->string[0] = '\0';
     }
 }
 
