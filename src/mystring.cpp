@@ -1,6 +1,6 @@
-#include "../include/mystring.h"
+#include "../include/MyString.h"
 #include <string>
-mystring::mystring(const char* first_str) {
+MyString::MyString(const char* first_str) {
     if (first_str == nullptr) {
         str = nullptr;
         len = 0;
@@ -12,7 +12,7 @@ mystring::mystring(const char* first_str) {
         snprintf(str, len + 1, "%s", first_str);
     }
 }
-mystring::mystring(std::string first_str) {
+MyString::MyString(std::string first_str) {
     len = first_str.size();
     str = new char[len + 1];
     for (int i = 0; i < len; i++) {
@@ -20,66 +20,66 @@ mystring::mystring(std::string first_str) {
     }
     str[len] = '\0';
 }
-mystring::mystring(const mystring& first_class) {
+MyString::MyString(const MyString& first_class) {
     len = first_class.len;
     str = new char[len + 1];
     snprintf(str, len + 1, "%s", first_class.str);
 }
-mystring::mystring(mystring&& second_class) {
+MyString::MyString(MyString&& second_class) {
     str = second_class.str;
     len = second_class.len;
     second_class.str = nullptr;
     second_class.len = 0;
 }
-mystring::~mystring() {
+MyString::~MyString() {
     delete str;
     len = 0;
 }
 
-size_t mystring::length() const {
-    size_t mystring::length() const {
+size_t MyString::length() const {
+    size_t MyString::length() const {
         return len;
     }
 
-    char* mystring::get() const {
+    char* MyString::get() const {
         return str;
     }
-    mystring mystring::operator+(const mystring & second_str) {
+    MyString MyString::operator+(const MyString & second_str) {
         size_t new_len = len + second_str.length();
         char* new_str = new char[new_len + 1];
         snprintf(new_str, len + 1, "%s", str);
         snprintf(new_str + len, second_str.length() + 1, "%s", second_str.get());
-        return mystring(new_str);
+        return MyString(new_str);
     }
-    mystring mystring::operator-(const mystring & string) {
+    MyString MyString::operator-(const MyString & string) {
         std::string new_str(str, len + str);
         for (int i = 0; i < string.len; i++) {
             new_str.erase(std::remove(new_str.begin(), new_str.end(), string[i]),
                 new_str.end());
         }
-        return mystring(new_str);
+        return MyString(new_str);
     }
-    mystring mystring::operator*(const size_t count) {
+    MyString MyString::operator*(const size_t count) {
         std::string new_str;
         for (int i = 0; i < count; i++) {
             new_str += std::string(str);
         }
-        return mystring(new_str);
+        return MyString(new_str);
     }
-    mystring& mystring::operator=(const mystring & string) {
+    MyString& MyString::operator=(const MyString & string) {
         len = string.len;
         str = new char[len + 1];
         snprintf(str, len + 1, "%s", string.str);
         return *this;
     }
-    mystring& mystring::operator=(mystring && string) {
+    MyString& MyString::operator=(MyString && string) {
         len = string.len;
         str = string.str;
         string.str = nullptr;
         string.len = 0;
         return *this;
     }
-    bool mystring::operator==(const mystring & string) {
+    bool MyString::operator==(const MyString & string) {
         if (strcmp(str, string.str) == 0) {
             return true;
         }
@@ -87,7 +87,7 @@ size_t mystring::length() const {
             return false;
         }
     }
-    bool mystring::operator!=(const mystring & string) {
+    bool MyString::operator!=(const MyString & string) {
         if (strcmp(str, string.str) == 0) {
             return false;
         }
@@ -95,7 +95,7 @@ size_t mystring::length() const {
             return true;
         }
     }
-    bool mystring::operator>(const mystring & string) {
+    bool MyString::operator>(const MyString & string) {
         if (strcmp(str, string.str) > 0) {
             return true;
         }
@@ -103,7 +103,7 @@ size_t mystring::length() const {
             return false;
         }
     }
-    bool mystring::operator<(const mystring & string) {
+    bool MyString::operator<(const MyString & string) {
         if (strcmp(str, string.str) < 0) {
             return true;
         }
@@ -111,7 +111,7 @@ size_t mystring::length() const {
             return false;
         }
     }
-    bool mystring::operator>=(const mystring & string) {
+    bool MyString::operator>=(const MyString & string) {
         if (strcmp(str, string.str) >= 0) {
             return true;
         }
@@ -119,7 +119,7 @@ size_t mystring::length() const {
             return false;
         }
     }
-    bool mystring::operator<=(const mystring & string) {
+    bool MyString::operator<=(const MyString & string) {
         if (strcmp(str, string.str) <= 0) {
             return true;
         }
@@ -127,7 +127,7 @@ size_t mystring::length() const {
             return false;
         }
     }
-    mystring mystring::operator!() {
+    MyString MyString::operator!() {
         char* s_new = new char[len + 1];
         snprintf(s_new, len + 1, "%s", str);
         for (int i = 0; i < len; i++) {
@@ -140,12 +140,12 @@ size_t mystring::length() const {
                 }
             }
         }
-        return mystring(s_new);
+        return MyString(s_new);
     }
-    char& mystring::operator[](const size_t ind) const {
+    char& MyString::operator[](const size_t ind) const {
         return str[ind];
     }
-    int mystring::operator()(const char* string) {
+    int MyString::operator()(const char* string) {
         char* point = strstr(str, string);
         if (point == nullptr) {
             return -1;
@@ -154,9 +154,9 @@ size_t mystring::length() const {
             return point - str;
         }
     }
-    std::ostream& operator<<(std::ostream & out, mystring & string) {
+    std::ostream& operator<<(std::ostream & out, MyString & string) {
         return out << string.get();
     }
-    std::istream& operator>>(std::istream & in, mystring & string) {
+    std::istream& operator>>(std::istream & in, MyString & string) {
         return in >> string.get();
     }
