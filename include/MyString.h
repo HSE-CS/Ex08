@@ -16,7 +16,7 @@ class MyString {
 
   MyString(const MyString &);
 
-  explicit MyString(const char *);
+  explicit MyString(const char * = nullptr);
 
   MyString(MyString &&) noexcept;
 
