@@ -1,4 +1,3 @@
-#ifndef INCLUDE_MYSTRING_H_
 #define INCLUDE_MYSTRING_H_
 
 #include <cstring>
@@ -38,4 +37,3 @@ public:
     int operator()(const char*);
 };
 
-#endif
