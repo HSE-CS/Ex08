@@ -25,7 +25,7 @@ MyString MyString::operator+(const MyString &s) {
 MyString::MyString(const MyString &s) {
     this->string = new char[strlen(s.string) + 1];
     // strcpy(this->string, s.string);
-    snprintf(this->string, this->length(), "%s", s.string);
+    snprintf(this->string, strlen(s.string) + 1, "%s", s.string);
 }
 
 MyString::MyString(const char *s) {
