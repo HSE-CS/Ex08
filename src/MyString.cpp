@@ -17,7 +17,7 @@ MyString::MyString(MyString &&s) {
     this->string = nullptr;
 }
 
-MyString MyString::operator+(MyString &s) {
+MyString MyString::operator+(const MyString &s) {
     auto result = new char[this->length() + s.length() + 1];
     for (int i = 0; i < this->length(); ++i)
         result[i] = this->string[i];
@@ -28,15 +28,15 @@ MyString MyString::operator+(MyString &s) {
 
 MyString::MyString(const MyString &s) {
     this->string = new char[strlen(s.string) + 1];
-    strcpy(this->string, s.string);
+    snprintf(this->string, this->length(), s.string);
 }
 
 MyString::MyString(const char *s) {
     this->string = new char[strlen(s) + 1];
-    strcpy(this->string, s);
+    snprintf(this->string, this->length(), s);
 }
 
-MyString MyString::operator-(MyString &s) {
+MyString MyString::operator-(const MyString &s) {
     auto result = new char[this->length() + s.length() + 1];
     memset(result, 0, this->length() + s.length() + 1);
     int current = 0;
@@ -57,17 +57,19 @@ MyString MyString::operator-(MyString &s) {
 MyString MyString::operator*(int n) {
     auto result = new char[1 + n * this->length()];
     for (unsigned int i = 0; i < n; ++i)
-        strcpy(i * this->length() + result, this->string);
+        // strcpy(i * this->length() + result, this->string);
+        snprintf(i * this->length() + result, this->length(), this->string);
     return MyString(result);
 }
 
-MyString &MyString::operator=(MyString s) {
+MyString &MyString::operator=(const MyString &s) {
     auto result = new char[s.length() + 1];
-    strcpy(this->string, s.string);
+    // strcpy(this->string, s.string);
+    snprintf(this->string, this->length(), s.string);
     return *this;
 }
 
-MyString &MyString::operator=(MyString &&s) {
+MyString &MyString::operator=(MyString &&s) noexcept {
     s.string = this->string;
     this->string = nullptr;
     return *this;

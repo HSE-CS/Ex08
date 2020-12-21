@@ -28,15 +28,15 @@ int length() { return strlen(this->string); }
 
 char *get() const;
 
-  MyString operator+(MyString &);
+  MyString operator+(const MyString &);
 
-  MyString operator-(MyString &);
+  MyString operator-(const MyString &);
 
   MyString operator*(int);
 
-  MyString &operator=(MyString);
+  MyString &operator=(const MyString &);
 
-  MyString &operator=(MyString &&);
+  MyString &operator=(MyString &&) noexcept;
 
   bool operator>(const MyString &);
 
